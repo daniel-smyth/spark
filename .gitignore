@@ -48,3 +48,8 @@ Thumbs.db
 *.mov
 *.wmv
 
+# Environment variables
+.env
+
+# NextJS
+.next/
