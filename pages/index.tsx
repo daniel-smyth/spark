@@ -1,22 +1,17 @@
 import type { NextPage } from "next";
-import { Text } from "@chakra-ui/react";
-import ConnectButton from "../components/ConnectButton/ConnectButton";
-import styles from "../styles/Home.module.css";
+import AboutUs from "../components/AboutUs/AboutUs";
+import Greeting from "../components/Greeting/Greeting";
 
 /**
- * * HOME PAGE
+ * * INDEX PAGE
+ * Currrently only renders a connect wallet button.
  */
 const Home: NextPage = () => {
   return (
     <div>
-      <div className={styles.container}>
-        <Text align={"center"} fontSize={30} fontWeight={"bold"}>
-          Welcome Danny
-        </Text>
-        <Text mt="5%" align={"center"} fontWeight={"light"} fontSize={20}>
-          Connect to begin
-        </Text>
-        <ConnectButton />
+      <div>{/* <Greeting />; */}</div>
+      <div>
+        <AboutUs />
       </div>
     </div>
   );

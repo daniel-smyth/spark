@@ -5,7 +5,7 @@ import React, { useCallback, useMemo } from "react";
 import styles from "./DropClaim.module.css";
 
 /**
- * * USER MINTS NFT FROM COLLECTION
+ * * MINT NFT FROM COLLECTION
  */
 
 function DropClaim() {
@@ -35,6 +35,7 @@ function DropClaim() {
 
   return (
     <div className={styles.aligncenter}>
+      {/* MINT NFT BUTTON  */}
       <Button onClick={onClick}>CLAIM NFT</Button>
     </div>
   );

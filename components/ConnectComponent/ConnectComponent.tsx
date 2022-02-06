@@ -1,22 +1,22 @@
 import React from "react";
-// Chakra UI
 import { AspectRatio, Button, Image, Text } from "@chakra-ui/react";
-// Thirdweb
 import { useSwitchNetwork, useWeb3 } from "@3rdweb/hooks";
 import styles from "./ConnectComponent.module.css";
 
 /**
  * * FULL CONNECT WALLET UI
  * Includes Metmask, WalletConnect and Coinbase wallet. Also renders the
- * current connetion status of the user.
+ * simple connetion status of the user.
  */
 
 export default function ConnectComponent() {
+  // Wallet variables.
   const { address, chainId, connectWallet, disconnectWallet } = useWeb3();
   const { canAttemptSwitch } = useSwitchNetwork();
 
   return (
     <div className={styles.aligncenter}>
+      {/* RENDER DISCONNECT BUTTON IF ADDRESS */}
       {address && (
         <Button
           onClick={disconnectWallet}
@@ -28,6 +28,7 @@ export default function ConnectComponent() {
         </Button>
       )}
 
+      {/* HEADING   */}
       <Text
         ml="10%"
         mb="5%"
@@ -37,7 +38,7 @@ export default function ConnectComponent() {
       >
         Connect Wallet
       </Text>
-
+      {/* CONNECT 1. METAMASK 2. WALLETCONNECT 3. COINBASE WALLET */}
       <Button
         mb="8px"
         size="lg"
@@ -85,6 +86,8 @@ export default function ConnectComponent() {
       >
         Coinbase Wallet
       </Button>
+
+      {/* SIMPLE CONNECTION STATUS  */}
       <div className={styles.aligncenter}>
         <Text fontWeight="bold" fontSize="24px" alignSelf="center">
           Current Status

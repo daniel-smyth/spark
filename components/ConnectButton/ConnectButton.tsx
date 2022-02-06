@@ -1,17 +1,18 @@
 import React from "react";
 import { ConnectWallet } from "@3rdweb/react";
-import styles from "./ConnectButton.module.css";
 
 /**
- * * STANDARD THIRDWEB CONNECT BUTTON
- * Also displays current wallet and balance if wallet is connected.
+ * * SIMPLE CONNECT WALLET BUTTON
+ * Simple Thirdweb connect wallet button. If wallet is
+ * connected it will displauy the users wallet details.
+ * Details include address and balance.
  */
 const Connect = () => {
   return <ConnectWallet />;
 };
 
 function ConnectButton() {
-  return <div className={styles.connectbutton}>{Connect()}</div>;
+  return <div>{Connect()}</div>;
 }
 
 export default ConnectButton;

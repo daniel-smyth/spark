@@ -1,9 +1,8 @@
-.container {
-  justify-content: center;
-  padding: 0 2rem;
-}
-
 .footer {
+  background-color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
   display: flex;
   flex: 1;
   padding: 2rem 0;

@@ -5,20 +5,23 @@ import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer/Footer";
 import "../styles/globals.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  /**
-   * * THIRD WEB
-   */
+/**
+ * * APP
+ * Thirdweb provider, Navbar and Footer.
+ * App wrapped in Thirdweb provider with magi API key anf support
+ * key chains. The chians of the coins you would like to accept.
+ */
 
-  // Put the ethereum chain ids of the chains you want to support
+function MyApp({ Component, pageProps }: AppProps) {
+  // Ethereum chain IDs of chains you want to support.
   const supportedChainIds = [1, 4, 137];
 
   /**
-   * Include the connectors you want to support
-   * injected - MetaMask
-   * magic - Magic Link
-   * walletconnect - Wallet Connect
-   * walletlink - Coinbase Wallet
+   * Connects you want to support:
+   * injected - MetaMask.
+   * magic - Magic Link.
+   * walletconnect - Wallet Connect.
+   * walletlink - Coinbase Wallet.
    */
   const connectors = {
     injected: {},
@@ -33,23 +36,25 @@ function MyApp({ Component, pageProps }: AppProps) {
       darkMode: false,
     },
   };
-
-  /**
-   * * RENDER
-   */
   return (
     <ThirdwebProvider
       connectors={connectors}
       supportedChainIds={supportedChainIds}
     >
+      {/* HEADER  */}
       <Head>
         <title>Spark</title>
         <meta name="description" content="Stay hungry, stay foolish." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      {/* NAVBAR */}
       <NavBar />
 
+      {/* COMPONENT */}
       <Component {...pageProps} />
+
+      {/* FOOTER  */}
       <Footer />
     </ThirdwebProvider>
   );

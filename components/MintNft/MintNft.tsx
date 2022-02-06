@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-// Thirdweb
-import { NFTMetadata, ThirdwebSDK } from "@3rdweb/sdk";
+import { ThirdwebSDK } from "@3rdweb/sdk";
 import { ethers } from "ethers";
 import { Button, Input, Text } from "@chakra-ui/react";
 import styles from "./MintNft.module.css";
-import { divide } from "lodash";
 
 /**
  * * MINT ON COMPILE 1 OFF NFT WITH DATA
