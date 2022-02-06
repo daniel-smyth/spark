@@ -9,7 +9,9 @@ import Greeting from "../components/Greeting/Greeting";
 const Home: NextPage = () => {
   return (
     <div>
-      <div>{/* <Greeting />; */}</div>
+      <div>
+        <Greeting />;
+      </div>
       <div>
         <AboutUs />
       </div>

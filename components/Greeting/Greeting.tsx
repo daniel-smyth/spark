@@ -1,4 +1,4 @@
-import { Text } from "@chakra-ui/react";
+import { Image, Text } from "@chakra-ui/react";
 import React from "react";
 import ConnectButton from "../ConnectButton/ConnectButton";
 import styles from "./Greeting.module.css";
@@ -15,13 +15,11 @@ export default function Greeting() {
         <div></div>
         <div></div>
         <div className={styles.centerpiece}>
-          <div>
-            <Text color="white" fontSize={40} fontWeight={"bold"}>
-              Welcome Danny
-            </Text>
+          <div className={styles.centerimage}>
+            <Image ml="2%" width="100%" src="sparklogobackground.png"></Image>
           </div>
-          <div>
-            <Text color="white" fontSize={30} fontWeight={"light"}>
+          <div className={styles.centertext}>
+            <Text color="white" fontSize={25}>
               Connect to begin
             </Text>
           </div>
