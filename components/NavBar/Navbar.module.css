@@ -1,0 +1,10 @@
+.logo {
+  display: flex;
+  margin: 1rem;
+  width: 8%;
+}
+
+.linktext {
+  font-size: 25px;
+  font-weight: 600;
+}

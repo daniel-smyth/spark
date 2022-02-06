@@ -16,11 +16,11 @@ export default function Greeting() {
         <div></div>
         <div className={styles.centerpiece}>
           <div className={styles.centerimage}>
-            <Image ml="2%" width="100%" src="sparklogobackground.png"></Image>
+            <Image ml="2%" width="100%" src="sparkwhite.png"></Image>
           </div>
           <div className={styles.centertext}>
             <Text color="white" fontSize={25}>
-              Connect to begin
+              Future of the internet
             </Text>
           </div>
           <div>
