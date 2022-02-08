@@ -1,5 +1,6 @@
-import { Image, Text } from "@chakra-ui/react";
+import { Container, Image, Text } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Col } from "react-bootstrap";
 import ConnectButton from "../ConnectButton/ConnectButton";
 import styles from "./Greeting.module.css";
 
@@ -7,10 +8,11 @@ import styles from "./Greeting.module.css";
  * * GREETING WITH CONNECT BUTTON
  */
 export default function Greeting() {
-  // Mobile: width < 1024.
-  // Desktop: width > 1023.
+  const mobileMaxResolution = 1024;
+  const desktopMinResolution = 1023;
   const [width, setWindowWidth] = useState(0);
 
+  // Add hooks.
   useEffect(() => {
     // Component mounts width is set.
     updateDimensions();
@@ -28,30 +30,48 @@ export default function Greeting() {
     setWindowWidth(width);
   };
 
-  return width < 1024 ? (
+  return (
     <div className={styles.background}>
-      <div className={styles.gridcontainer}>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div></div>
-        <div className={styles.centerpiece}>
-          <div className={styles.centerimage}>
-            <Image width="85%" src="sparkwhite.png"></Image>
-          </div>
-          <div className={styles.centertext}>
-            <Text color="white" fontSize={25}>
-              Future of the internet
-            </Text>
-          </div>
-          <div style={{ paddingTop: "1vh" }}>
-            <ConnectButton />
-          </div>
-        </div>
-        <div></div>
-      </div>
+      {width < mobileMaxResolution ? (
+        // MOBILE
+        <Container fluid>
+          <Col></Col>
+          <Col md="auto">
+            <div className={styles.homepagediv}>
+              <Image width="20%" src="icononly.png"></Image>
+              <Text color="white" fontSize={40} fontWeight={700}>
+                Create and Sell
+              </Text>
+              <Text color="white" fontSize={25} fontWeight={300}>
+                Fast. Cheap. Today.
+              </Text>
+              <div style={{ marginTop: "10px" }}>
+                <ConnectButton />
+              </div>
+            </div>
+          </Col>
+          <Col></Col>
+        </Container>
+      ) : (
+        // DESKTOP
+        <Container fluid>
+          <Col></Col>
+          <Col md="auto">
+            <div className={styles.homepagediv}>
+              <Image width="20%" src="icononly.png"></Image>
+              <Text mt="10px" color="black" fontSize={40} fontWeight={700}>
+                Create and Sell
+              </Text>
+              <Text color="black" fontSize={25} fontWeight={300}>
+                Fast. Cheap. Today.
+              </Text>
+              <div style={{ marginTop: "10px" }}>
+                <ConnectButton />
+              </div>
+            </div>
+          </Col>
+        </Container>
+      )}
     </div>
-  ) : (
-    <div></div>
   );
 }
