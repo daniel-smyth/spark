@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import { Image } from "@chakra-ui/react";
+import {
+  Navbar,
+  Container,
+  Nav,
+  NavDropdown,
+  Button,
+  Form,
+  FormControl,
+  Offcanvas,
+  Col,
+} from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import { Image, useImage } from "@chakra-ui/react";
 import styles from "./Navbar.module.css";
 
 /**
@@ -9,10 +19,11 @@ import styles from "./Navbar.module.css";
  */
 
 function NavBar() {
-  // Mobile: width < 1024.
-  // Desktop: width > 1023.
+  const mobileMaxResolution = 1024;
+  const desktopMinResolution = 1023;
   const [width, setWindowWidth] = useState(0);
 
+  // Add hooks.
   useEffect(() => {
     // Component mounts width is set.
     updateDimensions();
@@ -31,48 +42,63 @@ function NavBar() {
   };
 
   return (
-    <Navbar bg="light" expand="lg">
-      <Container>
-        {width > 1023 ? (
-          // PC VIEW
-          <Image
-            width="8%"
-            className={styles.logo}
-            src="/sparkblack.png"
-          ></Image>
-        ) : (
-          // MOBILE VIEW
-          <Image
-            width="15%"
-            className={styles.logo}
-            src="/sparkblack.png"
-          ></Image>
-        )}
-        <div className={styles.navbarright}>
-          <div className={styles.linktext}>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="/connectwallets">Wallet</Nav.Link>
-                <Nav.Link href="/mintprivatenft">Mint</Nav.Link>
-                <Nav.Link href="/claimnft">Claim</Nav.Link>
-                <NavDropdown title="More" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
+    <Navbar bg="light" expand={false}>
+      <Container fluid>
+        <Col>
+          <Image ml={8} className={styles.logo} src="/sparkblack.png"></Image>
+        </Col>
+        {/* LINKS (ONLY DISPLAYED ON PC)  */}
+        {width > desktopMinResolution ? ( // Render links if user is on PC.
+          <Col md="auto">
+            <div className={styles.linktext}>
+              <Nav.Link href="/connectwallets">Connect</Nav.Link>
+              <Nav.Link href="/mintprivatenft">MintTool</Nav.Link>
+              <Nav.Link href="/claimnft">Claim NFT</Nav.Link>
+            </div>
+          </Col>
+        ) : null}
+        <Col md="auto">
+          <Navbar.Toggle aria-controls="offcanvasNavbar" />
+          <Navbar.Offcanvas
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+            placement="end"
+          >
+            {/* OFFCANVAS NAVBAR  */}
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title id="offcanvasNavbarLabel">Menu</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Nav className="justify-content-end flex-grow-1 pe-3">
+                <Nav.Link href="/">Home</Nav.Link>
+                <Nav.Link href="/connectwallets">Connect Wallet</Nav.Link>
+                <Nav.Link href="/mintprivatenft">Mint Unique NFT</Nav.Link>
+                <Nav.Link href="/claimnft">Claim from Collection</Nav.Link>
+                <NavDropdown title="FOR RE-USE" id="offcanvasNavbarDropdown">
+                  <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action4">
                     Another action
                   </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
                   <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
+                  <NavDropdown.Item href="#action5">
+                    Something else here
                   </NavDropdown.Item>
                 </NavDropdown>
               </Nav>
-            </Navbar.Collapse>
-          </div>
-        </div>
+              {/* SEARCH BAR  */}
+              <div className={styles.searchbarnavbar}></div>
+              <Form className="d-flex">
+                <FormControl
+                  type="search"
+                  placeholder="Search"
+                  className="me-2"
+                  aria-label="Search"
+                />
+                <Button variant="outline-success">Search</Button>
+              </Form>
+            </Offcanvas.Body>
+          </Navbar.Offcanvas>
+        </Col>
       </Container>
     </Navbar>
   );

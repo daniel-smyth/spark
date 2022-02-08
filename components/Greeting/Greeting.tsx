@@ -1,5 +1,5 @@
 import { Image, Text } from "@chakra-ui/react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ConnectButton from "../ConnectButton/ConnectButton";
 import styles from "./Greeting.module.css";
 
@@ -7,7 +7,28 @@ import styles from "./Greeting.module.css";
  * * GREETING WITH CONNECT BUTTON
  */
 export default function Greeting() {
-  return (
+  // Mobile: width < 1024.
+  // Desktop: width > 1023.
+  const [width, setWindowWidth] = useState(0);
+
+  useEffect(() => {
+    // Component mounts width is set.
+    updateDimensions();
+
+    // Listen for resize whiled mounted and set width.
+    window.addEventListener("resize", updateDimensions);
+
+    // Remove event listener on unmount.
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, []);
+
+  // Set width function.
+  const updateDimensions = () => {
+    const width = window.innerWidth;
+    setWindowWidth(width);
+  };
+
+  return width < 1024 ? (
     <div className={styles.background}>
       <div className={styles.gridcontainer}>
         <div></div>
@@ -16,20 +37,21 @@ export default function Greeting() {
         <div></div>
         <div className={styles.centerpiece}>
           <div className={styles.centerimage}>
-            <Image ml="2%" width="100%" src="sparkwhite.png"></Image>
+            <Image width="85%" src="sparkwhite.png"></Image>
           </div>
           <div className={styles.centertext}>
             <Text color="white" fontSize={25}>
               Future of the internet
             </Text>
           </div>
-          <div>
-            {/* CONNECT BUTTON  */}
+          <div style={{ paddingTop: "1vh" }}>
             <ConnectButton />
           </div>
         </div>
         <div></div>
       </div>
     </div>
+  ) : (
+    <div></div>
   );
 }

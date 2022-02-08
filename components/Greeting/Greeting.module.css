@@ -14,7 +14,7 @@
 
 .centerpiece {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 10vh 6vh 10vh;
   justify-items: center;
 }
 

@@ -1,10 +1,18 @@
 .logo {
-  display: flex;
-  margin: 1rem;
-  width: 8%;
+  width: clamp(50px, 100%, 80px);
+  margin: 0.5rem;
 }
 
 .linktext {
-  font-size: 25px;
+  display: flex;
   font-weight: 600;
+  margin-right: 30px;
+}
+
+.navbar {
+  position: absolute;
+}
+
+.searchbarnavbar {
+  margin-top: 20px;
 }
