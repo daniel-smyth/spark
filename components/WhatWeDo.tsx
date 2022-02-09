@@ -44,7 +44,7 @@ const Feature = ({ text, icon, iconBg }: FeatureProps) => {
 export default function SplitWithImage() {
   return (
     <Container
-      maxW={{ md: "8xl" }}
+      maxW={{ md: "6xl" }}
       spacing={{ base: 8, md: 8 }}
       pt={{ base: 16, md: "80px" }}
     >
@@ -62,10 +62,14 @@ export default function SplitWithImage() {
           >
             Our Story
           </Text>
-          <Heading fontSize={{ base: "2xl", md: "5xl" }}>
-            A digital Product design agency
+          <Heading fontSize={{ base: "2xl", md: "3xl" }}>
+            Connecting with fans just got easier
           </Heading>
-          <Text color={"gray.500"} fontSize={{ md: "lg" }} py={{ base: 5 }}>
+          <Text
+            color={"gray.500"}
+            fontSize={{ md: "lg" }}
+            py={{ base: 5, md: 2 }}
+          >
             Lorem ipsum dolor sit amet, consmd"etetur sadipscing elitr, sed diam
             nonumy eirmod tempor invidunt ut labore
           </Text>

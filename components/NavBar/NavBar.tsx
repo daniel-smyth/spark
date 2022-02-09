@@ -47,8 +47,8 @@ function NavBar() {
         <Col>
           <Image
             ml={8}
-            py={4}
-            width={{ base: "120px", md: "150px" }}
+            py={2}
+            width={{ base: "80px", md: "80px" }}
             src="/sparkblack.png"
           ></Image>
         </Col>

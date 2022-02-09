@@ -91,16 +91,17 @@ export default function Testimonials() {
   return (
     <Box bg={useColorModeValue("white", "gray.700")}>
       <Container
-        maxW={"7xl"}
-        py={{ base: 28, md: 40 }}
+        maxW={"6xl"}
+        py={{ base: 16, md: 36 }}
         as={Stack}
         spacing={12}
         px={8}
       >
         <Stack spacing={0} align={"center"}>
-          <Heading fontSize={{ base: "2xl", md: "5xl" }}>
+          <Heading fontSize={{ base: "2xl", md: "4xl" }}>
             Our Clients Speak
           </Heading>
+          <Text>Hear what our trusting clients have to say</Text>
         </Stack>
         <Stack
           direction={{ base: "column", md: "row" }}

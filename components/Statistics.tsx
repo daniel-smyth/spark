@@ -59,16 +59,16 @@ export default function Statistics() {
         display={"flex"}
         justifyContent={"center"}
         fontWeight={600}
-        fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+        fontSize={{ base: "2xl", sm: "4xl", md: "4xl" }}
         lineHeight={"110%"}
-        paddingBottom={{ base: 30, md: 16 }}
+        paddingBottom={{ base: 5, md: 8 }}
       >
         What is Spark? <br />
       </Heading>
       <SimpleGrid
         columns={{ base: 1, md: 3 }}
         spacing={{ base: 5, lg: 8 }}
-        px={8}
+        px={{ base: 8, md: 32 }}
       >
         <StatsCard
           title={"Users"}

@@ -29,7 +29,7 @@ export default function CallToActionWithAnnotation() {
         >
           <Heading
             fontWeight={600}
-            fontSize={{ base: "2xl", sm: "4xl", md: "6xl" }}
+            fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
             lineHeight={"110%"}
           >
             Create and Sell <br />
@@ -37,7 +37,10 @@ export default function CallToActionWithAnnotation() {
               Fast. Cheap. Easy.
             </Text>
           </Heading>
-          <Text color={"gray.500"}>
+          <Text
+            color={"gray.500"}
+            fontSize={{ base: "17px", md: "18px", lg: "22px" }}
+          >
             Spark will create and put to market an NFT collection for you in
             under 14 days. The best part? There's no exchange required. You can
             sell on your website, our website, our any website!
