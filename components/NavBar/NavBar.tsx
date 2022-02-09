@@ -45,7 +45,12 @@ function NavBar() {
     <Navbar bg="light" expand={false}>
       <Container fluid>
         <Col>
-          <Image ml={8} className={styles.logo} src="/sparkblack.png"></Image>
+          <Image
+            ml={8}
+            py={4}
+            width={{ base: "120px", md: "150px" }}
+            src="/sparkblack.png"
+          ></Image>
         </Col>
         {/* LINKS (ONLY DISPLAYED ON PC)  */}
         {width > desktopMinResolution ? ( // Render links if user is on PC.

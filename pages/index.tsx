@@ -1,6 +1,8 @@
 import type { NextPage } from "next";
-import AboutUs from "../components/AboutUs/AboutUs";
-import Greeting from "../components/Greeting/Greeting";
+import Statistics from "../components/Statistics";
+import WhatWeDo from "../components/WhatWeDo";
+import Hero from "../components/Hero";
+import Testimonials from "../components/Testimonail";
 
 /**
  * * INDEX PAGE
@@ -9,12 +11,10 @@ import Greeting from "../components/Greeting/Greeting";
 const Home: NextPage = () => {
   return (
     <div>
-      <div>
-        <Greeting />
-      </div>
-      <div>
-        <AboutUs />
-      </div>
+      <Hero />
+      <Statistics />
+      <WhatWeDo />
+      <Testimonials />
     </div>
   );
 };

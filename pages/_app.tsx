@@ -2,7 +2,7 @@ import { ThirdwebProvider } from "@3rdweb/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import NavBar from "../components/NavBar/NavBar";
-import Footer from "../components/Footer/Footer";
+import Footer from "../components/Footer";
 import "../styles/globals.css";
 
 /**
