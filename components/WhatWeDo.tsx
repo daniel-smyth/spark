@@ -10,11 +10,8 @@ import {
   Icon,
   useColorModeValue,
 } from "@chakra-ui/react";
-import {
-  IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
-} from "react-icons/io5";
+import { FaObjectGroup, FaShippingFast } from "react-icons/fa";
+import { BsShop } from "react-icons/bs";
 import { ReactElement } from "react";
 
 interface FeatureProps {
@@ -60,18 +57,19 @@ export default function SplitWithImage() {
             alignSelf={"flex-start"}
             rounded={"md"}
           >
-            Our Story
+            What we do
           </Text>
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-            Connecting with fans just got easier
+            Connecting just got easier
           </Heading>
           <Text
             color={"gray.500"}
             fontSize={{ md: "lg" }}
             py={{ base: 5, md: 2 }}
           >
-            Lorem ipsum dolor sit amet, consmd"etetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore
+            After we create your NFT collection you choose between Spark
+            installing our custom NFT marketplace on your website or sell
+            directly on the Spark website for free.
           </Text>
           <Stack
             spacing={4}
@@ -82,23 +80,19 @@ export default function SplitWithImage() {
             }
           >
             <Feature
-              icon={
-                <Icon as={IoAnalyticsSharp} color={"yellow.500"} w={5} h={5} />
-              }
-              iconBg={useColorModeValue("yellow.100", "yellow.900")}
-              text={"Business Planning"}
+              icon={<Icon as={FaObjectGroup} color={"#1B486D"} w={5} h={5} />}
+              iconBg={"#3199FF"}
+              text={"1. Spark creates your NFTs"}
             />
             <Feature
-              icon={<Icon as={IoLogoBitcoin} color={"green.500"} w={5} h={5} />}
-              iconBg={useColorModeValue("green.100", "green.900")}
-              text={"Financial Planning"}
+              icon={<Icon as={FaShippingFast} color={"#015646"} w={5} h={5} />}
+              iconBg={"#00D4B0"}
+              text={"2. Spark installs your new NFT marketplace"}
             />
             <Feature
-              icon={
-                <Icon as={IoSearchSharp} color={"purple.500"} w={5} h={5} />
-              }
-              iconBg={useColorModeValue("purple.100", "purple.900")}
-              text={"Market Analysis"}
+              icon={<Icon as={BsShop} color={"#005618"} w={5} h={5} pb={0.5} />}
+              iconBg={"#00E54B"}
+              text={"3. You enjoy your new ThirdWeb website"}
             />
           </Stack>
         </Stack>

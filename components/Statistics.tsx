@@ -55,7 +55,7 @@ function StatsCard(props: StatsCardProps) {
 export default function Statistics() {
   return (
     <Stack as={Box} textAlign={"center"} spacing={{ base: 1, md: 2 }} py={{}}>
-      <Heading
+      {/* <Heading
         display={"flex"}
         justifyContent={"center"}
         fontWeight={600}
@@ -64,7 +64,7 @@ export default function Statistics() {
         paddingBottom={{ base: 5, md: 8 }}
       >
         What is Spark? <br />
-      </Heading>
+      </Heading> */}
       <SimpleGrid
         columns={{ base: 1, md: 3 }}
         spacing={{ base: 5, lg: 8 }}
