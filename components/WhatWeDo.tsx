@@ -41,7 +41,7 @@ const Feature = ({ text, icon, iconBg }: FeatureProps) => {
 export default function SplitWithImage() {
   return (
     <Container
-      maxW={{ md: "6xl" }}
+      maxW="6xl"
       spacing={{ base: 8, md: 8 }}
       pt={{ base: 16, md: "80px" }}
     >
@@ -51,7 +51,7 @@ export default function SplitWithImage() {
             textTransform={"uppercase"}
             color={"blue.400"}
             fontWeight={600}
-            fontSize={"sm"}
+            fontSize="sm"
             bg={useColorModeValue("blue.50", "blue.900")}
             p={2}
             alignSelf={"flex-start"}
@@ -60,13 +60,9 @@ export default function SplitWithImage() {
             What we do
           </Text>
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-            Connecting just got easier
+            Quick and Simple
           </Heading>
-          <Text
-            color={"gray.500"}
-            fontSize={{ md: "lg" }}
-            py={{ base: 5, md: 2 }}
-          >
+          <Text color={"gray.500"} fontSize="lg" py={{ base: 5, md: 2 }}>
             After we create your NFT collection you choose between Spark
             installing our custom NFT marketplace on your website or sell
             directly on the Spark website for free.
@@ -85,13 +81,13 @@ export default function SplitWithImage() {
               text={"1. Spark creates your NFTs"}
             />
             <Feature
-              icon={<Icon as={FaShippingFast} color={"#015646"} w={5} h={5} />}
-              iconBg={"#00D4B0"}
+              icon={<Icon as={FaShippingFast} color={"#1B486D"} w={5} h={5} />}
+              iconBg={"#3199FF"}
               text={"2. Spark installs your new NFT marketplace"}
             />
             <Feature
-              icon={<Icon as={BsShop} color={"#005618"} w={5} h={5} pb={0.5} />}
-              iconBg={"#00E54B"}
+              icon={<Icon as={BsShop} color={"#1B486D"} w={5} h={5} pb={0.5} />}
+              iconBg={"#3199FF"}
               text={"3. You enjoy your new ThirdWeb website"}
             />
           </Stack>

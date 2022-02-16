@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "@chakra-ui/react";
+import { Image, Link } from "@chakra-ui/react";
 import {
   Navbar,
   Container,
@@ -45,12 +45,14 @@ function NavBar() {
     <Navbar bg="light" expand={false}>
       <Container fluid>
         <Col>
-          <Image
-            ml={8}
-            py={2}
-            width={{ base: "80px", md: "80px" }}
-            src="/sparkblack.png"
-          ></Image>
+          <Link href="/" a>
+            <Image
+              ml={8}
+              py={2}
+              width={{ base: "80px", md: "80px" }}
+              src="/sparkblack.png"
+            ></Image>
+          </Link>
         </Col>
         {/* LINKS (ONLY DISPLAYED ON PC)  */}
         {width > desktopMinResolution ? ( // Render links if user is on PC.

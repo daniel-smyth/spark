@@ -10,6 +10,7 @@ import {
   useColorModeValue,
   createIcon,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 export default function CallToActionWithAnnotation() {
   return (
@@ -53,15 +54,15 @@ export default function CallToActionWithAnnotation() {
             position={"relative"}
           >
             <Button
-              colorScheme={"green"}
+              colorScheme={"blue"}
               bg={"blue.500"}
               rounded={"full"}
               px={6}
               _hover={{
-                bg: "green.900",
+                bg: "blue.600",
               }}
             >
-              Start Now
+              <Link href="/createyournft">Create your NFT</Link>
             </Button>
             <Button variant={"link"} colorScheme={"black"} size={"sm"}>
               Learn more

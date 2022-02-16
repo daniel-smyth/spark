@@ -17,7 +17,11 @@ import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
 
 const Logo = (props: any) => {
-  return <Image maxWidth="80px" src="/sparkblack.png"></Image>;
+  return (
+    <Link href="/">
+      <Image maxWidth="80px" src="/sparkblack.png"></Image>
+    </Link>
+  );
 };
 
 const SocialButton = ({
