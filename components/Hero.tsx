@@ -62,7 +62,7 @@ export default function CallToActionWithAnnotation() {
                 bg: "blue.600",
               }}
             >
-              <Link href="/createyournft">Create your NFT</Link>
+              <Link href="/choosepackage">Create your NFT</Link>
             </Button>
             <Button variant={"link"} colorScheme={"black"} size={"sm"}>
               Learn more

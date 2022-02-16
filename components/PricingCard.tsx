@@ -8,6 +8,7 @@ import {
   ListIcon,
   Button,
   useColorModeValue,
+  Link,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 
@@ -15,6 +16,7 @@ interface PricingCardProps {
   color: string;
   displayRoyalty: boolean;
   packageName: string;
+  link: string;
   royalty: string;
   feature1: string;
   feature2: string;
@@ -28,6 +30,7 @@ export default function PricingCard(props: PricingCardProps) {
     color,
     displayRoyalty,
     packageName,
+    link,
     royalty,
     feature1,
     feature2,
@@ -113,7 +116,7 @@ export default function PricingCard(props: PricingCardProps) {
               bg: "blue.600",
             }}
           >
-            {buttonText}
+            <Link href={link}>{buttonText}</Link>
           </Button>
         </Box>
       </Box>
