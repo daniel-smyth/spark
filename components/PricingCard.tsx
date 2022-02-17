@@ -104,19 +104,21 @@ export default function PricingCard(props: PricingCardProps) {
           </ListItem>
         </List>
 
-        <Button
-          mt={10}
-          w={"full"}
-          colorScheme={"color"}
-          bg={color == "grey" ? color : getColor("500")}
-          rounded={"xl"}
-          px={6}
-          _hover={{
-            bg: "blue.600",
-          }}
-        >
-          <Link href={link}>{buttonText}</Link>
-        </Button>
+        <Link href={link}>
+          <Button
+            mt={10}
+            w={"full"}
+            colorScheme={"color"}
+            bg={color == "grey" ? color : getColor("500")}
+            rounded={"xl"}
+            px={6}
+            _hover={{
+              bg: "blue.600",
+            }}
+          >
+            {buttonText}
+          </Button>
+        </Link>
       </Box>
     </Box>
   );

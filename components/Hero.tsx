@@ -53,17 +53,19 @@ export default function CallToActionWithAnnotation() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Button
-              colorScheme={"blue"}
-              bg={"blue.500"}
-              rounded={"full"}
-              px={6}
-              _hover={{
-                bg: "blue.600",
-              }}
-            >
-              <Link href="/choosepackage">Create your NFT</Link>
-            </Button>
+            <Link href="/choosepackage">
+              <Button
+                colorScheme={"blue"}
+                bg={"blue.500"}
+                rounded={"full"}
+                px={6}
+                _hover={{
+                  bg: "blue.600",
+                }}
+              >
+                Create your NFT
+              </Button>
+            </Link>
             <Button variant={"link"} colorScheme={"black"} size={"sm"}>
               Learn more
             </Button>

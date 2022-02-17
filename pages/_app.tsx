@@ -4,6 +4,11 @@ import Head from "next/head";
 import NavBar from "../components/NavBar/NavBar";
 import Footer from "../components/Footer";
 import "../styles/globals.css";
+import Statistics from "../components/Statistics";
+import Hero from "../components/Hero";
+import Testimonials from "../components/Testimonail";
+import WhatWeDo from "../components/WhatWeDo";
+import { Magic } from "magic-sdk";
 
 /**
  * ! UNINSTALL ETHERS
