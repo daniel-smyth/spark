@@ -61,26 +61,27 @@ function CreateYourNft() {
       pt={{ base: 16, md: "80px" }}
       pb={{ base: 16, md: "80px" }}
     >
+      {/* Art collection price card. */}
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} px={{ base: 5 }}>
-        {/* Art collection price card. */}
         <ArtCollectionInfo />
-
-        <PricingCard
-          displayRoyalty={true}
-          color="blue"
-          packageName="NFT Art collection"
-          royalty="10"
-          feature1="$0 set up cost."
-          feature2="2 Days processing time."
-          feature3="10,000 NFT images."
-          feature4="Sold on Spark.com"
-          buttonText="Create Collection"
-          link="/createartcollection"
-        ></PricingCard>
+        <Box display={"flex"} justifyContent={"right"}>
+          <PricingCard
+            displayRoyalty={true}
+            color="blue"
+            packageName="NFT Art collection"
+            royalty="10"
+            feature1="$0 set up cost."
+            feature2="2 Days processing time."
+            feature3="10,000 NFT images."
+            feature4="Sold on Spark.com"
+            buttonText="Create Collection"
+            link="/signin"
+          ></PricingCard>
+        </Box>
       </SimpleGrid>
 
       {/* Coming soon introducation. */}
-      <Stack spacing={{ base: 10, md: 7 }} px={{ base: 5 }}>
+      <Stack spacing={{ base: 10, md: 14 }} px={{ base: 5 }}>
         <br />
         {isTabletOrMobile ? (
           <>
@@ -127,7 +128,7 @@ function CreateYourNft() {
         <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 4, md: 10 }}>
           <PricingCard
             color="grey"
-            displayRoyalty={false}
+            displayRoyalty={true}
             packageName="NFT Data Packs"
             royalty="5"
             feature1="Quick."
@@ -139,7 +140,7 @@ function CreateYourNft() {
           ></PricingCard>
           <PricingCard
             color="grey"
-            displayRoyalty={false}
+            displayRoyalty={true}
             packageName="NFT Marketplaces"
             royalty="5"
             feature1="Quick."
@@ -151,7 +152,7 @@ function CreateYourNft() {
           ></PricingCard>
           <PricingCard
             color="grey"
-            displayRoyalty={false}
+            displayRoyalty={true}
             packageName="Custom NFTs"
             royalty="5"
             feature1="Quick."

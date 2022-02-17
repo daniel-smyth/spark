@@ -6,6 +6,10 @@ import Footer from "../components/Footer";
 import "../styles/globals.css";
 
 /**
+ * ! UNINSTALL ETHERS
+ */
+
+/**
  * * APP
  * Thirdweb provider, Navbar and Footer.
  * App wrapped in Thirdweb provider with magi API key anf support
@@ -17,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const supportedChainIds = [1, 4, 137];
 
   /**
-   * Connects you want to support:
+   * Connects what you want to support:
    * injected - MetaMask.
    * magic - Magic Link.
    * walletconnect - Wallet Connect.
@@ -26,7 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const connectors = {
     injected: {},
     magic: {
-      apiKey: "pk_live_F98DE7399C04A86A", // Your magic api key
+      apiKey: "pk_live_202FF20E4C57E3EA", // Your magic api key
       chainId: 1, // The chain ID you want to allow on magic
     },
     walletconnect: {},
@@ -36,6 +40,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       darkMode: false,
     },
   };
+
   return (
     <ThirdwebProvider
       connectors={connectors}
