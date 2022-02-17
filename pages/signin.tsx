@@ -7,7 +7,6 @@ function SignIn() {
   return (
     <Container>
       <CreateWalletWithEmail />
-      <ArtCollectionForm />;
     </Container>
   );
 }

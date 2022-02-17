@@ -12,18 +12,28 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 
 function CreateWalletWithEmail() {
-  // User props.
+  // NextJS router
+  const router = useRouter();
+
+  // ThirdWeb and User props.
   const [emailAddress, setEmailAddress] = useState("");
   const [socialMedia, setSocialMedia] = useState("");
+  const { address, connectWallet } = useWeb3();
 
-  const { connectWallet } = useWeb3();
-
-  const handleLogin = async () => {
+  // Connectors.
+  const connectMagic = async () => {
     connectWallet("magic", { email: emailAddress });
   };
+  const connectMetaMask = async () => {
+    connectWallet("injected");
+  };
+
+  // Route if user logged in.
+  if (address) router.push("/artcollection");
 
   return (
     <Flex
@@ -59,9 +69,9 @@ function CreateWalletWithEmail() {
                 onChange={(e) => setSocialMedia(e.target.value)}
               />
             </FormControl>
-            <Stack spacing={10} pt={2}>
+            <Stack spacing={5} pt={2}>
               <Button
-                onClick={handleLogin}
+                onClick={connectMagic}
                 loadingText="Submitting"
                 size="lg"
                 bg={"blue.400"}
@@ -70,7 +80,19 @@ function CreateWalletWithEmail() {
                   bg: "blue.500",
                 }}
               >
-                Sign up
+                Create Wallet
+              </Button>
+              <Button
+                onClick={connectMetaMask}
+                loadingText="Submitting"
+                size="lg"
+                bg={"grey"}
+                color={"white"}
+                _hover={{
+                  bg: "blue.500",
+                }}
+              >
+                Connect with MetaMask
               </Button>
             </Stack>
             <Stack pt={6}>
