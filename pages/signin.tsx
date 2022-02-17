@@ -5,7 +5,7 @@ import CreateWalletWithEmail from "../components/CreateWalletWithEmail";
 
 function SignIn() {
   return (
-    <Container>
+    <Container py={10}>
       <CreateWalletWithEmail />
     </Container>
   );

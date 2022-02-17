@@ -37,15 +37,16 @@ function CreateWalletWithEmail() {
 
   return (
     <Flex
-      minH={"100vh"}
+      py={2}
+      pb={6}
       align={"center"}
       justify={"center"}
       bg={useColorModeValue("gray.50", "gray.800")}
     >
-      <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
+      <Stack spacing={8} mx={"auto"} py={12}>
         <Stack align={"center"}>
-          <Heading fontSize={"4xl"} textAlign={"center"}>
-            Create Spark Account
+          <Heading fontSize={{ base: "3xl", md: "4xl" }} textAlign={"center"}>
+            Create account
           </Heading>
         </Stack>
         <Box
@@ -82,22 +83,13 @@ function CreateWalletWithEmail() {
               >
                 Create Wallet
               </Button>
-              <Button
-                onClick={connectMetaMask}
-                loadingText="Submitting"
-                size="lg"
-                bg={"grey"}
-                color={"white"}
-                _hover={{
-                  bg: "blue.500",
-                }}
-              >
-                Connect with MetaMask
-              </Button>
             </Stack>
             <Stack pt={6}>
               <Text align={"center"}>
-                Already a user? <Link color={"blue.400"}>Login</Link>
+                Already a user?{" "}
+                <Link onClick={connectMagic} color={"blue.400"}>
+                  Login
+                </Link>
               </Text>
             </Stack>
           </Stack>

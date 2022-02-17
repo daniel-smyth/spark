@@ -64,10 +64,10 @@ const ListHeader = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default function Footer() {
+export default function LargeWithNewsletter() {
   return (
     <Box
-      bg={useColorModeValue("#F8F9FA", "gray.900")}
+      bg={useColorModeValue("gray.50", "gray.900")}
       color={useColorModeValue("gray.700", "gray.200")}
     >
       <Container as={Stack} maxW={"6xl"} py={10}>
@@ -95,28 +95,6 @@ export default function Footer() {
             </Stack>
           </Stack>
           <Stack align={"flex-start"}>
-            <ListHeader>Stay up to date</ListHeader>
-            <Stack direction={"row"}>
-              <Input
-                placeholder={"Your email address"}
-                bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
-                border={0}
-                _focus={{
-                  bg: "whiteAlpha.300",
-                }}
-              />
-              <IconButton
-                bg={useColorModeValue("blue.500", "green.800")}
-                color={useColorModeValue("white", "gray.800")}
-                _hover={{
-                  bg: "green.600",
-                }}
-                aria-label="Subscribe"
-                icon={<BiMailSend />}
-              />
-            </Stack>
-          </Stack>
-          <Stack align={"flex-start"}>
             <ListHeader>Company</ListHeader>
             <Link href={"#"}>About us</Link>
             <Link href={"#"}>Blog</Link>
@@ -131,6 +109,28 @@ export default function Footer() {
             <Link href={"#"}>Legal</Link>
             <Link href={"#"}>Privacy Policy</Link>
             <Link href={"#"}>Satus</Link>
+          </Stack>
+          <Stack align={"flex-start"}>
+            <ListHeader>Stay up to date</ListHeader>
+            <Stack direction={"row"}>
+              <Input
+                placeholder={"Your email address"}
+                bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+                border={0}
+                _focus={{
+                  bg: "whiteAlpha.300",
+                }}
+              />
+              <IconButton
+                bg={useColorModeValue("blue.400", "blue.800")}
+                color={useColorModeValue("white", "gray.800")}
+                _hover={{
+                  bg: "green.600",
+                }}
+                aria-label="Subscribe"
+                icon={<BiMailSend />}
+              />
+            </Stack>
           </Stack>
         </SimpleGrid>
       </Container>
