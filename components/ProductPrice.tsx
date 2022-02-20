@@ -9,9 +9,9 @@ import {
   ListIcon,
   Button,
   useColorModeValue,
-  Link,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
+import { useRouter } from "next/router";
 
 /**
  * Renders pricing card component with royalty percentage,
@@ -21,6 +21,8 @@ import { CheckIcon } from "@chakra-ui/icons";
  * @returns pricing card component
  */
 function ProductPrice(props: any) {
+  const router = useRouter();
+
   return (
     <Box
       maxW={"330px"}
@@ -74,11 +76,15 @@ function ProductPrice(props: any) {
           </ListItem>
         </List>
 
-        <Link href={props.link}>
-          <Button mt={10} w={"full"} size="md" variant="solid">
-            {props.buttonText}
-          </Button>
-        </Link>
+        <Button
+          onClick={() => router.push(props.link)}
+          mt={10}
+          w={"full"}
+          size="md"
+          variant="solid"
+        >
+          {props.buttonText}
+        </Button>
       </Box>
     </Box>
   );

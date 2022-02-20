@@ -68,7 +68,7 @@ export default function Hero() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="/choosepackage">
+            <Link href="/products">
               <Button size={"md"} variant={"solid"} rounded="full">
                 Create NFTs
               </Button>

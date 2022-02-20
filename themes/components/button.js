@@ -1,4 +1,4 @@
-export const Button = {
+const Button = {
   // The styles all button have in common
   baseStyle: {
     fontWeight: "bold",
@@ -9,21 +9,30 @@ export const Button = {
     sm: {
       fontSize: "12px",
       padding: "16px",
+      rounded: "2xl",
     },
     md: {
       fontSize: "16px",
       padding: "24px",
+      rounded: "2xl",
     },
   },
   // Two variants: outline and solid
   variants: {
     outline: {
       border: "2px solid",
-      borderColor: "green.500",
+      borderColor: "blue.500",
     },
     solid: {
-      bg: "green.500",
+      bg: "blue.500",
       color: "white",
+      _hover: {
+        bg: "blue.400",
+      },
+    },
+    none: {
+      bg: "none",
+      color: "none",
     },
   },
   // The default size and variant values
@@ -32,3 +41,5 @@ export const Button = {
     variant: "outline",
   },
 };
+
+export default Button;

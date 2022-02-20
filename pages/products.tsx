@@ -44,7 +44,7 @@ function Products() {
               feature3="10,000 NFT images."
               feature4="Sold on Spark.com"
               buttonText="Create Collection"
-              link="/signin"
+              link="/login"
             ></ProductPrice>
           </Box>
         </SimpleGrid>
@@ -55,14 +55,9 @@ function Products() {
             <Text size="lg">
               We're working hard to develop new ways to make NFTs.
             </Text>
-            <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 4 }}>
-              <ComingSoonBadge icon={FaObjectGroup} feature="NFT data packs" />
-              <ComingSoonBadge
-                icon={FaObjectGroup}
-                feature="NFT Marketplaces"
-              />
-              <ComingSoonBadge icon={FaObjectGroup} feature="Custom NFTs" />
-            </SimpleGrid>
+            <ComingSoonBadge icon={FaObjectGroup} feature="NFT data packs" />
+            <ComingSoonBadge icon={FaObjectGroup} feature="NFT Marketplaces" />
+            <ComingSoonBadge icon={FaObjectGroup} feature="Custom NFTs" />
             <Box display={"flex"} justifyContent={"center"}>
               <Button size="lg" variant={"solid"} width={"100%"}>
                 Learn more
@@ -92,7 +87,7 @@ function Products() {
               feature3="Simple."
               feature4="Free."
               buttonText="Learn More"
-              link="/createartcollection"
+              link="/login"
             ></ProductPrice>
             <ProductPrice
               color="grey"
@@ -104,7 +99,7 @@ function Products() {
               feature3="Simple."
               feature4="Free."
               buttonText="Learn More"
-              link="/createartcollection"
+              link="/login"
             ></ProductPrice>
             <ProductPrice
               color="grey"
@@ -116,7 +111,7 @@ function Products() {
               feature3="Simple."
               feature4="Free."
               buttonText="Learn More"
-              link="/createartcollection"
+              link="/login"
             ></ProductPrice>
           </SimpleGrid>
         </Stack>

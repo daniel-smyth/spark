@@ -1,10 +1,4 @@
-import {
-  Container,
-  Flex,
-  Heading,
-  Stack,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Container, Heading, Stack, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
 import LogIn from "../components/LogIn";
 
