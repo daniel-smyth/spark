@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import PropTypes from "prop-types";
 import {
   Box,
   chakra,
@@ -10,61 +12,23 @@ import {
   Input,
   IconButton,
   useColorModeValue,
-  Image,
 } from "@chakra-ui/react";
-import { ReactNode } from "react";
-import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import { BiMailSend } from "react-icons/bi";
+import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
+import SparkBlack from "./iconcomponents/sparkblack";
 
-const Logo = (props: any) => {
-  return (
-    <Link href="/">
-      <Image maxWidth="80px" src="/sparkblack.png"></Image>
-    </Link>
-  );
-};
+/**
+ * Renders a footer with logo, links, newsletter subscription.
+ *
+ * @returns footer component
+ */
+export default function Footer() {
+  const router = useRouter();
 
-const SocialButton = ({
-  children,
-  label,
-  href,
-}: {
-  children: ReactNode;
-  label: string;
-  href: string;
-}) => {
-  return (
-    <chakra.button
-      bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
-      rounded={"full"}
-      w={8}
-      h={8}
-      cursor={"pointer"}
-      as={"a"}
-      href={href}
-      display={"inline-flex"}
-      alignItems={"center"}
-      justifyContent={"center"}
-      transition={"background 0.3s ease"}
-      _hover={{
-        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
-      }}
-    >
-      <VisuallyHidden>{label}</VisuallyHidden>
-      {children}
-    </chakra.button>
-  );
-};
+  const returnHome = () => {
+    router.push("/");
+  };
 
-const ListHeader = ({ children }: { children: ReactNode }) => {
-  return (
-    <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
-      {children}
-    </Text>
-  );
-};
-
-export default function LargeWithNewsletter() {
   return (
     <Box
       bg={useColorModeValue("gray.50", "gray.900")}
@@ -77,7 +41,9 @@ export default function LargeWithNewsletter() {
         >
           <Stack spacing={6}>
             <Box>
-              <Logo color={useColorModeValue("gray.700", "white")} />
+              <Link>
+                <SparkBlack onClick={returnHome} width={80} />
+              </Link>
             </Box>
             <Text fontSize={"sm"}>
               © 2020 Chakra Templates. All rights reserved
@@ -97,14 +63,12 @@ export default function LargeWithNewsletter() {
           <Stack align={"flex-start"}>
             <ListHeader>Company</ListHeader>
             <Link href={"#"}>About us</Link>
-            <Link href={"#"}>Blog</Link>
             <Link href={"#"}>Contact us</Link>
             <Link href={"#"}>Pricing</Link>
             <Link href={"#"}>Testimonials</Link>
           </Stack>
           <Stack align={"flex-start"}>
             <ListHeader>Support</ListHeader>
-            <Link href={"#"}>Help Center</Link>
             <Link href={"#"}>Terms of Service</Link>
             <Link href={"#"}>Legal</Link>
             <Link href={"#"}>Privacy Policy</Link>
@@ -122,11 +86,8 @@ export default function LargeWithNewsletter() {
                 }}
               />
               <IconButton
-                bg={useColorModeValue("blue.400", "blue.800")}
-                color={useColorModeValue("white", "gray.800")}
-                _hover={{
-                  bg: "green.600",
-                }}
+                rounded={"lg"}
+                variant={"solid"}
                 aria-label="Subscribe"
                 icon={<BiMailSend />}
               />
@@ -137,3 +98,57 @@ export default function LargeWithNewsletter() {
     </Box>
   );
 }
+
+/**
+ * Renders social media icon below spark logo.
+ *
+ * @param props
+ * @returns social media icons
+ */
+const SocialButton = (props: any) => {
+  return (
+    <chakra.button
+      bg={useColorModeValue("blackAlpha.100", "whiteAlpha.100")}
+      rounded={"full"}
+      w={8}
+      h={8}
+      cursor={"pointer"}
+      as={"a"}
+      href={props.href}
+      display={"inline-flex"}
+      alignItems={"center"}
+      justifyContent={"center"}
+      transition={"background 0.3s ease"}
+      _hover={{
+        bg: useColorModeValue("blackAlpha.200", "whiteAlpha.200"),
+      }}
+    >
+      <VisuallyHidden>{props.label}</VisuallyHidden>
+      {props.children}
+    </chakra.button>
+  );
+};
+
+/**
+ * Renders head text in footer.
+ *
+ * @param props
+ * @returns display head text
+ */
+const ListHeader = (props: any) => {
+  return (
+    <Text fontWeight={"500"} fontSize={"lg"} mb={2}>
+      {props.text}
+    </Text>
+  );
+};
+
+ListHeader.propTypes = {
+  text: PropTypes.string,
+};
+
+SocialButton.propTypes = {
+  href: PropTypes.string,
+  label: PropTypes.string,
+  children: PropTypes.node,
+};

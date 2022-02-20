@@ -10,6 +10,84 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
+/**
+ * Returns three testimonial components.
+ * @returns 3 testimonials
+ */
+export default function Testimonials() {
+  return (
+    <Box bg={useColorModeValue("white", "gray.700")}>
+      <Container
+        maxW={"6xl"}
+        py={{ base: 16, md: 36 }}
+        as={Stack}
+        spacing={12}
+        px={8}
+      >
+        <Stack spacing={5}>
+          <Heading fontSize={{ base: "2xl", md: "4xl" }}>
+            Our Clients Speak
+          </Heading>
+          <Text size="lg">Hear what our trusting clients have to say</Text>
+        </Stack>
+        <Stack
+          direction={{ base: "column", md: "row" }}
+          spacing={{ base: 10, md: 4, lg: 10 }}
+        >
+          <Testimonial>
+            <TestimonialContent>
+              <TestimonialHeading>Efficient Collaborating</TestimonialHeading>
+              <TestimonialText>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
+                neque sed imperdiet nibh lectus feugiat nunc sem.
+              </TestimonialText>
+            </TestimonialContent>
+            <TestimonialAvatar
+              src={
+                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+              }
+              name={"Jane Cooper"}
+              title={"CEO at ABC Corporation"}
+            />
+          </Testimonial>
+          <Testimonial>
+            <TestimonialContent>
+              <TestimonialHeading>Intuitive Design</TestimonialHeading>
+              <TestimonialText>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
+                neque sed imperdiet nibh lectus feugiat nunc sem.
+              </TestimonialText>
+            </TestimonialContent>
+            <TestimonialAvatar
+              src={
+                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+              }
+              name={"Jane Cooper"}
+              title={"CEO at ABC Corporation"}
+            />
+          </Testimonial>
+          <Testimonial>
+            <TestimonialContent>
+              <TestimonialHeading>Mindblowing Service</TestimonialHeading>
+              <TestimonialText>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
+                neque sed imperdiet nibh lectus feugiat nunc sem.
+              </TestimonialText>
+            </TestimonialContent>
+            <TestimonialAvatar
+              src={
+                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
+              }
+              name={"Jane Cooper"}
+              title={"CEO at ABC Corporation"}
+            />
+          </Testimonial>
+        </Stack>
+      </Container>
+    </Box>
+  );
+}
+
 const Testimonial = ({ children }: { children: ReactNode }) => {
   return <Box>{children}</Box>;
 };
@@ -86,77 +164,3 @@ const TestimonialAvatar = ({
     </Flex>
   );
 };
-
-export default function Testimonials() {
-  return (
-    <Box bg={useColorModeValue("white", "gray.700")}>
-      <Container
-        maxW={"6xl"}
-        py={{ base: 16, md: 36 }}
-        as={Stack}
-        spacing={12}
-        px={8}
-      >
-        <Stack spacing={0} align={"center"}>
-          <Heading fontSize={{ base: "2xl", md: "4xl" }}>
-            Our Clients Speak
-          </Heading>
-          <Text>Hear what our trusting clients have to say</Text>
-        </Stack>
-        <Stack
-          direction={{ base: "column", md: "row" }}
-          spacing={{ base: 10, md: 4, lg: 10 }}
-        >
-          <Testimonial>
-            <TestimonialContent>
-              <TestimonialHeading>Efficient Collaborating</TestimonialHeading>
-              <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
-              </TestimonialText>
-            </TestimonialContent>
-            <TestimonialAvatar
-              src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-              }
-              name={"Jane Cooper"}
-              title={"CEO at ABC Corporation"}
-            />
-          </Testimonial>
-          <Testimonial>
-            <TestimonialContent>
-              <TestimonialHeading>Intuitive Design</TestimonialHeading>
-              <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
-              </TestimonialText>
-            </TestimonialContent>
-            <TestimonialAvatar
-              src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-              }
-              name={"Jane Cooper"}
-              title={"CEO at ABC Corporation"}
-            />
-          </Testimonial>
-          <Testimonial>
-            <TestimonialContent>
-              <TestimonialHeading>Mindblowing Service</TestimonialHeading>
-              <TestimonialText>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Auctor
-                neque sed imperdiet nibh lectus feugiat nunc sem.
-              </TestimonialText>
-            </TestimonialContent>
-            <TestimonialAvatar
-              src={
-                "https://images.unsplash.com/photo-1586297135537-94bc9ba060aa?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=100&q=80"
-              }
-              name={"Jane Cooper"}
-              title={"CEO at ABC Corporation"}
-            />
-          </Testimonial>
-        </Stack>
-      </Container>
-    </Box>
-  );
-}

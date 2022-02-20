@@ -9,10 +9,25 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
+  useMediaQuery,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import SparkIcon from "./iconcomponents/sparkicon";
 
-export default function CallToActionWithAnnotation() {
+/**
+ * Renders the home page of Spark. Contains text with call
+ * to action.
+ *
+ * @returns home page componenet
+ */
+export default function Hero() {
+  const [isTabletOrMobile] = useMediaQuery("(max-width: 1224px)");
+
+  const getIcon = () => {
+    const width = isTabletOrMobile ? 80 : 100;
+    return <SparkIcon width={width} />;
+  };
+
   return (
     <>
       <Head>
@@ -25,26 +40,26 @@ export default function CallToActionWithAnnotation() {
         <Stack
           as={Box}
           textAlign={"center"}
-          spacing={{ base: 8, md: 14 }}
-          py={{ base: 36, md: "25vh" }}
+          justifyContent={"center"}
+          alignItems={"center"}
+          spacing={{ base: 4, md: 6 }}
+          height={"100vh"}
         >
+          {getIcon()}
           <Heading
             fontWeight={600}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
             lineHeight={"110%"}
           >
-            Create and Sell <br />
-            <Text as={"span"} color={"blue.500"}>
-              Fast. Cheap. Easy.
-            </Text>
+            <Stack>
+              <Text color={"black"}>Create and Sell</Text>
+              <Text as={"span"} color={"blue.500"}>
+                Fast. Cheap. Easy.
+              </Text>
+            </Stack>
           </Heading>
-          <Text
-            color={"gray.500"}
-            fontSize={{ base: "17px", md: "18px", lg: "22px" }}
-          >
-            Spark will create and put to market an NFT collection for you in
-            under 14 days. The best part? There's no exchange required. You can
-            sell on your website, our website, our any website!
+          <Text size={isTabletOrMobile ? "lg" : "2xl"} py={2}>
+            No initial fees and your very own NFT market place .
           </Text>
           <Stack
             direction={"column"}
@@ -54,16 +69,8 @@ export default function CallToActionWithAnnotation() {
             position={"relative"}
           >
             <Link href="/choosepackage">
-              <Button
-                colorScheme={"blue"}
-                bg={"blue.500"}
-                rounded={"full"}
-                px={6}
-                _hover={{
-                  bg: "blue.600",
-                }}
-              >
-                Create your NFT
+              <Button size={"md"} variant={"solid"} rounded="full">
+                Create NFTs
               </Button>
             </Link>
             <Button variant={"link"} colorScheme={"black"} size={"sm"}>
@@ -75,15 +82,16 @@ export default function CallToActionWithAnnotation() {
                 color={useColorModeValue("gray.800", "gray.300")}
                 w={71}
                 position={"absolute"}
-                right={-71}
-                top={"10px"}
+                right={"-58px"}
+                top={"32px"}
               />
               <Text
                 fontSize={"lg"}
+                color="black"
                 fontFamily={"Caveat"}
                 position={"absolute"}
-                right={"-105px"}
-                top={"-15px"}
+                right={{ base: "-95px", md: "-95px" }}
+                top={"3px"}
                 transform={"rotate(10deg)"}
               >
                 Up in 14 days
