@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
+import ButtonWithLoading from "./ButtonWithLoading";
 
 /**
  * Renders pricing card component with royalty percentage,
@@ -76,15 +77,16 @@ function ProductPrice(props: any) {
           </ListItem>
         </List>
 
-        <Button
-          onClick={() => router.push(props.link)}
+        <ButtonWithLoading
           mt={10}
+          bg={props.color == "grey" ? props.color : null}
           w={"full"}
-          size="md"
-          variant="solid"
-        >
-          {props.buttonText}
-        </Button>
+          size={"md"}
+          variant={"solid"}
+          buttonText={"Create collection"}
+          loadingText={""}
+          linkDestination={props.link}
+        />
       </Box>
     </Box>
   );

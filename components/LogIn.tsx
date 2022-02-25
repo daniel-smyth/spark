@@ -28,13 +28,17 @@ function LogIn(props: any) {
   const [socialMedia, setSocialMedia] = useState("");
   const { address, connectWallet } = useWeb3();
 
+  // For button.
+  const [isConnecting, setConnecting] = useState(false);
+
   // Connectors.
   const connectMagic = async () => {
+    setConnecting(true);
     connectWallet("magic", { email: emailAddress });
   };
 
   // Route if user logged in.
-  if (address) router.push("/artcollection");
+  if (address) router.push(props.href);
 
   return (
     <Stack>
@@ -60,17 +64,23 @@ function LogIn(props: any) {
             />
           </FormControl>
           <Stack spacing={5} pt={2}>
-            <Button
-              onClick={connectMagic}
-              loadingText="Submitting"
-              size="md"
-              variant="solid"
-            >
-              Create Wallet
-            </Button>
+            {isConnecting ? (
+              <Button
+                isLoading
+                loadingText="Connecting"
+                size="md"
+                variant="outline"
+              >
+                Connecting
+              </Button>
+            ) : (
+              <Button onClick={connectMagic} size="md" variant="solid">
+                Create Wallet
+              </Button>
+            )}
           </Stack>
           <Stack>
-            <Text align={"center"}>
+            <Text align={"center"} size={"md"}>
               Already a user?{" "}
               <Link onClick={connectMagic} color={"blue.400"}>
                 Login

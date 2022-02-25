@@ -21,7 +21,8 @@ import SparkIcon from "./iconcomponents/sparkicon";
  * @returns home page componenet
  */
 export default function Hero() {
-  const [isTabletOrMobile] = useMediaQuery("(max-width: 1224px)");
+  const [isTabletOrMobile] = useMediaQuery("(max-width: 1024px)");
+  const [isBigScreen] = useMediaQuery("(min-width: 1024px)");
 
   const getIcon = () => {
     const width = isTabletOrMobile ? 80 : 100;

@@ -22,7 +22,8 @@ import ProductDescription from "../components/ProductDescription";
  * @returns product page
  */
 function Products() {
-  const [isTabletOrMobile] = useMediaQuery("(max-width: 1224px)");
+  const [isTabletOrMobile] = useMediaQuery("(max-width: 1024px)");
+  const [isBigScreen] = useMediaQuery("(min-width: 1024px)");
 
   return (
     <Container
@@ -33,7 +34,10 @@ function Products() {
       <Stack spacing={24} px={{ base: 5 }}>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <ProductDescription />
-          <Box display={"flex"} justifyContent={"right"}>
+          <Box
+            display={"flex"}
+            justifyContent={isBigScreen ? "right" : "center"}
+          >
             <ProductPrice
               color="blue"
               displayRoyalty={true}
@@ -49,7 +53,7 @@ function Products() {
           </Box>
         </SimpleGrid>
 
-        {isTabletOrMobile ? (
+        {isTabletOrMobile && !isBigScreen ? (
           <Stack spacing={6}>
             <Heading fontSize={{ base: "2xl", md: "3xl" }}>Coming Soon</Heading>
             <Text size="lg">

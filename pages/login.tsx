@@ -1,19 +1,19 @@
 import { Container, Heading, Stack, useColorModeValue } from "@chakra-ui/react";
 import React from "react";
-import LogIn from "../components/LogIn";
+import LogInForm from "../components/LogIn";
 
 /**
  * Renders the sign in with magic form.
  *
  * @returns sign in page
  */
-function SignIn() {
+function LogIn() {
   return (
-    <Container py={10}>
+    <Container>
       <Stack
         spacing={6}
         py={10}
-        pb={25}
+        pb={20}
         align={"center"}
         justify={"center"}
         bg={useColorModeValue("gray.50", "gray.800")}
@@ -23,10 +23,10 @@ function SignIn() {
             Create account
           </Heading>
         </Stack>
-        <LogIn />
+        <LogInForm href="/artcollectionform" />
       </Stack>
     </Container>
   );
 }
 
-export default SignIn;
+export default LogIn;

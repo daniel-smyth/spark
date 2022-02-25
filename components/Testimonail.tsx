@@ -24,7 +24,7 @@ export default function Testimonials() {
         spacing={12}
         px={8}
       >
-        <Stack spacing={5}>
+        <Stack spacing={{ base: 7, md: 6 }}>
           <Heading fontSize={{ base: "2xl", md: "4xl" }}>
             Our Clients Speak
           </Heading>

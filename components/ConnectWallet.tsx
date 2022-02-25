@@ -4,8 +4,7 @@ import { useSwitchNetwork, useWeb3 } from "@3rdweb/hooks";
 
 /**
  * Includes option to connect Metamask, WalletConnect and Coinbase
- * wallet. Also renders the
- * simple connetion status of the user.
+ * wallet. Also renders the connetion status of the user.
  *
  * @returns connect wallet component
  */

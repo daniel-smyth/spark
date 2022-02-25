@@ -42,7 +42,11 @@ export default function Footer() {
           <Stack spacing={6}>
             <Box>
               <Link>
-                <SparkBlack onClick={returnHome} width={80} />
+                <SparkBlack
+                  onClick={returnHome}
+                  style={{ paddingBottom: "3px" }}
+                  width={60}
+                />
               </Link>
             </Box>
             <Text fontSize={"sm"}>

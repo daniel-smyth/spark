@@ -8,10 +8,10 @@ import {
   useDisclosure,
   useColorModeValue,
   Stack,
-  useMediaQuery,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, LinkIcon } from "@chakra-ui/icons";
 import SparkBlack from "./iconcomponents/sparkblack";
+import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const Links = [
   ["Create NFT", "#"],
@@ -26,9 +26,11 @@ const Links = [
  */
 export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [isTabletOrMobile] = useMediaQuery("(max-width: 1224px)");
-  const [isBigScreen] = useMediaQuery("(min-width: 1224px)");
+  // const [isTabletOrMobile] = useMediaQuery("(max-width: 1024px)");
+  // const [isBigScreen] = useMediaQuery("(min-width: 1024px)");
   const router = useRouter();
+
+  const { isMobile } = useWindowDimensions();
 
   const returnHome = () => {
     router.push("/");
@@ -44,7 +46,7 @@ export default function NavBar() {
         pl={{ base: 0, md: 4 }}
         pr={{ base: 0, md: 4 }}
       >
-        {isTabletOrMobile ? (
+        {isMobile ? (
           <Button
             variant="none"
             size="md"
@@ -62,29 +64,28 @@ export default function NavBar() {
               width={60}
             />
           </Link>
-          {isBigScreen ? (
+          {!isMobile ? (
             <HStack as={"nav"} spacing={4} display="flex">
-              {Links.map((link) => NavLink(link[0], link[1]))}
+              {Links.map((link, i) => NavLink(i, link[0], link[1]))}
             </HStack>
           ) : null}
         </HStack>
         <Flex alignItems={"center"}>
-          {isBigScreen ? (
-            <Button variant="solid" size="sm">
-              Connect Wallet
-            </Button>
-          ) : null}
-          {isTabletOrMobile ? (
+          {isMobile ? (
             <Button variant="none" size="md">
               {isOpen ? <CloseIcon /> : <LinkIcon />}
             </Button>
-          ) : null}
+          ) : (
+            <Button variant="solid" size="sm">
+              Connect Wallet
+            </Button>
+          )}
         </Flex>
       </Flex>
       {isOpen ? (
         <Box pb={4} display={{ md: "none" }}>
           <Stack as={"nav"} spacing={4}>
-            {Links.map((link) => NavLink(link[0], link[1]))}
+            {Links.map((link, i) => NavLink(i, link[0], link[1]))}
           </Stack>
         </Box>
       ) : null}
@@ -92,9 +93,10 @@ export default function NavBar() {
   );
 }
 
-const NavLink = (text: string, destination: string) => {
+const NavLink = (key: number, text: string, destination: string) => {
   return (
     <Link
+      key={key}
       fontSize={"sm"}
       px={2}
       py={1}
