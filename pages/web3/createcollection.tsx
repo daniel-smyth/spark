@@ -11,6 +11,7 @@ import {
   Box,
   FormControl,
   FormLabel,
+  Input,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
@@ -18,18 +19,50 @@ import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
 
 function CreateCollection() {
+  // NextJS router.
   const router = useRouter();
-  const [artCollectionSize, setArtCollectionSize] = useState(0);
+  // Collection details.
+  const [collectionName, setCollectionName] = useState("");
+  const [collectionDescription, setCollectionDescription] = useState("");
+  const [artCollectionSize, setCollectionSize] = useState("");
+  // Appears in the ".png" file name.
+  const [imageNamePrefix, setImageNamePrefix] = useState("");
 
   // Creates a cookie on handle dispatch containing the art collection size.
   // This is inputted by the user. As the art collection is rendered on the
   // server side this is the easiest way to pass the variable.
-  const [cookie, setCookie] = useCookies(["artcollectionsize"]);
 
-  const handleDispatch = () => {
+  // Appears in the ".png" file name.
+  const [prefixCookie, setImagePrefixCookie] = useCookies(["imagenameprefix"]);
+  // Collection details.
+  const [nameCookie, setNameCookie] = useCookies(["collectionname"]);
+  const [descrCookie, setDescrCookie] = useCookies(["collectiondescription"]);
+  const [sizeCookie, setSizeCookie] = useCookies(["artcollectionsize"]);
+
+  /**
+   * Using inputted data from the form this function will set the cookies as the
+   * inputted data and then run the hashlips art engine to create multiple copies
+   * of the art.
+   */
+  const createImageCollection = () => {
     // Set the cookie to be picked up in "web3/createartcollection.tsx" which
     // will pass the cookie as a variable to the art engine.
-    setCookie("artcollectionsize", artCollectionSize, {
+    setImagePrefixCookie("imagenameprefix", imageNamePrefix, {
+      path: "",
+      maxAge: 3600,
+      sameSite: true,
+    });
+    setNameCookie("collectionname", collectionName, {
+      path: "",
+      maxAge: 3600,
+      sameSite: true,
+    });
+    setDescrCookie("collectiondescription", collectionDescription, {
+      path: "",
+      maxAge: 3600,
+      sameSite: true,
+    });
+    setSizeCookie("artcollectionsize", artCollectionSize, {
       path: "",
       maxAge: 3600,
       sameSite: true,
@@ -60,8 +93,26 @@ function CreateCollection() {
         >
           <Stack spacing={6}>
             <FormControl is="count" isRequired>
+              <FormLabel>Enter collection name</FormLabel>
+              <Input
+                onChange={(e) => setCollectionName(e.target.value)}
+              ></Input>
+            </FormControl>
+            <FormControl is="count" isRequired>
+              <FormLabel>Enter collection description</FormLabel>
+              <Input
+                onChange={(e) => setCollectionDescription(e.target.value)}
+              ></Input>
+            </FormControl>
+            <FormControl is="count" isRequired>
+              <FormLabel>Enter image prefix</FormLabel>
+              <Input
+                onChange={(e) => setImageNamePrefix(e.target.value)}
+              ></Input>
+            </FormControl>
+            <FormControl is="count" isRequired>
               <FormLabel>Enter collection size</FormLabel>
-              <NumberInput onChange={(e) => setArtCollectionSize(Number(e))}>
+              <NumberInput onChange={(e) => setCollectionSize(e)}>
                 <NumberInputField bg="white" />
                 <NumberInputStepper>
                   <NumberIncrementStepper />
@@ -74,7 +125,7 @@ function CreateCollection() {
               loadingText="Creating.."
               size="md"
               variant="solid"
-              onClick={handleDispatch}
+              onClick={createImageCollection}
             ></ButtonWithLoading>
           </Stack>
         </Box>
