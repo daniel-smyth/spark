@@ -3,10 +3,10 @@ import { Box, SimpleGrid, Stack } from "@chakra-ui/react";
 import { BsPerson } from "react-icons/bs";
 import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
-import Hero from "../components/WelcomePage";
-import Statistic from "../components/Statistic";
-import BusinessSummary from "../components/BusinessSummary";
-import Testimonials from "../components/Testimonail";
+import Hero from "../components/businessinfo/WelcomePage";
+import Statistic from "../components/businessinfo/Statistic";
+import BusinessSummary from "../components/businessinfo/BusinessSummary";
+import Testimonials from "../components/businessinfo/Testimonail";
 
 const Home: NextPage = () => {
   return (

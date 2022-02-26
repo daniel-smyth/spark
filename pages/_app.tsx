@@ -8,6 +8,7 @@ import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../styles/globals.css";
+import { CookiesProvider } from "react-cookie";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -15,16 +16,18 @@ function MyApp({ Component, pageProps }: AppProps) {
       connectors={connectors}
       supportedChainIds={supportedChainIds}
     >
-      <ChakraProvider theme={theme}>
-        <Head>
-          <title>Spark</title>
-          <meta name="description" content="Stay hungry, stay foolish." />
-          <link rel="icon" href="/favicon.png" />
-        </Head>
-        <NavBar />
-        <Component {...pageProps} />
-        <Footer />
-      </ChakraProvider>
+      <CookiesProvider>
+        <ChakraProvider theme={theme}>
+          <Head>
+            <title>Spark</title>
+            <meta name="description" content="Stay hungry, stay foolish." />
+            <link rel="icon" href="/favicon.png" />
+          </Head>
+          <NavBar />
+          <Component {...pageProps} />
+          <Footer />
+        </ChakraProvider>
+      </CookiesProvider>
     </ThirdwebProvider>
   );
 }

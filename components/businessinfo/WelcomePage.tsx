@@ -12,7 +12,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import SparkIcon from "./iconcomponents/sparkicon";
+import SparkIcon from "../icons/sparkicon";
 
 /**
  * Renders the home page of Spark. Contains text with call
@@ -69,7 +69,7 @@ export default function Hero() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="/products">
+            <Link href="/web3/createcollection">
               <Button size={"md"} variant={"solid"} rounded="full">
                 Create NFTs
               </Button>

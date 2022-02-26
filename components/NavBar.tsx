@@ -10,7 +10,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, LinkIcon } from "@chakra-ui/icons";
-import SparkBlack from "./iconcomponents/sparkblack";
+import SparkBlack from "./icons/sparkblack";
 import useWindowDimensions from "../hooks/useWindowDimensions";
 
 const Links = [

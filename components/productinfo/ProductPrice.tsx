@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 import { useRouter } from "next/router";
-import ButtonWithLoading from "./ButtonWithLoading";
+import ButtonWithLoading from "../utils/ButtonWithLoading";
 
 /**
  * Renders pricing card component with royalty percentage,

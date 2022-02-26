@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { BiMailSend } from "react-icons/bi";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import SparkBlack from "./iconcomponents/sparkblack";
+import SparkBlack from "./icons/sparkblack";
 
 /**
  * Renders a footer with logo, links, newsletter subscription.

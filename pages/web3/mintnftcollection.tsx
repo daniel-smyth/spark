@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { ThirdwebSDK } from "@3rdweb/sdk";
 import { ethers } from "ethers";
 import { useWeb3 } from "@3rdweb/hooks";
-import ThirdWebConnectButton from "../components/ThirdWebConnectButton";
-import ButtonWithLoading from "../components/ButtonWithLoading";
+import ThirdWebConnectButton from "../../components/utils/ThirdWebConnectButton";
+import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
 import {
   Stack,
   Box,
@@ -14,7 +14,7 @@ import {
   Container,
 } from "@chakra-ui/react";
 
-function artcollectionform() {
+function MintNftCollection() {
   // Currently connected blockchain provider.
   const { provider } = useWeb3();
   // Amount of NFTs to mint.
@@ -98,4 +98,4 @@ function artcollectionform() {
   );
 }
 
-export default artcollectionform;
+export default MintNftCollection;
