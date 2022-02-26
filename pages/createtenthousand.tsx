@@ -35,8 +35,8 @@ export async function getServerSideProps(context: any) {
   const buildArtEngine = buildSetup;
   const startArtEngine = startCreating;
 
-  console.log(buildArtEngine);
-  console.log(startArtEngine);
+  // console.log(buildArtEngine());
+  // console.log(startArtEngine(10));
 
   return {
     props: {},
