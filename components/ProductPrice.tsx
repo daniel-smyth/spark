@@ -83,7 +83,7 @@ function ProductPrice(props: any) {
           w={"full"}
           size={"md"}
           variant={"solid"}
-          buttonText={"Create collection"}
+          buttontext={"Create collection"}
           loadingText={""}
           linkDestination={props.link}
         />

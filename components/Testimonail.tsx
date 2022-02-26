@@ -16,7 +16,7 @@ import {
  */
 export default function Testimonials() {
   return (
-    <Box bg={useColorModeValue("white", "gray.700")}>
+    <Box>
       <Container
         maxW={"6xl"}
         py={{ base: 16, md: 36 }}

@@ -19,7 +19,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Head>
           <title>Spark</title>
           <meta name="description" content="Stay hungry, stay foolish." />
-          <link rel="icon" href="/sparkicon.svg" />
+          <link rel="icon" href="/favicon.png" />
         </Head>
         <NavBar />
         <Component {...pageProps} />
