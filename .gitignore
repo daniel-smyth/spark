@@ -53,3 +53,4 @@ Thumbs.db
 
 # NextJS
 .next/
+next.config.js

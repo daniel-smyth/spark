@@ -69,7 +69,7 @@ export default function Hero() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="/web3/createcollection">
+            <Link href="/login">
               <Button size={"md"} variant={"solid"} rounded="full">
                 Create NFTs
               </Button>

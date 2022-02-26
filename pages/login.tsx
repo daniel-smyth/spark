@@ -23,7 +23,7 @@ function LogIn() {
             Create account
           </Heading>
         </Stack>
-        <LogInForm href="/artcollectionform" />
+        <LogInForm href="/web3/createcollection" />
       </Stack>
     </Container>
   );
