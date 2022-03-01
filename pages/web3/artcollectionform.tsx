@@ -19,7 +19,6 @@ import {
 } from "@chakra-ui/react";
 import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
 import { ConnectWallet } from "@3rdweb/react";
-import { FileDropZone } from "../../components/utils/FileDropZone";
 
 function CreateCollection() {
   // Collection details.
@@ -87,7 +86,6 @@ function CreateCollection() {
         >
           <Stack spacing={6}>
             <ConnectWallet w={"60%"} alignSelf="center" />
-            <FileDropZone />
             <Text size="md">
               Enter the metadata to be stored with your NFT collection
             </Text>
