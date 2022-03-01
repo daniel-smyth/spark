@@ -15,9 +15,11 @@ import {
   FormControl,
   FormLabel,
   Input,
+  Text,
 } from "@chakra-ui/react";
 import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
-import ThirdWebConnectButton from "../../components/utils/ThirdWebConnectButton";
+import { ConnectWallet } from "@3rdweb/react";
+import { FileDropZone } from "../../components/utils/FileDropZone";
 
 function CreateCollection() {
   // Collection details.
@@ -65,16 +67,16 @@ function CreateCollection() {
   };
 
   return (
-    <Container>
+    <Container display={"flex"}>
       <Stack
         spacing={6}
         py={10}
+        px={10}
         pb={20}
         align={"center"}
-        justify={"center"}
         bg={useColorModeValue("gray.50", "gray.800")}
       >
-        <Heading fontSize={{ base: "3xl", md: "4xl" }} textAlign={"center"}>
+        <Heading fontSize={{ base: "3xl", md: "4xl" }}>
           Create NFT Collection
         </Heading>
         <Box
@@ -84,7 +86,11 @@ function CreateCollection() {
           p={8}
         >
           <Stack spacing={6}>
-            <ThirdWebConnectButton />
+            <ConnectWallet w={"60%"} alignSelf="center" />
+            <FileDropZone />
+            <Text size="md">
+              Enter the metadata to be stored with your NFT collection
+            </Text>
             <FormControl is="count" isRequired>
               <FormLabel>Enter collection name</FormLabel>
               <Input
@@ -94,6 +100,7 @@ function CreateCollection() {
             <FormControl is="count" isRequired>
               <FormLabel>Enter collection description</FormLabel>
               <Input
+                h={"5em"}
                 onChange={(e) => setCollectionDescription(e.target.value)}
               ></Input>
             </FormControl>
@@ -114,6 +121,7 @@ function CreateCollection() {
               </NumberInput>
             </FormControl>
             <ButtonWithLoading
+              w="100%"
               buttontext="Create collection"
               loadingText="Creating.."
               size="md"

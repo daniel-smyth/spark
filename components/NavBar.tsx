@@ -12,6 +12,7 @@ import {
 import { HamburgerIcon, CloseIcon, LinkIcon } from "@chakra-ui/icons";
 import SparkBlack from "./icons/sparkblack";
 import useWindowDimensions from "../hooks/useWindowDimensions";
+import { ConnectWallet } from "@3rdweb/react";
 
 const Links = [
   ["Create NFT", "#"],
@@ -76,9 +77,14 @@ export default function NavBar() {
               {isOpen ? <CloseIcon /> : <LinkIcon />}
             </Button>
           ) : (
-            <Button variant="solid" size="sm">
-              Connect Wallet
-            </Button>
+            <Box>
+              <ConnectWallet
+                height={"42px"}
+                fontSize={"12px"}
+                padding={"16px"}
+                rounded={"2xl"}
+              />
+            </Box>
           )}
         </Flex>
       </Flex>

@@ -3,18 +3,12 @@ import { ethers } from "ethers";
 import { ThirdwebSDK } from "@3rdweb/sdk";
 import { useWeb3 } from "@3rdweb/hooks";
 import { Box, Stack, useColorModeValue } from "@chakra-ui/react";
-import {
-  buildSetup as buildImageDestinationFolders,
-  startCreating as startCreatingImages,
-} from "../../lib/artengine/main";
-import { updateArtEngineImages as updateImagesMetaData } from "../../lib/artengine/utils/update_info";
-import { nftStorage } from "../../lib/nftstorage/main";
 import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
+import { createAndStoreArtwork } from "../../lib/artcollection";
 
 interface CreateArtCollection {
   urlArray: string;
   collectionSize: number;
-  collectionName: string;
   collectionDescription: string;
   imageNamePrefix: string;
 }
@@ -96,40 +90,12 @@ export async function getServerSideProps(context: any) {
   // in "web3/createartcollection.tsx" using useCookie().
   const cookieObj = cookie.parse(context.req.headers.cookie);
 
-  const collectionSize = parseInt(`${cookieObj.collectionsize}`);
-  const collectionName = `${cookieObj.collectionname}`;
-  const collectionDescription = `${cookieObj.collectiondescription}`;
-  const imagePrefix = `${cookieObj.imageprefix}`;
+  // IPFS URLs and collection details
+  const result = await createAndStoreArtwork(cookieObj);
 
-  if (
-    collectionSize &&
-    imagePrefix &&
-    collectionName &&
-    collectionDescription
-  ) {
-    // Build the require output folders for images.
-    buildImageDestinationFolders();
-    // Create iamges.
-    const result = await startCreatingImages(collectionSize);
-    // Update image meta data.
-    updateImagesMetaData(collectionName, collectionDescription, imagePrefix);
-
-    // Store IPFS
-    const ipfsUrlArray = await nftStorage(collectionSize);
-    const arrayString = JSON.stringify(ipfsUrlArray);
-
-    // Return the art collection size as props to render function.
+  if (result) {
     return {
-      props: {
-        urlArray: arrayString,
-        collectionSize: collectionSize,
-        collectionName: collectionName,
-        collectionDescription: collectionDescription,
-        imageNamePrefix: imagePrefix,
-      },
+      props: result,
     };
-  } else
-    throw new Error(
-      `Incorrect data: "${collectionSize}", "${collectionName}", "${collectionDescription}", "${imagePrefix}"`
-    );
+  } else throw new Error("Incorrect cookie object: " + cookieObj);
 }

@@ -22,6 +22,7 @@ export const FileDropZone = () => {
 
   return (
     <Dropzone
+      inputContent="Upload images"
       getUploadParams={getUploadParams}
       onChangeStatus={handleChangeStatus}
       onSubmit={handleSubmit}
