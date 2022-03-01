@@ -1,15 +1,25 @@
-import React from "react";
-import { Box, Stack, useColorModeValue } from "@chakra-ui/react";
-import { buildSetup, startCreating } from "../../lib/artengine/main";
 import cookie from "cookie";
-import { updateArtEngineImages } from "../../lib/artengine/utils/update_info";
-import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
-import { ThirdwebSDK } from "@3rdweb/sdk";
 import { ethers } from "ethers";
+import { ThirdwebSDK } from "@3rdweb/sdk";
 import { useWeb3 } from "@3rdweb/hooks";
+import { Box, Stack, useColorModeValue } from "@chakra-ui/react";
+import {
+  buildSetup as buildImageDestinationFolders,
+  startCreating as startCreatingImages,
+} from "../../lib/artengine/main";
+import { updateArtEngineImages as updateImagesMetaData } from "../../lib/artengine/utils/update_info";
 import { nftStorage } from "../../lib/nftstorage/main";
+import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
 
-function CreateArtCollection(props: any) {
+interface CreateArtCollection {
+  urlArray: string;
+  collectionSize: number;
+  collectionName: string;
+  collectionDescription: string;
+  imageNamePrefix: string;
+}
+
+function CreateArtCollection(props: CreateArtCollection) {
   // Currently connected blockchain provider.
   const { provider } = useWeb3();
 
@@ -18,7 +28,6 @@ function CreateArtCollection(props: any) {
    * * Write blockchain (backend)
    * Initialises sdk with personal wallet’s private keys.
    * This method should be used with extreme care on the backend.
-   * Do not 'push' with .ENV. Only for if you wish to mint the NFT.
    */
   const writeSdk = new ThirdwebSDK(
     new ethers.Wallet(
@@ -40,7 +49,6 @@ function CreateArtCollection(props: any) {
   const lazyMintNft = async () => {
     console.log("Begin mint...");
     const ipfsUrlArray = JSON.parse(props.urlArray);
-
     for (let i = 1; i <= props.collectionSize; i++) {
       console.log(`Now minting ${i}...`);
       try {
@@ -55,8 +63,6 @@ function CreateArtCollection(props: any) {
       } catch (err) {
         console.log(err);
       }
-
-      console.log(drop.getAll());
     }
   };
 
@@ -88,43 +94,29 @@ export default CreateArtCollection;
 export async function getServerSideProps(context: any) {
   // Get the art collection information from the cookies. This is set
   // in "web3/createartcollection.tsx" using useCookie().
-  // Parse cookie.
   const cookieObj = cookie.parse(context.req.headers.cookie);
 
-  // * USE CONFIG.JS TO SET THESE VARIABLES WITH USER INPUT
-
-  // Collection size.
-  var collectionSize = parseInt(`${cookieObj.collectionsize}`);
-  var imageNamePrefix = `${cookieObj.imagenameprefix}`;
-  var collectionName = `${cookieObj.collectionname}`;
-  var collectionDescription = `${cookieObj.collectiondescription}`;
+  const collectionSize = parseInt(`${cookieObj.collectionsize}`);
+  const collectionName = `${cookieObj.collectionname}`;
+  const collectionDescription = `${cookieObj.collectiondescription}`;
+  const imagePrefix = `${cookieObj.imageprefix}`;
 
   if (
     collectionSize &&
-    imageNamePrefix &&
+    imagePrefix &&
     collectionName &&
     collectionDescription
   ) {
-    // Hashlips
     // Build the require output folders for images.
-    buildSetup();
+    buildImageDestinationFolders();
     // Create iamges.
-    await startCreating(collectionSize);
+    const result = await startCreatingImages(collectionSize);
     // Update image meta data.
-    updateArtEngineImages(
-      collectionName,
-      collectionDescription,
-      imageNamePrefix
-    );
+    updateImagesMetaData(collectionName, collectionDescription, imagePrefix);
 
-    // nft.storage
-    var ipfsUrlArray = await nftStorage(
-      collectionSize,
-      collectionName,
-      imageNamePrefix
-    );
-
-    var arrayString = JSON.stringify(ipfsUrlArray);
+    // Store IPFS
+    const ipfsUrlArray = await nftStorage(collectionSize);
+    const arrayString = JSON.stringify(ipfsUrlArray);
 
     // Return the art collection size as props to render function.
     return {
@@ -133,11 +125,11 @@ export async function getServerSideProps(context: any) {
         collectionSize: collectionSize,
         collectionName: collectionName,
         collectionDescription: collectionDescription,
-        imageNamePrefix: imageNamePrefix,
+        imageNamePrefix: imagePrefix,
       },
     };
   } else
     throw new Error(
-      `Incorrect data: "${collectionSize}", "${collectionName}", "${collectionDescription}", "${imageNamePrefix}"`
+      `Incorrect data: "${collectionSize}", "${collectionName}", "${collectionDescription}", "${imagePrefix}"`
     );
 }

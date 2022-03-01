@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { useCookies } from "react-cookie";
+import { useRouter } from "next/router";
 import {
   Container,
   Stack,
@@ -13,41 +16,29 @@ import {
   FormLabel,
   Input,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
 import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
-import { useRouter } from "next/router";
-import { useCookies } from "react-cookie";
 import ThirdWebConnectButton from "../../components/utils/ThirdWebConnectButton";
 
 function CreateCollection() {
-  // NextJS router.
-  const router = useRouter();
   // Collection details.
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
   const [collectionSize, setCollectionSize] = useState("");
-  // Appears in the ".png" file name.
-  const [imageNamePrefix, setImageNamePrefix] = useState("");
+  // Appears before ".png" in file name.
+  const [imagePrefix, setImageNamePrefix] = useState("");
+  const router = useRouter();
 
-  // Creates a cookie on handle dispatch containing the art collection size.
-  // This is inputted by the user. As the art collection is rendered on the
-  // server side this is the easiest way to pass the variable.
-
-  // Appears in the ".png" file name.
-  const [prefixCookie, setImagePrefixCookie] = useCookies(["imagenameprefix"]);
-  // Collection details.
+  // TODO
+  // Creates a cookie on handle dispatch containing collection details.
+  // As the art collection is rendered on the server side this is the
+  // easiest way to pass the variable.
+  const [prefixCookie, setImagePrefixCookie] = useCookies(["imageprefix"]);
   const [nameCookie, setNameCookie] = useCookies(["collectionname"]);
   const [descrCookie, setDescrCookie] = useCookies(["collectiondescription"]);
   const [sizeCookie, setSizeCookie] = useCookies(["collectionsize"]);
 
-  /**
-   * Using inputted data from the form this function will set the cookies as the
-   * inputted data and then run the hashlips art engine to create multiple copies
-   * of the art.
-   */
   const createImageCollection = () => {
-    // Set the cookie to be picked up in "web3/createartcollection.tsx" which
-    // will pass the cookie as a variable to the art engine.
+    // Set cookies to be used in "web3/createartcollection.tsx".
     setSizeCookie("collectionsize", collectionSize, {
       path: "",
       maxAge: 3600,
@@ -63,14 +54,14 @@ function CreateCollection() {
       maxAge: 3600,
       sameSite: true,
     });
-    setImagePrefixCookie("imagenameprefix", imageNamePrefix, {
+    setImagePrefixCookie("imageprefix", imagePrefix, {
       path: "",
       maxAge: 3600,
       sameSite: true,
     });
 
     // Route the page which will create the art collection.
-    router.push("/web3/createartcollection");
+    router.push("/web3/artcollectionminter");
   };
 
   return (

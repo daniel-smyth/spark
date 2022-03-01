@@ -19,7 +19,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "styles/theme.styles.global.tsx"
+    "styles/theme.styles.global.tsx",
+    "lib/artengine/utils/update_info.js",
+    "lib/artengine/main.js"
   ],
   "exclude": ["node_modules"]
 }
