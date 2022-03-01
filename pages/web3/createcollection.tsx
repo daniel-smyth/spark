@@ -17,6 +17,7 @@ import React, { useState } from "react";
 import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
 import { useRouter } from "next/router";
 import { useCookies } from "react-cookie";
+import ThirdWebConnectButton from "../../components/utils/ThirdWebConnectButton";
 
 function CreateCollection() {
   // NextJS router.
@@ -24,7 +25,7 @@ function CreateCollection() {
   // Collection details.
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
-  const [artCollectionSize, setCollectionSize] = useState("");
+  const [collectionSize, setCollectionSize] = useState("");
   // Appears in the ".png" file name.
   const [imageNamePrefix, setImageNamePrefix] = useState("");
 
@@ -37,7 +38,7 @@ function CreateCollection() {
   // Collection details.
   const [nameCookie, setNameCookie] = useCookies(["collectionname"]);
   const [descrCookie, setDescrCookie] = useCookies(["collectiondescription"]);
-  const [sizeCookie, setSizeCookie] = useCookies(["artcollectionsize"]);
+  const [sizeCookie, setSizeCookie] = useCookies(["collectionsize"]);
 
   /**
    * Using inputted data from the form this function will set the cookies as the
@@ -47,7 +48,7 @@ function CreateCollection() {
   const createImageCollection = () => {
     // Set the cookie to be picked up in "web3/createartcollection.tsx" which
     // will pass the cookie as a variable to the art engine.
-    setImagePrefixCookie("imagenameprefix", imageNamePrefix, {
+    setSizeCookie("collectionsize", collectionSize, {
       path: "",
       maxAge: 3600,
       sameSite: true,
@@ -62,7 +63,7 @@ function CreateCollection() {
       maxAge: 3600,
       sameSite: true,
     });
-    setSizeCookie("artcollectionsize", artCollectionSize, {
+    setImagePrefixCookie("imagenameprefix", imageNamePrefix, {
       path: "",
       maxAge: 3600,
       sameSite: true,
@@ -92,6 +93,7 @@ function CreateCollection() {
           p={8}
         >
           <Stack spacing={6}>
+            <ThirdWebConnectButton />
             <FormControl is="count" isRequired>
               <FormLabel>Enter collection name</FormLabel>
               <Input

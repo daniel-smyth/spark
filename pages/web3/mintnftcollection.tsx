@@ -45,7 +45,7 @@ function MintNftCollection() {
 
   // Run a for loop of a user inputted amount minting an NFT every time.
   const lazyMintNft = async () => {
-    for (let i = 0; i < amount; i++) {
+    for (let i = 5; i < amount; i++) {
       try {
         await drop.createBatch([
           {

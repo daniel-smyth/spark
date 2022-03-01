@@ -1,0 +1,38 @@
+{
+  "name": "Daniel #1",
+  "description": "Smyth",
+  "image": "/Hey1.png",
+  "dna": "6d1fb6a3591baac21fbcc0ae957fd9e5966f9434",
+  "edition": 1,
+  "date": 1646122969051,
+  "properties": [
+    {
+      "trait_type": "Background",
+      "value": "Black"
+    },
+    {
+      "trait_type": "Eyeball",
+      "value": "Red"
+    },
+    {
+      "trait_type": "Eye color",
+      "value": "Green"
+    },
+    {
+      "trait_type": "Iris",
+      "value": "Small"
+    },
+    {
+      "trait_type": "Shine",
+      "value": "Shapes"
+    },
+    {
+      "trait_type": "Bottom lid",
+      "value": "Middle"
+    },
+    {
+      "trait_type": "Top lid",
+      "value": "Middle"
+    }
+  ]
+}
