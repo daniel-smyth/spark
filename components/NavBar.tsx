@@ -79,7 +79,8 @@ export default function NavBar() {
           ) : (
             <Box>
               <ConnectWallet
-                height={"42px"}
+                variant={"solid"}
+                height={"39px"}
                 fontSize={"12px"}
                 padding={"16px"}
                 rounded={"2xl"}

@@ -20,7 +20,28 @@ import {
 import ButtonWithLoading from "../../components/utils/ButtonWithLoading";
 import { ConnectWallet } from "@3rdweb/react";
 
-function CreateCollection() {
+function ArtCollectionForm() {
+  const [image, setImage] = useState(null);
+  const [createObjectURL, setCreateObjectURL] = useState("");
+
+  const uploadToClient = (event: any) => {
+    if (event.target.files && event.target.files[0]) {
+      const i = event.target.files[0];
+
+      setImage(i);
+      setCreateObjectURL(URL.createObjectURL(i));
+    }
+  };
+
+  const uploadToServer = async () => {
+    const body = new FormData();
+    body.append("file", image!);
+    const response = await fetch("/api/file", {
+      method: "POST",
+      body,
+    });
+  };
+
   // Collection details.
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
@@ -85,7 +106,19 @@ function CreateCollection() {
           p={8}
         >
           <Stack spacing={6}>
-            <ConnectWallet w={"60%"} alignSelf="center" />
+            <div>
+              <img src={createObjectURL} />
+              <h4>Select Image</h4>
+              <input type="file" name="myImage" onChange={uploadToClient} />
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={uploadToServer}
+              >
+                Send to server
+              </button>
+            </div>
+            <ConnectWallet w={"60%"} variant={"solid"} alignSelf="center" />
             <Text size="md">
               Enter the metadata to be stored with your NFT collection
             </Text>
@@ -133,4 +166,4 @@ function CreateCollection() {
   );
 }
 
-export default CreateCollection;
+export default ArtCollectionForm;
