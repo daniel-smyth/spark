@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import {
   Box,
-  Center,
   Container,
   FormControl,
   FormLabel,
@@ -18,20 +17,47 @@ import {
 } from "@chakra-ui/react";
 import { ConnectWallet } from "@3rdweb/react";
 import ButtonWithLoading from "../components/utils/ButtonWithLoading";
-
-import Dropzone from "react-dropzone";
-// import { getDroppedOrSelectedFiles } from "html5-file-selector";
+import UploadFolder from "../components/utils/UploadFolder";
 
 function UploadToClient() {
-  const [imageLayers, setImageLayers] = useState<any>();
-  // Collection details.
+  const [layerCount, setLayerSize] = useState(1);
+  const [layerName1, setLayerName1] = useState("");
+  const [layerName2, setLayerName2] = useState("");
+  const [layerName3, setLayerName3] = useState("");
+  const [layerName4, setLayerName4] = useState("");
+  const [layerName5, setLayerName5] = useState("");
+  const layerNameStates = [
+    setLayerName1,
+    setLayerName2,
+    setLayerName3,
+    setLayerName4,
+    setLayerName5,
+  ];
+  const layerList = ["Layer 1", "Layer 2", "Layer 3", "Layer 4", "Layer 5"];
+  const [layerFiles, setImageLayers] = useState<FileList[]>([]);
+
   const [collectionName, setCollectionName] = useState("");
   const [collectionDescription, setCollectionDescription] = useState("");
   const [collectionSize, setCollectionSize] = useState("");
   const [imagePrefix, setImageNamePrefix] = useState("");
 
-  function createCollection() {
-    console.log(imageLayers);
+  function addLayerFileToState(layer: FileList) {
+    layerFiles.push(layer);
+    setImageLayers(layerFiles);
+  }
+
+  function execute() {
+    const layerNames = [
+      layerName1,
+      layerName2,
+      layerName3,
+      layerName4,
+      layerName5,
+    ];
+    if (layerFiles.length > 0)
+      layerFiles.forEach((fileList, i) => {
+        getLayers([{ layerName: layerNames[i], images: fileList }]);
+      });
   }
 
   return (
@@ -55,32 +81,36 @@ function UploadToClient() {
         >
           <Stack spacing={6}>
             <ConnectWallet w={"60%"} variant={"solid"} alignSelf="center" />
-            <label htmlFor="layer-upload">
-              <Center
-                p={6}
-                cursor="pointer"
-                bg="gray.100"
-                _hover={{ bg: "gray.200" }}
-                transition="background-color 0.2s ease"
-                borderRadius={4}
-                border="3px dashed"
-                borderColor="gray.300"
-                onClic
+            <FormControl is="count" isRequired>
+              <FormLabel>Enter layers size</FormLabel>
+              <NumberInput
+                defaultValue={1}
+                onChange={(e) => setLayerSize(Number(e))}
               >
-                <Input
-                  display={"none"}
-                  id="layer-upload"
-                  type="file"
-                  name="myImage"
-                  directory=""
-                  webkitdirectory=""
-                  onChange={(e) => {
-                    setImageLayers(e.target.files);
-                  }}
-                />
-                <Text color={"black"}>Click to upload images</Text>
-              </Center>
-            </label>
+                <NumberInputField bg="white" />
+                <NumberInputStepper>
+                  <NumberIncrementStepper />
+                  <NumberDecrementStepper />
+                </NumberInputStepper>
+              </NumberInput>
+            </FormControl>
+            {layerList.map((_l, i) => {
+              if (i < layerCount)
+                return (
+                  <>
+                    <FormControl is="count" isRequired>
+                      <FormLabel>Enter layer name {i + 1}</FormLabel>
+                      <Input
+                        onChange={(e) => layerNameStates[i](e.target.value)}
+                      ></Input>
+                    </FormControl>
+                    <UploadFolder
+                      index={i + 1}
+                      layerState={addLayerFileToState}
+                    />
+                  </>
+                );
+            })}
             <Text size="md">
               Enter the metadata to be stored with your NFT collection
             </Text>
@@ -93,7 +123,6 @@ function UploadToClient() {
             <FormControl is="count" isRequired>
               <FormLabel>Enter collection description</FormLabel>
               <Input
-                h={"5em"}
                 onChange={(e) => setCollectionDescription(e.target.value)}
               ></Input>
             </FormControl>
@@ -119,7 +148,7 @@ function UploadToClient() {
               loadingText="Creating.."
               size="md"
               variant="solid"
-              onClick={createCollection}
+              onClick={execute}
             ></ButtonWithLoading>
           </Stack>
         </Box>
@@ -129,3 +158,75 @@ function UploadToClient() {
 }
 
 export default UploadToClient;
+
+const rarityDelimiter = "#";
+
+function getLayers(layerObject: [{ layerName: string; images: FileList }]) {
+  const layers = layerObject.map((layerFolder, index) => ({
+    id: index,
+    elements: getElementsClient(layerFolder),
+    name: layerFolder.layerName,
+    blend: "source-over",
+    opacity: 1,
+    bypassDNA: false,
+  }));
+
+  console.log(layers);
+}
+
+function getElementsClient({
+  layerName,
+  images,
+}: {
+  layerName: string;
+  images: FileList;
+}) {
+  for (let i = 0; i < images.length; i++) {
+    const image = images.item(i);
+    if (image) {
+      return {
+        id: i,
+        name: cleanName(image.name),
+        filename: image.name,
+        path: `${layerName}/${i}`,
+        weight: getRarityWeight(image.name),
+      };
+    }
+  }
+}
+
+function getRarityWeight(imageName: string) {
+  let nameWithoutExtension = imageName.slice(0, -4);
+  var nameWithoutWeight = Number(
+    nameWithoutExtension.split(rarityDelimiter).pop()
+  );
+  if (isNaN(nameWithoutWeight)) {
+    nameWithoutWeight = 1;
+  }
+  return nameWithoutWeight;
+}
+
+function cleanDna(imageName: string) {
+  const withoutOptions = removeQueryStrings(imageName);
+  var dna = Number(withoutOptions.split(":").shift());
+  return dna;
+}
+
+const cleanName = (imageName: string) => {
+  let nameWithoutExtension = imageName.slice(0, -4);
+  var nameWithoutWeight = nameWithoutExtension.split(rarityDelimiter).shift();
+  return nameWithoutWeight;
+};
+
+/**
+ * Cleaning function for DNA strings. When DNA strings include an option, it
+ * is added to the filename with a ?setting=value query string. It needs to be
+ * removed to properly access the file name before Drawing.
+ *
+ * @param {String} _dna The entire newDNA string
+ * @returns Cleaned DNA string without querystring parameters.
+ */
+function removeQueryStrings(dna: string) {
+  const query = /(\?.*$)/;
+  return dna.replace(query, "");
+}
