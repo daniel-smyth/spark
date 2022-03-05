@@ -25,6 +25,8 @@ interface UploadLayerProps {
  * @returns react component
  */
 function UploadLayers(props: UploadLayerProps) {
+  // Max layer count.
+  const maxLayers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   // Uploaded images URLs.
   const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
   // Layer detaisl.
@@ -85,6 +87,7 @@ function UploadLayers(props: UploadLayerProps) {
               <Heading size="md">Image layers details</Heading>
               <Text size="md">Upload image layers.</Text>
               <UploadImages
+                maxLayers={maxLayers}
                 layerCount={[layerCount, setLayerCount]}
                 layerNames={[layerNames, setLayerNames]}
                 layerImageSrcs={[allLayerImageSrcs, setLayerImageSrcs]}

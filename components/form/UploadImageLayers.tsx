@@ -4,14 +4,13 @@ import FormNumberInput from "./FormNumberInput";
 import UploadFolder from "../utils/UploadFolder";
 
 interface UploadImageLayersProps {
+  maxLayers: string[];
   layerCount: number | any;
   layerNames: string[] | any;
   layerImageSrcs: any[] | any;
 }
 
 export default function UploadImages(props: UploadImageLayersProps) {
-  const maxLayers = ["1", "2", "3", "4", "5"];
-
   function handleNewLayer(layer: ["", string[]]) {
     console.log("Uploading new layer... ", layer);
     const newLayerName = layer[0];
@@ -30,7 +29,7 @@ export default function UploadImages(props: UploadImageLayersProps) {
         defaultValue={1}
         onChange={props.layerCount[1]}
       />
-      {maxLayers.map((_l, i) => {
+      {props.maxLayers.map((_l, i) => {
         if (i < props.layerCount[0])
           return (
             <Stack key={i}>
