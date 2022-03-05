@@ -14,7 +14,9 @@ function ButtonWithLoading(props: any) {
   return (
     <Box>
       {isLoading ? (
-        <Button {...props}>{props.loadingText}</Button>
+        <Button isLoading {...props}>
+          {props.loadingText}
+        </Button>
       ) : (
         <Button
           {...props}
