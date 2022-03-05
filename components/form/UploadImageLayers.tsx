@@ -5,7 +5,7 @@ import UploadFolder from "../utils/UploadFolder";
 
 interface UploadImageLayersProps {
   layerCount: number | any;
-  layerNames: string | any;
+  layerNames: string[] | any;
   layerImageSrcs: any[] | any;
 }
 
@@ -17,9 +17,9 @@ export default function UploadImages(props: UploadImageLayersProps) {
     const newLayerName = layer[0];
     const newLayerImageSrcs = layer[1];
     props.layerNames[0].push(newLayerName);
-    props.layerNames[1](props.layerNames);
+    props.layerNames[1](props.layerNames[0]);
     props.layerImageSrcs[0].push(newLayerImageSrcs);
-    props.layerImageSrcs[1](props.layerImageSrcs);
+    props.layerImageSrcs[1](props.layerImageSrcs[0]);
   }
 
   return (

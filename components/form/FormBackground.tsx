@@ -7,9 +7,9 @@ function FormBackground({ children }: { children: any }) {
       <Stack
         spacing={6}
         py={10}
-        px={10}
-        align={"center"}
+        px={14}
         bg={useColorModeValue("gray.50", "gray.800")}
+        minW={"100%"}
       >
         {children}
       </Stack>
