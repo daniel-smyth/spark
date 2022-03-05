@@ -11,59 +11,63 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { ConnectWallet } from "@3rdweb/react";
-import { startCreating, getLayer } from "../lib/artengine/mainClient";
+import { getLayer } from "../lib/artengine/mainClient";
 import FormBackground from "../components/form/FormBackground";
 import UploadImages from "../components/form/UploadImageLayers";
 import FormNumberInput from "../components/form/FormNumberInput";
 import ButtonWithLoading from "../components/utils/ButtonWithLoading";
 
+/**
+ * Creates an NFT art collection.
+ *
+ * @returns react component
+ */
 function CreateCollection() {
+  // TODO Remove when completed test.
   const blockchainAddress = true;
-
-  const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
-  const [layerNames, setLayerNames] = useState<string[]>([]);
+  // Uploaded images by user. Layers consisting of image sources.
   const [layerCount, setLayerCount] = useState(1);
+  const [layerNames, setLayerNames] = useState<string[]>([]);
+  const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
+  // For submit button
   const [isLoading, setLoading] = useState(false);
 
+  /**
+   * Fetch data from form and execute required functions to produce
+   * the art colleciton. This function simply calls top level functions.
+   *
+   * @param event user inputted art collection data
+   */
   function handleFormData(event: any) {
-    console.log("Now submitting the form with collections details..");
-
     event.preventDefault();
     setLoading(true);
 
+    // Fetch data from form.
     const collectionSize = event.target.collectionSize.value;
     const collectionName = event.target.collectionName.value;
     const collectionDescription = event.target.collectionDescription.value;
     const imageNamePrefix = event.target.imageNamePrefix.value;
 
-    console.log("Image count: ", collectionSize);
+    console.log("Create layer objects..");
     console.log("Layer names: ", layerNames);
     console.log("Layer image sources: ", allLayerImageSrcs);
 
+    // Create image layer data.
     const layerObjects = [];
     for (let i = 0; i < layerCount; i++) {
-      const layer = getLayer([
-        {
-          layerName: layerNames[i],
-          layerImageSrcs: allLayerImageSrcs[i],
-        },
-      ]);
+      const layerData = {
+        layerName: layerNames[i],
+        layerImageSrcs: allLayerImageSrcs[i],
+      };
+      const layer = getLayer([layerData]);
       console.log(`Adding new layer object ${i}: `, layer);
       layerObjects.push(layer);
     }
 
+    // !
     console.log("Layers created: ", layerObjects);
     // const completedImages = startCreating(collectionSize, layerObjects);
     // console.log(completedImages);
-  }
-
-  function getFormInput(name: string, label: string) {
-    return (
-      <FormControl isRequired>
-        <FormLabel>{label}</FormLabel>
-        <Input name={name}></Input>
-      </FormControl>
-    );
   }
 
   return (
@@ -139,6 +143,15 @@ function CreateCollection() {
         </>
       )}
     </FormBackground>
+  );
+}
+
+function getFormInput(name: string, label: string) {
+  return (
+    <FormControl isRequired>
+      <FormLabel>{label}</FormLabel>
+      <Input name={name}></Input>
+    </FormControl>
   );
 }
 
