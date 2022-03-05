@@ -45,9 +45,7 @@ function UploadLayers(props: UploadLayerProps) {
     event.preventDefault();
     setLoading(true);
 
-    console.log("Create layer objects..");
-    console.log("Layer names: ", layerNames);
-    console.log("Layer image sources: ", allLayerImageSrcs);
+    console.log("Creating layer objects..");
 
     // Create image layer data.
     const layerObjects = [];
