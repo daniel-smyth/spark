@@ -25,10 +25,7 @@ export default function Testimonials() {
         px={8}
       >
         <Stack spacing={{ base: 7, md: 6 }}>
-          <Heading fontSize={{ base: "2xl", md: "4xl" }}>
-            Our Clients Speak
-          </Heading>
-          <Text size="lg">Hear what our trusting clients have to say</Text>
+          <Heading fontSize={{ base: "2xl", md: "4xl" }}>Feedback</Heading>
         </Stack>
         <Stack
           direction={{ base: "column", md: "row" }}

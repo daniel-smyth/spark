@@ -44,7 +44,7 @@ export default function Hero() {
           justifyContent={"center"}
           alignItems={"center"}
           spacing={{ base: 4, md: 6 }}
-          height={"80vh"}
+          height={{ base: "90vh", md: "80vh" }}
         >
           {getIcon()}
           <Heading
@@ -59,8 +59,8 @@ export default function Hero() {
               </Text>
             </Stack>
           </Heading>
-          <Text size={isTabletOrMobile ? "lg" : "2xl"} py={2}>
-            No initial fees and your very own NFT market place .
+          <Text size={isTabletOrMobile ? "md" : "2xl"} py={2}>
+            No initial fees and your own NFT market place .
           </Text>
           <Stack
             direction={"column"}
@@ -69,7 +69,7 @@ export default function Hero() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="/login">
+            <Link href="/products">
               <Button size={"md"} variant={"solid"} rounded="full">
                 Create NFTs
               </Button>

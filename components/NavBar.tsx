@@ -38,7 +38,12 @@ export default function NavBar() {
   };
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")}>
+    <Box
+      bg={useColorModeValue("gray.100", "gray.900")}
+      position={"fixed"}
+      width={"100%"}
+      zIndex={200}
+    >
       <Flex
         h={"40px"}
         py={"25px"}
