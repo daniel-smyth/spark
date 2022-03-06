@@ -2,8 +2,10 @@ import { useWeb3 } from "@3rdweb/hooks";
 import {
   Box,
   Button,
+  Container,
   FormControl,
   FormLabel,
+  Heading,
   Input,
   Link,
   Stack,
@@ -25,7 +27,6 @@ function LogIn(props: any) {
 
   // ThirdWeb and User props.
   const [emailAddress, setEmailAddress] = useState("");
-  const [socialMedia, setSocialMedia] = useState("");
   const { address, connectWallet } = useWeb3();
 
   // For button.
@@ -41,55 +42,64 @@ function LogIn(props: any) {
   if (address) router.push(props.href);
 
   return (
-    <Stack>
-      <Box
-        rounded={"lg"}
-        bg={useColorModeValue("white", "gray.700")}
-        boxShadow={"lg"}
-        p={8}
+    <Container>
+      <Stack
+        spacing={6}
+        py={10}
+        px={20}
+        pb={20}
+        justify={"center"}
+        bg={useColorModeValue("gray.50", "gray.800")}
       >
-        <Stack spacing={4}>
-          <FormControl id="email" isRequired>
-            <FormLabel>Email address</FormLabel>
-            <Input
-              type="email"
-              onChange={(e) => setEmailAddress(e.target.value)}
-            />
-          </FormControl>
-          <FormControl id="socialmedia" isRequired>
-            <FormLabel>Social media handle</FormLabel>
-            <Input
-              type="socialmedia"
-              onChange={(e) => setSocialMedia(e.target.value)}
-            />
-          </FormControl>
-          <Stack spacing={5} pt={2}>
-            {isConnecting ? (
-              <Button
-                isLoading
-                loadingText="Connecting"
-                size="md"
-                variant="outline"
-              >
-                Connecting
-              </Button>
-            ) : (
-              <Button onClick={connectMagic} size="md" variant="solid">
-                Create Wallet
-              </Button>
-            )}
-          </Stack>
-          <Stack>
-            <Text align={"center"} size={"md"}>
-              Already a user?{" "}
-              <Link onClick={connectMagic} color={"blue.400"}>
-                Login
-              </Link>
-            </Text>
-          </Stack>
+        <Stack align={"center"} minW={"50%"}>
+          <Heading fontSize={{ base: "3xl", md: "4xl" }} textAlign={"center"}>
+            Create account
+          </Heading>
         </Stack>
-      </Box>
-    </Stack>
+        <Stack>
+          <Box
+            rounded={"lg"}
+            bg={useColorModeValue("white", "gray.700")}
+            boxShadow={"lg"}
+            p={8}
+          >
+            <Stack spacing={4}>
+              <FormControl id="email" isRequired>
+                <FormLabel>Email address</FormLabel>
+                <Input
+                  type="email"
+                  onChange={(e) => setEmailAddress(e.target.value)}
+                />
+              </FormControl>
+              <Stack spacing={5} pt={2}>
+                {isConnecting ? (
+                  <Button
+                    isLoading
+                    loadingText="Connecting"
+                    size="md"
+                    variant="outline"
+                  >
+                    Connecting
+                  </Button>
+                ) : (
+                  <Button onClick={connectMagic} size="md" variant="solid">
+                    Create Account
+                  </Button>
+                )}
+              </Stack>
+              <Stack>
+                <Text align={"center"} size={"md"}>
+                  Already a user?{" "}
+                  <Link onClick={connectMagic} color={"blue.400"}>
+                    Login
+                  </Link>
+                </Text>
+              </Stack>
+            </Stack>
+          </Box>
+        </Stack>
+      </Stack>
+    </Container>
   );
 }
 

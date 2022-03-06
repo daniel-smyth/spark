@@ -60,9 +60,6 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
   function changeLayerOrder(e: any, i: number) {
     const layerName = e.target.value;
     const layerPosition = i;
-    console.log(
-      "Changing layer position of " + layerName + " to " + layerPosition
-    );
     const index = allLayerImageSrcs.indexOf(
       allLayerImageSrcs.find((layer) => (layer[0] == layerName ? layer : null))
     );

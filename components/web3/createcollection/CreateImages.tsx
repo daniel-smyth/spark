@@ -10,11 +10,13 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { startCreating } from "../../../lib/artengine/mainClient";
-import StoreImageIpfsUrls from "./StoreImageIpfsUrls";
+import MintImages from "./MintImages";
 
 interface CreateImagesProps {
   name: string;
+  description: string;
   size: number;
+  namePrefix: string;
   layerObjects: any[];
   setImageUrls: any;
 }
@@ -64,17 +66,17 @@ function CreateImages(props: CreateImagesProps) {
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
             Your Collection
           </Heading>
-          <Text size="lg">Created {props.size} images. </Text>
-
           {storing ? (
-            <StoreImageIpfsUrls
+            <MintImages
               size={props.size}
+              description={props.description}
               name={props.name}
+              namePrefix={props.namePrefix}
               allUrls={imgSrcs}
             />
           ) : (
             <Button size={"md"} variant={"solid"} onClick={startStoring}>
-              Start storing as IPFS links
+              Mint images
             </Button>
           )}
           <Box border={"8px"} p={2} borderColor="gray.200">

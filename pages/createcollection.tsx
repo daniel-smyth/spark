@@ -1,6 +1,16 @@
+import { useWeb3 } from "@3rdweb/hooks";
 import { ConnectWallet } from "@3rdweb/react";
-import { Text } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Heading,
+  Stack,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
+import LogIn from "../components/LogIn";
+import ConnectWalletCard from "../components/web3/ConnectWalletCard";
 import CreateImages from "../components/web3/createcollection/CreateImages";
 import DisplayImages from "../components/web3/createcollection/DisplayImages";
 import SetCollectionProperties from "../components/web3/createcollection/EnterCollectionDetails";
@@ -14,6 +24,9 @@ import UploadLayersAsFolders from "../components/web3/createcollection/upload/Up
  * @returns react component
  */
 function CreateCollection() {
+  // Web3 hook.
+  const { provider } = useWeb3();
+
   // Layer objects contain all data required to complete the
   // art engine randomisation. Objects are set in "/UploadLayers.tsx"
   const [layerObjects, setLayerObjects] = useState<any[]>();
@@ -26,15 +39,7 @@ function CreateCollection() {
   const [size, setSize] = useState<number>(0);
   const [namePrefix, setPrefix] = useState<string>("");
 
-  // TODO Remove when completed test.
-  const blockchainAddress = true;
-
-  // Storing IPFS.
-  const [storingInitiated, setStoringInitiated] = useState(false);
-  function startStoring() {
-    setStoringInitiated(true);
-  }
-
+  // TODO
   function getUploadMethod() {
     return true ? (
       <UploadLayersAsFiles setState={setLayerObjects} />
@@ -45,7 +50,7 @@ function CreateCollection() {
 
   return (
     <>
-      {blockchainAddress ? (
+      {provider ? (
         <>
           {!layerObjects ? (
             <UploadLayersAsFiles setState={setLayerObjects} />
@@ -59,19 +64,17 @@ function CreateCollection() {
           ) : (
             <CreateImages
               name={name}
+              description={description}
               size={size}
+              namePrefix={namePrefix}
               layerObjects={layerObjects}
               setImageUrls={setImageUrls}
             />
           )}
         </>
       ) : (
-        <>
-          <Text size="md">
-            Please connect your wallet to mint your collection
-          </Text>
-          <ConnectWallet variant={"solid"} />
-        </>
+        // <LogIn />
+        <ConnectWalletCard />
       )}
     </>
   );

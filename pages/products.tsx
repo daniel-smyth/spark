@@ -48,7 +48,7 @@ function Products() {
               feature3="10,000 NFT images."
               feature4="Sold on Spark.com"
               buttonText="Create Collection"
-              link="/login"
+              link="/createcollection"
             ></ProductPrice>
           </Box>
         </SimpleGrid>
