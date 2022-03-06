@@ -3,16 +3,16 @@ import { Box, SimpleGrid, Stack } from "@chakra-ui/react";
 import { BsPerson } from "react-icons/bs";
 import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
-import Hero from "../components/businessinfo/WelcomePage";
-import Statistic from "../components/businessinfo/Statistic";
-import BusinessSummary from "../components/businessinfo/BusinessSummary";
-import Testimonials from "../components/businessinfo/Testimonail";
+import Hero from "../components/homepage/Hero";
+import Statistic from "../components/homepage/Statistic";
+import BusinessInfo from "../components/homepage/BusinessInfo";
+import Testimonials from "../components/homepage/Testimonail";
 
 const Home: NextPage = () => {
   return (
     <div>
       <Hero />
-      <Stack as={Box} textAlign={"center"} spacing={{ base: 1, md: 2 }} py={{}}>
+      <Stack as={Box} textAlign={"center"} spacing={{ base: 1, md: 2 }}>
         <SimpleGrid
           columns={{ base: 1, md: 3 }}
           spacing={{ base: 5, lg: 8 }}
@@ -35,7 +35,7 @@ const Home: NextPage = () => {
           />
         </SimpleGrid>
       </Stack>
-      <BusinessSummary />
+      <BusinessInfo />
       <Testimonials />
     </div>
   );

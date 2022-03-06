@@ -44,7 +44,7 @@ export default function Hero() {
           justifyContent={"center"}
           alignItems={"center"}
           spacing={{ base: 4, md: 6 }}
-          height={{ base: "90vh", md: "80vh" }}
+          height={{ base: "100vh", md: "100vh" }}
         >
           {getIcon()}
           <Heading

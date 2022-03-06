@@ -1,5 +1,5 @@
 import React from "react";
-import CreateCollection from "../components/createcollection/CreateCollection";
+import CreateCollection from "../components/web3/createcollection/Index";
 
 function CreateArtCollection() {
   return <CreateCollection />;

@@ -10,8 +10,8 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import FormBackground from "../form/FormBackground";
-import FormNumberInput from "../form/FormNumberInput";
+import FormBackground from "../../form/FormBackground";
+import FormNumberInput from "../../form/FormNumberInput";
 
 interface SetCollectionProps {
   setName: any;

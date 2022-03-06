@@ -21,7 +21,7 @@ import { ReactElement } from "react";
  *
  * @returns what we do component
  */
-export default function BusinessSummary() {
+export default function BusinessInfo() {
   return (
     <Container
       maxW="6xl"

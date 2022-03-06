@@ -2,52 +2,39 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  FormControl,
-  FormLabel,
   Heading,
-  Input,
   Stack,
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { ConnectWallet } from "@3rdweb/react";
-import { getLayer } from "../../lib/artengine/mainClient";
-import FormBackground from "../form/FormBackground";
-import UploadImages from "../form/UploadImageLayers";
+import { getLayer } from "../../../../lib/artengine/mainClient";
+import FormBackground from "../../../form/FormBackground";
+import FormNumberInput from "../../../form/FormNumberInput";
+import UploadImageFolder from "../../../utils/UploadImageFolder";
 
 interface UploadLayerProps {
   setState: React.Dispatch<any[]>;
 }
 
-/**
- * Creates an NFT art collection.
- *
- * @returns react component
- */
-function UploadLayers(props: UploadLayerProps) {
-  // Max layer count.
+function UploadLayersAsFolders(props: UploadLayerProps) {
   const maxLayers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
-  // Uploaded images URLs.
-  const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
-  // Layer detaisl.
-  const [layerCount, setLayerCount] = useState(1);
   const [layerNames, setLayerNames] = useState<string[]>([]);
-  // For submit button.
-  const [isLoading, setLoading] = useState(false);
+  const [layerCount, setLayerCount] = useState(1);
+  const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
 
-  /**
-   * Fetch data from form and execute required functions to produce
-   * layer objects.
-   *
-   * @param event user inputted art collection data
-   */
+  function handleNewLayer(layer: ["", string[]]) {
+    console.log("Uploading new layer... ", layer);
+    const newLayerName = layer[0];
+    const newLayerImageSrcs = layer[1];
+    layerNames.push(newLayerName);
+    setLayerNames(layerNames);
+    allLayerImageSrcs.push(newLayerImageSrcs);
+    setLayerImageSrcs(allLayerImageSrcs);
+  }
+
   function handleFormData(event: any) {
     event.preventDefault();
-    setLoading(true);
-
     console.log("Creating layer objects..");
-
-    // Create image layer data.
     const layerObjects = [];
     for (let i = 0; i < layerCount; i++) {
       const layerData = {
@@ -55,13 +42,10 @@ function UploadLayers(props: UploadLayerProps) {
         layerImageSrcs: allLayerImageSrcs[i],
       };
       const layer = getLayer([layerData]);
-      console.log(`Adding new layer object ${i}: `, layer);
       layerObjects.push(layer);
     }
-
     console.log("Layers created: ", layerObjects);
     props.setState(layerObjects);
-    // console.log(completedImages);
   }
 
   return (
@@ -69,29 +53,37 @@ function UploadLayers(props: UploadLayerProps) {
       <Heading fontSize={{ base: "3xl", md: "4xl" }}>
         Create NFT Collection
       </Heading>
-
-      {/* IF BLOCKCHAIN ADDRESS CAN CREATE COLLECTION  */}
       <form onSubmit={handleFormData}>
         <Box
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
           p={8}
-          onSubmit={handleFormData}
         >
           <Stack spacing={12}>
-            {/* LAYER(S) DETAILS */}
             <Stack spacing={6}>
               <Heading size="md">Image layers details</Heading>
               <Text size="md">Upload image layers.</Text>
-              <UploadImages
-                maxLayers={maxLayers}
-                layerCount={[layerCount, setLayerCount]}
-                layerNames={[layerNames, setLayerNames]}
-                layerImageSrcs={[allLayerImageSrcs, setLayerImageSrcs]}
-              />
+              <Stack spacing={6}>
+                <FormNumberInput
+                  label="Layer count"
+                  name="layercount"
+                  defaultValue={1}
+                  onChange={setLayerCount}
+                />
+                {maxLayers.map((_l, i) => {
+                  if (i < layerCount)
+                    return (
+                      <Stack key={i}>
+                        <UploadImageFolder
+                          index={i + 1}
+                          addToState={handleNewLayer}
+                        />
+                      </Stack>
+                    );
+                })}
+              </Stack>
             </Stack>
-            {/* BUTTON */}
             <Button size="md" variant="solid" type="submit">
               Submit
             </Button>
@@ -102,4 +94,4 @@ function UploadLayers(props: UploadLayerProps) {
   );
 }
 
-export default UploadLayers;
+export default UploadLayersAsFolders;

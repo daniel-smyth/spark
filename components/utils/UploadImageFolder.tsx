@@ -1,10 +1,20 @@
 import { Center, FormControl, FormLabel, Input, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
+import { CheckIcon } from "@chakra-ui/icons";
 
-function UploadFolder(props: any) {
-  const [layerName, setLayerName] = useState("");
+/**
+ * Component to upload a folder of images using webpack. This it not a safe
+ * method of uploading but is effective for testing.
+ *
+ * @param props index and setState()
+ * @returns react component
+ */
+function UploadImageFolder(props: any) {
+  const [imageFolderName, setImageFolderName] = useState("");
+  const [uploaded, setUploaded] = useState(false);
 
-  function onImageChange(event: any) {
+  // Fetch images from upload and set state.
+  function onUpload(event: any) {
     const layerImageSrcs: any[] = [];
     if (event.target.files && event.target.files[0]) {
       for (let i = 0; i < event.target.files.length; i++) {
@@ -14,25 +24,36 @@ function UploadFolder(props: any) {
         layerImageSrcs.push([imageName, imageUrl]);
       }
     }
-    props.addToState([layerName, layerImageSrcs]);
+    if (layerImageSrcs.length != 0) {
+      props.addToState([imageFolderName, layerImageSrcs]);
+      setUploaded(true);
+    }
+  }
+
+  function getBackground() {
+    if (!uploaded) {
+      return "gray.100";
+    } else {
+      return "gray.300";
+    }
   }
 
   return (
     <>
       <FormControl isRequired>
         <FormLabel>Enter layer name {props.index}</FormLabel>
-        <Input onChange={(e) => setLayerName(e.target.value)}></Input>
+        <Input onChange={(e) => setImageFolderName(e.target.value)}></Input>
       </FormControl>
-      {layerName != "" ? (
+      {imageFolderName != "" ? (
         <label htmlFor={`layer-upload${props.index}`}>
           <Center
             p={2}
             cursor="pointer"
-            bg="gray.100"
             _hover={{ bg: "gray.200" }}
             transition="background-color 0.2s ease"
             borderRadius={4}
             border="3px dashed"
+            bg={getBackground()}
             borderColor="gray.300"
           >
             {
@@ -44,11 +65,17 @@ function UploadFolder(props: any) {
                 directory=""
                 webkitdirectory=""
                 onChange={(e) => {
-                  onImageChange(e);
+                  onUpload(e);
                 }}
               />
             }
-            <Text color={"black"}>Click to upload layer {props.index}</Text>
+            {!uploaded ? (
+              <Text color={"black"}>Click to upload layer {props.index}</Text>
+            ) : (
+              <Text variant="bold" color={"black"}>
+                <CheckIcon /> {imageFolderName}
+              </Text>
+            )}
           </Center>
         </label>
       ) : null}
@@ -56,4 +83,4 @@ function UploadFolder(props: any) {
   );
 }
 
-export default UploadFolder;
+export default UploadImageFolder;

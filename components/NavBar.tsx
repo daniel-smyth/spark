@@ -11,7 +11,6 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, LinkIcon } from "@chakra-ui/icons";
 import SparkBlack from "./icons/sparkblack";
-import useWindowDimensions from "../hooks/useWindowDimensions";
 import { ConnectWallet } from "@3rdweb/react";
 
 const Links = [
@@ -27,11 +26,7 @@ const Links = [
  */
 export default function NavBar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // const [isTabletOrMobile] = useMediaQuery("(max-width: 1024px)");
-  // const [isBigScreen] = useMediaQuery("(min-width: 1024px)");
   const router = useRouter();
-
-  const { isMobile } = useWindowDimensions();
 
   const returnHome = () => {
     router.push("/");
@@ -40,7 +35,8 @@ export default function NavBar() {
   return (
     <Box
       bg={useColorModeValue("gray.100", "gray.900")}
-      position={"fixed"}
+      position="sticky"
+      top={0}
       width={"100%"}
       zIndex={200}
     >
@@ -52,16 +48,15 @@ export default function NavBar() {
         pl={{ base: 0, md: 4 }}
         pr={{ base: 0, md: 4 }}
       >
-        {isMobile ? (
-          <Button
-            variant="none"
-            size="md"
-            aria-label={"Open Menu"}
-            onClick={isOpen ? onClose : onOpen}
-          >
-            {isOpen ? <CloseIcon /> : <HamburgerIcon />}
-          </Button>
-        ) : null}
+        <Button
+          display={{ base: "flex", md: "none" }}
+          variant="none"
+          size="md"
+          aria-label={"Open Menu"}
+          onClick={isOpen ? onClose : onOpen}
+        >
+          {isOpen ? <CloseIcon /> : <HamburgerIcon />}
+        </Button>
         <HStack spacing={8} alignItems={"center"}>
           <Link>
             <SparkBlack
@@ -70,28 +65,26 @@ export default function NavBar() {
               width={60}
             />
           </Link>
-          {!isMobile ? (
-            <HStack as={"nav"} spacing={4} display="flex">
-              {Links.map((link, i) => NavLink(i, link[0], link[1]))}
-            </HStack>
-          ) : null}
+          <HStack as={"nav"} spacing={4} display={{ md: "flex", base: "none" }}>
+            {Links.map((link, i) => NavLink(i, link[0], link[1]))}
+          </HStack>
         </HStack>
         <Flex alignItems={"center"}>
-          {isMobile ? (
-            <Button variant="none" size="md">
-              {isOpen ? <CloseIcon /> : <LinkIcon />}
-            </Button>
-          ) : (
-            <Box>
-              <ConnectWallet
-                variant={"solid"}
-                height={"39px"}
-                fontSize={"12px"}
-                padding={"16px"}
-                rounded={"2xl"}
-              />
-            </Box>
-          )}
+          <Button
+            variant="none"
+            size="md"
+            display={{ base: "flex", md: "none" }}
+          >
+            {isOpen ? <CloseIcon /> : <LinkIcon />}
+          </Button>
+          <ConnectWallet
+            display={{ base: "none", md: "flex" }}
+            variant={"solid"}
+            height={"39px"}
+            fontSize={"12px"}
+            padding={"16px"}
+            rounded={"2xl"}
+          />
         </Flex>
       </Flex>
       {isOpen ? (

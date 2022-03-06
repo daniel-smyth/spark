@@ -12,8 +12,8 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaObjectGroup } from "react-icons/fa";
-import ProductPrice from "../components/productinfo/ProductPrice";
-import ProductDescription from "../components/productinfo/ProductDescription";
+import ProductPrice from "../components/homepage/products/ProductPrice";
+import ProductDescription from "../components/homepage/products/ProductDescription";
 
 /**
  * Renders a product description component with pricing card an a collection
