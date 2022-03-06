@@ -41,6 +41,7 @@ function UploadImageFiles(props: any) {
         >
           {
             <Input
+              isRequired
               multiple
               display={"none"}
               id={`layer-upload${props.index}`}

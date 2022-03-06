@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
-  FormControl,
-  FormLabel,
   Heading,
-  Input,
   Select,
   Stack,
   Text,
@@ -13,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import { getLayer } from "../../../../lib/artengine/mainClient";
 import FormBackground from "../../../form/FormBackground";
-import FormNumberInput from "../../../form/FormNumberInput";
 import UploadImageFiles from "../../../utils/UploadImageFiles";
 
 interface UploadLayerProps {
@@ -34,16 +30,16 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
 
   function uploadFiles(files: FileList) {
     console.log("Uploading layers... ");
-    // Get layer names.
+
     for (let i = 0; i < files.length; i++) {
       const image = files[i];
       const layerName = image.name.substring(0, image.name.indexOf("_"));
       addLayerName(layerName);
     }
 
-    // Create layers object.
+    setLayerCount(layerNames.length);
+
     const layers = layerNames.map((layerName) => [layerName, []]);
-    // Set layer image urls.
     for (let i = 0; i < files.length; i++) {
       const image = files[i] as File;
       const layerName = image.name.substring(0, image.name.indexOf("_"));
@@ -56,8 +52,23 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
         }
       });
     }
+
     console.log("Layers uploaded: ", layers);
     setLayerImageSrcs(layers);
+  }
+
+  function changeLayerOrder(e: any, i: number) {
+    const layerName = e.target.value;
+    const layerPosition = i;
+    console.log(
+      "Changing layer position of " + layerName + " to " + layerPosition
+    );
+    const index = allLayerImageSrcs.indexOf(
+      allLayerImageSrcs.find((layer) => (layer[0] == layerName ? layer : null))
+    );
+    const splicedLayer = allLayerImageSrcs.splice(index, 1);
+    allLayerImageSrcs.splice(layerPosition, 0, splicedLayer[0]);
+    console.log("New order: ", allLayerImageSrcs);
   }
 
   const setLayerOrderComponents = [];
@@ -70,13 +81,17 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
         </option>
       );
     }
+
     for (let i = 0; i < layerCount; i++) {
       setLayerOrderComponents.push(
-        <>
-          <Select placeholder={"Layer " + (i + 1)} size="md">
-            {layerOptions}
-          </Select>
-        </>
+        <Select
+          onChange={(e) => changeLayerOrder(e, i)}
+          key={i}
+          placeholder={"Layer " + (i + 1)}
+          size="md"
+        >
+          {layerOptions}
+        </Select>
       );
     }
   }
@@ -110,31 +125,32 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
           p={8}
         >
           <Stack spacing={6}>
-            <Heading size="md">Upload Layers</Heading>
-            <Text size="md">
-              Spark will detect layer names from the image name. Just follow
-              this naming convention for images:
-            </Text>
-            <Text variant={"bold"} size="md">
-              "LAYERNAME_myImageName.png"
-            </Text>
-            <Text size="md">
-              Sparks art engine will pick up the layername before the first
-              underscore.
-            </Text>
-            <Stack spacing={6}>
-              <UploadImageFiles handleUpload={uploadFiles} />
-            </Stack>
-            {allLayerImageSrcs.length != 0 ? (
+            {allLayerImageSrcs.length == 0 ? (
               <>
-                <br />
+                <Heading size="md" alignSelf={"center"}>
+                  Upload Layers
+                </Heading>
+                <Text size="md" alignSelf={"center"}>
+                  Spark detect layer names from your image name. Follow our
+                  naming convention:{<br />} Layername comes before the first
+                  underscore.
+                </Text>
+                <Text variant={"bold"} size="md">
+                  "LAYERNAME_myImageName.png"
+                </Text>
+                <Stack spacing={6}>
+                  <UploadImageFiles handleUpload={uploadFiles} />
+                </Stack>
+              </>
+            ) : (
+              <>
                 <Heading size="md">Layer Order</Heading>
                 <Text size="md">
                   Now it's time to pick the layer order so our images look
                   right:
                 </Text>
               </>
-            ) : null}
+            )}
             {setLayerOrderComponents}
             <Button size="md" variant="solid" type="submit">
               Submit

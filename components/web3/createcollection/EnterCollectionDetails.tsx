@@ -20,31 +20,27 @@ interface SetCollectionProps {
   setNamePrefix: any;
 }
 
-/**
- * Creates an NFT art collection.
- *
- * @returns react component
- */
 function SetCollectionProperties(props: SetCollectionProps) {
-  // For submit button
   const [isLoading, setLoading] = useState(false);
 
-  /**
-   * Set collection properties states in "/CreateCollection.tsx"
-   * @param event form data
-   */
   function handleFormData(event: any) {
     event.preventDefault();
     setLoading(true);
-
-    // Fetch data from form and set hooks.
     props.setSize(event.target.collectionSize.value);
     props.setName(event.target.collectionName.value);
     props.setDescription(event.target.collectionDescription.value);
     props.setNamePrefix(event.target.imageNamePrefix.value);
-
     console.log(
       `Collection properties set: "${event.target.collectionSize.value}", "${event.target.collectionName.value}", "${event.target.collectionDescription.value}", "${event.target.imageNamePrefix.value}",`
+    );
+  }
+
+  function getFormInput(name: string, label: string) {
+    return (
+      <FormControl isRequired>
+        <FormLabel>{label}</FormLabel>
+        <Input name={name}></Input>
+      </FormControl>
     );
   }
 
@@ -53,7 +49,6 @@ function SetCollectionProperties(props: SetCollectionProps) {
       <Heading fontSize={{ base: "3xl", md: "4xl" }}>
         Create NFT Collection
       </Heading>
-
       <form onSubmit={handleFormData}>
         <Box
           rounded={"lg"}
@@ -77,7 +72,6 @@ function SetCollectionProperties(props: SetCollectionProps) {
               {getFormInput("collectionName", "Enter collection name")}
               {getFormInput("collectionDescription", "Enter description")}
               {getFormInput("imageNamePrefix", "Enter image name prefix")}
-              {/* BUTTON */}
               {isLoading ? (
                 <Button
                   isLoading
@@ -96,15 +90,6 @@ function SetCollectionProperties(props: SetCollectionProps) {
         </Box>
       </form>
     </FormBackground>
-  );
-}
-
-function getFormInput(name: string, label: string) {
-  return (
-    <FormControl isRequired>
-      <FormLabel>{label}</FormLabel>
-      <Input name={name}></Input>
-    </FormControl>
   );
 }
 
