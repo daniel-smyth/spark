@@ -21,9 +21,7 @@ import ButtonWithLoading from "../../utils/ButtonWithLoading";
  * @param props
  * @returns pricing card component
  */
-function ProductPrice(props: any) {
-  const router = useRouter();
-
+function ProductPrice(props: ProductPriceProps) {
   return (
     <Box
       maxW={"330px"}
@@ -92,17 +90,17 @@ function ProductPrice(props: any) {
   );
 }
 
-ProductPrice.propTypes = {
-  color: PropTypes.string,
-  displayRoyalty: false,
-  packageName: PropTypes.string,
-  link: PropTypes.string,
-  royalty: PropTypes.string,
-  feature1: PropTypes.string,
-  feature2: PropTypes.string,
-  feature3: PropTypes.string,
-  feature4: PropTypes.string,
-  buttonText: PropTypes.string,
-};
+interface ProductPriceProps {
+  color: string;
+  displayRoyalty: boolean;
+  packageName: string;
+  link: string;
+  royalty: string;
+  feature1: string;
+  feature2: string;
+  feature3: string;
+  feature4: string;
+  buttonText: string;
+}
 
 export default ProductPrice;

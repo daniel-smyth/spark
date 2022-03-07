@@ -11,12 +11,14 @@ import { getLayer } from "../../../../lib/artengine/mainClient";
 import FormBackground from "../../../form/FormBackground";
 import FormNumberInput from "../../../form/FormNumberInput";
 import UploadImageFolder from "../../../utils/UploadImageFolder";
+import { useRouter } from "next/router";
 
 interface UploadLayerProps {
   setState: React.Dispatch<any[]>;
 }
 
 function UploadLayersAsFolders(props: UploadLayerProps) {
+  const router = useRouter();
   const maxLayers = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
   const [layerNames, setLayerNames] = useState<string[]>([]);
   const [layerCount, setLayerCount] = useState(1);
@@ -46,6 +48,10 @@ function UploadLayersAsFolders(props: UploadLayerProps) {
     }
     console.log("Layers created: ", layerObjects);
     props.setState(layerObjects);
+  }
+
+  function startOver() {
+    router.push("/createcollection/create");
   }
 
   return (
@@ -86,6 +92,14 @@ function UploadLayersAsFolders(props: UploadLayerProps) {
             </Stack>
             <Button size="md" variant="solid" type="submit">
               Submit
+            </Button>
+            <Button
+              variant={"link"}
+              colorScheme={"black"}
+              size={"sm"}
+              onClick={startOver}
+            >
+              GO BACK
             </Button>
           </Stack>
         </Box>

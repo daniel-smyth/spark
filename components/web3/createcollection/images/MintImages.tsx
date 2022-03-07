@@ -1,6 +1,6 @@
 import { useWeb3 } from "@3rdweb/hooks";
 import React, { useEffect } from "react";
-import { mint } from "../../../lib/thirdweb/mint";
+import { mint } from "../../../../lib/thirdweb/mint";
 
 interface StoreImageIpfsUrlsProps {
   size: number;

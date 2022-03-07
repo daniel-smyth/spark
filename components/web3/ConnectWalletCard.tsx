@@ -9,9 +9,14 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 
-function ConnectWalletCard() {
+interface ConnectWalletCardProps {
+  header: string;
+  body: string;
+}
+
+function ConnectWalletCard(props: ConnectWalletCardProps) {
   return (
-    <Container p={8} maxW={"600px"}>
+    <Container p={{ base: 0, md: 8 }} maxW={"600px"}>
       <Box
         rounded={"lg"}
         bg={useColorModeValue("white", "gray.700")}
@@ -20,10 +25,10 @@ function ConnectWalletCard() {
       >
         <Stack spacing={6}>
           <Heading fontSize={{ base: "3xl", md: "2xl" }} alignSelf="center">
-            Connect to begin
+            {props.header}
           </Heading>
           <Text size="md" alignSelf={"center"}>
-            Please connect your wallet to mint your collection
+            {props.body}
           </Text>
           <ConnectWallet variant={"solid"} />
         </Stack>

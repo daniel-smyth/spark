@@ -11,12 +11,14 @@ import {
 import { getLayer } from "../../../../lib/artengine/mainClient";
 import FormBackground from "../../../form/FormBackground";
 import UploadImageFiles from "../../../utils/UploadImageFiles";
+import { useRouter } from "next/router";
 
 interface UploadLayerProps {
   setState: React.Dispatch<any[]>;
 }
 
 function UploadLayersAsFiles(props: UploadLayerProps) {
+  const router = useRouter();
   const [layerNames, setLayerNames] = useState<string[]>([]);
   const [layerCount, setLayerCount] = useState(8);
   const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
@@ -109,11 +111,12 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
     props.setState(layerObjects);
   }
 
+  function startOver() {
+    router.push("/createcollection/create");
+  }
+
   return (
     <FormBackground>
-      <Heading fontSize={{ base: "3xl", md: "4xl" }}>
-        Create NFT Collection
-      </Heading>
       <form onSubmit={handleSubmit}>
         <Box
           rounded={"lg"}

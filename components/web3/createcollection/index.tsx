@@ -1,29 +1,18 @@
 import { useWeb3 } from "@3rdweb/hooks";
-import { ConnectWallet } from "@3rdweb/react";
-import {
-  Box,
-  Container,
-  Heading,
-  Stack,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
 import React, { useState } from "react";
-import LogIn from "../components/LogIn";
-import ConnectWalletCard from "../components/web3/ConnectWalletCard";
-import CreateImages from "../components/web3/createcollection/CreateImages";
-import DisplayImages from "../components/web3/createcollection/DisplayImages";
-import SetCollectionProperties from "../components/web3/createcollection/EnterCollectionDetails";
-import StoreImageIpfsUrls from "../components/web3/createcollection/StoreImageIpfsUrls";
-import UploadLayersAsFiles from "../components/web3/createcollection/upload/UploadLayerAsFiles";
-import UploadLayersAsFolders from "../components/web3/createcollection/upload/UploadLayersAsFolders";
+import ConnectWalletCard from "../ConnectWalletCard";
+import CreateImages from "./images/CreateImages";
+import SetCollectionProperties from "./EnterCollectionDetails";
+import UploadLayersAsFiles from "./upload/UploadLayerAsFiles";
+import UploadLayersAsFolders from "./upload/UploadLayersAsFolders";
+import { Text } from "@chakra-ui/react";
 
 /**
  * Contains all components.
  *
  * @returns react component
  */
-function CreateCollection() {
+function CreateArtCollection() {
   // Web3 hook.
   const { provider } = useWeb3();
 
@@ -74,10 +63,10 @@ function CreateCollection() {
         </>
       ) : (
         // <LogIn />
-        <ConnectWalletCard />
+        <Text>No wallet connected.</Text>
       )}
     </>
   );
 }
 
-export default CreateCollection;
+export default CreateArtCollection;

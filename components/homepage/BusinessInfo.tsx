@@ -10,10 +10,13 @@ import {
   Icon,
   useColorModeValue,
   Box,
+  Link,
 } from "@chakra-ui/react";
 import { FaObjectGroup, FaShippingFast } from "react-icons/fa";
 import { BsShop } from "react-icons/bs";
 import { ReactElement } from "react";
+import ProductDescription from "./products/ProductDescription";
+import ProductPrice from "./products/ProductPrice";
 
 /**
  * Component with text, bulletpoints, image explaining the business
@@ -23,24 +26,23 @@ import { ReactElement } from "react";
  */
 export default function BusinessInfo() {
   return (
-    <Container
-      maxW="6xl"
-      spacing={{ base: 8, md: 8 }}
-      pt={{ base: 16, md: "80px" }}
-    >
+    <Container maxW="6xl" spacing={{ base: 8, md: 8 }}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} px={{ base: 5 }}>
-        <Stack spacing={8}>
+        <Stack spacing={7}>
           <Text alignSelf={"flex-start"} variant={"badge"}>
-            What we do
+            About
           </Text>
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-            Quick and Simple
+            How does it work?
           </Heading>
           <Text size="sm">
-            After we create your NFT collection you choose between Spark
-            installing our custom NFT marketplace on your website or sell
-            directly on the Spark website for free.
+            Just upload your artwork and spark will handle the rest. Don’t have
+            artwork? Let our team hook you up with one of our recommended 3D art
+            renders.
           </Text>
+          <Link textDecoration={"underline"} color={"blue.600"} pb={4}>
+            How much artwork do I need to create 10,000 NFTs?
+          </Link>
           <Stack
             spacing={3}
             divider={
@@ -67,15 +69,20 @@ export default function BusinessInfo() {
           </Stack>
         </Stack>
 
-        <Flex>
-          <Image
-            display={{ base: "none", md: "block" }}
-            rounded={"md"}
-            alt={"feature image"}
-            src={"/boredape.jpg"}
-            objectFit={"cover"}
-          />
-        </Flex>
+        <Box display={"flex"} justifyContent={{ md: "right", base: "center" }}>
+          <ProductPrice
+            color="blue"
+            displayRoyalty={true}
+            packageName="Art collection"
+            royalty="10"
+            feature1="Up to 10,000 NFT images"
+            feature2="5 minutes to create"
+            feature3="$0 initial fees"
+            feature4="Sold on Opensea"
+            buttonText="Create Collection"
+            link="/createcollection"
+          ></ProductPrice>
+        </Box>
       </SimpleGrid>
     </Container>
   );

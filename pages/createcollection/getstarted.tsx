@@ -12,8 +12,12 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaObjectGroup } from "react-icons/fa";
-import ProductPrice from "../components/homepage/products/ProductPrice";
-import ProductDescription from "../components/homepage/products/ProductDescription";
+import ProductPrice from "../../components/homepage/products/ProductPrice";
+import ProductDescription from "../../components/homepage/products/ProductDescription";
+import CreateArtCollection from "../../components/web3/createcollection";
+import ConnectWalletCard from "../../components/web3/ConnectWalletCard";
+import { useWeb3 } from "@3rdweb/hooks";
+import { useRouter } from "next/router";
 
 /**
  * Renders a product description component with pricing card an a collection
@@ -21,9 +25,13 @@ import ProductDescription from "../components/homepage/products/ProductDescripti
  *
  * @returns product page
  */
-function Products() {
+function Page() {
+  const { provider } = useWeb3();
+  const router = useRouter();
   const [isTabletOrMobile] = useMediaQuery("(max-width: 1024px)");
   const [isBigScreen] = useMediaQuery("(min-width: 1024px)");
+
+  if (provider) router.push("/createcollection/create");
 
   return (
     <Container
@@ -34,49 +42,32 @@ function Products() {
       <Stack spacing={24} px={{ base: 5 }}>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
           <ProductDescription />
-          <Box
-            display={"flex"}
-            justifyContent={isBigScreen ? "right" : "center"}
-          >
-            <ProductPrice
-              color="blue"
-              displayRoyalty={true}
-              packageName="NFT Art collection"
-              royalty="10"
-              feature1="$0 set up cost."
-              feature2="2 Days processing time."
-              feature3="10,000 NFT images."
-              feature4="Sold on Spark.com"
-              buttonText="Create Collection"
-              link="/createcollection"
-            ></ProductPrice>
-          </Box>
+          {/* <CreateCollection /> */}
+          <ConnectWalletCard
+            header={"Connect wallet to start"}
+            body={"Connect via MetaMask, WalletConnect or Coinbase"}
+          />
         </SimpleGrid>
 
-        {isTabletOrMobile && !isBigScreen ? (
-          <Stack spacing={6}>
-            <Heading fontSize={{ base: "2xl", md: "3xl" }}>Coming Soon</Heading>
-            <Text size="lg">
-              We're working hard to develop new ways to make NFTs.
-            </Text>
-            <ComingSoonBadge icon={FaObjectGroup} feature="NFT data packs" />
-            <ComingSoonBadge icon={FaObjectGroup} feature="NFT Marketplaces" />
-            <ComingSoonBadge icon={FaObjectGroup} feature="Custom NFTs" />
-            <Box display={"flex"} justifyContent={"center"}>
-              <Button size="lg" variant={"solid"} width={"100%"}>
-                Learn more
-              </Button>
-            </Box>
-          </Stack>
-        ) : null}
-
         <Stack spacing={5}>
-          <Text variant="badge" alignSelf={"flex-start"}>
-            What's in store
-          </Text>
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
             In Development at Spark
           </Heading>
+          {isTabletOrMobile && !isBigScreen ? (
+            <Stack spacing={6}>
+              <ComingSoonBadge icon={FaObjectGroup} feature="NFT data packs" />
+              <ComingSoonBadge
+                icon={FaObjectGroup}
+                feature="NFT Marketplaces"
+              />
+              <ComingSoonBadge icon={FaObjectGroup} feature="Custom NFTs" />
+              <Box display={"flex"} justifyContent={"center"}>
+                <Button size="lg" variant={"solid"} width={"100%"}>
+                  Learn more
+                </Button>
+              </Box>
+            </Stack>
+          ) : null}
           <SimpleGrid
             columns={{ base: 1, md: 3 }}
             spacing={{ base: 12, md: 10 }}
@@ -143,4 +134,4 @@ function ComingSoonBadge(props: ComingSoonBadgeProps) {
   );
 }
 
-export default Products;
+export default Page;

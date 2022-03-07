@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import SparkIcon from "../icons/sparkicon";
+import SparkBlack from "../icons/sparkblack";
 
 /**
  * Renders the home page of Spark. Contains text with call
@@ -22,12 +23,6 @@ import SparkIcon from "../icons/sparkicon";
  */
 export default function Hero() {
   const [isTabletOrMobile] = useMediaQuery("(max-width: 1024px)");
-  const [isBigScreen] = useMediaQuery("(min-width: 1024px)");
-
-  const getIcon = () => {
-    const width = isTabletOrMobile ? 80 : 100;
-    return <SparkIcon width={width} />;
-  };
 
   return (
     <>
@@ -46,21 +41,21 @@ export default function Hero() {
           spacing={{ base: 4, md: 6 }}
           height={{ base: "100vh", md: "100vh" }}
         >
-          {getIcon()}
+          <SparkIcon width={80} />
           <Heading
             fontWeight={600}
             fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
             lineHeight={"110%"}
           >
             <Stack>
-              <Text color={"black"}>Create and Sell</Text>
+              <Text color={"black"}>Upload. Store. Sell.</Text>
               <Text as={"span"} color={"blue.500"}>
-                Fast. Cheap. Easy.
+                Things just got easier.
               </Text>
             </Stack>
           </Heading>
           <Text size={isTabletOrMobile ? "md" : "2xl"} py={2}>
-            No initial fees and your own NFT market place .
+            Create an NFT art collection in minutes.
           </Text>
           <Stack
             direction={"column"}
@@ -69,9 +64,9 @@ export default function Hero() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="/products">
+            <Link href="/createcollection/getstarted">
               <Button size={"md"} variant={"solid"} rounded="full">
-                Create NFTs
+                Create 10,000 NFTs
               </Button>
             </Link>
             <Button variant={"link"} colorScheme={"black"} size={"sm"}>
@@ -91,11 +86,11 @@ export default function Hero() {
                 color="black"
                 fontFamily={"Caveat"}
                 position={"absolute"}
-                right={{ base: "-95px", md: "-95px" }}
+                right={{ base: "-70px", md: "-95px" }}
                 top={"3px"}
                 transform={"rotate(10deg)"}
               >
-                Up in 14 days
+                5 minutes
               </Text>
             </Box>
           </Stack>
