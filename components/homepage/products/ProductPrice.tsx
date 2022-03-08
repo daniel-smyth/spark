@@ -83,7 +83,7 @@ function ProductPrice(props: ProductPriceProps) {
           variant={"solid"}
           buttontext={"Create collection"}
           loadingText={""}
-          linkDestination={props.link}
+          linkdestination={props.link}
         />
       </Box>
     </Box>

@@ -8,7 +8,7 @@ function ButtonWithLoading(props: any) {
 
   const navigateToPage = () => {
     setLoading(true);
-    router.push(props.linkDestination);
+    router.push(props.linkdestination);
   };
 
   return (
