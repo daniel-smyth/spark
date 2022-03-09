@@ -22,7 +22,8 @@
     "styles/theme.styles.global.tsx",
     "lib/artengine/utils/update_info.js",
     "lib/artengine/main.js",
-    "lib/thirdweb/mint.js"
+    "lib/thirdweb/mint.js",
+    "lib/jszip/download.js"
   ],
   "exclude": ["node_modules"]
 }

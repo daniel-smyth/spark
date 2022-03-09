@@ -1,12 +1,7 @@
 import {
-  Box,
   Button,
-  Flex,
-  Grid,
-  GridItem,
   Heading,
   Image,
-  SimpleGrid,
   Spinner,
   Stack,
   Text,
@@ -14,8 +9,9 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { startCreating } from "../../../../lib/artengine/mainClient";
-import ProductDescription from "../../../homepage/products/ProductDescription";
 import MintImages from "./MintImages";
+import { useRouter } from "next/router";
+import DownloadImages from "./DownloadImages";
 
 interface CreateImagesProps {
   name: string;
@@ -29,6 +25,8 @@ interface CreateImagesProps {
 function CreateImages(props: CreateImagesProps) {
   const [imgSrcs, setImgSrcs] = useState<string[]>();
   const [storing, setStoring] = useState(false);
+  const [downloadInitiated, setDownloadInitiated] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const createImages = async () => {
@@ -41,6 +39,15 @@ function CreateImages(props: CreateImagesProps) {
 
   function startStoring() {
     setStoring(true);
+  }
+
+  function handleClick() {
+    if (imgSrcs) {
+      setDownloadInitiated(true);
+    }
+    // if (imgSrcs) {
+    //   return <DownloadImages imgSrcs={imgSrcs} name={props.name} />;
+    // }
   }
 
   const imageComponents: any[] = [];
@@ -67,22 +74,21 @@ function CreateImages(props: CreateImagesProps) {
           </Stack>
         </Stack>
       ) : (
-        <Stack maxW={"100%"} px={8} py={10} spacing={6}>
-          {storing ? (
-            <MintImages
+        <>
+          <Stack maxW={"100%"} px={8} py={10} spacing={6}>
+            {/* <MintImages
               size={props.size}
               description={props.description}
               name={props.name}
               namePrefix={props.namePrefix}
               allUrls={imgSrcs}
-            />
-          ) : (
+            /> */}
             <>
               <Stack
-                spacing={{ base: 7, md: 8 }}
+                spacing={6}
                 maxW={"700px"}
                 alignSelf={"center"}
-                alignItems={{ base: "left", md: "center" }}
+                alignItems={"center"}
               >
                 <Heading
                   display={{ md: "none" }}
@@ -90,47 +96,41 @@ function CreateImages(props: CreateImagesProps) {
                 >
                   Artwork created
                 </Heading>
-                <SimpleGrid
-                  display={{ base: "none", md: "grid" }}
-                  width={"100%"}
-                  columns={2}
-                >
-                  <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-                    Artwork created
-                  </Heading>
-                  <Box align={"right"}>
-                    <Text maxW={"80%"} variant="badge">
-                      Create NFT Art Collection
-                    </Text>
-                  </Box>
-                </SimpleGrid>
 
-                <Text size="lg">
-                  <Stack>
-                    <Text>
-                      Just connect your wallet and you're ready. Have your own
-                      artwork? Upload and mint on the next page. Needing some
-                      artwork? You can fill out a artwork request on the next
-                      page.
-                    </Text>
-                  </Stack>
-                </Text>
-                <Button
-                  minW={{ base: "100%", md: "40%" }}
-                  size={"md"}
-                  variant={"solid"}
-                  onClick={startStoring}
-                  alignSelf={"center"}
-                >
-                  Mint images
-                </Button>
+                <Heading fontSize={{ base: "2xl", md: "3xl" }}>
+                  That's it!
+                </Heading>
+
+                <Stack spacing={1} align={"center"}>
+                  <Text size="lg">You just minted {props.size} NFTs.</Text>
+                  <Text display={"flex"} alignItems={"center"} size="lg">
+                    NFT token addresses will be emailed within 24 hours.
+                  </Text>
+                </Stack>
+                {!downloadInitiated ? (
+                  <Button
+                    minW={{ base: "100%", md: "40%" }}
+                    size={"md"}
+                    variant={"solid"}
+                    onClick={handleClick}
+                    alignSelf={"center"}
+                  >
+                    Download images
+                  </Button>
+                ) : downloadInitiated ? (
+                  <DownloadImages imgSrcs={imgSrcs} name={props.name} />
+                ) : null}
               </Stack>
             </>
-          )}
-          <Box border={"8px"} p={2} borderColor="gray.200">
-            <Wrap>{imageComponents}</Wrap>
-          </Box>
-        </Stack>
+
+            <Stack spacing={2} border={"8px"} p={2} borderColor="gray.200">
+              <Heading pl={4} fontSize={{ base: "2xl", md: "3xl" }}>
+                {props.name}
+              </Heading>
+              <Wrap p={4}>{imageComponents}</Wrap>
+            </Stack>
+          </Stack>
+        </>
       )}
     </>
   );

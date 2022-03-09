@@ -60,6 +60,7 @@ function SetCollectionProperties(props: SetCollectionProps) {
           <Stack spacing={12}>
             <Stack spacing={6}>
               <Heading size="md">Collection details</Heading>
+              {getFormInput("emailAddress", "Email address")}
               <Text size="md">
                 Enter the metadata to be stored with your NFT collection
               </Text>
