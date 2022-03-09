@@ -87,34 +87,43 @@ function CreateImages(props: CreateImagesProps) {
                   Artwork created
                 </Heading>
 
+                <Heading fontSize={{ base: "2xl", md: "3xl" }}>
+                  That's it!
+                </Heading>
+                <Stack spacing={1} align={"center"}>
+                  <Text size="lg">You just minted {props.size} NFTs.</Text>
+                  <Text display={"flex"} alignItems={"center"} size="lg">
+                    NFT token addresses will be emailed within 24 hours.
+                  </Text>
+                </Stack>
                 {!downloadInitiated ? (
+                  <Button
+                    minW={{ base: "100%", md: "40%" }}
+                    size={"md"}
+                    variant={"solid"}
+                    onClick={handleClick}
+                    alignSelf={"center"}
+                  >
+                    Download images
+                  </Button>
+                ) : (
                   <>
-                    <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-                      That's it!
-                    </Heading>
-                    <Stack spacing={1} align={"center"}>
-                      <Text size="lg">You just minted {props.size} NFTs.</Text>
-                      <Text display={"flex"} alignItems={"center"} size="lg">
-                        NFT token addresses will be emailed within 24 hours.
-                      </Text>
-                    </Stack>
+                    <DownloadImages
+                      imgSrcs={imgSrcs}
+                      collectionName={props.name}
+                      imageNamePrefix={props.namePrefix}
+                    />
                     <Button
                       minW={{ base: "100%", md: "40%" }}
                       size={"md"}
-                      variant={"solid"}
+                      variant={"outline"}
                       onClick={handleClick}
                       alignSelf={"center"}
                     >
-                      Download images
+                      Download started
                     </Button>
                   </>
-                ) : downloadInitiated ? (
-                  <DownloadImages
-                    imgSrcs={imgSrcs}
-                    collectionName={props.name}
-                    imageNamePrefix={props.namePrefix}
-                  />
-                ) : null}
+                )}
               </Stack>
             </>
 

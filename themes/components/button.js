@@ -20,6 +20,7 @@ const Button = {
   // Two variants: outline and solid
   variants: {
     outline: {
+      color: "blue.500",
       border: "2px solid",
       borderColor: "blue.500",
     },
