@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import ConnectWalletCard from "../ConnectWalletCard";
 import CreateImages from "./images/CreateImages";
 import SetCollectionProperties from "./EnterCollectionDetails";
-import UploadLayersAsFiles from "./upload/UploadLayerAsFiles";
-import UploadLayersAsFolders from "./upload/UploadLayersAsFolders";
+import UploadLayersAsFiles from "./images/UploadImagesAsFiles";
+import UploadLayersAsFolders from "./images/UploadImagesAsFolders";
 import { Text } from "@chakra-ui/react";
 
 /**

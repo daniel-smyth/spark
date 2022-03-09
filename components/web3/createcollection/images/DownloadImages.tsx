@@ -4,12 +4,13 @@ import { download } from "../../../../lib/jszip/download";
 
 interface DownloadCollectionProps {
   imgSrcs: string[];
-  name: string;
+  collectionName: string;
+  imageNamePrefix: string;
 }
 
 function DownloadCollection(props: DownloadCollectionProps) {
   useEffect(() => {
-    download(props.imgSrcs, props.name);
+    download(props.imgSrcs, props.collectionName, props.imageNamePrefix);
   });
 
   return (
@@ -23,7 +24,7 @@ function DownloadCollection(props: DownloadCollectionProps) {
       <Spinner color={"blue.500"} />
       <Stack alignItems="center">
         <Text size="lg">Downloading images.</Text>
-        <Text size="md">This may take a few minutes.</Text>
+        <Text size="lg">This may take a few minutes.</Text>
       </Stack>
     </Stack>
   );

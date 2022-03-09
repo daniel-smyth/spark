@@ -9,8 +9,6 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { startCreating } from "../../../../lib/artengine/mainClient";
-import MintImages from "./MintImages";
-import { useRouter } from "next/router";
 import DownloadImages from "./DownloadImages";
 
 interface CreateImagesProps {
@@ -26,7 +24,6 @@ function CreateImages(props: CreateImagesProps) {
   const [imgSrcs, setImgSrcs] = useState<string[]>();
   const [storing, setStoring] = useState(false);
   const [downloadInitiated, setDownloadInitiated] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const createImages = async () => {
@@ -42,20 +39,13 @@ function CreateImages(props: CreateImagesProps) {
   }
 
   function handleClick() {
-    if (imgSrcs) {
-      setDownloadInitiated(true);
-    }
-    // if (imgSrcs) {
-    //   return <DownloadImages imgSrcs={imgSrcs} name={props.name} />;
-    // }
+    if (imgSrcs) setDownloadInitiated(true);
   }
 
   const imageComponents: any[] = [];
   if (imgSrcs)
-    for (let i = 0; i < imgSrcs.length; i++) {
-      const url = imgSrcs[i];
-      imageComponents.push(<Image key={i} maxW={"70px"} src={url} />);
-    }
+    for (let i = 0; i < imgSrcs.length; i++)
+      imageComponents.push(<Image key={i} maxW={"70px"} src={imgSrcs[i]} />);
 
   return (
     <>
@@ -97,28 +87,33 @@ function CreateImages(props: CreateImagesProps) {
                   Artwork created
                 </Heading>
 
-                <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-                  That's it!
-                </Heading>
-
-                <Stack spacing={1} align={"center"}>
-                  <Text size="lg">You just minted {props.size} NFTs.</Text>
-                  <Text display={"flex"} alignItems={"center"} size="lg">
-                    NFT token addresses will be emailed within 24 hours.
-                  </Text>
-                </Stack>
                 {!downloadInitiated ? (
-                  <Button
-                    minW={{ base: "100%", md: "40%" }}
-                    size={"md"}
-                    variant={"solid"}
-                    onClick={handleClick}
-                    alignSelf={"center"}
-                  >
-                    Download images
-                  </Button>
+                  <>
+                    <Heading fontSize={{ base: "2xl", md: "3xl" }}>
+                      That's it!
+                    </Heading>
+                    <Stack spacing={1} align={"center"}>
+                      <Text size="lg">You just minted {props.size} NFTs.</Text>
+                      <Text display={"flex"} alignItems={"center"} size="lg">
+                        NFT token addresses will be emailed within 24 hours.
+                      </Text>
+                    </Stack>
+                    <Button
+                      minW={{ base: "100%", md: "40%" }}
+                      size={"md"}
+                      variant={"solid"}
+                      onClick={handleClick}
+                      alignSelf={"center"}
+                    >
+                      Download images
+                    </Button>
+                  </>
                 ) : downloadInitiated ? (
-                  <DownloadImages imgSrcs={imgSrcs} name={props.name} />
+                  <DownloadImages
+                    imgSrcs={imgSrcs}
+                    collectionName={props.name}
+                    imageNamePrefix={props.namePrefix}
+                  />
                 ) : null}
               </Stack>
             </>
