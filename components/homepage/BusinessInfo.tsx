@@ -1,7 +1,6 @@
 import {
   Container,
   SimpleGrid,
-  Image,
   Flex,
   Heading,
   Text,
@@ -15,7 +14,6 @@ import {
 import { FaObjectGroup, FaShippingFast } from "react-icons/fa";
 import { BsShop } from "react-icons/bs";
 import { ReactElement } from "react";
-import ProductDescription from "./products/ProductDescription";
 import ProductPrice from "./products/ProductPrice";
 
 /**
@@ -27,7 +25,12 @@ import ProductPrice from "./products/ProductPrice";
 export default function BusinessInfo() {
   return (
     <Container maxW="6xl" spacing={{ base: 8, md: 8 }}>
-      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10} px={{ base: 5 }}>
+      <SimpleGrid
+        columns={{ base: 1, md: 2 }}
+        spacing={10}
+        px={{ base: 5 }}
+        pb={{ base: 16, md: 36 }}
+      >
         <Stack spacing={7}>
           <Text alignSelf={"flex-start"} variant={"badge"}>
             About

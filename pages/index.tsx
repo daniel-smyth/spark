@@ -10,7 +10,7 @@ const Home: NextPage = () => {
       <Hero />
       {/* <StatisticCard /> */}
       <BusinessInfo />
-      <Testimonials />
+      {/* <Testimonials /> */}
     </div>
   );
 };

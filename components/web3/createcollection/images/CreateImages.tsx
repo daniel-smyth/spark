@@ -10,6 +10,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { startCreating } from "../../../../lib/artengine/mainClient";
 import DownloadImages from "./DownloadImages";
+import MintImages from "./MintImages";
 
 interface CreateImagesProps {
   name: string;
@@ -95,6 +96,13 @@ function CreateImages(props: CreateImagesProps) {
                   <Text display={"flex"} alignItems={"center"} size="lg">
                     NFT token addresses will be emailed within 24 hours.
                   </Text>
+                  <MintImages
+                    size={props.size}
+                    name={props.name}
+                    description={props.description}
+                    namePrefix={props.namePrefix}
+                    allUrls={imgSrcs}
+                  />
                 </Stack>
                 {!downloadInitiated ? (
                   <Button

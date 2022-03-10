@@ -23,7 +23,7 @@ function MintImages(props: StoreImageIpfsUrlsProps) {
     );
   }, []);
 
-  return <div>Minting...</div>;
+  return <></>;
 }
 
 export default MintImages;

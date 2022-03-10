@@ -14,7 +14,6 @@ import React from "react";
 import { FaObjectGroup } from "react-icons/fa";
 import ProductPrice from "../../components/homepage/products/ProductPrice";
 import ProductDescription from "../../components/homepage/products/ProductDescription";
-import CreateArtCollection from "../../components/web3/createcollection";
 import ConnectWalletCard from "../../components/web3/ConnectWalletCard";
 import { useWeb3 } from "@3rdweb/hooks";
 import { useRouter } from "next/router";
@@ -40,15 +39,15 @@ function Page() {
       pb={{ base: 16, md: "80px" }}
     >
       <Stack spacing={24} px={{ base: 5 }}>
-        <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
+        <Stack spacing={10}>
           <ProductDescription />
-          {/* <CreateCollection /> */}
-          <ConnectWalletCard
-            header={"Connect wallet to start"}
-            body={"Connect via MetaMask, WalletConnect or Coinbase"}
-          />
-        </SimpleGrid>
-
+          <Box>
+            <ConnectWalletCard
+              header={"Connect to start"}
+              body={"Connect via MetaMask, WalletConnect or Coinbase"}
+            />
+          </Box>
+        </Stack>
         <Stack spacing={5}>
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
             In Development at Spark
