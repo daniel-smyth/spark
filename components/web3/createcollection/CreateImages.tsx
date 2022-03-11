@@ -8,7 +8,7 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { startCreating } from "../../../../lib/artengine/mainClient";
+import { startCreating } from "../../../lib/artengine/mainClient";
 import DownloadImages from "./DownloadImages";
 import MintImages from "./MintImages";
 

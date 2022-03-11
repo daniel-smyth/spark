@@ -1,10 +1,10 @@
 import { useWeb3 } from "@3rdweb/hooks";
 import React, { useState } from "react";
 import ConnectWalletCard from "../ConnectWalletCard";
-import CreateImages from "./images/CreateImages";
+import CreateImages from "./CreateImages";
 import SetCollectionProperties from "./EnterCollectionDetails";
-import UploadLayersAsFiles from "./images/UploadImagesAsFiles";
-import UploadLayersAsFolders from "./images/UploadImagesAsFolders";
+import UploadLayersAsFiles from "./UploadImagesAsFiles";
+import UploadLayersAsFolders from "./UploadImagesAsFolders";
 import { Text } from "@chakra-ui/react";
 
 /**

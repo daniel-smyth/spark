@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {
   Box,
   Text,
@@ -7,12 +6,10 @@ import {
   List,
   ListItem,
   ListIcon,
-  Button,
   useColorModeValue,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
-import { useRouter } from "next/router";
-import ButtonWithLoading from "../../utils/ButtonWithLoading";
+import ButtonWithLoading from "../utils/ButtonWithLoading";
 
 /**
  * Renders pricing card component with royalty percentage,

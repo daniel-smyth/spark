@@ -12,9 +12,9 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import { FaObjectGroup } from "react-icons/fa";
-import ProductPrice from "../../components/homepage/products/ProductPrice";
-import ProductDescription from "../../components/homepage/products/ProductDescription";
-import ConnectWalletCard from "../../components/web3/ConnectWalletCard";
+import ProductPrice from "../components/products/ProductPrice";
+import ProductDescription from "../components/products/ProductDescription";
+import ConnectWalletCard from "../components/web3/ConnectWalletCard";
 import { useWeb3 } from "@3rdweb/hooks";
 import { useRouter } from "next/router";
 

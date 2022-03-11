@@ -14,7 +14,7 @@ import {
 import { FaObjectGroup, FaShippingFast } from "react-icons/fa";
 import { BsShop } from "react-icons/bs";
 import { ReactElement } from "react";
-import ProductPrice from "./products/ProductPrice";
+import ProductPrice from "../products/ProductPrice";
 
 /**
  * Component with text, bulletpoints, image explaining the business
@@ -22,7 +22,7 @@ import ProductPrice from "./products/ProductPrice";
  *
  * @returns what we do component
  */
-export default function BusinessInfo() {
+export default function HowItWorks() {
   return (
     <Container maxW="6xl" spacing={{ base: 8, md: 8 }}>
       <SimpleGrid

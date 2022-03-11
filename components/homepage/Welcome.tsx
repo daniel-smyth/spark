@@ -9,11 +9,9 @@ import {
   Icon,
   useColorModeValue,
   createIcon,
-  useMediaQuery,
 } from "@chakra-ui/react";
 import Link from "next/link";
 import SparkIcon from "../icons/sparkicon";
-import SparkBlack from "../icons/sparkblack";
 
 /**
  * Renders the home page of Spark. Contains text with call
@@ -21,8 +19,7 @@ import SparkBlack from "../icons/sparkblack";
  *
  * @returns home page componenet
  */
-export default function Hero() {
-  const [isTabletOrMobile] = useMediaQuery("(max-width: 1024px)");
+export default function Welcome() {
 
   return (
     <>
@@ -44,7 +41,7 @@ export default function Hero() {
           <SparkIcon width={80} />
           <Heading
             fontWeight={600}
-            fontSize={{ base: "3xl", sm: "4xl", md: "5xl" }}
+            fontSize={{ base: "3xl", sm: "4xl", md: "4xl" }}
             lineHeight={"110%"}
           >
             <Stack>
@@ -54,7 +51,7 @@ export default function Hero() {
               </Text>
             </Stack>
           </Heading>
-          <Text size={isTabletOrMobile ? "md" : "2xl"} py={2}>
+          <Text size={"lg"} py={2}>
             Create an NFT art collection in minutes.
           </Text>
           <Stack
