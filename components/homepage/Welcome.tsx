@@ -61,7 +61,7 @@ export default function Welcome() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="/createcollection/getstarted">
+            <Link href="/getstarted">
               <Button size={"md"} variant={"solid"} rounded="full">
                 Create 10,000 NFTs
               </Button>

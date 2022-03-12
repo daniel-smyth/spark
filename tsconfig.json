@@ -23,7 +23,8 @@
     "lib/artengine/utils/update_info.js",
     "lib/artengine/main.js",
     "lib/thirdweb/mint.js",
-    "lib/jszip/download.js"
+    "lib/jszip/download.js",
+    "lib/thirdweb/CreateDrop.ts"
   ],
   "exclude": ["node_modules"]
 }
