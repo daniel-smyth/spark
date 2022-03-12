@@ -20,8 +20,8 @@
     "**/*.ts",
     "**/*.tsx",
     "styles/theme.styles.global.tsx",
-    "lib/artengine/utils/update_info.js",
-    "lib/artengine/main.js",
+    "lib/hashlips'/utils/update_info.js",
+    "lib/hashlips'/main.js",
     "lib/thirdweb/mint.ts",
     "lib/jszip/download.js",
     "lib/thirdweb/CreateDropV2.ts"

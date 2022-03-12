@@ -8,7 +8,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { getLayer } from "../../../lib/artengine/createArt";
+import { getLayer } from "../../../lib/hashlips/createArt";
 import FormBackground from "../../form/FormBackground";
 import UploadImageFiles from "../../utils/UploadImageFiles";
 import { useRouter } from "next/router";

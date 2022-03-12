@@ -12,14 +12,12 @@ import { ICreateDropV1 } from "./ICreateDropV1";
  */
 export async function createDropV1(options: ICreateDropV1) {
   // ! Initialises sdk with personal wallet’s private keys.
-  const writeSdk = new ThirdwebSDK(
+  const sdk = new ThirdwebSDK(
     new ethers.Wallet(process.env.PRIVATE_KEY!, options.provider)
   );
 
   // Instantiate pre-defined NFT Drop Module.
-  const drop = writeSdk.getDropModule(
-    "0xb114629570497AE1dC5e651586670aba7483F467"
-  );
+  const drop = sdk.getDropModule("0xb114629570497AE1dC5e651586670aba7483F467");
 
   // Run a for loop of a user inputted amount minting an NFT every time.
   console.log(`Starting to mint ${options.size} images.`);
