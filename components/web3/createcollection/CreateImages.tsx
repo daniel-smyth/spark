@@ -8,9 +8,9 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
-import { startCreating } from "../../../lib/artengine/mainClient";
+import { startCreating } from "../../../lib/artengine/createArt";
 import DownloadImages from "./DownloadImages";
-import MintImages from "./MintImages";
+import MintImagesV1 from "./MintImagesV1";
 
 interface CreateImagesProps {
   name: string;
@@ -96,12 +96,12 @@ function CreateImages(props: CreateImagesProps) {
                   <Text display={"flex"} alignItems={"center"} size="lg">
                     NFT token addresses will be emailed within 24 hours.
                   </Text>
-                  <MintImages
+                  <MintImagesV1
                     size={props.size}
                     name={props.name}
                     description={props.description}
-                    namePrefix={props.namePrefix}
-                    allUrls={imgSrcs}
+                    prefix={props.namePrefix}
+                    imgSrcs={imgSrcs}
                   />
                 </Stack>
                 {!downloadInitiated ? (

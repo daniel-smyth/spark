@@ -8,9 +8,9 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { getLayer } from "../../../../lib/artengine/mainClient";
-import FormBackground from "../../../form/FormBackground";
-import UploadImageFiles from "../../../utils/UploadImageFiles";
+import { getLayer } from "../../../lib/artengine/createArt";
+import FormBackground from "../../form/FormBackground";
+import UploadImageFiles from "../../utils/UploadImageFiles";
 import { useRouter } from "next/router";
 
 interface UploadLayerProps {

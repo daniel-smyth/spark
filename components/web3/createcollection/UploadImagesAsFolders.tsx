@@ -7,7 +7,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { getLayer } from "../../../lib/artengine/mainClient";
+import { getLayer } from "../../../lib/artengine/createArt";
 import FormBackground from "../../form/FormBackground";
 import FormNumberInput from "../../form/FormNumberInput";
 import UploadImageFolder from "../../utils/UploadImageFolder";

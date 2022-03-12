@@ -2,7 +2,7 @@ import type { AppProps } from "next/app";
 import { ThirdwebProvider } from "@3rdweb/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../themes/index";
-import connectors from "../lib/thirdweb/connectors";
+import connectors from "../lib/thirdweb/config/connectors";
 import supportedChainIds from "../lib/thirdweb/supportedwallets";
 import Head from "next/head";
 import NavBar from "../components/NavBar";
