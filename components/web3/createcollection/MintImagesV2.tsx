@@ -9,10 +9,11 @@ interface IMintImagesV2 {
   name: string;
   description: string;
   prefix: string;
+  toAddress: string;
   imgSrcs: string[];
 }
 
-function MintImageV2(props: IMintImagesV2) {
+function MintImagesV2(props: IMintImagesV2) {
   const { provider } = useWeb3();
 
   let signer: JsonRpcSigner;
@@ -26,18 +27,19 @@ function MintImageV2(props: IMintImagesV2) {
       prefix: props.prefix,
       imgSrcs: props.imgSrcs,
       signer: signer,
-      toAddress: "",
+      toAddress: props.toAddress,
       dropOptions: {
-        name: "",
-        primary_sale_recipient: "",
+        name: props.name,
+        primary_sale_recipient: props.toAddress,
       },
     };
 
   useEffect(() => {
+    console.log(options);
     createDropV2(options);
   }, []);
 
   return <></>;
 }
 
-export default MintImageV2;
+export default MintImagesV2;

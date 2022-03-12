@@ -26,6 +26,7 @@ function CreateArtCollection() {
   const [description, setDescription] = useState<string>("");
   const [size, setSize] = useState<number>(0);
   const [namePrefix, setPrefix] = useState<string>("");
+  const [toAddress, setToAddress] = useState<string>("");
 
   // TODO
   function getUploadMethod() {
@@ -48,6 +49,7 @@ function CreateArtCollection() {
               setDescription={setDescription}
               setSize={setSize}
               setNamePrefix={setPrefix}
+              setToAddress={setToAddress}
             />
           ) : (
             <CreateImages
@@ -55,6 +57,7 @@ function CreateArtCollection() {
               description={description}
               size={size}
               prefix={namePrefix}
+              toAddress={toAddress}
               layerObjs={layerObjects}
               imgSrcs={setImageUrls}
             />

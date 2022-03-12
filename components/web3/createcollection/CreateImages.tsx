@@ -11,12 +11,14 @@ import React, { useEffect, useState } from "react";
 import { startCreating } from "../../../lib/hashlips/createArt";
 import DownloadImages from "./DownloadImages";
 import MintImagesV1 from "./MintImagesV1";
+import MintImagesV2 from "./MintImagesV2";
 
 interface CreateImagesProps {
   name: string;
   description: string;
   size: number;
   prefix: string;
+  toAddress: string;
   layerObjs: any[];
   imgSrcs: any;
 }
@@ -83,22 +85,32 @@ function CreateImages(props: CreateImagesProps) {
               >
                 Artwork created
               </Heading>
-
+              <MintImagesV2
+                size={props.size}
+                name={props.name}
+                description={props.description}
+                prefix={props.prefix}
+                toAddress={props.toAddress}
+                imgSrcs={props.imgSrcs}
+              />
               <Heading fontSize={{ base: "2xl", md: "3xl" }}>
                 That's it!
               </Heading>
               <Stack spacing={1} align={"center"}>
-                <Text size="lg">You just minted {props.size} NFTs.</Text>
+                <Text size="lg">
+                  You just minted {props.size} NFTs to{" "}
+                  {props.toAddress.substring(0, 6)}...
+                </Text>
                 <Text display={"flex"} alignItems={"center"} size="lg">
                   NFT token addresses will be emailed within 24 hours.
                 </Text>
-                <MintImagesV1
+                {/* <MintImagesV1
                   size={props.size}
                   name={props.name}
                   description={props.description}
                   prefix={props.prefix}
                   imgSrcs={imgSrcs}
-                />
+                /> */}
               </Stack>
               {!downloadInitiated ? (
                 <Button

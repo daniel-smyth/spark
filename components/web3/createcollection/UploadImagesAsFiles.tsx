@@ -131,13 +131,17 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
                   Upload Layers
                 </Heading>
                 <Text size="md" alignSelf={"center"}>
-                  Spark detect layer names from your image name. Follow our
-                  naming convention:{<br />} Layername comes before the first
-                  underscore.
+                  Spark detects layer names from your image file name. These
+                  layer names will be included in your NFT data. Follow our
+                  naming convention:
                 </Text>
                 <Text variant={"bold"} size="md">
-                  "LAYERNAME_myImageName.png"
+                  "LAYERNAME_IMAGENAME.png"
                 </Text>
+                <Text size="md">
+                  "Background_blue.png"{<br />}"hat_redFedora.png"
+                </Text>
+                <Text size="md"></Text>
                 <Stack spacing={6}>
                   <UploadImageFiles handleUpload={uploadFiles} />
                 </Stack>

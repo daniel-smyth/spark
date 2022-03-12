@@ -15,30 +15,28 @@ export async function createDropV2(options: ICreateDropV2) {
   const sdk = new ThirdwebSDK(options.signer);
 
   // Drop module address.
-  const address = await sdk.deployer.deployNFTDrop(options.dropOptions);
+  const address = await sdk.deployer.deployNFTCollection(options.dropOptions);
 
   // Access your deployed contracts.
-  const drop = sdk.getNFTDrop(address);
+  const drop = sdk.getNFTCollection(address);
 
-  // Run a for loop of a user inputted amount minting an NFT every time.
-  const nfts = [];
+  // Create NFT metadata array and mint as batch to OpenSea address.
   console.log(`Starting to mint ${options.size} images.`);
+
+  const nfts = [];
   for (let i = 1; i <= options.size; i++) {
     nfts.push({
-      name: `${options.prefix}${i}.`,
       description: options.description,
       image: options.imgSrcs[i],
-      properties: {},
+      external_url: options.imgSrcs[i],
+      name: `${options.prefix}${i}.`,
     });
   }
 
   // Mint.
   try {
-    await drop.createBatch(nfts);
+    console.log(await drop.mintBatchTo(options.toAddress, nfts));
   } catch (err) {
     console.log(err);
   }
-
-  // Claim to recipient address.
-  drop.claimTo(options.toAddress, await drop.totalSupply());
 }
