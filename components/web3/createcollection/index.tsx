@@ -18,15 +18,14 @@ function CreateArtCollection() {
   // Layer objects contain all data required to complete the
   // art engine randomisation. Objects are set in "/UploadLayers.tsx"
   const [layerObjects, setLayerObjects] = useState<any[]>();
-  // Outputted images.
-  const [imageUrls, setImageUrls] = useState<any>();
 
   // Collection meta data.
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   const [size, setSize] = useState<number>(0);
   const [namePrefix, setPrefix] = useState<string>("");
-  const [toAddress, setToAddress] = useState<string>("");
+  const [mintAddress, setMintAddress] = useState<string>("");
+  const [saleRecipient, setSaleRecipient] = useState<string>("");
 
   // TODO
   function getUploadMethod() {
@@ -49,7 +48,8 @@ function CreateArtCollection() {
               setDescription={setDescription}
               setSize={setSize}
               setNamePrefix={setPrefix}
-              setToAddress={setToAddress}
+              setMintAddress={setMintAddress}
+              setSaleRecipient={setSaleRecipient}
             />
           ) : (
             <CreateImages
@@ -57,9 +57,9 @@ function CreateArtCollection() {
               description={description}
               size={size}
               prefix={namePrefix}
-              toAddress={toAddress}
+              mintAddress={mintAddress}
+              saleRecipient={saleRecipient}
               layerObjs={layerObjects}
-              imgSrcs={setImageUrls}
             />
           )}
         </>

@@ -67,7 +67,6 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
     );
     const splicedLayer = allLayerImageSrcs.splice(index, 1);
     allLayerImageSrcs.splice(layerPosition, 0, splicedLayer[0]);
-    console.log("New order: ", allLayerImageSrcs);
   }
 
   const setLayerOrderComponents = [];

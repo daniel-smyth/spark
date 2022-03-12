@@ -18,9 +18,9 @@ interface CreateImagesProps {
   description: string;
   size: number;
   prefix: string;
-  toAddress: string;
+  mintAddress: string;
+  saleRecipient: string;
   layerObjs: any[];
-  imgSrcs: any;
 }
 
 function CreateImages(props: CreateImagesProps) {
@@ -32,14 +32,9 @@ function CreateImages(props: CreateImagesProps) {
     const createImages = async () => {
       // Hashlips.
       const images = await startCreating(props.size, props.layerObjs);
-
-      // Set parent state.
-      props.imgSrcs(images);
-
       // Set this this state to display the images.
       setImgSrcs(images);
     };
-
     createImages(); // run
   }, []);
 
@@ -90,8 +85,9 @@ function CreateImages(props: CreateImagesProps) {
                 name={props.name}
                 description={props.description}
                 prefix={props.prefix}
-                toAddress={props.toAddress}
-                imgSrcs={props.imgSrcs}
+                mintAddress={props.mintAddress}
+                saleRecipient={props.saleRecipient}
+                imgSrcs={imgSrcs}
               />
               <Heading fontSize={{ base: "2xl", md: "3xl" }}>
                 That's it!
@@ -99,18 +95,11 @@ function CreateImages(props: CreateImagesProps) {
               <Stack spacing={1} align={"center"}>
                 <Text size="lg">
                   You just minted {props.size} NFTs to{" "}
-                  {props.toAddress.substring(0, 6)}...
+                  {props.mintAddress.substring(0, 6)}...
                 </Text>
                 <Text display={"flex"} alignItems={"center"} size="lg">
                   NFT token addresses will be emailed within 24 hours.
                 </Text>
-                {/* <MintImagesV1
-                  size={props.size}
-                  name={props.name}
-                  description={props.description}
-                  prefix={props.prefix}
-                  imgSrcs={imgSrcs}
-                /> */}
               </Stack>
               {!downloadInitiated ? (
                 <Button

@@ -18,7 +18,8 @@ interface SetCollectionProps {
   setDescription: any;
   setSize: any;
   setNamePrefix: any;
-  setToAddress: any;
+  setMintAddress: any;
+  setSaleRecipient: any;
 }
 
 function SetCollectionProperties(props: SetCollectionProps) {
@@ -31,10 +32,8 @@ function SetCollectionProperties(props: SetCollectionProps) {
     props.setName(event.target.collectionName.value);
     props.setDescription(event.target.collectionDescription.value);
     props.setNamePrefix(event.target.imageNamePrefix.value);
-    props.setToAddress(event.target.toAddress.value);
-    console.log(
-      `Collection properties set: "${event.target.collectionSize.value}", "${event.target.collectionName.value}", "${event.target.collectionDescription.value}", "${event.target.imageNamePrefix.value}", "${event.target.toAddress.value}".`
-    );
+    props.setMintAddress(event.target.mintAddress.value);
+    props.setSaleRecipient(event.target.saleRecipient.value);
   }
 
   function getFormInput(name: string, label: string) {
@@ -71,7 +70,11 @@ function SetCollectionProperties(props: SetCollectionProps) {
                 defaultValue={1}
                 onChange={undefined}
               />
-              {getFormInput("toAddress", "Address to send minted NFTs to")}
+              {getFormInput(
+                "saleRecipient",
+                "Address to Recieved funds of NFTs."
+              )}
+              {getFormInput("mintAddress", "Address to mint NFTs to")}
               {getFormInput("collectionName", "Enter collection name")}
               {getFormInput("collectionDescription", "Enter description")}
               {getFormInput("imageNamePrefix", "Enter image name prefix")}

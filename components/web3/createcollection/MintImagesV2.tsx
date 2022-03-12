@@ -9,7 +9,8 @@ interface IMintImagesV2 {
   name: string;
   description: string;
   prefix: string;
-  toAddress: string;
+  mintAddress: string;
+  saleRecipient: string;
   imgSrcs: string[];
 }
 
@@ -27,15 +28,14 @@ function MintImagesV2(props: IMintImagesV2) {
       prefix: props.prefix,
       imgSrcs: props.imgSrcs,
       signer: signer,
-      toAddress: props.toAddress,
+      toAddress: props.mintAddress,
       dropOptions: {
         name: props.name,
-        primary_sale_recipient: props.toAddress,
+        primary_sale_recipient: props.saleRecipient,
       },
     };
 
   useEffect(() => {
-    console.log(options);
     createDropV2(options);
   }, []);
 

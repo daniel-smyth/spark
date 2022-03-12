@@ -3,10 +3,8 @@ import { ICreateDropV2 } from "./ICreateDropV2";
 
 /**
  * Creates a drop module using the address of the current provider wallet. This means
- * the user pays for the transaction costs of minting a colleciton. Once the collection
- * is completed meeting it will need to be given to the user. I am thinking this can be
- * done by sending all NFT's as a batch the user's OpenSea (or similar) address. Once
- * this has been released on ETH mainnet this service is essentially read to launch.
+ * the user pays for the transaction costs of minting a colleciton. Mints the collection
+ * to an address provided by the user.
  *
  * @param options drop options
  */
@@ -21,8 +19,10 @@ export async function createDropV2(options: ICreateDropV2) {
   const drop = sdk.getNFTCollection(address);
 
   // Create NFT metadata array and mint as batch to OpenSea address.
-  console.log(`Starting to mint ${options.size} images.`);
-
+  console.time("Minting time");
+  console.log(
+    `Minting ${options.size} images. This can take a couple of mintues...`
+  );
   const nfts = [];
   for (let i = 1; i <= options.size; i++) {
     nfts.push({
@@ -39,4 +39,6 @@ export async function createDropV2(options: ICreateDropV2) {
   } catch (err) {
     console.log(err);
   }
+
+  console.timeEnd("Minting time");
 }
