@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 type WindowDimentions = {
   width: number | undefined;
   height: number | undefined;
-  isMobile: boolean | undefined;
+  isSpark3Black: boolean | undefined;
 };
 
 const useWindowDimensions = (): WindowDimentions => {

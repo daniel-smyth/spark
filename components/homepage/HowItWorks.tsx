@@ -31,7 +31,16 @@ export default function HowItWorks() {
         px={{ base: 5 }}
         pb={{ base: 16, md: 36 }}
       >
-        <Box display={"flex"} justifyContent={{ md: "left", base: "center" }}>
+        <Heading
+          display={{ base: "inline", md: "none" }}
+          fontSize={{ base: "2xl", md: "3xl" }}
+        >
+          How does it work?
+        </Heading>
+        <Box
+          display={{ base: "none", md: "flex" }}
+          justifyContent={{ md: "left", base: "center" }}
+        >
           <ProductPrice
             color="blue"
             displayRoyalty={true}
@@ -45,11 +54,11 @@ export default function HowItWorks() {
             link="/createcollection"
           ></ProductPrice>
         </Box>
-        <Stack spacing={7} pt={5}>
-          {/* <Text alignSelf={"flex-start"} variant={"badge"}>
-            About
-          </Text> */}
-          <Heading fontSize={{ base: "2xl", md: "3xl" }}>
+        <Stack spacing={{ base: 7, md: 7 }} pt={{ base: 0, md: 5 }}>
+          <Heading
+            display={{ base: "none", md: "inline" }}
+            fontSize={{ base: "2xl", md: "3xl" }}
+          >
             How does it work?
           </Heading>
           <Text size="sm">
