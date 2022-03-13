@@ -11,7 +11,7 @@ import {
   createIcon,
 } from "@chakra-ui/react";
 import Link from "next/link";
-import SparkIcon from "../icons/sparkicon";
+import Spark3Black from "../logo/spark3black";
 
 /**
  * Renders the home page of Spark. Contains text with call
@@ -20,7 +20,6 @@ import SparkIcon from "../icons/sparkicon";
  * @returns home page componenet
  */
 export default function Welcome() {
-
   return (
     <>
       <Head>
@@ -38,7 +37,7 @@ export default function Welcome() {
           spacing={{ base: 4, md: 6 }}
           height={{ base: "100vh", md: "100vh" }}
         >
-          <SparkIcon width={80} />
+          <Spark3Black width={160} style={{ paddingLeft: "15px" }} />
           <Heading
             fontWeight={600}
             fontSize={{ base: "3xl", sm: "4xl", md: "4xl" }}

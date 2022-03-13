@@ -15,7 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { BiMailSend } from "react-icons/bi";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
-import SparkBlack from "./icons/sparkblack";
+import Spark3Black from "./logo/spark3black";
 
 /**
  * Renders a footer with logo, links, newsletter subscription.
@@ -42,7 +42,7 @@ export default function Footer() {
           <Stack spacing={6}>
             <Box>
               <Link>
-                <SparkBlack
+                <Spark3Black
                   onClick={returnHome}
                   style={{ paddingBottom: "3px" }}
                   width={60}

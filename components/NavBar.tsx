@@ -10,7 +10,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, LinkIcon } from "@chakra-ui/icons";
-import SparkBlack from "./icons/sparkblack";
+import Spark3Black from "./logo/spark3black";
 import { ConnectWallet } from "@3rdweb/react";
 
 const Links = [
@@ -59,10 +59,10 @@ export default function NavBar() {
         </Button>
         <HStack spacing={8} alignItems={"center"}>
           <Link>
-            <SparkBlack
+            <Spark3Black
               onClick={returnHome}
-              style={{ paddingBottom: "3px" }}
-              width={60}
+              style={{ paddingLeft: "3px" }}
+              width={75}
             />
           </Link>
           <HStack as={"nav"} spacing={4} display={{ md: "flex", base: "none" }}>
