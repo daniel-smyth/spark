@@ -34,11 +34,14 @@ export default function Connect() {
       >
         {connectEmail ? (
           <Container>
-            <Stack spacing={3} justify={"center"}>
+            <Stack justify={"center"}>
               <LogIn />
-              <Button onClick={handleClick} variant="outline">
-                Go back
-              </Button>
+              <Text pt={4} align={"center"} size={"md"}>
+                Connect via wallet?{" "}
+                <Link color={"blue.400"} onClick={handleClick}>
+                  Go back
+                </Link>
+              </Text>
             </Stack>
           </Container>
         ) : (
@@ -55,8 +58,7 @@ export default function Connect() {
             )}
             <Button
               mb="8px"
-              size="lg"
-              variant="solid"
+              variant="outline"
               isFullWidth
               iconSpacing="auto"
               rightIcon={
@@ -71,7 +73,6 @@ export default function Connect() {
 
             <Button
               mb="8px"
-              size="lg"
               variant="solid"
               isFullWidth
               iconSpacing="auto"
@@ -87,7 +88,6 @@ export default function Connect() {
 
             <Button
               mb="8px"
-              size="lg"
               variant="solid"
               isFullWidth
               iconSpacing="auto"
@@ -102,7 +102,6 @@ export default function Connect() {
             </Button>
 
             <Button
-              size="lg"
               variant="solid"
               isFullWidth
               iconSpacing="auto"
@@ -115,15 +114,14 @@ export default function Connect() {
             >
               Coinbase Wallet
             </Button>
+            <Text pt={6} align={"center"} size={"md"}>
+              Already a user?{" "}
+              <Link color={"blue.400"} onClick={handleClick}>
+                Login
+              </Link>
+            </Text>
           </Box>
         )}
-
-        <Text pt={6} align={"center"} size={"md"}>
-          Already a user?{" "}
-          <Link color={"blue.400"} onClick={handleClick}>
-            Login
-          </Link>
-        </Text>
       </Flex>
     </Box>
   );
