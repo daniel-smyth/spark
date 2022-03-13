@@ -25,11 +25,12 @@ export default function Connect() {
   return (
     <Box align="center">
       <Flex
-        width="400px"
+        width={{ base: "none", md: "400px" }}
         bg="gray.50"
         borderRadius="16px"
         direction="column"
-        padding="20px"
+        padding={{ base: "none", md: "20px" }}
+        py={6}
       >
         {connectEmail ? (
           <Container>

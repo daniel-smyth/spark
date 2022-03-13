@@ -31,7 +31,7 @@ function Page() {
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
             Connect to start
           </Heading>
-          <Stack alignItems={"center"} spacing={0.5}>
+          <Stack alignItems={{ base: "none", md: "center" }} spacing={0.5}>
             <Text size="lg">Connect your wallet to get started.</Text>
             <Text size="lg">
               This will create an account with Spark automatically.
