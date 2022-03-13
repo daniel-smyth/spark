@@ -41,7 +41,7 @@ function CollectionCalculator() {
   }
 
   return (
-    <Container px={{ base: 5 }} maxW="6xl" spacing={{ base: 8, md: 8 }}>
+    <Container px={12} maxW="6xl" spacing={{ base: 8, md: 8 }}>
       <Heading
         display={{ base: "none", md: "inline" }}
         fontSize={{ base: "2xl", md: "3xl" }}
@@ -51,7 +51,6 @@ function CollectionCalculator() {
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         spacing={{ base: 7, md: 10 }}
-        px={{ base: 5 }}
         pb={{ base: 16, md: 36 }}
       >
         <Heading
@@ -61,24 +60,9 @@ function CollectionCalculator() {
           How many NFTs do you want?
         </Heading>
         <Stack spacing={7} pt={5}>
-          <FormControl isRequired>
-            <FormLabel>Traits</FormLabel>
-            <NumberInput
-              value={traits}
-              onChange={(e) => {
-                handleNewTrait(Number(e));
-              }}
-            >
-              <NumberInputField bg="white" />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <Text pt={1} size={"md"}>
-              What's a trait? <Link color={"blue.400"}>Traits</Link>
-            </Text>
-          </FormControl>
+          <Text size="sm">
+            Enter the number of layers and traits for your artwork.
+          </Text>
           <FormControl isRequired>
             <FormLabel>Layers</FormLabel>
             <NumberInput
@@ -94,7 +78,31 @@ function CollectionCalculator() {
               </NumberInputStepper>
             </NumberInput>
             <Text pt={1} size={"md"}>
-              What's a layer? <Link color={"blue.400"}>Layers</Link>
+              What is a layer?{" "}
+              <Link color={"blue.400"} href="/about/layers">
+                Layers
+              </Link>
+            </Text>
+          </FormControl>
+          <FormControl isRequired>
+            <FormLabel>Traits</FormLabel>
+            <NumberInput
+              value={traits}
+              onChange={(e) => {
+                handleNewTrait(Number(e));
+              }}
+            >
+              <NumberInputField bg="white" />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <Text pt={1} size={"md"}>
+              What is a trait?{" "}
+              <Link color={"blue.400"} href="/about/traits">
+                Traits
+              </Link>
             </Text>
           </FormControl>
         </Stack>

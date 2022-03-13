@@ -16,11 +16,9 @@ import { FaObjectGroup } from "react-icons/fa";
 function ComingSoon() {
   return (
     <>
-      <Container maxW="6xl" spacing={{ base: 8, md: 8 }}>
-        <Stack spacing={5} px={{ base: 5 }} pb={{ base: 16, md: 36 }}>
-          <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-            In Development at Spark
-          </Heading>
+      <Container maxW="6xl" px={12} spacing={{ base: 8, md: 8 }}>
+        <Stack spacing={5} pb={{ base: 16, md: 36 }}>
+          <Heading fontSize={{ base: "2xl", md: "3xl" }}>Coming soon</Heading>
           <Stack spacing={6} display={{ md: "none" }}>
             <ComingSoonBadge icon={FaObjectGroup} feature="NFT data packs" />
             <ComingSoonBadge icon={FaObjectGroup} feature="NFT Marketplaces" />

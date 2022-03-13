@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   Heading,
+  Link,
   Select,
   Stack,
   Text,
@@ -134,11 +135,14 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
                   layer names will be included in your NFT data. Follow our
                   naming convention:
                 </Text>
+                <Text size={"md"}>
+                  What are layers?{" "}
+                  <Link color={"blue.400"} href="/about/layers">
+                    Layers
+                  </Link>
+                </Text>
                 <Text variant={"bold"} size="md">
                   "LAYERNAME_IMAGENAME.png"
-                </Text>
-                <Text size="md">
-                  "Background_blue.png"{<br />}"hat_redFedora.png"
                 </Text>
                 <Text size="md"></Text>
                 <Stack spacing={6}>

@@ -22,11 +22,10 @@ import { FiImage, FiDatabase, FiRepeat } from "react-icons/fi";
  */
 export default function HowItWorks() {
   return (
-    <Container maxW="6xl" spacing={{ base: 8, md: 8 }}>
+    <Container maxW="6xl" px={12} spacing={{ base: 8, md: 8 }}>
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         spacing={10}
-        px={{ base: 5 }}
         pb={{ base: 16, md: 36 }}
       >
         <Heading
