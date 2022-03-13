@@ -34,19 +34,19 @@ export default function Welcome() {
           textAlign={"center"}
           justifyContent={"center"}
           alignItems={"center"}
-          spacing={{ base: 4, md: 6 }}
+          spacing={{ base: 4, md: 5 }}
           height={{ base: "100vh", md: "100vh" }}
         >
-          <Spark3Black width={160} style={{ paddingLeft: "15px" }} />
+          {/* <Spark3Black width={160} style={{ paddingLeft: "15px" }} /> */}
           <Heading
             fontWeight={600}
             fontSize={{ base: "3xl", sm: "4xl", md: "4xl" }}
             lineHeight={"110%"}
           >
-            <Stack>
-              <Text color={"black"}>Upload. Store. Sell.</Text>
+            <Stack spacing={1}>
+              <Text color={"black"}>Web3 is here.</Text>
               <Text as={"span"} color={"blue.500"}>
-                Things just got easier.
+                Upload. Store. Sell.
               </Text>
             </Stack>
           </Heading>

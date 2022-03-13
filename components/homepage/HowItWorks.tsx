@@ -31,17 +31,18 @@ export default function HowItWorks() {
         px={{ base: 5 }}
         pb={{ base: 16, md: 36 }}
       >
-        <Stack spacing={7}>
-          <Text alignSelf={"flex-start"} variant={"badge"}>
+        <Stack spacing={7} pt={5}>
+          {/* <Text alignSelf={"flex-start"} variant={"badge"}>
             About
-          </Text>
+          </Text> */}
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
             How does it work?
           </Heading>
           <Text size="sm">
-            Just upload your artwork and spark will handle the rest. Don’t have
-            artwork? Let our team hook you up with one of our recommended 3D art
-            renders.
+            With Spark3 you can create an NFT collection of any size in minutes.
+            This is possible with our randomising art engine and the latest
+            advancements in Web3 technology. {<br />} Upload the required images
+            calculated above and complete the create collection form. That's it!
           </Text>
           <Link textDecoration={"underline"} color={"blue.600"} pb={4}>
             How much artwork do I need to create 10,000 NFTs?
