@@ -8,19 +8,11 @@ import {
   StackDivider,
   Icon,
   useColorModeValue,
-  Box,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
-import ProductPrice from "../products/ProductPrice";
 import { FiImage, FiDatabase, FiRepeat } from "react-icons/fi";
 
-/**
- * Component with text, bulletpoints, image explaining the business
- * process.
- *
- * @returns what we do component
- */
-export default function HowItWorks() {
+export default function TraitsInfo() {
   return (
     <Container maxW="6xl" spacing={{ base: 8, md: 8 }}>
       <SimpleGrid
@@ -29,35 +21,9 @@ export default function HowItWorks() {
         px={{ base: 5 }}
         pb={{ base: 16, md: 36 }}
       >
-        <Heading
-          display={{ base: "inline", md: "none" }}
-          fontSize={{ base: "2xl", md: "3xl" }}
-        >
-          How does it work?
-        </Heading>
-        <Box
-          display={{ base: "none", md: "flex" }}
-          justifyContent={{ md: "left", base: "center" }}
-        >
-          <ProductPrice
-            color="blue"
-            displayRoyalty={true}
-            packageName="Art collection"
-            royalty="5"
-            feature1="10,000 NFTs"
-            feature2="Compatiable with Opensea"
-            feature3="Only minting fees"
-            feature4="5 minute setup"
-            buttonText="Create Collection"
-            link="/getstarted"
-          ></ProductPrice>
-        </Box>
-        <Stack spacing={{ base: 7, md: 9 }} pt={{ base: 0, md: 5 }}>
-          <Heading
-            display={{ base: "none", md: "inline" }}
-            fontSize={{ base: "2xl", md: "3xl" }}
-          >
-            How does it work?
+        <Stack spacing={{ base: 7, md: 9 }}>
+          <Heading fontSize={{ base: "2xl", md: "3xl" }}>
+            What are traits?
           </Heading>
           <Text size="sm">
             Create an NFT collection in minutes thanks to Spark3's randomising
@@ -94,17 +60,21 @@ export default function HowItWorks() {
             />
           </Stack>
         </Stack>
+        <Stack>
+          <Text size="sm">
+            Create an NFT collection in minutes thanks to Spark3's randomising
+            art engine and the latest advancements in Web3 technology.
+          </Text>
+          <Text>
+            Calculate your required layers and traits above and you are ready to
+            start
+          </Text>
+        </Stack>
       </SimpleGrid>
     </Container>
   );
 }
 
-/**
- * Renders bullet point feature.
- *
- * @param props text, icon, background
- * @returns
- */
 const Feature = (props: FeatureProps) => {
   return (
     <Stack direction={"row"} align={"center"}>

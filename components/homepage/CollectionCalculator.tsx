@@ -4,6 +4,7 @@ import {
   FormControl,
   FormLabel,
   Heading,
+  Link,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
@@ -74,6 +75,9 @@ function CollectionCalculator() {
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
+            <Text pt={1} size={"md"}>
+              What's a trait? <Link color={"blue.400"}>Traits</Link>
+            </Text>
           </FormControl>
           <FormControl isRequired>
             <FormLabel>Layers</FormLabel>
@@ -89,12 +93,16 @@ function CollectionCalculator() {
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
+            <Text pt={1} size={"md"}>
+              What's a layer? <Link color={"blue.400"}>Layers</Link>
+            </Text>
           </FormControl>
         </Stack>
 
         <Box display={"flex"} justifyContent={"right"}>
           <Box
             maxW={"330px"}
+            maxH={"190px"}
             w={"full"}
             bg={useColorModeValue("white", "gray.800")}
             boxShadow={"2xl"}
@@ -107,9 +115,12 @@ function CollectionCalculator() {
               p={4}
             >
               <Text variant="badge">Collection size</Text>
-              <Text color="black" fontSize={"4xl"} fontWeight={600}>
-                {size}
-              </Text>
+              <Stack direction={"row"} align={"center"} justify={"center"}>
+                <Text color="black" fontSize={"4xl"} fontWeight={600}>
+                  {size}
+                </Text>
+                <Text color={"gray.500"}>NFTs</Text>
+              </Stack>
               <Stack
                 direction={"row"}
                 align={"center"}

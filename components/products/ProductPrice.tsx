@@ -40,7 +40,7 @@ function ProductPrice(props: ProductPriceProps) {
             <Text color="black" fontSize={"6xl"} fontWeight={800}>
               {props.royalty}
             </Text>
-            <Text color={"gray.500"}>royalty</Text>
+            <Text color={"gray.500"}>Gas fees</Text>
           </Stack>
         ) : null}
       </Stack>
