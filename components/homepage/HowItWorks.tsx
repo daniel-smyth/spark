@@ -31,6 +31,20 @@ export default function HowItWorks() {
         px={{ base: 5 }}
         pb={{ base: 16, md: 36 }}
       >
+        <Box display={"flex"} justifyContent={{ md: "left", base: "center" }}>
+          <ProductPrice
+            color="blue"
+            displayRoyalty={true}
+            packageName="Art collection"
+            royalty="10"
+            feature1="Up to 10,000 NFT images"
+            feature2="5 minutes to create"
+            feature3="$0 initial fees"
+            feature4="Sold on Opensea"
+            buttonText="Create Collection"
+            link="/createcollection"
+          ></ProductPrice>
+        </Box>
         <Stack spacing={7} pt={5}>
           {/* <Text alignSelf={"flex-start"} variant={"badge"}>
             About
@@ -72,21 +86,6 @@ export default function HowItWorks() {
             />
           </Stack>
         </Stack>
-
-        <Box display={"flex"} justifyContent={{ md: "right", base: "center" }}>
-          <ProductPrice
-            color="blue"
-            displayRoyalty={true}
-            packageName="Art collection"
-            royalty="10"
-            feature1="Up to 10,000 NFT images"
-            feature2="5 minutes to create"
-            feature3="$0 initial fees"
-            feature4="Sold on Opensea"
-            buttonText="Create Collection"
-            link="/createcollection"
-          ></ProductPrice>
-        </Box>
       </SimpleGrid>
     </Container>
   );
