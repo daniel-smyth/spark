@@ -9,13 +9,11 @@ import {
   Icon,
   useColorModeValue,
   Image,
-  Button,
   Link,
   Box,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
-import { FiImage, FiDatabase, FiFolder, FiUpload } from "react-icons/fi";
-import Script from "next/script";
+import { FiImage, FiDatabase, FiUpload } from "react-icons/fi";
 
 export default function TraitsInfo() {
   return (
@@ -41,7 +39,7 @@ export default function TraitsInfo() {
           >
             <Feature
               icon={<Icon as={FiImage} color={"white"} w={5} h={5} />}
-              iconBg={"#3199FF"}
+              iconBg={"blue.400"}
               text={"1. Traits make the image"}
             />
             <Flex>
@@ -79,7 +77,7 @@ export default function TraitsInfo() {
           >
             <Feature
               icon={<Icon as={FiUpload} color={"white"} w={5} h={5} />}
-              iconBg={"#3199FF"}
+              iconBg={"blue.400"}
               text={"2. How do I upload traits?"}
             />
             <Stack py={2} px={{ base: "none", md: 8 }} spacing={5}>
@@ -110,7 +108,7 @@ export default function TraitsInfo() {
               icon={
                 <Icon as={FiDatabase} color={"white"} w={5} h={5} pb={0.5} />
               }
-              iconBg={"#3199FF"}
+              iconBg={"blue.400"}
               text={"3. Layer names are add as traits to NFT metadata"}
             />
             <SimpleGrid

@@ -14,9 +14,10 @@ import FormBackground from "../../form/FormBackground";
 import FormNumberInput from "../../form/FormNumberInput";
 
 interface SetCollectionProps {
+  presetSize: number;
+  setSize: any;
   setName: any;
   setDescription: any;
-  setSize: any;
   setNamePrefix: any;
   setMintAddress: any;
   setSaleRecipient: any;
@@ -24,6 +25,13 @@ interface SetCollectionProps {
 
 function SetCollectionProperties(props: SetCollectionProps) {
   const [isLoading, setLoading] = useState(false);
+
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
 
   function handleFormData(event: any) {
     event.preventDefault();
@@ -67,7 +75,7 @@ function SetCollectionProperties(props: SetCollectionProps) {
               <FormNumberInput
                 label="Collection size"
                 name="collectionSize"
-                defaultValue={1}
+                defaultValue={props.presetSize}
                 onChange={undefined}
               />
               {getFormInput(
@@ -87,7 +95,12 @@ function SetCollectionProperties(props: SetCollectionProps) {
                   type="submit"
                 />
               ) : (
-                <Button size="md" variant="solid" type="submit">
+                <Button
+                  onClick={scrollToTop}
+                  size="md"
+                  variant="solid"
+                  type="submit"
+                >
                   Submit
                 </Button>
               )}

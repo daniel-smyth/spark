@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Container,
   FormControl,
   FormLabel,
@@ -15,10 +16,12 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import Spark3Black from "../logo/spark3black";
 
 function CollectionCalculator() {
+  const router = useRouter();
   const [size, setSize] = useState(10000);
   const [traits, setTraits] = useState(10);
   const [layers, setLayers] = useState(4);
@@ -28,7 +31,6 @@ function CollectionCalculator() {
     if (type == "trait") newSize = Math.pow(e, layers);
     if (type == "layer") newSize = Math.pow(traits, e);
     setSize(newSize);
-    console.log("Set size as:", size);
   }
 
   function handleNewTrait(e: number) {
@@ -38,6 +40,13 @@ function CollectionCalculator() {
   function handleNewLayer(e: number) {
     setLayers(e);
     calculate(e, "layer");
+  }
+
+  function createCollection() {
+    router.push({
+      pathname: "/getstarted",
+      query: { size: size },
+    });
   }
 
   return (
@@ -110,7 +119,7 @@ function CollectionCalculator() {
         <Box display={"flex"} justifyContent={"right"}>
           <Box
             maxW={"330px"}
-            maxH={"190px"}
+            maxH={"250px"}
             w={"full"}
             bg={useColorModeValue("white", "gray.800")}
             boxShadow={"2xl"}
@@ -129,6 +138,14 @@ function CollectionCalculator() {
                 </Text>
                 <Text color={"gray.500"}>NFTs</Text>
               </Stack>
+              <Button
+                onClick={createCollection}
+                size={"md"}
+                variant={"outline"}
+                rounded="full"
+              >
+                Create {size} NFTs
+              </Button>
               <Stack
                 direction={"row"}
                 align={"center"}

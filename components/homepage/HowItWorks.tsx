@@ -9,6 +9,8 @@ import {
   Icon,
   useColorModeValue,
   Box,
+  Button,
+  Link,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
 import ProductPrice from "../products/ProductPrice";
@@ -62,10 +64,6 @@ export default function HowItWorks() {
             Create an NFT collection in minutes thanks to Spark3's randomising
             art engine and the latest advancements in Web3 technology.
           </Text>
-          <Text>
-            Calculate your required layers and traits above and you are ready to
-            start
-          </Text>
           <Stack
             spacing={3}
             divider={
@@ -76,17 +74,17 @@ export default function HowItWorks() {
           >
             <Feature
               icon={<Icon as={FiImage} color={"white"} w={5} h={5} />}
-              iconBg={"#3199FF"}
-              text={"1. Mutliply images"}
+              iconBg={"blue.400"}
+              text={"1. Upload and multiply images"}
             />
             <Feature
               icon={<Icon as={FiDatabase} color={"white"} w={5} h={5} />}
-              iconBg={"#3199FF"}
-              text={"2. Mint to exchange"}
+              iconBg={"blue.400"}
+              text={"2. Mint directly to exchange"}
             />
             <Feature
               icon={<Icon as={FiRepeat} color={"white"} w={5} h={5} pb={0.5} />}
-              iconBg={"#3199FF"}
+              iconBg={"blue.400"}
               text={"3. Sell"}
             />
           </Stack>

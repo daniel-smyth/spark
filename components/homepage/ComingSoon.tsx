@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import ProductPrice from "../products/ProductPrice";
-import { FaObjectGroup } from "react-icons/fa";
+import { FiRepeat, FiEdit2, FiImage } from "react-icons/fi";
 
 function ComingSoon() {
   return (
@@ -20,16 +20,17 @@ function ComingSoon() {
         <Stack spacing={5} pb={{ base: 16, md: 36 }}>
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>Coming soon</Heading>
           <Stack spacing={6} display={{ md: "none" }}>
-            <ComingSoonBadge icon={FaObjectGroup} feature="NFT data packs" />
-            <ComingSoonBadge icon={FaObjectGroup} feature="NFT Marketplaces" />
-            <ComingSoonBadge icon={FaObjectGroup} feature="Custom NFTs" />
+            <ComingSoonBadge icon={FiRepeat} feature="NFT Marketplaces" />
+            <ComingSoonBadge icon={FiEdit2} feature="Custom contracts" />
+            <ComingSoonBadge icon={FiImage} feature="In house art designers" />
             <Box display={"flex"} justifyContent={"center"}>
-              <Button size="lg" variant={"solid"} width={"100%"}>
+              <Button size="md" variant={"solid"} width={"100%"}>
                 Learn more
               </Button>
             </Box>
           </Stack>
           <SimpleGrid
+            display={{ base: "none", md: "flex" }}
             columns={{ base: 1, md: 3 }}
             spacing={{ base: 12, md: 10 }}
           >

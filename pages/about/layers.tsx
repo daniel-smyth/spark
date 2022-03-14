@@ -41,7 +41,7 @@ export default function LayersInfo() {
           >
             <Feature
               icon={<Icon as={FiFolder} color={"white"} w={5} h={5} />}
-              iconBg={"#3199FF"}
+              iconBg={"blue.400"}
               text={"1. Layers are traits"}
             />
             <Flex>
@@ -86,7 +86,7 @@ export default function LayersInfo() {
           >
             <Feature
               icon={<Icon as={FiUpload} color={"white"} w={5} h={5} />}
-              iconBg={"#3199FF"}
+              iconBg={"blue.400"}
               text={"2. How do I upload layers?"}
             />
             <Stack py={2} px={{ base: "none", md: 8 }} spacing={5}>
@@ -117,7 +117,7 @@ export default function LayersInfo() {
               icon={
                 <Icon as={FiDatabase} color={"white"} w={5} h={5} pb={0.5} />
               }
-              iconBg={"#3199FF"}
+              iconBg={"blue.400"}
               text={"3. Layer names are add as traits to NFT metadata"}
             />
             <SimpleGrid

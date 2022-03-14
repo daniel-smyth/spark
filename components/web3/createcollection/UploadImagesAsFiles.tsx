@@ -24,6 +24,13 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
   const [layerCount, setLayerCount] = useState(8);
   const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
   function addLayerName(name: string) {
     if (!layerNames.includes(name)) {
       layerNames.push(name);
@@ -159,7 +166,12 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
               </>
             )}
             {setLayerOrderComponents}
-            <Button size="md" variant="solid" type="submit">
+            <Button
+              onClick={scrollToTop}
+              size="md"
+              variant="solid"
+              type="submit"
+            >
               Submit
             </Button>
           </Stack>

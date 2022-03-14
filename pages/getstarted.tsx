@@ -1,8 +1,9 @@
-import { Box, Container, Heading, Stack, Text } from "@chakra-ui/react";
+import { Container, Heading, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { useWeb3 } from "@3rdweb/hooks";
 import { useRouter } from "next/router";
 import Connect from "../components/web3/Connect";
+import { withRouter } from "next/router";
 
 /**
  * Renders a product description component with pricing card an a collection
@@ -10,11 +11,18 @@ import Connect from "../components/web3/Connect";
  *
  * @returns product page
  */
-function Page() {
+function Page(props: any) {
   const { provider } = useWeb3();
   const router = useRouter();
 
-  if (provider) router.push("/createcollection/create");
+  if (provider) {
+    if (props.router.query.size) {
+      router.push({
+        pathname: "/createcollection/create",
+        query: { size: props.router.query.size },
+      });
+    } else router.push("/createcollection/create");
+  }
 
   return (
     <Container
@@ -44,4 +52,4 @@ function Page() {
   );
 }
 
-export default Page;
+export default withRouter(Page);
