@@ -75,19 +75,17 @@ export default function HowItWorks() {
             }
           >
             <Feature
-              icon={<Icon as={FiImage} color={"#1B486D"} w={5} h={5} />}
+              icon={<Icon as={FiImage} color={"white"} w={5} h={5} />}
               iconBg={"#3199FF"}
               text={"1. Mutliply images"}
             />
             <Feature
-              icon={<Icon as={FiDatabase} color={"#1B486D"} w={5} h={5} />}
+              icon={<Icon as={FiDatabase} color={"white"} w={5} h={5} />}
               iconBg={"#3199FF"}
               text={"2. Mint to exchange"}
             />
             <Feature
-              icon={
-                <Icon as={FiRepeat} color={"#1B486D"} w={5} h={5} pb={0.5} />
-              }
+              icon={<Icon as={FiRepeat} color={"white"} w={5} h={5} pb={0.5} />}
               iconBg={"#3199FF"}
               text={"3. Sell"}
             />
