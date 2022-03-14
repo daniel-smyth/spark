@@ -14,7 +14,7 @@ import {
   Box,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
-import { FiDatabase, FiFolder, FiUpload } from "react-icons/fi";
+import { FiImage, FiDatabase, FiFolder, FiUpload } from "react-icons/fi";
 import Script from "next/script";
 
 export default function TraitsInfo() {
@@ -40,9 +40,9 @@ export default function TraitsInfo() {
             }
           >
             <Feature
-              icon={<Icon as={FiFolder} color={"white"} w={5} h={5} />}
+              icon={<Icon as={FiImage} color={"white"} w={5} h={5} />}
               iconBg={"#3199FF"}
-              text={"1. Traits make the iamge"}
+              text={"1. Traits make the image"}
             />
             <Flex>
               <Box display={{ base: "none", md: "block" }} py={2} px={8}>
