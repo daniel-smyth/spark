@@ -2,6 +2,7 @@ import {
   Box,
   Button,
   Container,
+  Flex,
   FormControl,
   FormLabel,
   Heading,
@@ -68,11 +69,8 @@ function CollectionCalculator() {
         >
           How many NFTs do you want?
         </Heading>
-        <Stack spacing={7} pt={5}>
-          <Text size="sm">
-            Enter the number of layers and traits for your artwork.
-          </Text>
-          <FormControl isRequired>
+        <Stack spacing={7}>
+          <FormControl pt={2}>
             <FormLabel>Layers</FormLabel>
             <NumberInput
               value={layers}
@@ -93,7 +91,7 @@ function CollectionCalculator() {
               </Link>
             </Text>
           </FormControl>
-          <FormControl isRequired>
+          <FormControl>
             <FormLabel>Traits</FormLabel>
             <NumberInput
               value={traits}
@@ -119,7 +117,7 @@ function CollectionCalculator() {
         <Box display={"flex"} justifyContent={"right"}>
           <Box
             maxW={"330px"}
-            maxH={"250px"}
+            maxH={"190px"}
             w={"full"}
             bg={useColorModeValue("white", "gray.800")}
             boxShadow={"2xl"}
@@ -131,36 +129,41 @@ function CollectionCalculator() {
               align={"center"}
               p={4}
             >
-              <Text variant="badge">Collection size</Text>
+              <Text variant="badge">Nft Collection size</Text>
               <Stack direction={"row"} align={"center"} justify={"center"}>
                 <Text color="black" fontSize={"4xl"} fontWeight={600}>
-                  {size}
+                  {size.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
                 </Text>
                 <Text color={"gray.500"}>NFTs</Text>
               </Stack>
-              <Button
-                onClick={createCollection}
-                size={"md"}
-                variant={"outline"}
-                rounded="full"
-              >
-                Create {size} NFTs
-              </Button>
               <Stack
                 direction={"row"}
                 align={"center"}
                 justify={"center"}
               ></Stack>
             </Stack>
-            <Box
+            <SimpleGrid
+              w={"100%"}
+              columns={2}
               bg={useColorModeValue("gray.50", "gray.900")}
-              px={6}
-              py={4}
-              justifyContent={"right"}
-              display="flex"
+              px={4}
+              py={2.5}
             >
-              <Spark3Black width={60} />
-            </Box>
+              <Box display={"flex"} minW={200} alignSelf="right">
+                <Spark3Black width={60} />
+              </Box>
+              <Button
+                onClick={createCollection}
+                size={"sm"}
+                variant={"solid"}
+                rounded="full"
+                minW={"135px"}
+                display={{ base: "none", md: "flex" }}
+              >
+                Create {size.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+                NFTs
+              </Button>
+            </SimpleGrid>
           </Box>
         </Box>
       </SimpleGrid>

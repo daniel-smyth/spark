@@ -8,5 +8,8 @@ export interface ICreateDropV2 {
   imgSrcs: string[];
   signer: JsonRpcSigner;
   toAddress: string;
-  dropOptions: NFTContractDeployMetadata;
+  dropOptions: {
+    name: string;
+    primary_sale_recipient: string;
+  };
 }
