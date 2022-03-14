@@ -13,7 +13,7 @@ import React from "react";
 import ProductPrice from "../products/ProductPrice";
 import { AiTwotoneShop } from "react-icons/ai";
 import { BsCoin } from "react-icons/bs";
-import { GiOrganigram } from "react-icons/Gi";
+import { VscOrganization } from "react-icons/vsc";
 
 function ComingSoon() {
   return (
@@ -24,7 +24,7 @@ function ComingSoon() {
           <Stack spacing={6} display={{ md: "none" }}>
             <ComingSoonBadge icon={AiTwotoneShop} feature="NFT Marketplace" />
             <ComingSoonBadge icon={BsCoin} feature="ERC20 Token" />
-            <ComingSoonBadge icon={GiOrganigram} feature="DAO" />
+            <ComingSoonBadge icon={VscOrganization} feature="DAO" />
             <Box display={"flex"} justifyContent={"center"}>
               <Button size="md" variant={"solid"} width={"100%"}>
                 Learn more
