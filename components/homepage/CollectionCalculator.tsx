@@ -149,7 +149,7 @@ function CollectionCalculator() {
               px={4}
               py={2.5}
             >
-              <Box display={"flex"} minW={200} alignSelf="right">
+              <Box display={"flex"}>
                 <Spark3Black width={60} />
               </Box>
               <Button

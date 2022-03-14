@@ -11,7 +11,9 @@ import {
 } from "@chakra-ui/react";
 import React from "react";
 import ProductPrice from "../products/ProductPrice";
-import { FiRepeat, FiEdit2, FiImage } from "react-icons/fi";
+import { AiTwotoneShop } from "react-icons/ai";
+import { BsCoin } from "react-icons/bs";
+import { GiOrganigram } from "react-icons/Gi";
 
 function ComingSoon() {
   return (
@@ -20,9 +22,9 @@ function ComingSoon() {
         <Stack spacing={5} pb={{ base: 16, md: 36 }}>
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>Coming soon</Heading>
           <Stack spacing={6} display={{ md: "none" }}>
-            <ComingSoonBadge icon={FiRepeat} feature="NFT Marketplaces" />
-            <ComingSoonBadge icon={FiEdit2} feature="Custom contracts" />
-            <ComingSoonBadge icon={FiImage} feature="In house art designers" />
+            <ComingSoonBadge icon={AiTwotoneShop} feature="NFT Marketplace" />
+            <ComingSoonBadge icon={BsCoin} feature="ERC20 Token" />
+            <ComingSoonBadge icon={GiOrganigram} feature="DAO" />
             <Box display={"flex"} justifyContent={"center"}>
               <Button size="md" variant={"solid"} width={"100%"}>
                 Learn more
@@ -36,39 +38,39 @@ function ComingSoon() {
           >
             <ProductPrice
               color="grey"
-              displayRoyalty={true}
-              packageName="NFT Data Packs"
+              displayRoyalty={false}
+              packageName="NFT Marketplace"
               royalty="5"
-              feature1="Quick."
-              feature2="Fast."
-              feature3="Simple."
-              feature4="Free."
-              buttonText="Learn More"
-              link="/login"
+              feature1="Upload and sell your way"
+              feature2="Host on your website"
+              feature3="Host on Spark3"
+              feature4="Quick setup"
+              buttonText="Create Marketplace"
+              isDisabled={true}
             ></ProductPrice>
             <ProductPrice
               color="grey"
-              displayRoyalty={true}
-              packageName="NFT Marketplaces"
+              displayRoyalty={false}
+              packageName="Token"
               royalty="5"
-              feature1="Quick."
-              feature2="Fast."
-              feature3="Simple."
-              feature4="Free."
-              buttonText="Learn More"
-              link="/login"
+              feature1="ERC20 token"
+              feature2="Create in minutes"
+              feature3="Sell on any exchange"
+              feature4="Minting costs only"
+              buttonText="Create token"
+              isDisabled={true}
             ></ProductPrice>
             <ProductPrice
               color="grey"
-              displayRoyalty={true}
-              packageName="Custom NFTs"
+              displayRoyalty={false}
+              packageName="DAO"
               royalty="5"
-              feature1="Quick."
-              feature2="Fast."
-              feature3="Simple."
-              feature4="Free."
-              buttonText="Learn More"
-              link="/login"
+              feature1="Build treasury"
+              feature2="Build governance"
+              feature3="Voting"
+              feature4="Minting costs only"
+              buttonText="Create DAO"
+              isDisabled={true}
             ></ProductPrice>
           </SimpleGrid>
         </Stack>

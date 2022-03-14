@@ -7,8 +7,10 @@ function ButtonWithLoading(props: any) {
   const [isLoading, setLoading] = useState(false);
 
   const navigateToPage = () => {
-    setLoading(true);
-    router.push(props.linkdestination);
+    if (props.linkdestination !== "#") {
+      setLoading(true);
+      router.push(props.linkdestination);
+    }
   };
 
   return (
@@ -19,6 +21,7 @@ function ButtonWithLoading(props: any) {
         </Button>
       ) : (
         <Button
+          disabled={props.isDisabled ? true : false}
           {...props}
           onClick={props.onClick ? props.onClick : navigateToPage}
         >

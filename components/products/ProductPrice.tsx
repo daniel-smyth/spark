@@ -18,7 +18,7 @@ import ButtonWithLoading from "../utils/ButtonWithLoading";
  * @param props
  * @returns pricing card component
  */
-function ProductPrice(props: ProductPriceProps) {
+function ProductPrice(props: any) {
   return (
     <Box
       maxW={"330px"}
@@ -36,11 +36,11 @@ function ProductPrice(props: ProductPriceProps) {
         <Text variant="badge">{props.packageName}</Text>
         {props.displayRoyalty ? (
           <Stack direction={"row"} align={"center"} justify={"center"}>
-            <Text fontSize={"2xl"}>%</Text>
-            <Text color="black" fontSize={"6xl"} fontWeight={800}>
+            <Text fontSize={"2xl"}>$</Text>
+            <Text color="black" fontSize={"5xl"} fontWeight={600}>
               {props.royalty}
             </Text>
-            <Text color={"gray.500"}>Gas fees</Text>
+            <Text color={"gray.500"}>eth</Text>
           </Stack>
         ) : null}
       </Stack>
@@ -78,26 +78,14 @@ function ProductPrice(props: ProductPriceProps) {
           w={"full"}
           size={"md"}
           variant={"solid"}
-          buttontext={"Create collection"}
+          buttontext={props.buttonText}
           loadingText={""}
           linkdestination={props.link}
+          isDisabled={props.isDisabled ? true : false}
         />
       </Box>
     </Box>
   );
-}
-
-interface ProductPriceProps {
-  color: string;
-  displayRoyalty: boolean;
-  packageName: string;
-  link: string;
-  royalty: string;
-  feature1: string;
-  feature2: string;
-  feature3: string;
-  feature4: string;
-  buttonText: string;
 }
 
 export default ProductPrice;
