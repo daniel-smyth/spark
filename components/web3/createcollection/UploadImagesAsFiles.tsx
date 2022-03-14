@@ -142,7 +142,7 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
                   </Link>
                 </Text>
                 <Text variant={"bold"} size="md">
-                  "LAYERNAME_IMAGENAME.png"
+                  "LAYERNAME_TRAITNAME.png"
                 </Text>
                 <Text size="md"></Text>
                 <Stack spacing={6}>

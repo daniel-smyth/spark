@@ -95,7 +95,7 @@ export default function LayersInfo() {
                 image. We handle the rest including NFT metadata..
               </Text>
               <Text variant={"bold"} size="md">
-                "LAYERNAME_IMAGENAME.png"
+                "LAYERNAME_TRAITNAME.png"
               </Text>
               <Text pt={1} size={"md"}>
                 Ready to start?{" "}
