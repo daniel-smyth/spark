@@ -16,7 +16,6 @@ import { ConnectWallet } from "@3rdweb/react";
 const Links = [
   ["Create Collection", "/getstarted"],
   ["About Us", "#"],
-  ["Team", "#"],
 ];
 
 /**

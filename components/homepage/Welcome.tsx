@@ -10,8 +10,7 @@ import {
   useColorModeValue,
   createIcon,
 } from "@chakra-ui/react";
-import Link from "next/link";
-import Spark3Black from "../logo/spark3black";
+import { useRouter } from "next/router";
 
 /**
  * Renders the home page of Spark. Contains text with call
@@ -20,6 +19,12 @@ import Spark3Black from "../logo/spark3black";
  * @returns home page componenet
  */
 export default function Welcome() {
+  const router = useRouter();
+
+  function handleClick() {
+    router.push("/getstarted");
+  }
+
   return (
     <>
       <Head>
@@ -60,11 +65,14 @@ export default function Welcome() {
             alignSelf={"center"}
             position={"relative"}
           >
-            <Link href="/getstarted">
-              <Button size={"md"} variant={"solid"} rounded="full">
-                Create 10,000 NFTs
-              </Button>
-            </Link>
+            <Button
+              onClick={handleClick}
+              size={"md"}
+              variant={"solid"}
+              rounded="full"
+            >
+              Create 10,000 NFTs
+            </Button>
             <Button variant={"link"} colorScheme={"black"} size={"sm"}>
               Learn more
             </Button>

@@ -86,13 +86,13 @@ function CollectionCalculator() {
             </NumberInput>
             <Text pt={1} size={"md"}>
               What is a layer?{" "}
-              <Link color={"blue.400"} href="/about/layers">
+              <Link color={"blue.400"} href="/about/images">
                 Layers
               </Link>
             </Text>
           </FormControl>
           <FormControl>
-            <FormLabel>Traits</FormLabel>
+            <FormLabel>Traits per Layer</FormLabel>
             <NumberInput
               value={traits}
               onChange={(e) => {
@@ -107,7 +107,7 @@ function CollectionCalculator() {
             </NumberInput>
             <Text pt={1} size={"md"}>
               What is a trait?{" "}
-              <Link color={"blue.400"} href="/about/traits">
+              <Link color={"blue.400"} href="/about/images">
                 Traits
               </Link>
             </Text>

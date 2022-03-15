@@ -22,6 +22,7 @@ function ProductPrice(props: any) {
   return (
     <Box
       maxW={"330px"}
+      maxH={"465px"}
       w={"full"}
       bg={useColorModeValue("white", "gray.800")}
       boxShadow={"2xl"}
