@@ -6,6 +6,8 @@ import UploadLayersAsFiles from "../../components/web3/createcollection/UploadIm
 import UploadLayersAsFolders from "../../components/web3/createcollection/UploadImagesAsFolders";
 import { Spinner, Stack, Text } from "@chakra-ui/react";
 import { withRouter } from "next/router";
+import CreateCollectionContainer from "../../components/form/CreateCollectionContainer";
+import UploadLayers from "../../components/web3/createcollection/UploadLayers";
 
 /**
  * Contains all components. Props may contain a preset collection size
@@ -33,6 +35,9 @@ function CreateCollection(props: any) {
     props.router.query.size ? props.router.query.size : 0
   );
 
+  // Form data.
+  const [formTitle, setFormTitle] = useState("Upload Layers");
+
   // TODO
   function getUploadMethod() {
     return true ? (
@@ -46,6 +51,10 @@ function CreateCollection(props: any) {
     <>
       {provider ? (
         <>
+          <CreateCollectionContainer title={formTitle}>
+            <UploadLayers setState={setLayerObjects} />
+          </CreateCollectionContainer>
+
           {!layerObjects ? (
             <UploadLayersAsFiles setState={setLayerObjects} />
           ) : !(name && description && size && namePrefix) ? (
