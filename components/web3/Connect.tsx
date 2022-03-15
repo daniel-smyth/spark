@@ -48,7 +48,7 @@ export default function Connect() {
         ) : (
           <Box p={2}>
             {address ? (
-              <Stack spacing={4} py={6}>
+              <Stack spacing={4}>
                 <Text>Looks like you are already connected</Text>
                 <Button
                   isFullWidth

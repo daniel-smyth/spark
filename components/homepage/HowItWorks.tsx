@@ -79,10 +79,10 @@ export default function HowItWorks() {
             <Feature
               icon={<Icon as={FiImage} color={"white"} w={5} h={5} />}
               iconBg={"blue.500"}
-              text={"1. Mutliply images"}
+              text={"1. Upload & Mutliply images"}
             />
             <Text size="sm">
-              Upload your NFT artwork and spark will multiply the images.
+              Upload your NFT artwork and Spark3 will multiply the images.
             </Text>
             <Feature
               icon={<Icon as={FiDatabase} color={"white"} w={5} h={5} />}

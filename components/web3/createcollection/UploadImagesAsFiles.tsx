@@ -5,6 +5,7 @@ import {
   Heading,
   Link,
   Select,
+  SimpleGrid,
   Stack,
   Text,
   useColorModeValue,
@@ -13,6 +14,7 @@ import { getLayer } from "../../../lib/hashlips/createArt";
 import FormBackground from "../../form/FormBackground";
 import UploadImageFiles from "../../utils/UploadImageFiles";
 import { useRouter } from "next/router";
+import Spark3Black from "../../logo/spark3black";
 
 interface UploadLayerProps {
   setState: React.Dispatch<any[]>;
@@ -134,12 +136,20 @@ function UploadLayersAsFiles(props: UploadLayerProps) {
           <Stack spacing={6}>
             {allLayerImageSrcs.length == 0 ? (
               <>
-                <Heading size="md" alignSelf={"center"}>
-                  Upload Layers
-                </Heading>
+                <SimpleGrid
+                  w={"100%"}
+                  columns={2}
+                  // bg={useColorModeValue("gray.50", "gray.900")}
+                  // px={4}
+                  py={2.5}
+                >
+                  <Heading size="md">Upload Layers</Heading>
+                  <Box pl={20}>
+                    <Spark3Black width={60} />
+                  </Box>
+                </SimpleGrid>
                 <Text size="md" alignSelf={"center"}>
-                  Spark detects layer names from your image file name. These
-                  layer names will be included in your NFT data. Follow our
+                  Spark3 detects traits from your image file name. Follow our
                   naming convention:
                 </Text>
                 <Text size={"md"}>
