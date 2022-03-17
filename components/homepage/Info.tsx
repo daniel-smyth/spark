@@ -29,7 +29,7 @@ export default function HowItWorks() {
   const [isLargerThan480] = useMediaQuery("(min-width: 480px)");
 
   function handleClick() {
-    router.push("/getstarted");
+    router.push("/create/getstarted");
   }
 
   return (
@@ -58,7 +58,7 @@ export default function HowItWorks() {
             feature3="Up to 10,000 NFTs"
             feature4="5 minute setup"
             buttonText="Create Collection"
-            link="/getstarted"
+            link="/create/getstarted"
           ></ProductPrice>
         </Box>
         <Stack spacing={{ base: 7, md: 9 }} pt={{ base: 0, md: 5 }}>

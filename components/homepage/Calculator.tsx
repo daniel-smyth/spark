@@ -45,7 +45,7 @@ function CollectionCalculator() {
 
   function createCollection() {
     router.push({
-      pathname: "/getstarted",
+      pathname: "/create/getstarted",
       query: { size: size },
     });
   }

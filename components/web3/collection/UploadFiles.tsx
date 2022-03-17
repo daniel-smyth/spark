@@ -106,32 +106,31 @@ function UploadLayers(props: any) {
               Spark3 detects traits from your image file name. Follow our naming
               convention:
             </Text>
+            <Text variant={"bold"} size="md" alignSelf={"center"}>
+              "LAYERNAME_TRAITNAME.png"
+            </Text>
             <Text size={"md"}>
               What are layers?{" "}
               <Link color={"blue.400"} href="/about/layers">
                 Layers
               </Link>
             </Text>
-            <Text variant={"bold"} size="md">
-              "LAYERNAME_TRAITNAME.png"
-            </Text>
-            <Text size="md"></Text>
-            <Stack spacing={6}>
-              <UploadImageFiles handleUpload={uploadFiles} />
-            </Stack>
+            <UploadImageFiles handleUpload={uploadFiles} />
           </>
         ) : (
           <>
-            <Heading size="md">Layer Order</Heading>
-            <Text size="md">
-              Now it's time to pick the layer order so our images look right:
-            </Text>
+            <Text size="md">Pick the layer order. 1 is the background.</Text>
+            {setLayerOrderComponents}
+            <Button
+              onClick={scrollToTop}
+              size="md"
+              variant="solid"
+              type="submit"
+            >
+              Submit
+            </Button>
           </>
         )}
-        {setLayerOrderComponents}
-        <Button onClick={scrollToTop} size="md" variant="solid" type="submit">
-          Submit
-        </Button>
       </Stack>
     </form>
   );

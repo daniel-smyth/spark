@@ -9,17 +9,18 @@ import {
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { startCreating } from "../../../lib/hashlips/createArt";
-import DownloadImages from "./DownloadImages";
-import MintImagesV1 from "./MintImagesV1";
-import MintImagesV2 from "./MintImagesV2";
+import DownloadImages from "./Download";
+import MintImagesV2 from "./Mint";
 
 interface CreateImagesProps {
-  name: string;
-  description: string;
-  size: number;
-  prefix: string;
-  mintAddress: string;
-  saleRecipient: string;
+  info: {
+    size: number;
+    name: string;
+    description: string;
+    prefix: string;
+    mintTo: string;
+    saleRecipient: string;
+  };
   layerObjs: any[];
 }
 
@@ -31,7 +32,7 @@ function CreateImages(props: CreateImagesProps) {
     // Run Hashlips art engine and add the img results to this state.
     const createImages = async () => {
       // Hashlips.
-      const images = await startCreating(props.size, props.layerObjs);
+      const images = await startCreating(props.info.size, props.layerObjs);
       // Set this this state to display the images.
       setImgSrcs(images);
     };
@@ -81,12 +82,12 @@ function CreateImages(props: CreateImagesProps) {
                 Artwork created
               </Heading>
               <MintImagesV2
-                size={props.size}
-                name={props.name}
-                description={props.description}
-                prefix={props.prefix}
-                mintAddress={props.mintAddress}
-                saleRecipient={props.saleRecipient}
+                size={props.info.size}
+                name={props.info.name}
+                description={props.info.description}
+                prefix={props.info.prefix}
+                mintAddress={props.info.mintTo}
+                saleRecipient={props.info.saleRecipient}
                 imgSrcs={imgSrcs}
               />
               <Heading fontSize={{ base: "2xl", md: "3xl" }}>
@@ -94,8 +95,8 @@ function CreateImages(props: CreateImagesProps) {
               </Heading>
               <Stack spacing={1} align={"center"}>
                 <Text size="lg">
-                  You just minted {props.size} NFTs to{" "}
-                  {props.mintAddress.substring(0, 6)}...
+                  You just minted {props.info.size} NFTs to{" "}
+                  {props.info.mintTo.substring(0, 6)}...
                 </Text>
                 <Text display={"flex"} alignItems={"center"} size="lg">
                   NFT token addresses will be emailed within 24 hours.
@@ -115,8 +116,8 @@ function CreateImages(props: CreateImagesProps) {
                 <>
                   <DownloadImages
                     imgSrcs={imgSrcs}
-                    name={props.name}
-                    prefiz={props.prefix}
+                    name={props.info.name}
+                    prefiz={props.info.prefix}
                   />
                   <Button
                     minW={{ base: "100%", md: "40%" }}
@@ -125,8 +126,11 @@ function CreateImages(props: CreateImagesProps) {
                     onClick={handleClick}
                     alignSelf={"center"}
                   >
-                    Download started
+                    Download starting..
                   </Button>
+                  <Text size={"md"}>
+                    Creating zip file.. This can also take a few minutes..
+                  </Text>
                 </>
               )}
             </Stack>
@@ -134,7 +138,7 @@ function CreateImages(props: CreateImagesProps) {
 
           <Stack spacing={2} border={"8px"} p={2} borderColor="gray.200">
             <Heading pl={4} fontSize={{ base: "2xl", md: "3xl" }}>
-              {props.name}
+              {props.info.name}
             </Heading>
             <Wrap p={4}>{imageComponents}</Wrap>
           </Stack>

@@ -107,7 +107,7 @@ export default function ImagesInfo() {
                 <Text size="md">{bold(`"LAYERNAME_TRAITNAME.png"`)}</Text>
                 <Text pt={1} size={"md"}>
                   Ready to start?{" "}
-                  <Link color={"blue.400"} href="/createcollection/create">
+                  <Link color={"blue.400"} href="/create/collection">
                     Upload layers
                   </Link>
                 </Text>

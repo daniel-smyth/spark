@@ -14,7 +14,7 @@ import Spark3Black from "./logo/spark3black";
 import { ConnectWallet } from "@3rdweb/react";
 
 const Links = [
-  ["Create Collection", "/getstarted"],
+  ["Create Collection", "/create/getstarted"],
   ["About Us", "#"],
 ];
 

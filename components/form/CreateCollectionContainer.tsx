@@ -25,12 +25,6 @@ function CreateCollectionContainer({ children }: { children: any }) {
           boxShadow={"lg"}
           p={8}
         >
-          <SimpleGrid w={"100%"} columns={2} pb={8}>
-            <Heading size="md">{props.title}</Heading>
-            <Box pl={20}>
-              <Spark3Black width={60} />
-            </Box>
-          </SimpleGrid>
           {children}
         </Box>
       </Stack>

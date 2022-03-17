@@ -3,7 +3,7 @@ import { FiServer } from "react-icons/fi";
 import { GoLocation } from "react-icons/go";
 import { Stack, Box, SimpleGrid } from "@chakra-ui/react";
 import React from "react";
-import Statistic from "./Statistic";
+import Statistic from "./Stat";
 
 function StatisticCard() {
   return (

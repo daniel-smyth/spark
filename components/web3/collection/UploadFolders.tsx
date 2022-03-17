@@ -51,7 +51,7 @@ function UploadLayersAsFolders(props: UploadLayerProps) {
   }
 
   function startOver() {
-    router.push("/createcollection/create");
+    router.push("/create/collection");
   }
 
   return (

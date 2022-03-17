@@ -22,7 +22,7 @@ export default function Welcome() {
   const router = useRouter();
 
   function handleClick() {
-    router.push("/getstarted");
+    router.push("/create/getstarted");
   }
 
   return (

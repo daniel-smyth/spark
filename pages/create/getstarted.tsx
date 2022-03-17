@@ -2,7 +2,7 @@ import { Container, Heading, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { useWeb3 } from "@3rdweb/hooks";
 import { useRouter } from "next/router";
-import Connect from "../components/web3/Connect";
+import Connect from "../../components/web3/Connect";
 import { withRouter } from "next/router";
 
 /**
@@ -18,10 +18,10 @@ function Page(props: any) {
   if (provider) {
     if (props.router.query.size) {
       router.push({
-        pathname: "/createcollection/create",
+        pathname: "/create/collection",
         query: { size: props.router.query.size },
       });
-    } else router.push("/createcollection/create");
+    } else router.push("/create/collection");
   }
 
   return (
