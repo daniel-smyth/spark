@@ -1,20 +1,18 @@
+import Head from "next/head";
 import type { AppProps } from "next/app";
-import { ThirdwebProvider } from "@3rdweb/react";
+import { CookiesProvider } from "react-cookie";
+import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "../themes/index";
-import connectors from "../lib/thirdweb/config/connectors";
-import supportedChainIds from "../lib/thirdweb/config/supportedwallets";
-import Head from "next/head";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../styles/globals.css";
-import { CookiesProvider } from "react-cookie";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
     <ThirdwebProvider
-      connectors={connectors}
-      supportedChainIds={supportedChainIds}
+      supportedChains={[ChainId.Polygon, ChainId.Rinkeby, ChainId.Mainnet]}
+      desiredChainId={ChainId.Mainnet}
     >
       <CookiesProvider>
         <ChakraProvider theme={theme}>

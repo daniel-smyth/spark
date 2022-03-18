@@ -1,4 +1,3 @@
-import { useWeb3 } from "@3rdweb/hooks";
 import React, { useState } from "react";
 import {
   AspectRatio,
@@ -14,9 +13,15 @@ import {
 } from "@chakra-ui/react";
 import { AtSignIcon } from "@chakra-ui/icons";
 import LogIn from "../LogIn";
+import { useAddress, useCoinbaseWallet, useDisconnect, useMetamask, useWalletConnect } from "@thirdweb-dev/react";
 
 export default function Connect() {
-  const { address, connectWallet, disconnectWallet } = useWeb3();
+  const address = useAddress()
+  const connectWithMetamask = useMetamask();
+  const connectWithWalletConnect = useWalletConnect();
+  const connectWithCoinbaseWallet = useCoinbaseWallet();
+  const disconnect = useDisconnect()
+  
   const [connectEmail, setConnectEmail] = useState(false);
 
   function handleClick() {
@@ -52,7 +57,7 @@ export default function Connect() {
                 <Text>Looks like you are already connected</Text>
                 <Button
                   isFullWidth
-                  onClick={disconnectWallet}
+                  onClick={disconnect}
                   mt="8px"
                   variant="outline"
                   bg="white"
@@ -86,7 +91,7 @@ export default function Connect() {
                       <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
                     </AspectRatio>
                   }
-                  onClick={() => connectWallet("injected")}
+                  onClick={() => connectWithMetamask()}
                 >
                   MetaMask
                 </Button>
@@ -100,7 +105,7 @@ export default function Connect() {
                       <Image src="https://thirdweb.com/logos/walletconnect-logo.svg" />
                     </AspectRatio>
                   }
-                  onClick={() => connectWallet("walletconnect")}
+                  onClick={() => connectWithWalletConnect()}
                 >
                   WalletConnect
                 </Button>
@@ -113,7 +118,7 @@ export default function Connect() {
                       <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
                     </AspectRatio>
                   }
-                  onClick={() => connectWallet("walletlink")}
+                  onClick={() => connectWithCoinbaseWallet}
                 >
                   Coinbase Wallet
                 </Button>

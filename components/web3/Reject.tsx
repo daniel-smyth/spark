@@ -10,7 +10,6 @@ function Reject() {
       alignItems="center"
       justifyContent={"center"}
     >
-      <Spinner color={"blue.500"} />
       <Stack alignItems="center">
         <Text size="lg">No wallet connected.</Text>
         <Text size="md">

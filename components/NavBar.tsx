@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, LinkIcon } from "@chakra-ui/icons";
 import Spark3Black from "./logo/spark3black";
-import { ConnectWallet } from "@3rdweb/react";
+// import { ConnectWallet } from "@3rdweb/react";
 
 const Links = [
   ["Create Collection", "/create/getstarted"],
@@ -76,14 +76,14 @@ export default function NavBar() {
           >
             {isOpen ? <CloseIcon /> : <LinkIcon />}
           </Button>
-          <ConnectWallet
+          {/* <ConnectWallet
             display={{ base: "none", md: "flex" }}
             variant={"solid"}
             height={"39px"}
             fontSize={"12px"}
             padding={"16px"}
             rounded={"2xl"}
-          />
+          /> */}
         </Flex>
       </Flex>
       {isOpen ? (

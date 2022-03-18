@@ -1,4 +1,3 @@
-import { useWeb3 } from "@3rdweb/hooks";
 import {
   Box,
   Button,
@@ -12,6 +11,7 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+import { useAddress, useCoinbaseWallet, useDisconnect, useMetamask, useWalletConnect } from "@thirdweb-dev/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -27,16 +27,20 @@ function LogIn(props: any) {
 
   // ThirdWeb and User props.
   const [emailAddress, setEmailAddress] = useState("");
-  const { address, connectWallet } = useWeb3();
+  const connectWithMetamask = useMetamask();
+  const connectWithWalletConnect = useWalletConnect();
+  const connectWithCoinbaseWallet = useCoinbaseWallet();
+  const disconnectWallet = useDisconnect();
+  const address = useAddress();
 
   // For button.
   const [isConnecting, setConnecting] = useState(false);
 
-  // Connectors.
-  const connectMagic = async () => {
-    setConnecting(true);
-    connectWallet("magic", { email: emailAddress });
-  };
+  // TODO Magic connector.
+  // const connectMagic = async () => {
+  //   setConnecting(true);
+  //   connectWallet("magic", { email: emailAddress });
+  // };
 
   // Route if user logged in.
   if (address) router.push(props.href);
@@ -63,9 +67,10 @@ function LogIn(props: any) {
               Connecting
             </Button>
           ) : (
-            <Button onClick={connectMagic} size="md" variant="solid">
-              Create Account
-            </Button>
+            null
+            // <Button onClick={connectMagic} size="md" variant="solid">
+            //   Create Account
+            // </Button>
           )}
         </Stack>
       </Stack>

@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import {
-  Box,
   Button,
   FormControl,
   FormLabel,
-  Heading,
   Input,
   Stack,
   Text,
-  useColorModeValue,
 } from "@chakra-ui/react";
-import FormBackground from "../../form/FormBackground";
 import FormNumberInput from "../../form/FormNumberInput";
 
 interface SetCollectionProps {
@@ -18,7 +14,7 @@ interface SetCollectionProps {
   setState: any;
 }
 
-function SetCollectionProperties(props: SetCollectionProps) {
+function CollectionInputForm(props: SetCollectionProps) {
   const [isLoading, setLoading] = useState(false);
 
   function scrollToTop() {
@@ -86,7 +82,7 @@ function SetCollectionProperties(props: SetCollectionProps) {
               variant="solid"
               type="submit"
             >
-              Submit
+              Create Collection
             </Button>
           )}
         </Stack>
@@ -95,4 +91,4 @@ function SetCollectionProperties(props: SetCollectionProps) {
   );
 }
 
-export default SetCollectionProperties;
+export default CollectionInputForm;

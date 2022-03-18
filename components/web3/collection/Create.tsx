@@ -1,18 +1,21 @@
+import React, { useEffect, useState } from "react";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { useSigner } from "@thirdweb-dev/react";
 import {
   Button,
+  Flex,
   Heading,
   Image,
+  SimpleGrid,
   Spinner,
   Stack,
   Text,
   Wrap,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
-import { startCreating } from "../../../lib/hashlips/createArt";
-import DownloadImages from "./Download";
-import MintImagesV2 from "./Mint";
+import { runHashlips } from "../../../lib/hashlips/createArt";
+import { downloadJSZip } from "../../../lib/jszip/download";
 
-interface CreateImagesProps {
+interface CreateCollectionProps {
   info: {
     size: number;
     name: string;
@@ -24,24 +27,66 @@ interface CreateImagesProps {
   layerObjs: any[];
 }
 
-function CreateImages(props: CreateImagesProps) {
+function Create(props: CreateCollectionProps) {
+  const signer = useSigner();
   const [imgSrcs, setImgSrcs] = useState<string[]>();
-  const [downloadInitiated, setDownloadInitiated] = useState(false);
+  const [moduleInitialised, setModuleInitialised] = useState<boolean>(false);
+  const [mintComplete, setMintComplete] = useState<boolean>(false);
+  const [buttonText, setButtonText] = useState<string>("Download Collection");
+  const [buttonVariant, setButtonVariant] = useState<string>("solid");
 
   useEffect(() => {
-    // Run Hashlips art engine and add the img results to this state.
-    const createImages = async () => {
-      // Hashlips.
-      const images = await startCreating(props.info.size, props.layerObjs);
-      // Set this this state to display the images.
-      setImgSrcs(images);
-    };
-    createImages(); // run
-  }, []);
+    // Step 1: Artwork created.
+    const createArtwork = async () =>
+      setImgSrcs(await runHashlips(props.info.size, props.layerObjs));
 
-  // Renders the download component initiating download of ZIP containing images.
-  function handleClick() {
-    if (imgSrcs) setDownloadInitiated(true);
+    if (!imgSrcs) createArtwork();
+
+    if (imgSrcs && signer && !mintComplete) {
+      const sdk = new ThirdwebSDK(signer!);
+
+      const mint = async () => {
+        const address = await sdk.deployer.deployNFTCollection({
+          name: props.info.name,
+          primary_sale_recipient: props.info.saleRecipient,
+        });
+
+        // Step 2: Module created.
+        const collection = sdk.getNFTCollection(address);
+        if (collection) setModuleInitialised(true);
+        collection.estimator;
+
+        console.time("Minting time");
+        console.log(`Minting ${props.info.size} images.`);
+
+        const nfts = [];
+        for (let i = 1; i <= props.info.size; i++) {
+          nfts.push({
+            description: props.info.description,
+            image: imgSrcs[i],
+            external_url: imgSrcs[i],
+            name: `${props.info.prefix}${i}.`,
+          });
+        }
+
+        try {
+          // Step 3: Mint collection..
+          console.log(await collection.mintBatchTo(props.info.mintTo, nfts));
+          console.timeEnd("Minting time");
+          setMintComplete(true);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+
+      mint();
+    }
+  }, [imgSrcs]);
+
+  function downloadZip() {
+    setButtonText("Download started...");
+    setButtonVariant("outline");
+    downloadJSZip(imgSrcs!, props.info.name, props.info.prefix);
   }
 
   // Renders the image results.
@@ -62,103 +107,72 @@ function CreateImages(props: CreateImagesProps) {
         >
           <Spinner color={"blue.500"} />
           <Stack alignItems="center">
-            <Text size="lg">Creating images.</Text>
-            <Text size="md">This may take a few minutes.</Text>
+            <Text size="lg">Creating {props.info.size} images.</Text>
           </Stack>
         </Stack>
       ) : (
-        <Stack maxW={"100%"} px={8} py={10} spacing={6}>
-          <>
+        <>
+          {!moduleInitialised ? (
             <Stack
-              spacing={6}
-              maxW={"700px"}
-              alignSelf={"center"}
-              alignItems={"center"}
+              minH={"50vh"}
+              spacing={8}
+              py={10}
+              alignItems="center"
+              justifyContent={"center"}
             >
-              <Heading
-                display={{ md: "none" }}
-                fontSize={{ base: "2xl", md: "3xl" }}
-              >
-                Artwork created
-              </Heading>
-              <MintImagesV2
-                size={props.info.size}
-                name={props.info.name}
-                description={props.info.description}
-                prefix={props.info.prefix}
-                mintAddress={props.info.mintTo}
-                saleRecipient={props.info.saleRecipient}
-                imgSrcs={imgSrcs}
-              />
-              <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-                That's it!
-              </Heading>
-              <Stack spacing={1} align={"center"}>
-                <Text size="lg">
-                  You just started to mint {props.info.size} NFTs to{" "}
-                  {props.info.mintTo.substring(0, 15)}...
-                </Text>
-                <Text
-                  variant="bold"
-                  display={"flex"}
-                  alignItems={"center"}
-                  size="lg"
-                >
-                  DO NOT LEAVE THIS PAGE.
-                </Text>
-                <Text
-                  variant="bold"
-                  display={"flex"}
-                  alignItems={"center"}
-                  size="lg"
-                >
-                  You will be asked to confirm two MetaMask transactions.
-                </Text>
+              <Spinner color={"blue.500"} />
+              <Stack alignItems="center">
+                <Text size="lg">Minting {props.info.size} images.</Text>
+                <Text size="md">This may take a few minutes.</Text>
               </Stack>
-              {!downloadInitiated ? (
-                <Button
-                  minW={{ base: "100%", md: "40%" }}
-                  size={"md"}
-                  variant={"solid"}
-                  onClick={handleClick}
-                  alignSelf={"center"}
-                >
-                  Download images
-                </Button>
-              ) : (
-                <>
-                  <DownloadImages
-                    imgSrcs={imgSrcs}
-                    name={props.info.name}
-                    prefiz={props.info.prefix}
-                  />
-                  <Button
-                    minW={{ base: "100%", md: "40%" }}
-                    size={"md"}
-                    variant={"outline"}
-                    onClick={handleClick}
-                    alignSelf={"center"}
-                  >
-                    Download starting..
-                  </Button>
-                  <Text size={"md"}>
-                    Creating zip file.. This can also take a few minutes..
-                  </Text>
-                </>
-              )}
             </Stack>
-          </>
-
+          ) : (
+            <Stack maxW={"100%"} px={8} py={10} spacing={6}>
+              <Stack
+                spacing={6}
+                maxW={"700px"}
+                alignSelf={"center"}
+                alignItems={"center"}
+              >
+                <Heading
+                  display={{ md: "none" }}
+                  fontSize={{ base: "2xl", md: "3xl" }}
+                >
+                  Artwork created
+                </Heading>{" "}
+                <Heading fontSize={{ base: "2xl", md: "3xl" }}>
+                  That's it!
+                </Heading>
+                <Stack spacing={1} align={"center"}>
+                  <Text size="lg">
+                    You just minted {props.info.size} NFTs to{" "}
+                    {props.info.mintTo.substring(0, 15)}...
+                  </Text>
+                </Stack>
+              </Stack>
+            </Stack>
+          )}
           <Stack spacing={2} border={"8px"} p={2} borderColor="gray.200">
-            <Heading pl={4} fontSize={{ base: "2xl", md: "3xl" }}>
-              {props.info.name}
-            </Heading>
+            <Flex py={4}>
+              <Heading pr={10} pl={4} fontSize={{ base: "2xl", md: "3xl" }}>
+                {props.info.name}
+              </Heading>
+              <Button
+                onClick={downloadZip}
+                variant={buttonVariant}
+                maxW={"250px"}
+                size={"md"}
+                alignSelf={"right"}
+              >
+                {buttonText}
+              </Button>
+            </Flex>
             <Wrap p={4}>{imageComponents}</Wrap>
           </Stack>
-        </Stack>
+        </>
       )}
     </>
   );
 }
 
-export default CreateImages;
+export default Create;

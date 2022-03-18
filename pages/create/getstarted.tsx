@@ -1,9 +1,9 @@
 import { Container, Heading, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import { useWeb3 } from "@3rdweb/hooks";
 import { useRouter } from "next/router";
 import Connect from "../../components/web3/Connect";
 import { withRouter } from "next/router";
+import { useAddress } from "@thirdweb-dev/react";
 
 /**
  * Renders a product description component with pricing card an a collection
@@ -12,10 +12,10 @@ import { withRouter } from "next/router";
  * @returns product page
  */
 function Page(props: any) {
-  const { provider } = useWeb3();
+  const address = useAddress()
   const router = useRouter();
 
-  if (provider) {
+  if (address) {
     if (props.router.query.size) {
       router.push({
         pathname: "/create/collection",

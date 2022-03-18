@@ -1,21 +1,14 @@
-import { useWeb3 } from "@3rdweb/hooks";
 import React, { useState } from "react";
-import SetCollectionProperties from "../../components/web3/collection/EnterInfo";
-import UploadLayersAsFolders from "../../components/web3/collection/UploadFolders";
-import {
-  Box,
-  Heading,
-  SimpleGrid,
-  Spinner,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
 import { withRouter } from "next/router";
-import CreateCollectionContainer from "../../components/form/CreateCollectionContainer";
-import UploadLayers from "../../components/web3/collection/UploadFiles";
+import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+import { useAddress } from "@thirdweb-dev/react";
 import Spark3Black from "../../components/logo/spark3black";
-import CreateImages from "../../components/web3/collection/Create";
 import Reject from "../../components/web3/Reject";
+import CreateCollectionContainer from "../../components/form/CreateCollectionContainer";
+import UploadFiles from "../../components/web3/collection/UploadFiles";
+import UploadLayersAsFolders from "../../components/web3/collection/UploadFolders";
+import CollectionInputForm from "../../components/web3/collection/InputForm";
+import Create from "../../components/web3/collection/Create";
 
 /**
  * Contains all components. Props may contain a preset collection size
@@ -40,7 +33,7 @@ function CreateCollection(props: any) {
   const [layerObjects, setLayerObjects] = useState<any[]>();
 
   // ThirdWeb.
-  const { provider } = useWeb3();
+  const address = useAddress();
 
   // TODO
   function getUploadMethod() {
@@ -49,10 +42,10 @@ function CreateCollection(props: any) {
 
   return (
     <>
-      {provider ? (
+      {address ? (
         <>
           {info && layerObjects ? (
-            <CreateImages info={info} layerObjs={layerObjects} />
+            <Create info={info} layerObjs={layerObjects} />
           ) : (
             <CreateCollectionContainer>
               <SimpleGrid columns={{ base: 1, md: 2 }} pb={8}>
@@ -64,10 +57,10 @@ function CreateCollection(props: any) {
 
               {!layerObjects ? (
                 <>
-                  <UploadLayers setState={setLayerObjects} />
+                  <UploadFiles setState={setLayerObjects} />
                 </>
               ) : !info ? (
-                <SetCollectionProperties presetSize={size} setState={setInfo} />
+                <CollectionInputForm presetSize={size} setState={setInfo} />
               ) : null}
             </CreateCollectionContainer>
           )}
