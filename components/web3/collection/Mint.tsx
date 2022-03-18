@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useSigner } from "@thirdweb-dev/react";
 import {
+  Box,
   Button,
   Flex,
   Heading,
@@ -14,6 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { runHashlips } from "../../../lib/hashlips/createArt";
 import { downloadJSZip } from "../../../lib/jszip/download";
+import Spark3Black from "../../logo/spark3black";
 
 interface CreateCollectionProps {
   info: {
@@ -73,6 +75,7 @@ function Create(props: CreateCollectionProps) {
           // Step 3: Mint collection..
           console.log(await collection.mintBatchTo(props.info.mintTo, nfts));
           console.timeEnd("Minting time");
+          // Step 4: Mint complete.
           setMintComplete(true);
         } catch (err) {
           console.log(err);
@@ -106,24 +109,39 @@ function Create(props: CreateCollectionProps) {
           justifyContent={"center"}
         >
           <Spinner color={"blue.500"} />
-          <Stack alignItems="center">
-            <Text size="lg">Creating {props.info.size} images.</Text>
-          </Stack>
         </Stack>
       ) : (
         <>
-          {!mintComplete ? (
+          {!moduleInitialised ? (
             <Stack
               minH={"50vh"}
               spacing={8}
-              py={6}
+              py={4}
               alignItems="center"
               justifyContent={"center"}
             >
               <Spinner color={"blue.500"} />
-              <Stack alignItems="center">
-                <Text size="lg">Minting {props.info.size} images.</Text>
-                <Text size="md">This may take a few minutes.</Text>
+              <Stack spacing={8} alignItems="center">
+                <Stack alignItems="center">
+                  <Text size="lg">
+                    Creating{" "}
+                    <span style={{ fontWeight: 700 }}>{props.info.name}</span>{" "}
+                    ERC721 collection contract.
+                  </Text>
+                  <Text size="lg">
+                    You will be asked to confirm one transaction.
+                  </Text>
+                </Stack>
+                <Stack spacing={2} alignItems="center">
+                  <Text style={{ fontWeight: 700 }} color={"red.500"} size="sm">
+                    This may take a few minutes. Do not leave this page.
+                  </Text>
+                  <Text size="sm">
+                    Any issues relating to the duration of this process are
+                    caused by your cryptocurrency's network.
+                  </Text>
+                </Stack>
+                <Spark3Black width={60} />
               </Stack>
             </Stack>
           ) : (
@@ -146,29 +164,37 @@ function Create(props: CreateCollectionProps) {
                 <Stack spacing={1} align={"center"}>
                   <Text size="lg">
                     You just minted {props.info.size} NFTs to{" "}
+                    <span style={{ fontWeight: 2 }}></span>
                     {props.info.mintTo.substring(0, 15)}...
                   </Text>
+                  <Text size="lg">
+                    Your collection can take some time to appear. Leave this
+                    page open to check the status of your transaction.
+                  </Text>
+                  <Text>Thank you for using spark.</Text>
                 </Stack>
               </Stack>
             </Stack>
           )}
-          <Stack spacing={2} border={"8px"} p={2} borderColor="gray.200">
-            <Flex py={4}>
-              <Heading pr={10} pl={4} fontSize={{ base: "2xl", md: "3xl" }}>
-                {props.info.name}
-              </Heading>
-              <Button
-                onClick={downloadZip}
-                variant={buttonVariant}
-                maxW={"250px"}
-                size={"md"}
-                alignSelf={"right"}
-              >
-                {buttonText}
-              </Button>
-            </Flex>
-            <Wrap p={4}>{imageComponents}</Wrap>
-          </Stack>
+          <Box p={8}>
+            <Stack spacing={2} border={"4px"} p={2} borderColor="gray.200">
+              <Flex py={2}>
+                <Heading pr={10} pl={4} fontSize={{ base: "2xl", md: "3xl" }}>
+                  {props.info.name}
+                </Heading>
+                <Button
+                  onClick={downloadZip}
+                  variant={buttonVariant}
+                  maxW={"250px"}
+                  size={"sm"}
+                  alignSelf={"right"}
+                >
+                  {buttonText}
+                </Button>
+              </Flex>
+              <Wrap p={4}>{imageComponents}</Wrap>
+            </Stack>
+          </Box>
         </>
       )}
     </>
