@@ -34,7 +34,6 @@ function CreateCollection(props: any) {
     saleRecipient: string;
   };
   const [info, setInfo] = useState(collectionDetails!);
-
   let size = props.router.query.size ? props.router.query.size : 0;
 
   // Layer objects contain all data required for Hashlips
@@ -48,10 +47,6 @@ function CreateCollection(props: any) {
     <UploadLayersAsFolders setState={setLayerObjects} />;
   }
 
-  function title() {
-    return <Heading size="md">Set Layer Order</Heading>;
-  }
-
   return (
     <>
       {provider ? (
@@ -61,10 +56,10 @@ function CreateCollection(props: any) {
           ) : (
             <CreateCollectionContainer>
               <SimpleGrid columns={{ base: 1, md: 2 }} pb={8}>
-                <Heading size="md">Upload Layers</Heading>
-                <Box display={{ base: "none", md: "flex" }} pl={32}>
+                <Box display={{ base: "none", md: "flex" }}>
                   <Spark3Black width={60} />
                 </Box>
+                <Heading size="md">Upload Layers</Heading>
               </SimpleGrid>
 
               {!layerObjects ? (

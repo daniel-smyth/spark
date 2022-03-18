@@ -75,6 +75,12 @@ function UploadLayers(props: any) {
 
   const setLayerOrderComponents = [];
   if (allLayerImageSrcs.length != 0) {
+    layerNames.sort(function (a, b) {
+      if (a < b) return -1;
+      if (a > b) return 1;
+      return 0;
+    });
+
     const layerOptions = [];
     for (let i = 0; i < layerNames.length; i++) {
       layerOptions.push(

@@ -95,11 +95,24 @@ function CreateImages(props: CreateImagesProps) {
               </Heading>
               <Stack spacing={1} align={"center"}>
                 <Text size="lg">
-                  You just minted {props.info.size} NFTs to{" "}
-                  {props.info.mintTo.substring(0, 6)}...
+                  You just started to mint {props.info.size} NFTs to{" "}
+                  {props.info.mintTo.substring(0, 15)}...
                 </Text>
-                <Text display={"flex"} alignItems={"center"} size="lg">
-                  NFT token addresses will be emailed within 24 hours.
+                <Text
+                  variant="bold"
+                  display={"flex"}
+                  alignItems={"center"}
+                  size="lg"
+                >
+                  DO NOT LEAVE THIS PAGE.
+                </Text>
+                <Text
+                  variant="bold"
+                  display={"flex"}
+                  alignItems={"center"}
+                  size="lg"
+                >
+                  You will be asked to confirm two MetaMask transactions.
                 </Text>
               </Stack>
               {!downloadInitiated ? (
