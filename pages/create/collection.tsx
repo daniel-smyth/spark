@@ -8,7 +8,7 @@ import CreateCollectionContainer from "../../components/form/CreateCollectionCon
 import UploadFiles from "../../components/web3/collection/UploadFiles";
 import UploadLayersAsFolders from "../../components/web3/collection/UploadFolders";
 import CollectionInputForm from "../../components/web3/collection/InputForm";
-import Create from "../../components/web3/collection/Create";
+import Create from "../../components/web3/collection/Mint";
 
 /**
  * Contains all components. Props may contain a preset collection size
@@ -52,7 +52,6 @@ function CreateCollection(props: any) {
                 <Box display={{ base: "none", md: "flex" }}>
                   <Spark3Black width={60} />
                 </Box>
-                <Heading size="md">Upload Layers</Heading>
               </SimpleGrid>
 
               {!layerObjects ? (

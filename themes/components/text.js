@@ -4,6 +4,9 @@ const Text = {
   },
   // Two sizes: sm and md
   sizes: {
+    sm: {
+      fontSize: "14px",
+    },
     lg: {
       fontSize: "lg",
     },

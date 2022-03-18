@@ -14,7 +14,7 @@ function CreateCollectionContainer({ children }: { children: any }) {
     <Container display={"flex"}>
       <Stack
         spacing={6}
-        py={10}
+        py={14}
         px={{ base: 3, md: 14 }}
         bg={useColorModeValue("gray.50", "gray.800")}
         minW={"100%"}
@@ -23,7 +23,8 @@ function CreateCollectionContainer({ children }: { children: any }) {
           rounded={"lg"}
           bg={useColorModeValue("white", "gray.700")}
           boxShadow={"lg"}
-          p={8}
+          px={8}
+          py={12}
         >
           {children}
         </Box>

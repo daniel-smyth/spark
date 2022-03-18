@@ -15,13 +15,6 @@ function UploadLayers(props: any) {
     });
   }
 
-  function addLayerName(name: string) {
-    if (!layerNames.includes(name)) {
-      layerNames.push(name);
-      setLayerNames(layerNames);
-    }
-  }
-
   function uploadFiles(files: FileList) {
     console.log("Uploading layers... ");
     for (let i = 0; i < files.length; i++) {
@@ -45,6 +38,27 @@ function UploadLayers(props: any) {
     }
     console.log("Layers uploaded: ", layers);
     setLayerImageSrcs(layers);
+
+    function addLayerName(name: string) {
+      if (!layerNames.includes(name)) {
+        layerNames.push(name);
+        setLayerNames(layerNames);
+      }
+    }
+  }
+
+  function changeLayerOrder(e: any, i: number) {
+    const layerName = e.target.value;
+    const layerPosition = i;
+    const index = allLayerImageSrcs.indexOf(
+      allLayerImageSrcs.find((layer) => (layer[0] == layerName ? layer : null))
+    );
+    const splicedLayer = allLayerImageSrcs.splice(index, 1);
+    allLayerImageSrcs.splice(layerPosition, 0, splicedLayer[0]);
+  }
+
+  function resetLayers() {
+    setLayerImageSrcs([]);
   }
 
   function handleSubmit(event: any) {
@@ -61,16 +75,6 @@ function UploadLayers(props: any) {
     }
     console.log("Layers created: ", layerObjects);
     props.setState(layerObjects);
-  }
-
-  function changeLayerOrder(e: any, i: number) {
-    const layerName = e.target.value;
-    const layerPosition = i;
-    const index = allLayerImageSrcs.indexOf(
-      allLayerImageSrcs.find((layer) => (layer[0] == layerName ? layer : null))
-    );
-    const splicedLayer = allLayerImageSrcs.splice(index, 1);
-    allLayerImageSrcs.splice(layerPosition, 0, splicedLayer[0]);
   }
 
   const setLayerOrderComponents = [];
@@ -108,6 +112,7 @@ function UploadLayers(props: any) {
       <Stack spacing={6}>
         {allLayerImageSrcs.length == 0 ? (
           <>
+            <Heading size="md">Upload Layers</Heading>
             <Text size="md" alignSelf={"center"}>
               Spark3 detects traits from your image file name. Follow our naming
               convention:
@@ -125,6 +130,7 @@ function UploadLayers(props: any) {
           </>
         ) : (
           <>
+            <Heading size="md">Layer Order</Heading>
             <Text size="md">Pick the layer order. 1 is the background.</Text>
             {setLayerOrderComponents}
             <Button
@@ -133,8 +139,14 @@ function UploadLayers(props: any) {
               variant="solid"
               type="submit"
             >
-              Submit
+              Upload layers
             </Button>
+            <Text px={2} pt={1} size={"md"}>
+              Make a mistake?{" "}
+              <Link color={"blue.400"} onClick={resetLayers}>
+                Go back
+              </Link>
+            </Text>
           </>
         )}
       </Stack>
