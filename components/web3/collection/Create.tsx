@@ -101,7 +101,7 @@ function Create(props: CreateCollectionProps) {
         <Stack
           minH={"50vh"}
           spacing={8}
-          py={10}
+          py={6}
           alignItems="center"
           justifyContent={"center"}
         >
@@ -112,11 +112,11 @@ function Create(props: CreateCollectionProps) {
         </Stack>
       ) : (
         <>
-          {!moduleInitialised ? (
+          {!mintComplete ? (
             <Stack
               minH={"50vh"}
               spacing={8}
-              py={10}
+              py={6}
               alignItems="center"
               justifyContent={"center"}
             >
