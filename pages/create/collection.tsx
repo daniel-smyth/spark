@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { withRouter } from "next/router";
-import { Box, Heading, SimpleGrid } from "@chakra-ui/react";
+import { Grid, GridItem, Heading } from "@chakra-ui/react";
 import { useAddress } from "@thirdweb-dev/react";
 import Spark3Black from "../../components/logo/spark3black";
 import Reject from "../../components/web3/Reject";
@@ -48,16 +48,8 @@ function CreateCollection(props: any) {
             <Create info={info} layerObjs={layerObjects} />
           ) : (
             <CreateCollectionContainer>
-              <SimpleGrid columns={{ base: 1, md: 2 }} pb={8}>
-                <Box display={{ base: "none", md: "flex" }}>
-                  <Spark3Black width={60} />
-                </Box>
-              </SimpleGrid>
-
               {!layerObjects ? (
-                <>
-                  <UploadFiles setState={setLayerObjects} />
-                </>
+                <UploadFiles setState={setLayerObjects} />
               ) : !info ? (
                 <CollectionInputForm presetSize={size} setState={setInfo} />
               ) : null}

@@ -3,11 +3,15 @@ import {
   Button,
   FormControl,
   FormLabel,
+  Grid,
+  GridItem,
+  Heading,
   Input,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import FormNumberInput from "../../form/FormNumberInput";
+import Spark3Black from "../../logo/spark3black";
 
 interface SetCollectionProps {
   presetSize: number;
@@ -51,10 +55,19 @@ function CollectionInputForm(props: SetCollectionProps) {
 
   return (
     <form onSubmit={handleFormData}>
+      <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
+        <GridItem colSpan={3} h="8">
+          <Heading size="md">Enter Collection Info</Heading>
+        </GridItem>
+        <GridItem colStart={6} colEnd={8} h="8">
+          <Spark3Black width={60} />
+        </GridItem>
+      </Grid>
       <Stack spacing={12}>
         <Stack spacing={6}>
           <Text size="md">
-            Enter the metadata to be stored with your NFT collection
+            Collection name, description and prefix will be the properties of
+            your NFT collection.
           </Text>
           <FormNumberInput
             label="Collection size"

@@ -1,12 +1,25 @@
-import { Stack, Link, Heading, Button, Text, Select } from "@chakra-ui/react";
+import {
+  Stack,
+  Link,
+  Heading,
+  Button,
+  Text,
+  Select,
+  Grid,
+  GridItem,
+  Image,
+  Box,
+} from "@chakra-ui/react";
 import React, { useState } from "react";
 import { getLayer } from "../../../lib/hashlips/createArt";
+import Spark3Black from "../../logo/spark3black";
 import UploadImageFiles from "../../utils/UploadImageFiles";
 
 function UploadLayers(props: any) {
   const [layerNames, setLayerNames] = useState<string[]>([]);
   const [layerCount, setLayerCount] = useState(8);
   const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
+  const [headingText, setHeadingText] = useState("Upload Images");
 
   function scrollToTop() {
     window.scrollTo({
@@ -37,7 +50,9 @@ function UploadLayers(props: any) {
       });
     }
     console.log("Layers uploaded: ", layers);
+    setLayerImageSrcs([]);
     setLayerImageSrcs(layers);
+    setHeadingText("Set Layer Order");
 
     function addLayerName(name: string) {
       if (!layerNames.includes(name)) {
@@ -77,7 +92,8 @@ function UploadLayers(props: any) {
     props.setState(layerObjects);
   }
 
-  const setLayerOrderComponents = [];
+  const layerOrderComponent = [];
+  const layerNamesString = [];
   if (allLayerImageSrcs.length != 0) {
     layerNames.sort(function (a, b) {
       if (a < b) return -1;
@@ -94,7 +110,7 @@ function UploadLayers(props: any) {
       );
     }
     for (let i = 0; i < layerCount; i++) {
-      setLayerOrderComponents.push(
+      layerOrderComponent.push(
         <Select
           onChange={(e) => changeLayerOrder(e, i)}
           key={i}
@@ -105,34 +121,57 @@ function UploadLayers(props: any) {
         </Select>
       );
     }
+
+    const string = layerNames.join(", ");
+    layerNamesString.push(<Text variant="badge"> {string}</Text>);
   }
 
   return (
     <form onSubmit={handleSubmit}>
+      <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
+        <GridItem colSpan={3} h="8">
+          <Heading size="md">{headingText}</Heading>
+        </GridItem>
+        <GridItem colStart={6} colEnd={8} h="8">
+          <Spark3Black width={60} />
+        </GridItem>
+      </Grid>
       <Stack spacing={6}>
         {allLayerImageSrcs.length == 0 ? (
           <>
-            <Heading size="md">Upload Layers</Heading>
-            <Text size="md" alignSelf={"center"}>
-              Spark3 detects traits from your image file name. Follow our naming
-              convention:
-            </Text>
-            <Text variant={"bold"} size="md" alignSelf={"center"}>
-              "LAYERNAME_TRAITNAME.png"
+            <Text size="md">
+              Spark3 will detect NFT trait types and trait names from your image
+              file name. Follow our naming convention:
             </Text>
             <Text size={"md"}>
-              What are layers?{" "}
-              <Link color={"blue.400"} href="/about/layers">
+              What is a layer?{" "}
+              <Link color={"blue.400"} href="/about/images">
                 Layers
               </Link>
             </Text>
-            <UploadImageFiles handleUpload={uploadFiles} />
+            <Text variant={"bold"} size="md" alignSelf={"center"}>
+              "TRAITTYPE_TRAIT.png"
+            </Text>
+            <Box py={2}>
+              <UploadImageFiles handleUpload={uploadFiles} />
+            </Box>
+            <Box px={4} pb={4}>
+              <Text pb={2} pl={4} fontSize={"sm"}>
+                <span style={{ fontStyle: "italic" }}>
+                  Trait types: Background, Eyes, Fur, Mouth.
+                </span>
+              </Text>
+              <Image shadow={"md"} src="/sampleCollection.jpg" />
+            </Box>
           </>
         ) : (
           <>
-            <Heading size="md">Layer Order</Heading>
-            <Text size="md">Pick the layer order. 1 is the background.</Text>
-            {setLayerOrderComponents}
+            {layerNamesString}
+            <Text size="md">
+              Set the layer order of images. Layer 1 is the background and layer
+              2 will be printed over layer 1, layer 3 over layer 2 and so on.
+            </Text>
+            {layerOrderComponent}
             <Button
               onClick={scrollToTop}
               size="md"

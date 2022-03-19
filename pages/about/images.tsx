@@ -94,9 +94,13 @@ export default function ImagesInfo() {
             />
             <SimpleGrid columns={{ base: 1, md: 2 }}>
               <Box pb={{ base: 8, md: 0 }} px={{ base: 0, md: 8 }}>
-                <Image shadow={"lg"} src="/layersScreenshot.jpg"></Image>
+                <Image
+                  maxW={"400px"}
+                  shadow={"lg"}
+                  src="/sampleCollection.jpg"
+                ></Image>
                 <Text pt={2} pl={4} fontSize={"sm"}>
-                  {italic(`"Background" and "hat" layers`)}
+                  {italic(`Example with 4 layers`)}
                 </Text>
               </Box>
               <Stack py={2} px={{ base: "none", md: 8 }} spacing={5}>
@@ -104,7 +108,7 @@ export default function ImagesInfo() {
                   {bold("Spark3 will detect the layer name from the image")} .
                   We handle the rest including NFT metadata.
                 </Text>
-                <Text size="md">{bold(`"LAYERNAME_TRAITNAME.png"`)}</Text>
+                <Text size="md">{bold(`"TRAITTYPE_TRAIT.png"`)}</Text>
                 <Text pt={1} size={"md"}>
                   Ready to start?{" "}
                   <Link color={"blue.400"} href="/create/collection">

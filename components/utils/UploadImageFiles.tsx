@@ -53,7 +53,9 @@ function UploadImageFiles(props: any) {
             />
           }
           {!uploaded ? (
-            <Text color={"black"}>Click to upload layers {props.index}</Text>
+            <Text color={"black"}>
+              Click to upload collection {props.index}
+            </Text>
           ) : (
             <Text variant="bold" color={"black"}>
               <CheckIcon /> {imageFolderName}

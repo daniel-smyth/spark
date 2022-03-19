@@ -34,7 +34,9 @@ function Create(props: CreateCollectionProps) {
   const [imgSrcs, setImgSrcs] = useState<string[]>();
   const [moduleInitialised, setModuleInitialised] = useState<boolean>(false);
   const [mintComplete, setMintComplete] = useState<boolean>(false);
-  const [buttonText, setButtonText] = useState<string>("Download Collection");
+  const [buttonText, setButtonText] = useState<string>(
+    `Download ${props.info.name} image files`
+  );
   const [buttonVariant, setButtonVariant] = useState<string>("solid");
 
   useEffect(() => {
@@ -59,7 +61,7 @@ function Create(props: CreateCollectionProps) {
         collection.estimator;
 
         console.time("Minting time");
-        console.log(`Minting ${props.info.size} images.`);
+        console.log(`Starting to mint ${props.info.size} images.`);
 
         const nfts = [];
         for (let i = 1; i <= props.info.size; i++) {
@@ -73,6 +75,7 @@ function Create(props: CreateCollectionProps) {
 
         try {
           // Step 3: Mint collection..
+          console.log(`Minting ${props.info.size} images.`);
           console.log(await collection.mintBatchTo(props.info.mintTo, nfts));
           console.timeEnd("Minting time");
           // Step 4: Mint complete.
@@ -102,97 +105,86 @@ function Create(props: CreateCollectionProps) {
     <>
       {!imgSrcs ? (
         <Stack
-          minH={"50vh"}
+          minH={"40vh"}
           spacing={8}
           py={6}
           alignItems="center"
           justifyContent={"center"}
         >
           <Spinner color={"blue.500"} />
+          <Text size="lg">Working on it..</Text>
         </Stack>
       ) : (
         <>
-          {!moduleInitialised ? (
+          {!mintComplete ? (
             <Stack
-              minH={"50vh"}
-              spacing={8}
-              py={4}
+              spacing={10}
+              py={8}
               alignItems="center"
               justifyContent={"center"}
             >
               <Spinner color={"blue.500"} />
-              <Stack spacing={8} alignItems="center">
-                <Stack alignItems="center">
-                  <Text size="lg">
-                    Creating{" "}
-                    <span style={{ fontWeight: 700 }}>{props.info.name}</span>{" "}
-                    ERC721 collection contract.
-                  </Text>
-                  <Text size="lg">
-                    You will be asked to confirm one transaction.
-                  </Text>
-                </Stack>
-                <Stack spacing={2} alignItems="center">
-                  <Text style={{ fontWeight: 700 }} color={"red.500"} size="sm">
-                    This may take a few minutes. Do not leave this page.
-                  </Text>
-                  <Text size="sm">
-                    Any issues relating to the duration of this process are
-                    caused by your cryptocurrency's network.
-                  </Text>
-                </Stack>
-                <Spark3Black width={60} />
+              <Stack spacing={2} alignItems={"center"}>
+                {!moduleInitialised ? (
+                  <Heading size={"md"}>
+                    Creating {props.info.name} ERC721 collection contract
+                  </Heading>
+                ) : (
+                  <Heading size="md">
+                    Creating {props.info.size} Non-fungible tokens (NFTs).
+                  </Heading>
+                )}
+                <Text size="lg">
+                  You will be asked to confirm two transactions.
+                </Text>
+                <Text size="sm">
+                  This may take a few minutes. Do not leave this page.
+                </Text>
               </Stack>
+              <Spark3Black width={60} />
             </Stack>
           ) : (
-            <Stack maxW={"100%"} px={8} py={10} spacing={6}>
-              <Stack
-                spacing={6}
-                maxW={"700px"}
-                alignSelf={"center"}
-                alignItems={"center"}
-              >
-                <Heading
-                  display={{ md: "none" }}
-                  fontSize={{ base: "2xl", md: "3xl" }}
-                >
-                  Artwork created
-                </Heading>{" "}
-                <Heading fontSize={{ base: "2xl", md: "3xl" }}>
-                  That's it!
-                </Heading>
-                <Stack spacing={1} align={"center"}>
-                  <Text size="lg">
-                    You just minted {props.info.size} NFTs to{" "}
-                    <span style={{ fontWeight: 2 }}></span>
-                    {props.info.mintTo.substring(0, 15)}...
-                  </Text>
-                  <Text size="lg">
-                    Your collection can take some time to appear. Leave this
-                    page open to check the status of your transaction.
-                  </Text>
-                  <Text>Thank you for using spark.</Text>
-                </Stack>
+            <Stack
+              spacing={6}
+              py={8}
+              alignItems="center"
+              justifyContent={"center"}
+            >
+              <Heading size={"md"}>
+                {props.info.name} Collection Complete
+              </Heading>
+              <Stack spacing={2} alignItems="center">
+                <Text size="md">
+                  <span style={{ fontWeight: 700 }}>{props.info.size}</span>{" "}
+                  Non-fungible tokens (NFTs) minted
+                </Text>
+                <Text>
+                  Minted to{" "}
+                  <span style={{ fontWeight: 700 }}>{props.info.mintTo}</span>.
+                </Text>
+                <Text size="sm">Thank you for using spark.</Text>
               </Stack>
+              <Spark3Black width={60} />
             </Stack>
           )}
-          <Box p={8}>
-            <Stack spacing={2} border={"4px"} p={2} borderColor="gray.200">
-              <Flex py={2}>
-                <Heading pr={10} pl={4} fontSize={{ base: "2xl", md: "3xl" }}>
-                  {props.info.name}
-                </Heading>
-                <Button
-                  onClick={downloadZip}
-                  variant={buttonVariant}
-                  maxW={"250px"}
-                  size={"sm"}
-                  alignSelf={"right"}
-                >
-                  {buttonText}
-                </Button>
-              </Flex>
-              <Wrap p={4}>{imageComponents}</Wrap>
+          <Box px={8} pb={24}>
+            <Stack
+              alignItems={"center"}
+              spacing={6}
+              border={"4px"}
+              p={6}
+              borderColor="gray.200"
+            >
+              <Heading size={"md"}>{props.info.name} Images Mutliplied</Heading>
+              <Button
+                onClick={downloadZip}
+                variant={buttonVariant}
+                size={"md"}
+                alignSelf={"right"}
+              >
+                {buttonText}
+              </Button>
+              <Wrap>{imageComponents}</Wrap>
             </Stack>
           </Box>
         </>
