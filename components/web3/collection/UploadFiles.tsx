@@ -139,26 +139,24 @@ function UploadLayers(props: any) {
       <Stack spacing={6}>
         {allLayerImageSrcs.length == 0 ? (
           <>
+            <Box py={2}>
+              <UploadImageFiles handleUpload={uploadFiles} />
+            </Box>
             <Text size="md">
-              Spark3 will detect NFT trait types and trait names from your image
-              file name. Follow our naming convention:
-            </Text>
-            <Text size={"md"}>
-              What is a layer?{" "}
+              Spark3 will detect NFT trait types and trait names (
               <Link color={"blue.400"} href="/about/images">
-                Layers
+                What is a trait?
               </Link>
+              ) from your image file name. Follow our naming convention:
             </Text>
             <Text variant={"bold"} size="md" alignSelf={"center"}>
               "TRAITTYPE_TRAIT.png"
             </Text>
-            <Box py={2}>
-              <UploadImageFiles handleUpload={uploadFiles} />
-            </Box>
+
             <Box px={4} pb={4}>
               <Text pb={2} pl={4} fontSize={"sm"}>
                 <span style={{ fontStyle: "italic" }}>
-                  Trait types: Background, Eyes, Fur, Mouth.
+                  Trait examples: Background, Eyes, Fur, Mouth.
                 </span>
               </Text>
               <Image shadow={"md"} src="/sampleCollection.jpg" />

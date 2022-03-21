@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { NFTContractDeployMetadata, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useSigner } from "@thirdweb-dev/react";
 import {
   Box,
   Button,
-  Flex,
   Heading,
   Image,
-  SimpleGrid,
   Spinner,
   Stack,
   Text,
@@ -58,7 +56,7 @@ function Create(props: CreateCollectionProps) {
         // Step 2: Module created.
         const collection = sdk.getNFTCollection(address);
         if (collection) setModuleInitialised(true);
-        collection.estimator;
+        console.log("Collection module: ", collection.estimator);
 
         console.time("Minting time");
         console.log(`Starting to mint ${props.info.size} images.`);

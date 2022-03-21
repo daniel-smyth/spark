@@ -51,7 +51,11 @@ function CreateCollection(props: any) {
               {!layerObjects ? (
                 <UploadFiles setState={setLayerObjects} />
               ) : !info ? (
-                <CollectionInputForm presetSize={size} setState={setInfo} />
+                <CollectionInputForm
+                  presetSize={size}
+                  setState={setInfo}
+                  maxSize={0}
+                />
               ) : null}
             </CreateCollectionContainer>
           )}

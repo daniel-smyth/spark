@@ -15,6 +15,7 @@ import Spark3Black from "../../logo/spark3black";
 
 interface SetCollectionProps {
   presetSize: number;
+  maxSize: number;
   setState: any;
 }
 
@@ -70,9 +71,10 @@ function CollectionInputForm(props: SetCollectionProps) {
             your NFT collection.
           </Text>
           <FormNumberInput
+            maxSize={props.maxSize}
             label="Collection size"
             name="collectionSize"
-            defaultValue={props.presetSize}
+            defaultValue={props.presetSize ? props.presetSize : props.maxSize}
             onChange={undefined}
           />
           {getFormInput("saleRecipient", "Address to Recieved funds of NFTs.")}

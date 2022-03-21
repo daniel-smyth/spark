@@ -51,7 +51,7 @@ export default function Welcome() {
             <Stack spacing={1}>
               <Text color={"black"}>Web3 is here.</Text>
               <Text as={"span"} color={"blue.500"}>
-                Upload. Store. Sell.
+                Upload. Create. Sell.
               </Text>
             </Stack>
           </Heading>

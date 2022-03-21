@@ -93,7 +93,11 @@ export default function ImagesInfo() {
               text={"2. How do I upload layers?"}
             />
             <SimpleGrid columns={{ base: 1, md: 2 }}>
-              <Box pb={{ base: 8, md: 0 }} px={{ base: 0, md: 8 }}>
+              <Box
+                pb={{ base: 8, md: 0 }}
+                px={{ base: 0, md: 8 }}
+                maxW={"400px"}
+              >
                 <Image
                   maxW={"400px"}
                   shadow={"lg"}

@@ -69,29 +69,8 @@ function CollectionCalculator() {
         >
           How many NFTs do you want?
         </Heading>
-        <Stack spacing={7}>
-          <FormControl pt={2}>
-            <FormLabel>Layers</FormLabel>
-            <NumberInput
-              value={layers}
-              onChange={(e) => {
-                handleNewLayer(Number(e));
-              }}
-            >
-              <NumberInputField bg="white" />
-              <NumberInputStepper>
-                <NumberIncrementStepper />
-                <NumberDecrementStepper />
-              </NumberInputStepper>
-            </NumberInput>
-            <Text pt={1} size={"md"}>
-              What is a layer?{" "}
-              <Link color={"blue.400"} href="/about/images">
-                Layers
-              </Link>
-            </Text>
-          </FormControl>
-          <FormControl>
+        <Stack spacing={4}>
+          <FormControl pt={6}>
             <FormLabel>Traits per Layer</FormLabel>
             <NumberInput
               value={traits}
@@ -109,6 +88,27 @@ function CollectionCalculator() {
               What is a trait?{" "}
               <Link color={"blue.400"} href="/about/images">
                 Traits
+              </Link>
+            </Text>
+          </FormControl>
+          <FormControl>
+            <FormLabel>Layers</FormLabel>
+            <NumberInput
+              value={layers}
+              onChange={(e) => {
+                handleNewLayer(Number(e));
+              }}
+            >
+              <NumberInputField bg="white" />
+              <NumberInputStepper>
+                <NumberIncrementStepper />
+                <NumberDecrementStepper />
+              </NumberInputStepper>
+            </NumberInput>
+            <Text pt={1} size={"md"}>
+              What is a layer?{" "}
+              <Link color={"blue.400"} href="/about/images">
+                Layers
               </Link>
             </Text>
           </FormControl>
