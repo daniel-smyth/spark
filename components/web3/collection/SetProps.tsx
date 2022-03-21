@@ -14,8 +14,6 @@ import FormNumberInput from "../../form/FormNumberInput";
 import Spark3Black from "../../logo/spark3black";
 
 interface SetCollectionProps {
-  presetSize: number;
-  maxSize: number;
   setState: any;
 }
 
@@ -34,12 +32,10 @@ function CollectionInputForm(props: SetCollectionProps) {
     setLoading(true);
 
     const collectionDetails = {
-      size: event.target.collectionSize.value,
       name: event.target.collectionName.value,
       description: event.target.collectionDescription.value,
       prefix: event.target.imageNamePrefix.value,
       mintTo: event.target.mintAddress.value,
-      saleRecipient: event.target.saleRecipient.value,
     };
 
     props.setState(collectionDetails);
@@ -67,17 +63,9 @@ function CollectionInputForm(props: SetCollectionProps) {
       <Stack spacing={12}>
         <Stack spacing={6}>
           <Text size="md">
-            Collection name, description and prefix will be the properties of
-            your NFT collection.
+            Enter collection details. This data will be the MetaData of your
+            collection.
           </Text>
-          <FormNumberInput
-            maxSize={props.maxSize}
-            label="Collection size"
-            name="collectionSize"
-            defaultValue={props.presetSize ? props.presetSize : props.maxSize}
-            onChange={undefined}
-          />
-          {getFormInput("saleRecipient", "Address to Recieved funds of NFTs.")}
           {getFormInput("mintAddress", "Address to mint NFTs to")}
           {getFormInput("collectionName", "Enter collection name")}
           {getFormInput("collectionDescription", "Enter description")}

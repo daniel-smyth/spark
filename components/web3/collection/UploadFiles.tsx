@@ -30,12 +30,13 @@ function UploadLayers(props: any) {
 
   function uploadFiles(files: FileList) {
     console.log("Uploading layers... ");
+
     for (let i = 0; i < files.length; i++) {
       const image = files[i];
       const layerName = image.name.substring(0, image.name.indexOf("_"));
       addLayerName(layerName);
     }
-    setLayerCount(layerNames.length);
+
     const layers = layerNames.map((layerName) => [layerName, []]);
     for (let i = 0; i < files.length; i++) {
       const image = files[i] as File;
@@ -49,16 +50,26 @@ function UploadLayers(props: any) {
         }
       });
     }
-    console.log("Layers uploaded: ", layers);
+
+    let maxSize = 0;
+    layers.forEach((layer, i) => {
+      if (i == 0) maxSize = layer[1].length;
+      else maxSize = maxSize * layer[1].length;
+    });
+
+    props.setMaxSize(maxSize);
+    setLayerCount(layerNames.length);
     setLayerImageSrcs([]);
     setLayerImageSrcs(layers);
     setHeadingText("Set Layer Order");
 
-    function addLayerName(name: string) {
-      if (!layerNames.includes(name)) {
-        layerNames.push(name);
-        setLayerNames(layerNames);
-      }
+    console.log("Layers uploaded: ", layers);
+  }
+
+  function addLayerName(name: string) {
+    if (!layerNames.includes(name)) {
+      layerNames.push(name);
+      setLayerNames(layerNames);
     }
   }
 
@@ -89,7 +100,7 @@ function UploadLayers(props: any) {
       layerObjects.push(layer);
     }
     console.log("Layers created: ", layerObjects);
-    props.setState(layerObjects);
+    props.setLayers(layerObjects);
   }
 
   const layerOrderComponent = [];
@@ -178,7 +189,7 @@ function UploadLayers(props: any) {
             >
               Upload layers
             </Button>
-            <Text px={2} pt={1} size={"md"}>
+            <Text px={2} size={"md"}>
               Make a mistake?{" "}
               <Link color={"blue.400"} onClick={resetLayers}>
                 Go back

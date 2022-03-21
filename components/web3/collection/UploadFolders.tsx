@@ -71,12 +71,12 @@ function UploadLayersAsFolders(props: UploadLayerProps) {
               <Heading size="md">Image layers details</Heading>
               <Text size="md">Upload image layers.</Text>
               <Stack spacing={6}>
-                <FormNumberInput
+                {/* <FormNumberInput
                   label="Layer count"
                   name="layercount"
                   defaultValue={1}
                   onChange={setLayerCount}
-                />
+                /> */}
                 {maxLayers.map((_l, i) => {
                   if (i < layerCount)
                     return (

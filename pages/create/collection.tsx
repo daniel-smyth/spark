@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { withRouter } from "next/router";
-import { Grid, GridItem, Heading } from "@chakra-ui/react";
 import { useAddress } from "@thirdweb-dev/react";
-import Spark3Black from "../../components/logo/spark3black";
 import Reject from "../../components/web3/Reject";
 import CreateCollectionContainer from "../../components/form/CreateCollectionContainer";
 import UploadFiles from "../../components/web3/collection/UploadFiles";
 import UploadLayersAsFolders from "../../components/web3/collection/UploadFolders";
-import CollectionInputForm from "../../components/web3/collection/InputForm";
+import SetCollectionProps from "../../components/web3/collection/SetProps";
 import Create from "../../components/web3/collection/Mint";
+import SetCollectionSize from "../../components/web3/collection/SetSize";
 
 /**
  * Contains all components. Props may contain a preset collection size
@@ -16,10 +15,8 @@ import Create from "../../components/web3/collection/Mint";
  *
  * @returns react component
  */
-function CreateCollection(props: any) {
-  // Collection details.
+function CreateCollection() {
   let collectionDetails: {
-    size: number;
     name: string;
     description: string;
     prefix: string;
@@ -27,7 +24,8 @@ function CreateCollection(props: any) {
     saleRecipient: string;
   };
   const [info, setInfo] = useState(collectionDetails!);
-  let size = props.router.query.size ? props.router.query.size : 0;
+  const [size, setSize] = useState(0);
+  const [maxSize, setMaxSize] = useState(0);
 
   // Layer objects contain all data required for Hashlips
   const [layerObjects, setLayerObjects] = useState<any[]>();
@@ -45,17 +43,18 @@ function CreateCollection(props: any) {
       {address ? (
         <>
           {info && layerObjects ? (
-            <Create info={info} layerObjs={layerObjects} />
+            <Create size={size} info={info} layerObjs={layerObjects} />
           ) : (
             <CreateCollectionContainer>
               {!layerObjects ? (
-                <UploadFiles setState={setLayerObjects} />
-              ) : !info ? (
-                <CollectionInputForm
-                  presetSize={size}
-                  setState={setInfo}
-                  maxSize={0}
+                <UploadFiles
+                  setLayers={setLayerObjects}
+                  setMaxSize={setMaxSize}
                 />
+              ) : !size ? (
+                <SetCollectionSize maxSize={maxSize - 1} setState={setSize} />
+              ) : !info ? (
+                <SetCollectionProps setState={setInfo} />
               ) : null}
             </CreateCollectionContainer>
           )}

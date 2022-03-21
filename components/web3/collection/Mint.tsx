@@ -16,8 +16,8 @@ import { downloadJSZip } from "../../../lib/jszip/download";
 import Spark3Black from "../../logo/spark3black";
 
 interface CreateCollectionProps {
+  size: number;
   info: {
-    size: number;
     name: string;
     description: string;
     prefix: string;
@@ -29,7 +29,8 @@ interface CreateCollectionProps {
 
 function Create(props: CreateCollectionProps) {
   const signer = useSigner();
-  const [imgSrcs, setImgSrcs] = useState<string[]>();
+  const [imgs, setImgs] = useState<any[]>();
+  const [artwork, setArtwork] = useState<any>();
   const [moduleInitialised, setModuleInitialised] = useState<boolean>(false);
   const [mintComplete, setMintComplete] = useState<boolean>(false);
   const [buttonText, setButtonText] = useState<string>(
@@ -39,41 +40,53 @@ function Create(props: CreateCollectionProps) {
 
   useEffect(() => {
     // Step 1: Artwork created.
-    const createArtwork = async () =>
-      setImgSrcs(await runHashlips(props.info.size, props.layerObjs));
+    const createArtwork = async () => {
+      const artwork = await runHashlips(props.size, props.layerObjs);
+      setArtwork(artwork);
 
-    if (!imgSrcs) createArtwork();
+      const imgSrcs: any[] = [];
+      artwork[1].forEach((piece) => {
+        imgSrcs.push(piece.image);
+      });
+      setImgs(imgSrcs);
+    };
 
-    if (imgSrcs && signer && !mintComplete) {
+    if (!imgs) createArtwork();
+
+    if (artwork && imgs && signer && !mintComplete) {
       const sdk = new ThirdwebSDK(signer!);
 
       const mint = async () => {
+        console.time("Minting time");
+        console.log(`Starting to mint ${props.size} images.`);
+
+        // Step 2: Create NFTs with meta data.
+        const nfts = [];
+        for (let i = 1; i <= props.size; i++) {
+          let metadata = artwork[1][i].metadata;
+          nfts.push({
+            description: props.info.description,
+            image: imgs[i],
+            external_url: imgs[i],
+            name: `${props.info.prefix}${i}.`,
+            attributes: [metadata],
+          });
+        }
+        console.log(nfts);
+
         const address = await sdk.deployer.deployNFTCollection({
           name: props.info.name,
-          primary_sale_recipient: props.info.saleRecipient,
+          primary_sale_recipient: "0x69C16A68315f06e9c3120F5739FBCdE647055d15",
         });
 
-        // Step 2: Module created.
+        // Step 3: Module created.
         const collection = sdk.getNFTCollection(address);
         if (collection) setModuleInitialised(true);
         console.log("Collection module: ", collection.estimator);
 
-        console.time("Minting time");
-        console.log(`Starting to mint ${props.info.size} images.`);
-
-        const nfts = [];
-        for (let i = 1; i <= props.info.size; i++) {
-          nfts.push({
-            description: props.info.description,
-            image: imgSrcs[i],
-            external_url: imgSrcs[i],
-            name: `${props.info.prefix}${i}.`,
-          });
-        }
-
         try {
-          // Step 3: Mint collection..
-          console.log(`Minting ${props.info.size} images.`);
+          // Step 4: Mint collection..
+          console.log(`Minting ${props.size} images.`);
           console.log(await collection.mintBatchTo(props.info.mintTo, nfts));
           console.timeEnd("Minting time");
           // Step 4: Mint complete.
@@ -85,23 +98,23 @@ function Create(props: CreateCollectionProps) {
 
       mint();
     }
-  }, [imgSrcs]);
+  }, [imgs]);
 
   function downloadZip() {
     setButtonText("Download started...");
     setButtonVariant("outline");
-    downloadJSZip(imgSrcs!, props.info.name, props.info.prefix);
+    downloadJSZip(imgs!, props.info.name, props.info.prefix);
   }
 
   // Renders the image results.
   const imageComponents: any[] = [];
-  if (imgSrcs)
-    for (let i = 0; i < imgSrcs.length; i++)
-      imageComponents.push(<Image key={i} maxW={"70px"} src={imgSrcs[i]} />);
+  if (imgs)
+    for (let i = 0; i < imgs.length; i++)
+      imageComponents.push(<Image key={i} maxW={"70px"} src={imgs[i]} />);
 
   return (
     <>
-      {!imgSrcs ? (
+      {!imgs ? (
         <Stack
           minH={"40vh"}
           spacing={8}
@@ -129,7 +142,7 @@ function Create(props: CreateCollectionProps) {
                   </Heading>
                 ) : (
                   <Heading size="md">
-                    Creating {props.info.size} Non-fungible tokens (NFTs).
+                    Creating {props.size} Non-fungible tokens (NFTs).
                   </Heading>
                 )}
                 <Text size="lg">
@@ -153,7 +166,7 @@ function Create(props: CreateCollectionProps) {
               </Heading>
               <Stack spacing={2} alignItems="center">
                 <Text size="md">
-                  <span style={{ fontWeight: 700 }}>{props.info.size}</span>{" "}
+                  <span style={{ fontWeight: 700 }}>{props.size}</span>{" "}
                   Non-fungible tokens (NFTs) minted
                 </Text>
                 <Text>
