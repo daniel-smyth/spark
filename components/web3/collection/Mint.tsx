@@ -78,7 +78,7 @@ function Create(props: CreateCollectionProps) {
           description: props.info.description,
           image: imgSrcs[i],
           external_url: imgSrcs[i],
-          name: `${props.info.prefix}${i + 1}.`,
+          name: `${props.info.prefix} ${i + 1}`,
           attributes: allMetadata[i],
         });
       }
@@ -157,7 +157,8 @@ function Create(props: CreateCollectionProps) {
                   You will be asked to confirm two transactions
                 </Text>
                 <Text size="sm">
-                  This can take a while do not leave this page
+                  This can take up to an hour depending on size do not leave
+                  page
                 </Text>
               </Stack>
               <Spark3Black width={60} />
