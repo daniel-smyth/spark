@@ -30,8 +30,10 @@ interface CreateCollectionProps {
 function Create(props: CreateCollectionProps) {
   // Web3.
   const signer = useSigner();
+  // Artwork.
+  const [art, setArt] = useState<any[]>([]);
   // Completed image srcs.
-  const [imgSrcs, setImgSrcs] = useState<any[]>();
+  const [imgSrcs, setImgSrcs] = useState<any[]>([]);
   // Minting stages.
   const [started, setStarted] = useState<boolean>(false);
   const [completed, setCompleted] = useState<boolean>(false);
@@ -42,38 +44,47 @@ function Create(props: CreateCollectionProps) {
 
   // Minting function.
   useEffect(() => {
-    const createArtwork = async () => {
-      // Set image sources to display artwork.
-      const setImgs = (artwork: any[]) => {
-        const imgSrcs: string[] = [];
-        artwork.forEach((imgData: { imgSrc: string; metadata: any }) => {
-          imgSrcs.push(imgData.imgSrc);
+    // Create multiple images.
+    const multiplyImgs = async () => {
+      const imgSrcs: string[] = [];
+      const art = await runHashlips(props.size, props.layerObjs);
+      art.forEach((imgData: { imgSrc: string; metadata: any }) => {
+        imgSrcs.push(imgData.imgSrc);
+      });
+      setImgSrcs(imgSrcs);
+      setArt(art);
+    };
+
+    // Mint.
+    const mint = async () => {
+      const nfts = [];
+      const allMetadata: any[] = [];
+      // Create metadata.
+      art.forEach((imgData: { imgSrc: string; metadata: any }) => {
+        const metadata = imgData.metadata;
+        const traitType: string = metadata[0][0];
+        const value: string = metadata[0][1];
+        const imgMetadata = {
+          [traitType]: value,
+        };
+        metadata.forEach((traits: string[], i: number) =>
+          i != 0 ? (imgMetadata[traits[0]] = traits[1]) : null
+        );
+        allMetadata.push(imgMetadata);
+      });
+      // Create NFT array.
+      for (let i = 0; i < props.size; i++) {
+        nfts.push({
+          description: props.info.description,
+          image: imgSrcs[i],
+          external_url: imgSrcs[i],
+          name: `${props.info.prefix}${i + 1}.`,
+          attributes: allMetadata[i],
         });
-        setImgSrcs(imgSrcs);
-      };
-      // Set metadata array.
-      const setMetadata = () => {
-        const imgMetadara: any[] = [];
-        artwork.forEach();
-      };
-      // Create NFT array with NFT metadata.
-      const createNftArray = () => {
-        const nfts = [];
-        if (imgSrcs)
-          for (let i = 1; i <= props.size; i++) {
-            nfts.push({
-              description: props.info.description,
-              image: imgSrcs[i],
-              external_url: imgSrcs[i],
-              name: `${props.info.prefix}${i}.`,
-              attributes: [],
-            });
-          }
-        return nfts;
-      };
-      // Mint NFT array.
-      const mint = async (nfts: any[]) => {
-        const sdk = new ThirdwebSDK(signer!);
+      }
+      // Mint.
+      if (signer) {
+        const sdk = new ThirdwebSDK(signer);
         const address = await sdk.deployer.deployNFTCollection({
           name: props.info.name,
           primary_sale_recipient: "0x69C16A68315f06e9c3120F5739FBCdE647055d15",
@@ -81,24 +92,21 @@ function Create(props: CreateCollectionProps) {
         const collection = sdk.getNFTCollection(address);
         if (collection) setStarted(true);
         try {
-          await collection.mintBatchTo(props.info.mintTo, nfts);
+          console.log(await collection.mintBatchTo(props.info.mintTo, nfts));
           console.timeEnd("Minting time");
           setCompleted(true);
         } catch (err) {
           console.log(err);
         }
-      };
-
-      const artwork = await runHashlips(props.size, props.layerObjs);
-      setImgs(artwork);
-      const nftArray = createNftArray();
-      mint(nftArray);
+      }
     };
-    createArtwork();
-  }, [imgSrcs]);
+
+    if (art.length == 0) multiplyImgs();
+    if (!started) mint();
+  }, [art]);
 
   function downloadZip() {
-    setButtonText("Download started...");
+    setButtonText("Download starting...");
     setButtonVariant("outline");
     downloadJSZip(imgSrcs!, props.info.name, props.info.prefix);
   }
@@ -111,7 +119,7 @@ function Create(props: CreateCollectionProps) {
 
   return (
     <>
-      {!imgSrcs ? (
+      {imgSrcs.length == 0 ? (
         <Stack
           minH={"40vh"}
           spacing={8}
@@ -120,7 +128,10 @@ function Create(props: CreateCollectionProps) {
           justifyContent={"center"}
         >
           <Spinner color={"blue.500"} />
-          <Text size="lg">Working on it..</Text>
+          <Stack spacing={1}>
+            <Text size="lg">Multipling images</Text>
+            <Text size="sm">This may take a while</Text>
+          </Stack>
         </Stack>
       ) : (
         <>
@@ -135,18 +146,18 @@ function Create(props: CreateCollectionProps) {
               <Stack spacing={2} alignItems={"center"}>
                 {!started ? (
                   <Heading size={"md"}>
-                    Creating {props.info.name} ERC721 collection contract
+                    Creating {props.info.name} ERC721 Collection
                   </Heading>
                 ) : (
                   <Heading size="md">
-                    Creating {props.size} Non-fungible tokens (NFTs).
+                    Minting {props.size} Non-fungible tokens (NFTs)
                   </Heading>
                 )}
                 <Text size="lg">
-                  You will be asked to confirm two transactions.
+                  You will be asked to confirm two transactions
                 </Text>
                 <Text size="sm">
-                  This may take a few minutes. Do not leave this page.
+                  This can take a while do not leave this page
                 </Text>
               </Stack>
               <Spark3Black width={60} />
@@ -158,16 +169,15 @@ function Create(props: CreateCollectionProps) {
               alignItems="center"
               justifyContent={"center"}
             >
-              <Heading size={"md"}>
-                {props.info.name} Collection Complete
-              </Heading>
+              <Heading size={"md"}>{props.info.name} Minting Complete</Heading>
               <Stack spacing={2} alignItems="center">
                 <Text size="md">
-                  <span style={{ fontWeight: 700 }}>{props.size}</span>{" "}
-                  Non-fungible tokens (NFTs) minted
+                  <span style={{ fontWeight: 700 }}>
+                    {props.size} Non-fungible tokens (NFTs)
+                  </span>{" "}
+                  where successfully minted to
                 </Text>
                 <Text>
-                  Minted to{" "}
                   <span style={{ fontWeight: 700 }}>{props.info.mintTo}</span>.
                 </Text>
                 <Text size="sm">Thank you for using spark.</Text>

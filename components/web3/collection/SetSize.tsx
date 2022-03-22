@@ -1,4 +1,13 @@
-import { Grid, GridItem, Heading, Stack, Button, Text } from "@chakra-ui/react";
+import {
+  Grid,
+  GridItem,
+  Heading,
+  Stack,
+  Button,
+  Text,
+  Link,
+} from "@chakra-ui/react";
+import Router, { useRouter } from "next/router";
 import { useState } from "react";
 import FormNumberInput from "../../form/FormNumberInput";
 import Spark3Black from "../../logo/spark3black";
@@ -9,10 +18,15 @@ interface SetCollectionSizeProps {
 }
 
 function SetCollectionSize(props: SetCollectionSizeProps) {
+  const router = useRouter();
   const [size, setSize] = useState(props.maxSize);
 
   function handleClick() {
     props.setState(size);
+  }
+
+  function goBack() {
+    router.push("/create/collection");
   }
 
   return (
@@ -41,6 +55,12 @@ function SetCollectionSize(props: SetCollectionSizeProps) {
           <Button onClick={handleClick} size="md" variant="solid">
             Set collection size
           </Button>
+          <Text px={2} size={"md"}>
+            Make a mistake?{" "}
+            <Link color={"blue.400"} onClick={goBack}>
+              Go back
+            </Link>
+          </Text>
         </Stack>
       </Stack>
     </>

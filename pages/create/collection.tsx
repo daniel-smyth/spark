@@ -40,7 +40,7 @@ function CreateCollection() {
 
   return (
     <>
-      {address ? (
+      {address != undefined ? (
         <>
           {info && layerObjects ? (
             <Create size={size} info={info} layerObjs={layerObjects} />

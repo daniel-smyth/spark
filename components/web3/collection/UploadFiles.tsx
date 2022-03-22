@@ -62,8 +62,6 @@ function UploadLayers(props: any) {
     setLayerImageSrcs([]);
     setLayerImageSrcs(layers);
     setHeadingText("Set Layer Order");
-
-    console.log("Layers uploaded: ", layers);
   }
 
   function addLayerName(name: string) {
@@ -89,7 +87,6 @@ function UploadLayers(props: any) {
 
   function handleSubmit(event: any) {
     event.preventDefault();
-    console.log("Creating layer objects..");
     const layerObjects = [];
     for (let i = 0; i < layerCount; i++) {
       const layerData = {
@@ -132,9 +129,14 @@ function UploadLayers(props: any) {
         </Select>
       );
     }
-
     const string = layerNames.join(", ");
-    layerNamesString.push(<Text variant="badge"> {string}</Text>);
+
+    layerNamesString.push(
+      <Text key={0} variant="badge">
+        {" "}
+        {string}
+      </Text>
+    );
   }
 
   return (
