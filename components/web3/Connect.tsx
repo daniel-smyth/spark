@@ -13,15 +13,21 @@ import {
 } from "@chakra-ui/react";
 import { AtSignIcon } from "@chakra-ui/icons";
 import LogIn from "../LogIn";
-import { useAddress, useCoinbaseWallet, useDisconnect, useMetamask, useWalletConnect } from "@thirdweb-dev/react";
+import {
+  useAddress,
+  useCoinbaseWallet,
+  useDisconnect,
+  useMetamask,
+  useWalletConnect,
+} from "@thirdweb-dev/react";
 
 export default function Connect() {
-  const address = useAddress()
+  const address = useAddress();
   const connectWithMetamask = useMetamask();
   const connectWithWalletConnect = useWalletConnect();
   const connectWithCoinbaseWallet = useCoinbaseWallet();
-  const disconnect = useDisconnect()
-  
+  const disconnect = useDisconnect();
+
   const [connectEmail, setConnectEmail] = useState(false);
 
   function handleClick() {
@@ -67,7 +73,7 @@ export default function Connect() {
               </Stack>
             ) : (
               <>
-                <Button
+                {/* <Button
                   mb="8px"
                   variant="outline"
                   isFullWidth
@@ -80,7 +86,7 @@ export default function Connect() {
                   onClick={() => setConnectEmail(true)}
                 >
                   USE EMAIL
-                </Button>
+                </Button> */}
                 <Button
                   mb="8px"
                   variant="solid"
@@ -123,9 +129,9 @@ export default function Connect() {
                   Coinbase Wallet
                 </Button>
                 <Text pt={6} align={"center"} size={"md"}>
-                  Already a user?{" "}
+                  No wallet?{" "}
                   <Link color={"blue.400"} onClick={handleClick}>
-                    Login
+                    Create without wallet
                   </Link>
                 </Text>
               </>

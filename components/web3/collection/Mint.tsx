@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NFTContractDeployMetadata, ThirdwebSDK } from "@thirdweb-dev/sdk";
+import { ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { useSigner } from "@thirdweb-dev/react";
 import {
   Box,
@@ -28,93 +28,90 @@ interface CreateCollectionProps {
 }
 
 function Create(props: CreateCollectionProps) {
+  // Web3.
   const signer = useSigner();
-  const [imgs, setImgs] = useState<any[]>();
-  const [artwork, setArtwork] = useState<any>();
-  const [moduleInitialised, setModuleInitialised] = useState<boolean>(false);
-  const [mintComplete, setMintComplete] = useState<boolean>(false);
-  const [buttonText, setButtonText] = useState<string>(
-    `Download ${props.info.name} image files`
-  );
+  // Completed image srcs.
+  const [imgSrcs, setImgSrcs] = useState<any[]>();
+  // Minting stages.
+  const [started, setStarted] = useState<boolean>(false);
+  const [completed, setCompleted] = useState<boolean>(false);
+  // Download button.
+  const text = `Download ${props.info.name} image files`;
+  const [buttonText, setButtonText] = useState<string>(text);
   const [buttonVariant, setButtonVariant] = useState<string>("solid");
 
+  // Minting function.
   useEffect(() => {
-    // Step 1: Artwork created.
     const createArtwork = async () => {
-      const artwork = await runHashlips(props.size, props.layerObjs);
-      setArtwork(artwork);
-
-      const imgSrcs: any[] = [];
-      artwork[1].forEach((piece) => {
-        imgSrcs.push(piece.image);
-      });
-      setImgs(imgSrcs);
-    };
-
-    if (!imgs) createArtwork();
-
-    if (artwork && imgs && signer && !mintComplete) {
-      const sdk = new ThirdwebSDK(signer!);
-
-      const mint = async () => {
-        console.time("Minting time");
-        console.log(`Starting to mint ${props.size} images.`);
-
-        // Step 2: Create NFTs with meta data.
+      // Set image sources to display artwork.
+      const setImgs = (artwork: any[]) => {
+        const imgSrcs: string[] = [];
+        artwork.forEach((imgData: { imgSrc: string; metadata: any }) => {
+          imgSrcs.push(imgData.imgSrc);
+        });
+        setImgSrcs(imgSrcs);
+      };
+      // Set metadata array.
+      const setMetadata = () => {
+        const imgMetadara: any[] = [];
+        artwork.forEach();
+      };
+      // Create NFT array with NFT metadata.
+      const createNftArray = () => {
         const nfts = [];
-        for (let i = 1; i <= props.size; i++) {
-          let metadata = artwork[1][i].metadata;
-          nfts.push({
-            description: props.info.description,
-            image: imgs[i],
-            external_url: imgs[i],
-            name: `${props.info.prefix}${i}.`,
-            attributes: [metadata],
-          });
-        }
-        console.log(nfts);
-
+        if (imgSrcs)
+          for (let i = 1; i <= props.size; i++) {
+            nfts.push({
+              description: props.info.description,
+              image: imgSrcs[i],
+              external_url: imgSrcs[i],
+              name: `${props.info.prefix}${i}.`,
+              attributes: [],
+            });
+          }
+        return nfts;
+      };
+      // Mint NFT array.
+      const mint = async (nfts: any[]) => {
+        const sdk = new ThirdwebSDK(signer!);
         const address = await sdk.deployer.deployNFTCollection({
           name: props.info.name,
           primary_sale_recipient: "0x69C16A68315f06e9c3120F5739FBCdE647055d15",
         });
-
-        // Step 3: Module created.
         const collection = sdk.getNFTCollection(address);
-        if (collection) setModuleInitialised(true);
-        console.log("Collection module: ", collection.estimator);
-
+        if (collection) setStarted(true);
         try {
-          // Step 4: Mint collection..
-          console.log(`Minting ${props.size} images.`);
-          console.log(await collection.mintBatchTo(props.info.mintTo, nfts));
+          await collection.mintBatchTo(props.info.mintTo, nfts);
           console.timeEnd("Minting time");
-          // Step 4: Mint complete.
-          setMintComplete(true);
+          setCompleted(true);
         } catch (err) {
           console.log(err);
         }
       };
 
-      mint();
-    }
-  }, [imgs]);
+      const artwork = await runHashlips(props.size, props.layerObjs);
+      setImgs(artwork);
+      const nftArray = createNftArray();
+      mint(nftArray);
+    };
+    createArtwork();
+  }, [imgSrcs]);
 
   function downloadZip() {
     setButtonText("Download started...");
     setButtonVariant("outline");
-    downloadJSZip(imgs!, props.info.name, props.info.prefix);
+    downloadJSZip(imgSrcs!, props.info.name, props.info.prefix);
   }
 
   // Renders the image results.
   const imageComponents: any[] = [];
-  if (imgs)
-    for (let i = 0; i < imgs.length; i++)
-      imageComponents.push(<Image key={i} maxW={"70px"} src={imgs[i]} />);
+  if (imgSrcs)
+    for (let i = 0; i < imgSrcs.length; i++)
+      imageComponents.push(<Image key={i} maxW={"70px"} src={imgSrcs[i]} />);
 
   return (
     <>
-      {!imgs ? (
+      {!imgSrcs ? (
         <Stack
           minH={"40vh"}
           spacing={8}
@@ -127,7 +124,7 @@ function Create(props: CreateCollectionProps) {
         </Stack>
       ) : (
         <>
-          {!mintComplete ? (
+          {!completed ? (
             <Stack
               spacing={10}
               py={8}
@@ -136,7 +133,7 @@ function Create(props: CreateCollectionProps) {
             >
               <Spinner color={"blue.500"} />
               <Stack spacing={2} alignItems={"center"}>
-                {!moduleInitialised ? (
+                {!started ? (
                   <Heading size={"md"}>
                     Creating {props.info.name} ERC721 collection contract
                   </Heading>

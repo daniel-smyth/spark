@@ -177,8 +177,8 @@ function UploadLayers(props: any) {
           <>
             {layerNamesString}
             <Text size="md">
-              Set the layer order of images. Layer 1 is the background and layer
-              2 will be printed over layer 1, layer 3 over layer 2 and so on.
+              Layer 1 is the background and layer 2 will be printed over layer
+              1, layer 3 over layer 2 and so on.
             </Text>
             {layerOrderComponent}
             <Button

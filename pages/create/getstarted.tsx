@@ -12,7 +12,7 @@ import { useAddress } from "@thirdweb-dev/react";
  * @returns product page
  */
 function Page(props: any) {
-  const address = useAddress()
+  const address = useAddress();
   const router = useRouter();
 
   if (address) {
@@ -39,12 +39,6 @@ function Page(props: any) {
           <Heading fontSize={{ base: "2xl", md: "3xl" }}>
             Connect to start
           </Heading>
-          <Stack alignItems={{ base: "none", md: "center" }} spacing={0.5}>
-            <Text size="lg">Connect your wallet to get started.</Text>
-            <Text size="lg">
-              This will create an account with Spark automatically.
-            </Text>
-          </Stack>
         </Stack>
         <Connect />
       </Stack>
