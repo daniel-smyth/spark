@@ -4,15 +4,8 @@ import { useRouter } from "next/router";
 import Connect from "../../components/web3/Connect";
 import { withRouter } from "next/router";
 import { useAddress } from "@thirdweb-dev/react";
-import { NextPage } from "next";
 
-/**
- * Renders a product description component with pricing card an a collection
- * of pricing cards for new products.
- *
- * @returns product page
- */
-export const GetStarted: NextPage = (props: any) => {
+function GetStarted(props: any) {
   const address = useAddress();
   const router = useRouter();
 
@@ -45,4 +38,6 @@ export const GetStarted: NextPage = (props: any) => {
       </Stack>
     </Container>
   );
-};
+}
+
+export default withRouter(GetStarted);

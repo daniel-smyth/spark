@@ -9,7 +9,6 @@ import SetCollectionProps from "../../components/web3/collection/SetProps";
 import Create from "../../components/web3/collection/Mint";
 import SetCollectionSize from "../../components/web3/collection/SetSize";
 import Payment from "../../components/web3/collection/Payment";
-import { NextPage } from "next";
 
 /**
  * Contains all components. Props may contain a preset collection size
@@ -17,7 +16,7 @@ import { NextPage } from "next";
  *
  * @returns react component
  */
-const CreateCollection: NextPage = () => {
+function CreateCollection() {
   let collectionDetails: {
     name: string;
     description: string;
@@ -69,6 +68,6 @@ const CreateCollection: NextPage = () => {
       )}
     </>
   );
-};
+}
 
 export default withRouter(CreateCollection);

@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from "next";
-
 import Stripe from "stripe";
 import { MIN_AMOUNT, MAX_AMOUNT, CURRENCY } from "../../../lib/stripe/config";
 import { formatAmountForStripe } from "../../../lib/stripe/utils/stripehelpers";
+
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2020-08-27",
 });
@@ -31,7 +31,7 @@ export default async function handler(
           },
         ],
         success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/donate-with-checkout`,
+        cancel_url: `${req.headers.origin}/test`,
       };
       const checkoutSession: Stripe.Checkout.Session =
         await stripe.checkout.sessions.create(params);
