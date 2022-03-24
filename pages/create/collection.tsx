@@ -44,7 +44,7 @@ function CreateCollection() {
     <>
       {address != undefined ? (
         <>
-          {info && layerObjects ? (
+          {paid && info && layerObjects ? (
             <Create size={size} info={info} layerObjs={layerObjects} />
           ) : (
             <FormContainer>
