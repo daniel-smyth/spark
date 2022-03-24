@@ -13,7 +13,7 @@ import {
 import React, { useState } from "react";
 import { getLayer } from "../../../lib/hashlips/createArt";
 import Spark3Black from "../../logo/spark3black";
-import UploadImageFiles from "../../utils/UploadImageFiles";
+import UploadImageFiles from "../../utilities/UploadImageFiles";
 
 function UploadLayers(props: any) {
   const [layerNames, setLayerNames] = useState<string[]>([]);

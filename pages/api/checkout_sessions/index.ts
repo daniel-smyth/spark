@@ -20,11 +20,11 @@ export default async function handler(
       }
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
-        submit_type: "donate",
+        submit_type: "pay",
         payment_method_types: ["card"],
         line_items: [
           {
-            name: "Custom amount donation",
+            name: "NFT Collection Minting Costs",
             amount: formatAmountForStripe(amount, CURRENCY),
             currency: CURRENCY,
             quantity: 1,

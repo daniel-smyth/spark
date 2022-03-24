@@ -8,9 +8,9 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { getLayer } from "../../../lib/hashlips/createArt";
-import FormBackground from "../../form/FormBackground";
+import FormBackground from "../../form/FormContainer";
 import FormNumberInput from "../../form/FormNumberInput";
-import UploadImageFolder from "../../utils/UploadImageFolder";
+import UploadImageFolder from "../../utilities/UploadImageFolder";
 import { useRouter } from "next/router";
 
 interface UploadLayerProps {

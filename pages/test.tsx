@@ -1,25 +1,18 @@
 import { Button, Heading, Stack } from "@chakra-ui/react";
-import React, { useState } from "react";
+import { NextPage } from "next";
+import React from "react";
 import FormContainer from "../components/form/FormContainer";
-import FormNumberInput from "../components/form/FormNumberInput";
 import { fetchPostJSON } from "../lib/stripe/utils/apihelpers";
 import getStripe from "../lib/stripe/utils/getstripe";
 
-function Test() {
-  const [paymentAmount, setPaymentAmount] = useState(0);
-
+const ResultPage: NextPage = () => {
   const handleClick = async () => {
-    // Create a Checkout Session.
     const response = await fetchPostJSON("/api/checkout_sessions", {
-      amount: paymentAmount,
+      amount: 199,
     });
 
-    if (response.statusCode === 500) {
-      console.error(response.message);
-      return;
-    }
+    if (response.statusCode === 500) console.error(response.message);
 
-    // Redirect to Checkout.
     const stripe = await getStripe();
     const { error } = await stripe!.redirectToCheckout({
       // Make the id field from the Checkout Session creation API response
@@ -37,19 +30,12 @@ function Test() {
     <FormContainer>
       <Stack spacing={4}>
         <Heading>Payment</Heading>
-        <FormNumberInput
-          name={""}
-          maxSize={1000}
-          label={"Payment amount"}
-          defaultValue={0}
-          onChange={setPaymentAmount}
-        />
         <Button size="md" variant="solid" onClick={handleClick}>
           Create collection
         </Button>
       </Stack>
     </FormContainer>
   );
-}
+};
 
-export default Test;
+export default ResultPage;

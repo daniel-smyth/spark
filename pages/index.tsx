@@ -4,7 +4,7 @@ import HowItWorks from "../components/homepage/Info";
 import Testimonials from "../components/homepage/Testimonails";
 import StatisticCard from "../components/homepage/Stats";
 import ComingSoon from "../components/homepage/ComingSoon";
-import CollectionCalculator from "../components/utils/Calculator";
+import CollectionCalculator from "../components/utilities/Calculator";
 
 const Home: NextPage = () => {
   return (
