@@ -10,8 +10,9 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import FormNumberInput from "../../form/FormNumberInput";
 import Spark3Black from "../../logo/spark3black";
+import { useAtom } from "jotai";
+import { infoAtom } from "../../../lib/jotai/atoms";
 
 interface SetCollectionProps {
   setState: any;
@@ -19,6 +20,7 @@ interface SetCollectionProps {
 
 function CollectionInputForm(props: SetCollectionProps) {
   const [isLoading, setLoading] = useState(false);
+  const [info, setInfo] = useAtom(infoAtom);
 
   function scrollToTop() {
     window.scrollTo({
@@ -38,6 +40,7 @@ function CollectionInputForm(props: SetCollectionProps) {
       mintTo: event.target.mintAddress.value,
     };
 
+    setInfo(collectionDetails);
     props.setState(collectionDetails);
   }
 
