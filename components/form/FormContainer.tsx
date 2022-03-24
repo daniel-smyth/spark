@@ -1,7 +1,7 @@
 import { Container, Stack, useColorModeValue, Box } from "@chakra-ui/react";
 import React from "react";
 
-function CreateCollectionContainer({ children }: { children: any }) {
+function FormContainer({ children }: { children: any }) {
   return (
     <Container>
       <Stack py={8} px={6} bg={useColorModeValue("gray.50", "gray.800")}>
@@ -19,4 +19,4 @@ function CreateCollectionContainer({ children }: { children: any }) {
   );
 }
 
-export default CreateCollectionContainer;
+export default FormContainer;

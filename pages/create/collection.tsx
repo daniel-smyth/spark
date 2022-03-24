@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withRouter } from "next/router";
 import { useAddress } from "@thirdweb-dev/react";
 import Reject from "../../components/web3/Reject";
-import CreateCollectionContainer from "../../components/form/CreateCollectionContainer";
+import FormContainer from "../../components/form/FormContainer";
 import UploadFiles from "../../components/web3/collection/UploadFiles";
 import UploadLayersAsFolders from "../../components/web3/collection/UploadFolders";
 import SetCollectionProps from "../../components/web3/collection/SetProps";
@@ -45,7 +45,7 @@ function CreateCollection() {
           {info && layerObjects ? (
             <Create size={size} info={info} layerObjs={layerObjects} />
           ) : (
-            <CreateCollectionContainer>
+            <FormContainer>
               {!layerObjects ? (
                 <UploadFiles
                   setLayers={setLayerObjects}
@@ -56,7 +56,7 @@ function CreateCollection() {
               ) : !info ? (
                 <SetCollectionProps setState={setInfo} />
               ) : null}
-            </CreateCollectionContainer>
+            </FormContainer>
           )}
         </>
       ) : (

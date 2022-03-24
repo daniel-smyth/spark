@@ -14,7 +14,7 @@ import {
   useMediaQuery,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
-import ProductPrice from "../products/ProductPrice";
+import ProductPrice from "../cards/Price";
 import { FiImage, FiDatabase, FiRepeat } from "react-icons/fi";
 import { useRouter } from "next/router";
 

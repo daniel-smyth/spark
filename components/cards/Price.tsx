@@ -7,9 +7,9 @@ import {
   ListItem,
   ListIcon,
   useColorModeValue,
+  Button,
 } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
-import ButtonWithLoading from "../utils/ButtonWithLoading";
 
 /**
  * Renders pricing card component with royalty percentage,
@@ -73,17 +73,16 @@ function ProductPrice(props: any) {
           </ListItem>
         </List>
 
-        <ButtonWithLoading
+        <Button
           mt={10}
           bg={props.color == "grey" ? props.color : null}
           w={"full"}
           size={"md"}
           variant={"solid"}
-          buttontext={props.buttonText}
-          loadingText={""}
-          linkdestination={props.link}
           isDisabled={props.isDisabled ? true : false}
-        />
+        >
+          {props.buttonText}
+        </Button>
       </Box>
     </Box>
   );
