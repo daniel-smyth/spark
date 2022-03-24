@@ -22,9 +22,7 @@
     "styles/theme.styles.global.tsx",
     "lib/hashlips'/utils/update_info.js",
     "lib/hashlips'/main.js",
-    "lib/thirdweb/mint.ts",
     "lib/jszip/download.js",
-    "lib/thirdweb/CreateDropV2.ts"
   ],
   "exclude": ["node_modules"]
 }

@@ -11,7 +11,7 @@ import React from "react";
 
 interface FormNumberInputProps {
   name: string;
-  maxSize: number;
+  maxSize: number | null;
   label: string;
   defaultValue: number;
   onChange: React.Dispatch<React.SetStateAction<number>> | undefined;
@@ -23,7 +23,7 @@ export default function FormNumberInput(props: FormNumberInputProps) {
       <FormLabel>{props.label}</FormLabel>
       {props.onChange ? (
         <NumberInput
-          max={props.maxSize}
+          max={props.maxSize!}
           name={props.name}
           defaultValue={props.defaultValue}
           onChange={(e) => {
