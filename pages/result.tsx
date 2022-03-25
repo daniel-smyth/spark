@@ -23,6 +23,7 @@ const ResultPage: NextPage = () => {
   if (typeof window !== "undefined" && !info) {
     const store = localStorage.getItem;
     setInfo([
+      store("size")!,
       store("name")!,
       store("description")!,
       store("prefix")!,

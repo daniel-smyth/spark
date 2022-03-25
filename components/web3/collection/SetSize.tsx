@@ -7,7 +7,7 @@ import {
   Text,
   Link,
 } from "@chakra-ui/react";
-import Router, { useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import FormNumberInput from "../../form/FormNumberInput";
 import Spark3Black from "../../logo/spark3black";
@@ -23,6 +23,7 @@ function SetCollectionSize(props: SetCollectionSizeProps) {
 
   function handleClick() {
     props.setState(size);
+    localStorage.setItem("size", `${size}`);
   }
 
   function goBack() {
