@@ -12,7 +12,6 @@ import {
 } from "@chakra-ui/react";
 import Spark3Black from "../../logo/spark3black";
 import { useAtom } from "jotai";
-import { infoAtom } from "../../../lib/jotai/atoms";
 
 interface SetCollectionProps {
   setState: any;
@@ -20,7 +19,6 @@ interface SetCollectionProps {
 
 function CollectionInputForm(props: SetCollectionProps) {
   const [isLoading, setLoading] = useState(false);
-  const [info, setInfo] = useAtom(infoAtom);
 
   function scrollToTop() {
     window.scrollTo({
@@ -34,13 +32,17 @@ function CollectionInputForm(props: SetCollectionProps) {
     setLoading(true);
 
     const collectionDetails = {
-      name: event.target.collectionName.value,
-      description: event.target.collectionDescription.value,
-      prefix: event.target.imageNamePrefix.value,
-      mintTo: event.target.mintAddress.value,
+      name: event.target.name.value,
+      description: event.target.description.value,
+      prefix: event.target.prefix.value,
+      mintTo: event.target.mintTo.value,
     };
 
-    setInfo(collectionDetails);
+    localStorage.setItem("name", event.target.name.value);
+    localStorage.setItem("description", event.target.description.value);
+    localStorage.setItem("prefix", event.target.prefix.value);
+    localStorage.setItem("mintTo", event.target.mintTo.value);
+
     props.setState(collectionDetails);
   }
 
@@ -69,10 +71,10 @@ function CollectionInputForm(props: SetCollectionProps) {
             Enter collection details. This data will be the MetaData of your
             collection.
           </Text>
-          {getFormInput("mintAddress", "Address to mint NFTs to")}
-          {getFormInput("collectionName", "Enter collection name")}
-          {getFormInput("collectionDescription", "Enter description")}
-          {getFormInput("imageNamePrefix", "Enter image name prefix")}
+          {getFormInput("mintTo", "Address to mint NFTs to")}
+          {getFormInput("name", "Enter collection name")}
+          {getFormInput("description", "Enter description")}
+          {getFormInput("prefix", "Enter image name prefix")}
           {isLoading ? (
             <Button
               isLoading

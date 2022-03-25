@@ -61,6 +61,7 @@ function UploadLayers(props: any) {
     setLayerCount(layerNames.length);
     setLayerImageSrcs([]);
     setLayerImageSrcs(layers);
+    localStorage.setItem("layers", JSON.stringify(layers));
     setHeadingText("Set Layer Order");
   }
 
