@@ -1,7 +1,7 @@
-import { Stack, Heading, Button } from "@chakra-ui/react";
 import React from "react";
-import { fetchPostJSON } from "../../../lib/stripe/utils/apihelpers";
-import getStripe from "../../../lib/stripe/utils/getstripe";
+import getStripe from "../../../lib/stripe/utils/get-stripejs";
+import { Stack, Heading, Button } from "@chakra-ui/react";
+import { fetchPostJSON } from "../../../lib/stripe/utils/api-helpers";
 
 interface PaymentProps {
   setState: any;

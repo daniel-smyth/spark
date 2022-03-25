@@ -1,7 +1,7 @@
-import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
+import { NextApiRequest, NextApiResponse } from "next";
 import { MIN_AMOUNT, MAX_AMOUNT, CURRENCY } from "../../../lib/stripe/config";
-import { formatAmountForStripe } from "../../../lib/stripe/utils/stripehelpers";
+import { formatAmountForStripe } from "../../../lib/stripe/utils/stripe-helpers";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2020-08-27",
@@ -20,18 +20,18 @@ export default async function handler(
       }
       // Create Checkout Sessions from body params.
       const params: Stripe.Checkout.SessionCreateParams = {
-        submit_type: "pay",
+        submit_type: "donate",
         payment_method_types: ["card"],
         line_items: [
           {
-            name: "NFT Collection Minting Costs",
+            name: "Custom amount donation",
             amount: formatAmountForStripe(amount, CURRENCY),
             currency: CURRENCY,
             quantity: 1,
           },
         ],
         success_url: `${req.headers.origin}/result?session_id={CHECKOUT_SESSION_ID}`,
-        cancel_url: `${req.headers.origin}/test`,
+        cancel_url: `${req.headers.origin}/donate-with-checkout`,
       };
       const checkoutSession: Stripe.Checkout.Session =
         await stripe.checkout.sessions.create(params);
@@ -40,7 +40,7 @@ export default async function handler(
     } catch (err) {
       res
         .status(500)
-        .json({ statusCode: 500, message: "Error fetching Stripe." });
+        .json({ statusCode: 500, message: "Failed to fetch Stripe checkout." });
     }
   } else {
     res.setHeader("Allow", "POST");

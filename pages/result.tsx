@@ -1,7 +1,9 @@
+import useSWR from "swr";
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import useSWR from "swr";
-import { fetchGetJSON } from "../lib/stripe/utils/apihelpers";
+import { Box } from "@chakra-ui/react";
+import { fetchGetJSON } from "../lib/stripe/utils/api-helpers";
+import PrintObject from "../components/stripe/PrintObject";
 
 const ResultPage: NextPage = () => {
   const router = useRouter();
@@ -14,9 +16,6 @@ const ResultPage: NextPage = () => {
       : null,
     fetchGetJSON
   );
-
-  console.log(data);
-  console.log(error);
 
   if (error) return <div>failed to load</div>;
 
@@ -33,15 +32,3 @@ const ResultPage: NextPage = () => {
 };
 
 export default ResultPage;
-
-import React from "react";
-import { Box } from "@chakra-ui/react";
-
-type Props = {
-  content: object;
-};
-
-const PrintObject = ({ content }: Props) => {
-  const formattedContent: string = JSON.stringify(content, null, 2);
-  return <pre>{formattedContent}</pre>;
-};
