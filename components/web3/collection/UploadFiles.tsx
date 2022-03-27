@@ -168,8 +168,8 @@ function UploadFiles(props: Props) {
           </>
         ) : (
           <>
-            {layerNamesString}
-            <Text size="md">
+            <Box pt={{ base: 2, md: 0 }}>{layerNamesString}</Box>
+            <Text size="md" display={{ base: "none", md: "inline" }}>
               Layer 1 is the background and layer 2 will be printed over layer
               1, layer 3 over layer 2 and so on.
             </Text>

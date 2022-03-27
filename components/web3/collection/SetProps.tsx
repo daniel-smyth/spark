@@ -68,13 +68,13 @@ function SetProps(props: Props) {
         <>
           <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
             <GridItem colSpan={3} h="8">
-              <Heading size="md">Enter Collection Size</Heading>
+              <Heading size="md">Collection Size</Heading>
             </GridItem>
             <GridItem colStart={6} colEnd={8} h="8">
               <Spark3Black width={60} />
             </GridItem>
           </Grid>
-          <Stack spacing={12}>
+          <Stack pt={{ base: 4, md: 0 }} spacing={12}>
             <Stack spacing={6}>
               <Text size="md">
                 This is the max size you can make your collection with your
@@ -103,13 +103,13 @@ function SetProps(props: Props) {
         <form onSubmit={handleFormData}>
           <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
             <GridItem colSpan={3} h="8">
-              <Heading size="md">Enter Collection Info</Heading>
+              <Heading size="md">Collection Info</Heading>
             </GridItem>
             <GridItem colStart={6} colEnd={8} h="8">
               <Spark3Black width={60} />
             </GridItem>
           </Grid>
-          <Stack spacing={12}>
+          <Stack pt={{ base: 4, md: 0 }} spacing={12}>
             <Stack spacing={6}>
               <Text size="md">
                 Enter collection details. This data will be the MetaData of your

@@ -142,7 +142,7 @@ function Create(props: CreateCollectionProps) {
               justifyContent={"center"}
             >
               <Spinner color={"blue.500"} />
-              <Stack spacing={2} alignItems={"center"}>
+              <Stack px={9} spacing={2} alignItems={"center"}>
                 {!started ? (
                   <Heading size={"md"}>
                     Creating {props.info.name} ERC721 Collection
@@ -160,7 +160,9 @@ function Create(props: CreateCollectionProps) {
                   page
                 </Text>
               </Stack>
-              <Spark3Black width={60} />
+              <Box display={{ base: "none", md: "inline" }}>
+                <Spark3Black width={60} />
+              </Box>
             </Stack>
           ) : (
             <Stack
@@ -170,7 +172,7 @@ function Create(props: CreateCollectionProps) {
               justifyContent={"center"}
             >
               <Heading size={"md"}>{props.info.name} Minting Complete</Heading>
-              <Stack spacing={2} alignItems="center">
+              <Stack px={9} spacing={2} alignItems={"center"}>
                 <Text size="md">
                   <span style={{ fontWeight: 700 }}>
                     {props.size} Non-fungible tokens (NFTs)
@@ -182,7 +184,9 @@ function Create(props: CreateCollectionProps) {
                 </Text>
                 <Text size="sm">Thank you for using spark.</Text>
               </Stack>
-              <Spark3Black width={60} />
+              <Box display={{ base: "none", md: "inline" }}>
+                <Spark3Black width={60} />
+              </Box>
             </Stack>
           )}
           <Box px={8} pb={24}>
@@ -193,7 +197,9 @@ function Create(props: CreateCollectionProps) {
               p={6}
               borderColor="gray.200"
             >
-              <Heading size={"md"}>{props.info.name} Images Mutliplied</Heading>
+              <Heading px={2} size={"md"}>
+                {props.info.name} Images Mutliplied
+              </Heading>
               <Button
                 onClick={downloadZip}
                 variant={buttonVariant}
