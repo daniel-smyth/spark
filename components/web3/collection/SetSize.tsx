@@ -23,7 +23,6 @@ function SetCollectionSize(props: SetCollectionSizeProps) {
 
   function handleClick() {
     props.setState(size);
-    localStorage.setItem("size", `${size}`);
   }
 
   function goBack() {

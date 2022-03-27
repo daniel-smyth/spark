@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import getStripe from "../../../lib/stripe/utils/get-stripejs";
 import { Stack, Heading, Button } from "@chakra-ui/react";
 import { fetchPostJSON } from "../../../lib/stripe/utils/api-helpers";
@@ -8,31 +8,41 @@ interface PaymentProps {
 }
 
 function Payment(props: PaymentProps) {
+  const [paid, setPaid] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      checkStatus();
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  let count = 0;
+  function checkStatus() {
+    const status = localStorage.getItem("status");
+    if (status === "true") {
+      setPaid(true);
+      localStorage.setItem("status", "unpaid");
+      props.setState(true);
+    } else {
+      console.log("Not paid " + count + " seconds in.");
+      count++;
+    }
+  }
+
   const handleClick = async () => {
-    const response = await fetchPostJSON("/api/checkout_sessions", {
-      amount: 199,
-    });
-
-    if (response.statusCode === 500) console.error(response.message);
-
-    const stripe = await getStripe();
-    const { error } = await stripe!.redirectToCheckout({
-      // Make the id field from the Checkout Session creation API response
-      // available to this file, so you can provide it as parameter here
-      // instead of the {{CHECKOUT_SESSION_ID}} placeholder.
-      sessionId: response.id,
-    });
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
-    console.warn(error.message);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("status", "false");
+      window.open("/startpayment", "_blank")!.focus();
+    }
   };
 
   return (
     <Stack spacing={4}>
       <Heading>Payment</Heading>
+      {paid ? <Heading>Paid</Heading> : <Heading>Not Paid</Heading>}
       <Button size="md" variant="solid" onClick={handleClick}>
-        Create collection
+        Pay
       </Button>
     </Stack>
   );

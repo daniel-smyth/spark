@@ -30,20 +30,13 @@ function CollectionInputForm(props: SetCollectionProps) {
   function handleFormData(event: any) {
     event.preventDefault();
     setLoading(true);
-
-    const collectionDetails = {
+    const info = {
       name: event.target.name.value,
       description: event.target.description.value,
       prefix: event.target.prefix.value,
       mintTo: event.target.mintTo.value,
     };
-
-    localStorage.setItem("name", event.target.name.value);
-    localStorage.setItem("description", event.target.description.value);
-    localStorage.setItem("prefix", event.target.prefix.value);
-    localStorage.setItem("mintTo", event.target.mintTo.value);
-
-    props.setState(collectionDetails);
+    props.setState(info);
   }
 
   function getFormInput(name: string, label: string) {

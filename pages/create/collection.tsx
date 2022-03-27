@@ -9,7 +9,6 @@ import SetCollectionProps from "../../components/web3/collection/SetProps";
 import Create from "../../components/web3/collection/Mint";
 import SetCollectionSize from "../../components/web3/collection/SetSize";
 import Payment from "../../components/web3/collection/Payment";
-
 /**
  * Contains all components. Props may contain a preset collection size
  * from the calculator.

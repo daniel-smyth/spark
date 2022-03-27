@@ -61,7 +61,6 @@ function UploadLayers(props: any) {
     setLayerCount(layerNames.length);
     setLayerImageSrcs([]);
     setLayerImageSrcs(layers);
-    localStorage.setItem("layers", JSON.stringify(layers));
     setHeadingText("Set Layer Order");
   }
 
@@ -88,17 +87,15 @@ function UploadLayers(props: any) {
 
   function handleSubmit(event: any) {
     event.preventDefault();
-    const layerObjects = [];
-    for (let i = 0; i < layerCount; i++) {
+    const layers = allLayerImageSrcs.map((layerImg) => {
       const layerData = {
-        layerName: allLayerImageSrcs[i][0],
-        layerImageSrcs: allLayerImageSrcs[i][1],
+        layerName: layerImg[0],
+        layerImageSrcs: layerImg[1],
       };
       const layer = getLayer([layerData]);
-      layerObjects.push(layer);
-    }
-    console.log("Layers created: ", layerObjects);
-    props.setLayers(layerObjects);
+      return layer;
+    });
+    props.setLayers(layers);
   }
 
   const layerOrderComponent = [];
