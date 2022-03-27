@@ -43,15 +43,7 @@ export default function Connect() {
         <Box p={2}>
           {address ? (
             <Stack spacing={4}>
-              <Button
-                isFullWidth
-                onClick={disconnect}
-                mt="8px"
-                variant="outline"
-                bg="white"
-              >
-                Disconnect
-              </Button>
+              <Text>Loading...</Text>
             </Stack>
           ) : (
             <>

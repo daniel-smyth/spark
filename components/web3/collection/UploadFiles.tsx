@@ -15,11 +15,16 @@ import { getLayer } from "../../../lib/hashlips/createArt";
 import Spark3Black from "../../logo/spark3black";
 import UploadImageFiles from "../../utilities/UploadImageFiles";
 
-function UploadLayers(props: any) {
-  const [layerNames, setLayerNames] = useState<string[]>([]);
-  const [layerCount, setLayerCount] = useState(8);
-  const [allLayerImageSrcs, setLayerImageSrcs] = useState<any[]>([]);
-  const [headingText, setHeadingText] = useState("Upload Images");
+interface Props {
+  layerState: any;
+  sizeState: any;
+}
+
+function UploadFiles(props: Props) {
+  const [count, setCount] = useState(0);
+  const [layers, setLayers] = useState<any[]>([]);
+  const [traits, setTraits] = useState<string[]>([]);
+  const [heading, setHeading] = useState("Upload Images");
 
   function scrollToTop() {
     window.scrollTo({
@@ -28,25 +33,24 @@ function UploadLayers(props: any) {
     });
   }
 
-  function uploadFiles(files: FileList) {
-    console.log("Uploading layers... ");
-
+  function uploadLayers(files: FileList) {
     for (let i = 0; i < files.length; i++) {
-      const image = files[i];
-      const layerName = image.name.substring(0, image.name.indexOf("_"));
-      addLayerName(layerName);
+      const name = files[i].name.substring(0, files[i].name.indexOf("_"));
+      if (!traits.includes(name)) {
+        traits.push(name);
+        setTraits(traits);
+      }
     }
 
-    const layers = layerNames.map((layerName) => [layerName, []]);
+    const layers = traits.map((layerName) => [layerName, []]);
     for (let i = 0; i < files.length; i++) {
-      const image = files[i] as File;
-      const layerName = image.name.substring(0, image.name.indexOf("_"));
-      const imageName = image.name.substring(image.name.indexOf("_") + 1);
-      const imageUrl = URL.createObjectURL(image);
+      const trait = files[i].name.substring(0, files[i].name.indexOf("_"));
+      const type = files[i].name.substring(files[i].name.indexOf("_") + 1);
+      const url = URL.createObjectURL(files[i]);
       layers.forEach((layer) => {
-        if (layer[0] == layerName) {
+        if (layer[0] == trait) {
           const urlArray = layer[1] as Array<any[]>;
-          urlArray.push([imageName, imageUrl]);
+          urlArray.push([type, url]);
         }
       });
     }
@@ -57,37 +61,26 @@ function UploadLayers(props: any) {
       else maxSize = maxSize * layer[1].length;
     });
 
-    props.setMaxSize(maxSize);
-    setLayerCount(layerNames.length);
-    setLayerImageSrcs([]);
-    setLayerImageSrcs(layers);
-    setHeadingText("Set Layer Order");
-  }
-
-  function addLayerName(name: string) {
-    if (!layerNames.includes(name)) {
-      layerNames.push(name);
-      setLayerNames(layerNames);
-    }
-  }
-
-  function changeLayerOrder(e: any, i: number) {
-    const layerName = e.target.value;
-    const layerPosition = i;
-    const index = allLayerImageSrcs.indexOf(
-      allLayerImageSrcs.find((layer) => (layer[0] == layerName ? layer : null))
-    );
-    const splicedLayer = allLayerImageSrcs.splice(index, 1);
-    allLayerImageSrcs.splice(layerPosition, 0, splicedLayer[0]);
+    props.sizeState(maxSize);
+    setCount(traits.length);
+    setLayers(layers);
+    setHeading("Set Layer Order");
   }
 
   function resetLayers() {
-    setLayerImageSrcs([]);
+    setLayers([]);
+  }
+
+  function changeLayersOrder(e: any, i: number) {
+    const index = layers.indexOf(
+      layers.find((layer) => (layer[0] == e.target.value ? layer : null))
+    );
+    layers.splice(i, 0, layers.splice(index, 1)[0]);
   }
 
   function handleSubmit(event: any) {
     event.preventDefault();
-    const layers = allLayerImageSrcs.map((layerImg) => {
+    const cleanedLayers = layers.map((layerImg) => {
       const layerData = {
         layerName: layerImg[0],
         layerImageSrcs: layerImg[1],
@@ -95,30 +88,30 @@ function UploadLayers(props: any) {
       const layer = getLayer([layerData]);
       return layer;
     });
-    props.setLayers(layers);
+    props.layerState(cleanedLayers);
   }
 
   const layerOrderComponent = [];
   const layerNamesString = [];
-  if (allLayerImageSrcs.length != 0) {
-    layerNames.sort(function (a, b) {
+  if (layers.length != 0) {
+    traits.sort(function (a, b) {
       if (a < b) return -1;
       if (a > b) return 1;
       return 0;
     });
 
     const layerOptions = [];
-    for (let i = 0; i < layerNames.length; i++) {
+    for (let i = 0; i < traits.length; i++) {
       layerOptions.push(
-        <option key={i} value={layerNames[i]}>
-          {layerNames[i]}
+        <option key={i} value={traits[i]}>
+          {traits[i]}
         </option>
       );
     }
-    for (let i = 0; i < layerCount; i++) {
+    for (let i = 0; i < count; i++) {
       layerOrderComponent.push(
         <Select
-          onChange={(e) => changeLayerOrder(e, i)}
+          onChange={(e) => changeLayersOrder(e, i)}
           key={i}
           placeholder={"Layer " + (i + 1)}
           size="md"
@@ -127,7 +120,7 @@ function UploadLayers(props: any) {
         </Select>
       );
     }
-    const string = layerNames.join(", ");
+    const string = traits.join(", ");
 
     layerNamesString.push(
       <Text key={0} variant="badge">
@@ -141,17 +134,17 @@ function UploadLayers(props: any) {
     <form onSubmit={handleSubmit}>
       <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
         <GridItem colSpan={3} h="8">
-          <Heading size="md">{headingText}</Heading>
+          <Heading size="md">{heading}</Heading>
         </GridItem>
         <GridItem colStart={6} colEnd={8} h="8">
           <Spark3Black width={60} />
         </GridItem>
       </Grid>
       <Stack spacing={6}>
-        {allLayerImageSrcs.length == 0 ? (
+        {layers.length == 0 ? (
           <>
             <Box py={2}>
-              <UploadImageFiles handleUpload={uploadFiles} />
+              <UploadImageFiles handleUpload={uploadLayers} />
             </Box>
             <Text size="md">
               Spark3 will detect NFT trait types and trait names (
@@ -202,4 +195,4 @@ function UploadLayers(props: any) {
   );
 }
 
-export default UploadLayers;
+export default UploadFiles;

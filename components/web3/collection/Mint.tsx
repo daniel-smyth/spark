@@ -22,7 +22,6 @@ interface CreateCollectionProps {
     description: string;
     prefix: string;
     mintTo: string;
-    saleRecipient: string;
   };
   layerObjs: any[];
 }
@@ -38,7 +37,7 @@ function Create(props: CreateCollectionProps) {
   const [started, setStarted] = useState<boolean>(false);
   const [completed, setCompleted] = useState<boolean>(false);
   // Download button.
-  const text = `Download ${props.info.name} image files`;
+  const text = `Download image files`;
   const [buttonText, setButtonText] = useState<string>(text);
   const [buttonVariant, setButtonVariant] = useState<string>("solid");
 

@@ -7,18 +7,32 @@ import {
   GridItem,
   Heading,
   Input,
+  Link,
   Stack,
   Text,
 } from "@chakra-ui/react";
 import Spark3Black from "../../logo/spark3black";
-import { useAtom } from "jotai";
+import { useRouter } from "next/router";
+import FormNumberInput from "../../form/FormNumberInput";
 
-interface SetCollectionProps {
-  setState: any;
+interface Props {
+  maxSize: number;
+  infoState: any;
+  sizeState: any;
 }
 
-function CollectionInputForm(props: SetCollectionProps) {
-  const [isLoading, setLoading] = useState(false);
+function SetProps(props: Props) {
+  const router = useRouter();
+  const [size, setSize] = useState(props.maxSize);
+  const [next, setNext] = useState(false);
+
+  function handleClick() {
+    setNext(true);
+  }
+
+  function goBack() {
+    router.push("/create/collection");
+  }
 
   function scrollToTop() {
     window.scrollTo({
@@ -29,14 +43,14 @@ function CollectionInputForm(props: SetCollectionProps) {
 
   function handleFormData(event: any) {
     event.preventDefault();
-    setLoading(true);
     const info = {
       name: event.target.name.value,
       description: event.target.description.value,
       prefix: event.target.prefix.value,
       mintTo: event.target.mintTo.value,
     };
-    props.setState(info);
+    props.infoState(info);
+    props.sizeState(size);
   }
 
   function getFormInput(name: string, label: string) {
@@ -49,47 +63,82 @@ function CollectionInputForm(props: SetCollectionProps) {
   }
 
   return (
-    <form onSubmit={handleFormData}>
-      <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
-        <GridItem colSpan={3} h="8">
-          <Heading size="md">Enter Collection Info</Heading>
-        </GridItem>
-        <GridItem colStart={6} colEnd={8} h="8">
-          <Spark3Black width={60} />
-        </GridItem>
-      </Grid>
-      <Stack spacing={12}>
-        <Stack spacing={6}>
-          <Text size="md">
-            Enter collection details. This data will be the MetaData of your
-            collection.
-          </Text>
-          {getFormInput("mintTo", "Address to mint NFTs to")}
-          {getFormInput("name", "Enter collection name")}
-          {getFormInput("description", "Enter description")}
-          {getFormInput("prefix", "Enter image name prefix")}
-          {isLoading ? (
-            <Button
-              isLoading
-              loadingText="We're on it..."
-              size="md"
-              variant="solid"
-              type="submit"
-            />
-          ) : (
-            <Button
-              onClick={scrollToTop}
-              size="md"
-              variant="solid"
-              type="submit"
-            >
-              Create Collection
-            </Button>
-          )}
-        </Stack>
-      </Stack>
-    </form>
+    <>
+      {!next ? (
+        <>
+          <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
+            <GridItem colSpan={3} h="8">
+              <Heading size="md">Enter Collection Size</Heading>
+            </GridItem>
+            <GridItem colStart={6} colEnd={8} h="8">
+              <Spark3Black width={60} />
+            </GridItem>
+          </Grid>
+          <Stack spacing={12}>
+            <Stack spacing={6}>
+              <Text size="md">
+                This is the max size you can make your collection with your
+                layers and traits.
+              </Text>
+              <FormNumberInput
+                maxSize={size}
+                label="Collection size"
+                name="collectionSize"
+                defaultValue={size}
+                onChange={setSize}
+              />
+              <Button onClick={handleClick} size="md" variant="solid">
+                Set collection size
+              </Button>
+              <Text px={2} size={"md"}>
+                Make a mistake?{" "}
+                <Link color={"blue.400"} onClick={goBack}>
+                  Go back
+                </Link>
+              </Text>
+            </Stack>
+          </Stack>
+        </>
+      ) : (
+        <form onSubmit={handleFormData}>
+          <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
+            <GridItem colSpan={3} h="8">
+              <Heading size="md">Enter Collection Info</Heading>
+            </GridItem>
+            <GridItem colStart={6} colEnd={8} h="8">
+              <Spark3Black width={60} />
+            </GridItem>
+          </Grid>
+          <Stack spacing={12}>
+            <Stack spacing={6}>
+              <Text size="md">
+                Enter collection details. This data will be the MetaData of your
+                collection.
+              </Text>
+              {getFormInput("mintTo", "Address to mint NFTs to")}
+              {getFormInput("name", "Enter collection name")}
+              {getFormInput("description", "Enter description")}
+              {getFormInput("prefix", "Enter image name prefix")}
+              <Button
+                onClick={scrollToTop}
+                size="md"
+                variant="solid"
+                type="submit"
+              >
+                Create Collection
+              </Button>
+              <Text px={2} size={"md"}>
+                Make a mistake?{" "}
+                <Link color={"blue.400"} onClick={goBack}>
+                  Go back
+                </Link>
+              </Text>
+            </Stack>
+          </Stack>
+        </form>
+      )}
+    </>
   );
 }
 
-export default CollectionInputForm;
+export default SetProps;
