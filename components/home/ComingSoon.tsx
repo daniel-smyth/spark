@@ -10,7 +10,7 @@ import {
   Container,
 } from "@chakra-ui/react";
 import React from "react";
-import ProductPrice from "../cards/Price";
+import ProductPrice from "../Price";
 import { AiTwotoneShop } from "react-icons/ai";
 import { BsCoin } from "react-icons/bs";
 import { VscOrganization } from "react-icons/vsc";

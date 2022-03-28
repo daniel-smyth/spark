@@ -1,10 +1,10 @@
 import type { NextPage } from "next";
-import Welcome from "../components/homepage/Hero";
-import HowItWorks from "../components/homepage/Info";
-import Testimonials from "../components/homepage/Testimonails";
-import StatisticCard from "../components/homepage/Stats";
-import ComingSoon from "../components/homepage/ComingSoon";
-import CollectionCalculator from "../components/utilities/Calculator";
+import Welcome from "../components/home/Hero";
+import HowItWorks from "../components/home/Info";
+import Testimonials from "../components/home/Testimonails";
+import StatisticCard from "../components/home/Stats";
+import ComingSoon from "../components/home/ComingSoon";
+import CollectionCalculator from "../components/Calculator";
 
 const Home: NextPage = () => {
   return (

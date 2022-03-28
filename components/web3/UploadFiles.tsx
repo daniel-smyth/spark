@@ -11,9 +11,9 @@ import {
   Box,
 } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { getLayer } from "../../../lib/hashlips/createArt";
-import Spark3Black from "../../logo/spark3black";
-import UploadImageFiles from "../../utilities/UploadImageFiles";
+import { getLayer } from "../../lib/hashlips/createArt";
+import Spark3Black from "../icon/spark3black";
+import UploadImageFiles from "../util/Upload";
 
 interface Props {
   layerState: any;

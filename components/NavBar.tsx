@@ -10,7 +10,7 @@ import {
   Stack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, LinkIcon } from "@chakra-ui/icons";
-import Spark3Black from "./logo/spark3black";
+import Spark3Black from "./icon/spark3black";
 // import { ConnectWallet } from "@3rdweb/react";
 
 const Links = [

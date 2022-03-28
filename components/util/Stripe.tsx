@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Stack, Heading, Button } from "@chakra-ui/react";
 
 interface Props {

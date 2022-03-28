@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { withRouter } from "next/router";
 import { useAddress } from "@thirdweb-dev/react";
-import FormContainer from "../../components/form/FormContainer";
+import FormContainer from "../../components/FormContainer";
 import UploadFiles from "../../components/web3/collection/UploadFiles";
 import SetProps from "../../components/web3/collection/SetProps";
-import Stripe from "../../components/utilities/Stripe";
-import Create from "../../components/web3/collection/Mint";
+import Stripe from "../../components/util/Stripe";
+import Create from "../../components/web3/Mint";
 import Reject from "../../components/web3/Reject";
 
 function CreateCollection() {

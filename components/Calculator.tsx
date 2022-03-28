@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Spark3Black from "../logo/spark3black";
+import Spark3Black from "./icon/spark3black";
 
 function CollectionCalculator() {
   const router = useRouter();

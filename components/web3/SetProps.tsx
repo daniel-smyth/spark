@@ -11,9 +11,9 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import Spark3Black from "../../logo/spark3black";
 import { useRouter } from "next/router";
-import FormNumberInput from "../../form/FormNumberInput";
+import FormNumberInput from "../FormNumberInput";
+import Spark3Black from "../icon/spark3black";
 
 interface Props {
   maxSize: number;

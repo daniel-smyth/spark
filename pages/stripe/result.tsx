@@ -2,7 +2,7 @@ import { Stack, Spinner, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { fetchGetJSON } from "../../lib/stripe/utils/api-helpers";
 import { useRouter } from "next/router";
-import Spark3Black from "../../components/logo/spark3black";
+import Spark3Black from "../../components/icon/spark3black";
 import useSWR from "swr";
 import { CheckIcon } from "@chakra-ui/icons";
 

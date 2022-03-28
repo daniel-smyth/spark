@@ -11,9 +11,9 @@ import {
   Text,
   Wrap,
 } from "@chakra-ui/react";
-import { runHashlips } from "../../../lib/hashlips/createArt";
-import { downloadJSZip } from "../../../lib/jszip/download";
-import Spark3Black from "../../logo/spark3black";
+import { runHashlips } from "../../lib/hashlips/createArt";
+import { downloadJSZip } from "../../lib/jszip/download";
+import Spark3Black from "../icon/spark3black";
 
 interface CreateCollectionProps {
   size: number;
