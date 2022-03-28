@@ -1,7 +1,7 @@
-import getStripe from "../../lib/stripe/utils/get-stripejs";
 import React, { useEffect } from "react";
-import { fetchPostJSON } from "../../lib/stripe/utils/api-helpers";
-import { Stack, Button, Text, Spinner } from "@chakra-ui/react";
+import getStripe from "../../lib/stripe/utils/getStripeJS";
+import { fetchPostJSON } from "../../lib/stripe/utils/apiHelpers";
+import { Stack, Text, Spinner } from "@chakra-ui/react";
 import Spark3Black from "../../components/icon/spark3black";
 
 function Complete() {

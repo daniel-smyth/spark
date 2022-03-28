@@ -1,9 +1,9 @@
-import { Container, Heading, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import { useRouter } from "next/router";
 import Connect from "../../components/util/Connect";
+import { useRouter } from "next/router";
 import { withRouter } from "next/router";
 import { useAddress } from "@thirdweb-dev/react";
+import { Container, Heading, Stack, Text } from "@chakra-ui/react";
 
 function GetStarted(props: any) {
   const address = useAddress();

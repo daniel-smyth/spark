@@ -22,7 +22,8 @@
     "styles/theme.styles.global.tsx",
     "lib/hashlips'/utils/update_info.js",
     "lib/hashlips'/main.js",
-    "lib/jszip/download.js",
+    "lib/jszip/main.js",
+    "lib/hashlips/createArt.js"
   ],
   "exclude": ["node_modules"]
 }

@@ -11,9 +11,9 @@ import {
   Text,
   Wrap,
 } from "@chakra-ui/react";
-import { runHashlips } from "../../lib/hashlips/createArt";
-import { downloadJSZip } from "../../lib/jszip/download";
 import Spark3Black from "../icon/spark3black";
+import { execute } from "../../lib/grow/main";
+import { downloadZip } from "../../lib/jszip/main";
 
 interface CreateCollectionProps {
   size: number;
@@ -46,7 +46,7 @@ function Create(props: CreateCollectionProps) {
     // Create multiple images.
     const multiplyImgs = async () => {
       const imgSrcs: string[] = [];
-      const art = await runHashlips(props.size, props.layerObjs);
+      const art = await execute(props.size, props.layerObjs);
       art.forEach((imgData: { imgSrc: string; metadata: any }) => {
         imgSrcs.push(imgData.imgSrc);
       });
@@ -104,10 +104,10 @@ function Create(props: CreateCollectionProps) {
     if (!started) mint();
   }, [art]);
 
-  function downloadZip() {
+  function download() {
     setButtonText("Download starting...");
     setButtonVariant("outline");
-    downloadJSZip(imgSrcs!, props.info.name, props.info.prefix);
+    downloadZip(imgSrcs!, props.info.name, props.info.prefix);
   }
 
   // Renders the image results.
@@ -201,7 +201,7 @@ function Create(props: CreateCollectionProps) {
                 {props.info.name} Images Mutliplied
               </Heading>
               <Button
-                onClick={downloadZip}
+                onClick={download}
                 variant={buttonVariant}
                 size={"md"}
                 alignSelf={"right"}

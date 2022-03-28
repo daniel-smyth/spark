@@ -9,13 +9,11 @@ import {
   Icon,
   useColorModeValue,
   Image,
-  Button,
   Link,
   Box,
 } from "@chakra-ui/react";
 import { ReactElement } from "react";
 import { FiDatabase, FiFolder, FiUpload } from "react-icons/fi";
-import Script from "next/script";
 
 export default function ImagesInfo() {
   function italic(string: string) {

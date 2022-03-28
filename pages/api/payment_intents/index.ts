@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import Stripe from "stripe";
 import { MIN_AMOUNT, MAX_AMOUNT, CURRENCY } from "../../../lib/stripe/config";
-import { formatAmountForStripe } from "../../../lib/stripe/utils/stripe-helpers";
+import { formatAmountForStripe } from "../../../lib/stripe/utils/stripeHelpers";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2020-08-27",
