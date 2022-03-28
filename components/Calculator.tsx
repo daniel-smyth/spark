@@ -52,26 +52,20 @@ function CollectionCalculator() {
 
   return (
     <Container px={12} maxW="6xl" spacing={{ base: 8, md: 8 }}>
-      <Heading
-        display={{ base: "none", md: "inline" }}
-        fontSize={{ base: "2xl", md: "3xl" }}
-      >
-        How many NFTs do you want?
-      </Heading>
+      <Heading fontSize={{ base: "2xl", md: "3xl" }}>How many NFTs?</Heading>
       <SimpleGrid
         columns={{ base: 1, md: 2 }}
         spacing={{ base: 7, md: 10 }}
         pb={{ base: 16, md: 36 }}
       >
-        <Heading
-          display={{ base: "inline", md: "none" }}
-          fontSize={{ base: "2xl", md: "3xl" }}
-        >
-          How many NFTs do you want?
-        </Heading>
         <Stack spacing={4}>
           <FormControl pt={6}>
-            <FormLabel>Traits per Layer</FormLabel>
+            <FormLabel>
+              Traits per Layer.{" "}
+              <Link pt={1} color={"blue.400"} href="/about/images">
+                Traits?
+              </Link>
+            </FormLabel>
             <NumberInput
               value={traits}
               onChange={(e) => {
@@ -84,15 +78,14 @@ function CollectionCalculator() {
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
-            <Text pt={1} size={"md"}>
-              What is a trait?{" "}
-              <Link color={"blue.400"} href="/about/images">
-                Traits
-              </Link>
-            </Text>
           </FormControl>
           <FormControl>
-            <FormLabel>Layers</FormLabel>
+            <FormLabel>
+              Layer count.{" "}
+              <Link color={"blue.400"} href="/about/images">
+                Layers?
+              </Link>
+            </FormLabel>
             <NumberInput
               value={layers}
               onChange={(e) => {
@@ -105,12 +98,6 @@ function CollectionCalculator() {
                 <NumberDecrementStepper />
               </NumberInputStepper>
             </NumberInput>
-            <Text pt={1} size={"md"}>
-              What is a layer?{" "}
-              <Link color={"blue.400"} href="/about/images">
-                Layers
-              </Link>
-            </Text>
           </FormControl>
         </Stack>
 

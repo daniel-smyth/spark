@@ -147,11 +147,12 @@ function UploadFiles(props: Props) {
               <UploadImageFiles handleUpload={uploadLayers} />
             </Box>
             <Text size="md">
-              Spark3 will detect NFT trait types and trait names (
+              Spark3 detects NFT
               <Link color={"blue.400"} href="/about/images">
-                What is a trait?
+                {" "}
+                trait types and trait names{" "}
               </Link>
-              ) from your image file name. Follow our naming convention:
+              from your image file name. Follow our naming convention:
             </Text>
             <Text variant={"bold"} size="md" alignSelf={"center"}>
               "TRAITTYPE_TRAIT.png"
@@ -169,9 +170,8 @@ function UploadFiles(props: Props) {
         ) : (
           <>
             <Box pt={{ base: 2, md: 0 }}>{layerNamesString}</Box>
-            <Text size="md" display={{ base: "none", md: "inline" }}>
-              Layer 1 is the background and layer 2 will be printed over layer
-              1, layer 3 over layer 2 and so on.
+            <Text size="md" display={{ base: "none", md: "inline" }} px={2}>
+              Layer 1 is background and layer 2 will be printed over layer 1.
             </Text>
             {layerOrderComponent}
             <Button

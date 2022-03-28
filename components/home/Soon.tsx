@@ -81,37 +81,34 @@ function ComingSoon() {
             color="grey"
             displayRoyalty={false}
             packageName="NFT Marketplace"
-            royalty="5"
-            feature1="Sell your way"
-            feature2="Host on your website"
-            feature3="Host on Spark3"
-            feature4="Quick setup"
-            buttonText="Create Marketplace"
+            feature1="NFT marketplace on your website"
+            feature2="Cut out exchange fees"
+            feature3="Manage drops and create collections"
+            feature4="Website installation in a few days"
+            buttonText="soon"
             isDisabled={true}
           ></ProductPrice>
           <ProductPrice
             color="grey"
             displayRoyalty={false}
-            packageName="Token"
-            royalty="5"
-            feature1="ERC20 token"
-            feature2="Create in minutes"
-            feature3="Sell on any exchange"
-            feature4="Minting costs only"
-            buttonText="Create token"
+            packageName="ERC20 Token"
+            feature1="Create your own coin to buy and sell"
+            feature2="A coin to go with your marketplace"
+            feature3="Sell on all major exchanges"
+            feature4="Setup in 5 minutes"
+            buttonText="soon"
             isDisabled={true}
           ></ProductPrice>
           <ProductPrice
             color="grey"
             displayRoyalty={false}
             packageName="DAO"
-            royalty="5"
-            feature1="Build treasury"
-            feature2="Build governance"
-            feature3="Voting"
-            feature4="Minting costs only"
-            buttonText="Create DAO"
-            isDisabled={true}
+            feature1="Build a DAO treasury"
+            feature2="Use DAO governance"
+            feature3="Support DAO voting systems"
+            feature4="Fast and cheap"
+            buttonText="Soon"
+            isDisabled={"soon"}
           ></ProductPrice>
         </SimpleGrid>
       </Stack>

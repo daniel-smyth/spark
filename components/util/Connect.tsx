@@ -1,4 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { useRouter } from "next/router";
+import {
+  useAddress,
+  useCoinbaseWallet,
+  useMetamask,
+  useWalletConnect,
+} from "@thirdweb-dev/react";
 import {
   AspectRatio,
   Box,
@@ -9,25 +16,16 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
-import {
-  useAddress,
-  useCoinbaseWallet,
-  useDisconnect,
-  useMetamask,
-  useWalletConnect,
-} from "@thirdweb-dev/react";
 
 export default function Connect() {
+  const router = useRouter();
   const address = useAddress();
   const connectWithMetamask = useMetamask();
   const connectWithWalletConnect = useWalletConnect();
   const connectWithCoinbaseWallet = useCoinbaseWallet();
-  const disconnect = useDisconnect();
-
-  const [connectEmail, setConnectEmail] = useState(false);
 
   function handleClick() {
-    setConnectEmail(!connectEmail);
+    router.push("https://metamask.io/");
   }
 
   return (
@@ -88,10 +86,10 @@ export default function Connect() {
               >
                 Coinbase Wallet
               </Button>
-              <Text pt={6} align={"center"} size={"md"}>
+              <Text pt={4} align={"center"} size={"md"}>
                 No wallet?{" "}
                 <Link color={"blue.400"} onClick={handleClick}>
-                  How to create one
+                  Create wallet
                 </Link>
               </Text>
             </>

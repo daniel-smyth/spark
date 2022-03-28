@@ -39,9 +39,9 @@ function ProductPrice(props: any) {
           <Stack direction={"row"} align={"center"} justify={"center"}>
             <Text fontSize={"2xl"}>$</Text>
             <Text color="black" fontSize={"5xl"} fontWeight={600}>
-              {props.royalty}
+              {props.royalty ? props.royalty : null}
             </Text>
-            <Text color={"gray.500"}>eth</Text>
+            <Text color={"gray.500"}>USD</Text>
           </Stack>
         ) : null}
       </Stack>

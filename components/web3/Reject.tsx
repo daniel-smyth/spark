@@ -1,4 +1,4 @@
-import { Stack, Spinner, Text, Button } from "@chakra-ui/react";
+import { Stack, Text, Button } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React from "react";
 import Spark3Black from "../icon/spark3black";
@@ -7,7 +7,7 @@ function Reject() {
   const router = useRouter();
 
   function handleClick() {
-    router.push("/create/collection");
+    router.push("/create/getstarted");
   }
 
   return (

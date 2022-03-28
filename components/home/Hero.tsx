@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import {
   Box,
   Heading,
@@ -10,14 +11,7 @@ import {
   useColorModeValue,
   createIcon,
 } from "@chakra-ui/react";
-import { useRouter } from "next/router";
 
-/**
- * Renders the home page of Spark. Contains text with call
- * to action.
- *
- * @returns home page componenet
- */
 export default function Welcome() {
   const router = useRouter();
 
@@ -42,7 +36,6 @@ export default function Welcome() {
           spacing={{ base: 4, md: 5 }}
           height={{ base: "100vh", md: "100vh" }}
         >
-          {/* <Spark3Black width={160} style={{ paddingLeft: "15px" }} /> */}
           <Heading
             fontWeight={600}
             fontSize={{ base: "3xl", sm: "4xl", md: "4xl" }}
@@ -55,8 +48,8 @@ export default function Welcome() {
               </Text>
             </Stack>
           </Heading>
-          <Text size={"lg"} py={2}>
-            Create an NFT art collection in minutes.
+          <Text size={"xl"} py={1}>
+            Create up to 10,000 NFTs in minutes.
           </Text>
           <Stack
             direction={"column"}
@@ -73,9 +66,7 @@ export default function Welcome() {
             >
               Create 10,000 NFTs
             </Button>
-            <Button variant={"link"} colorScheme={"black"} size={"sm"}>
-              Learn more
-            </Button>
+            <Text size={"sm"}>mobile or desktop</Text>
             <Box>
               <Icon
                 as={Arrow}

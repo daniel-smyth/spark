@@ -31,7 +31,8 @@ function SetProps(props: Props) {
   }
 
   function goBack() {
-    router.push("/create/collection");
+    if (next) setNext(false);
+    else router.push("/create/collection");
   }
 
   function scrollToTop() {
@@ -78,7 +79,7 @@ function SetProps(props: Props) {
             <Stack spacing={6}>
               <Text size="md">
                 This is the max size you can make your collection with your
-                layers and traits.
+                uploaded artwork.
               </Text>
               <FormNumberInput
                 maxSize={size}
@@ -90,12 +91,6 @@ function SetProps(props: Props) {
               <Button onClick={handleClick} size="md" variant="solid">
                 Set collection size
               </Button>
-              <Text px={2} size={"md"}>
-                Make a mistake?{" "}
-                <Link color={"blue.400"} onClick={goBack}>
-                  Go back
-                </Link>
-              </Text>
             </Stack>
           </Stack>
         </>
@@ -103,7 +98,7 @@ function SetProps(props: Props) {
         <form onSubmit={handleFormData}>
           <Grid templateColumns="repeat(5, 1fr)" gap={4} pb={6}>
             <GridItem colSpan={3} h="8">
-              <Heading size="md">Collection Info</Heading>
+              <Heading size="md">Collection Metadata</Heading>
             </GridItem>
             <GridItem colStart={6} colEnd={8} h="8">
               <Spark3Black width={60} />
@@ -111,14 +106,11 @@ function SetProps(props: Props) {
           </Grid>
           <Stack pt={{ base: 4, md: 0 }} spacing={12}>
             <Stack spacing={6}>
-              <Text size="md">
-                Enter collection details. This data will be the MetaData of your
-                collection.
-              </Text>
+              <Text size="md">This data cannot be changed</Text>
+              {getFormInput("name", "Collection name")}
+              {getFormInput("description", "Collection description")}
+              {getFormInput("prefix", "Image name prefix (prefix.png)")}
               {getFormInput("mintTo", "Address to mint NFTs to")}
-              {getFormInput("name", "Enter collection name")}
-              {getFormInput("description", "Enter description")}
-              {getFormInput("prefix", "Enter image name prefix")}
               <Button
                 onClick={scrollToTop}
                 size="md"
