@@ -19,6 +19,10 @@ export default function Welcome() {
     router.push("/create/getstarted");
   }
 
+  function handleClick2() {
+    window.open("/about/images", "_blank")!.focus();
+  }
+
   return (
     <>
       <Head>
@@ -65,6 +69,14 @@ export default function Welcome() {
               rounded="full"
             >
               Create 10,000 NFTs
+            </Button>
+            <Button
+              onClick={handleClick2}
+              size={"md"}
+              variant={"solid"}
+              rounded="full"
+            >
+              Open tab
             </Button>
             <Text size={"sm"}>mobile or desktop</Text>
             <Box>
