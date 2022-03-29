@@ -7,12 +7,6 @@ import { Stack, Spinner, Text } from "@chakra-ui/react";
 import { CheckIcon } from "@chakra-ui/icons";
 
 function Complete() {
-  // If browser may have metamask.
-  // .. show connect
-
-  // If brower may not have metamask.
-  // ..
-
   const router = useRouter();
   const [text, setText] = useState("Processing");
   const [status, setStatus] = useState(false);

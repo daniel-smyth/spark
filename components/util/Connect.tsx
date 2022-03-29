@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useRouter } from "next/router";
-import {
-  useAddress,
-  useCoinbaseWallet,
-  useMetamask,
-  useWalletConnect,
-} from "@thirdweb-dev/react";
+import { useAddress, useMetamask, useWalletConnect } from "@thirdweb-dev/react";
 import {
   AspectRatio,
   Box,
@@ -23,11 +17,12 @@ export default function Connect() {
   const connectWithWalletConnect = useWalletConnect();
 
   useEffect(() => {
-    if (typeof window.ethereum == "undefined") setEth(false);
-  });
+    const interval = setInterval(() => check(), 100);
+    return () => clearInterval(interval);
+  }, []);
 
-  function handleClick() {
-    window.open("https://metamask.io/", "_blank")!.focus();
+  function check() {
+    if (typeof window.ethereum == "undefined") setEth(false);
   }
 
   function connectMetaMask() {
@@ -38,6 +33,10 @@ export default function Connect() {
   function connectCoinbase() {
     if (eth) useMetamask();
     else window.open("https://www.coinbase.com/wallet", "_blank")!.focus();
+  }
+
+  function handleClick() {
+    window.open("https://metamask.io/", "_blank")!.focus();
   }
 
   return (
