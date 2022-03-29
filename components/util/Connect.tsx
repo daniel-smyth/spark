@@ -36,7 +36,7 @@ export default function Connect() {
   }
 
   function handleClick() {
-    window.open("https://metamask.io/", "_blank")!.focus();
+    window.open("https://metamask.app.link/dapp/spark3.io/", "_blank")!.focus();
   }
 
   return (
@@ -56,34 +56,53 @@ export default function Connect() {
             </Stack>
           ) : (
             <>
-              <Button
-                mb="8px"
-                variant={eth ? "solid" : "outline"}
-                isFullWidth
-                iconSpacing="auto"
-                rightIcon={
-                  <AspectRatio ratio={1} w={6}>
-                    <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
-                  </AspectRatio>
-                }
-                onClick={() => connectMetaMask()}
-              >
-                MetaMask
-              </Button>
-              <Button
-                mb="8px"
-                isFullWidth
-                variant={eth ? "solid" : "outline"}
-                iconSpacing="auto"
-                rightIcon={
-                  <AspectRatio ratio={1} w={6}>
-                    <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
-                  </AspectRatio>
-                }
-                onClick={() => connectCoinbase()}
-              >
-                Coinbase Wallet
-              </Button>
+              {!eth ? (
+                <Button
+                  mb="8px"
+                  variant={eth ? "solid" : "outline"}
+                  isFullWidth
+                  iconSpacing="auto"
+                  rightIcon={
+                    <AspectRatio ratio={1} w={6}>
+                      <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
+                    </AspectRatio>
+                  }
+                  onClick={handleClick}
+                >
+                  Create Wallet
+                </Button>
+              ) : (
+                <>
+                  <Button
+                    mb="8px"
+                    variant={eth ? "solid" : "outline"}
+                    isFullWidth
+                    iconSpacing="auto"
+                    rightIcon={
+                      <AspectRatio ratio={1} w={6}>
+                        <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
+                      </AspectRatio>
+                    }
+                    onClick={() => connectMetaMask()}
+                  >
+                    MetaMask
+                  </Button>
+                  <Button
+                    mb="8px"
+                    isFullWidth
+                    variant={eth ? "solid" : "outline"}
+                    iconSpacing="auto"
+                    rightIcon={
+                      <AspectRatio ratio={1} w={6}>
+                        <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
+                      </AspectRatio>
+                    }
+                    onClick={() => connectCoinbase()}
+                  >
+                    Coinbase Wallet
+                  </Button>
+                </>
+              )}
               <Button
                 variant="solid"
                 isFullWidth
