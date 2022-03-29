@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useAddress, useMetamask, useWalletConnect } from "@thirdweb-dev/react";
+import {
+  useAddress,
+  useCoinbaseWallet,
+  useMetamask,
+  useWalletConnect,
+} from "@thirdweb-dev/react";
 import {
   AspectRatio,
   Box,
@@ -7,7 +12,6 @@ import {
   Flex,
   Image,
   Link,
-  Stack,
   Text,
 } from "@chakra-ui/react";
 import { isMobile, isTablet } from "react-device-detect";
@@ -15,6 +19,8 @@ import { isMobile, isTablet } from "react-device-detect";
 export default function Connect() {
   const [eth, setEth] = useState(true);
   const address = useAddress();
+  const connectWithMetamask = useMetamask();
+  const connectWithCoinBase = useCoinbaseWallet();
   const connectWithWalletConnect = useWalletConnect();
 
   useEffect(() => {
@@ -26,21 +32,11 @@ export default function Connect() {
     if (typeof window.ethereum == "undefined") setEth(false);
   }
 
-  function connectMetaMask() {
-    if (eth) useMetamask();
-    else window.open("https://metamask.io/", "_blank")!.focus();
-  }
-
-  function connectCoinbase() {
-    if (eth) useMetamask();
-    else window.open("https://www.coinbase.com/wallet", "_blank")!.focus();
-  }
-
-  function openMetamask() {
+  function metamaskInfo() {
     window.open("https://metamask.app.link/dapp/spark3.io/", "_blank")!.focus();
   }
 
-  function openWalletconnect() {
+  function walletconnectInfo() {
     window
       .open("https://docs.walletconnect.com/mobile-linking", "_blank")!
       .focus();
@@ -58,13 +54,25 @@ export default function Connect() {
       >
         <Box p={2}>
           {address ? (
-            <Stack spacing={4}>
-              <Text>Loading...</Text>
-            </Stack>
+            <Text>Loading...</Text>
           ) : (
             <>
               {!eth ? (
-                isTablet || isMobile ? null : (
+                isTablet || isMobile ? (
+                  <Button
+                    variant="solid"
+                    isFullWidth
+                    iconSpacing="auto"
+                    rightIcon={
+                      <AspectRatio ratio={1} w={6}>
+                        <Image src="https://thirdweb.com/logos/walletconnect-logo.svg" />
+                      </AspectRatio>
+                    }
+                    onClick={() => connectWithWalletConnect()}
+                  >
+                    WalletConnect
+                  </Button>
+                ) : (
                   <Button
                     mb="8px"
                     variant={eth ? "solid" : "outline"}
@@ -75,11 +83,25 @@ export default function Connect() {
                         <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
                       </AspectRatio>
                     }
-                    onClick={openMetamask}
+                    onClick={metamaskInfo}
                   >
                     Create Wallet
                   </Button>
                 )
+              ) : isTablet || isMobile ? (
+                <Button
+                  variant="solid"
+                  isFullWidth
+                  iconSpacing="auto"
+                  rightIcon={
+                    <AspectRatio ratio={1} w={6}>
+                      <Image src="https://thirdweb.com/logos/walletconnect-logo.svg" />
+                    </AspectRatio>
+                  }
+                  onClick={() => connectWithWalletConnect()}
+                >
+                  WalletConnect
+                </Button>
               ) : (
                 <>
                   <Button
@@ -92,7 +114,7 @@ export default function Connect() {
                         <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
                       </AspectRatio>
                     }
-                    onClick={() => connectMetaMask()}
+                    onClick={() => connectWithMetamask()}
                   >
                     MetaMask
                   </Button>
@@ -106,25 +128,26 @@ export default function Connect() {
                         <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
                       </AspectRatio>
                     }
-                    onClick={() => connectCoinbase()}
+                    onClick={() => connectWithCoinBase()}
                   >
                     Coinbase Wallet
                   </Button>
+                  <Button
+                    variant="solid"
+                    isFullWidth
+                    iconSpacing="auto"
+                    rightIcon={
+                      <AspectRatio ratio={1} w={6}>
+                        <Image src="https://thirdweb.com/logos/walletconnect-logo.svg" />
+                      </AspectRatio>
+                    }
+                    onClick={() => connectWithWalletConnect()}
+                  >
+                    WalletConnect
+                  </Button>
                 </>
               )}
-              <Button
-                variant="solid"
-                isFullWidth
-                iconSpacing="auto"
-                rightIcon={
-                  <AspectRatio ratio={1} w={6}>
-                    <Image src="https://thirdweb.com/logos/walletconnect-logo.svg" />
-                  </AspectRatio>
-                }
-                onClick={() => connectWithWalletConnect()}
-              >
-                WalletConnect
-              </Button>
+
               {isMobile || isTablet ? (
                 <>
                   <Text pt={4} py={4} size={"md"}>
@@ -132,12 +155,12 @@ export default function Connect() {
                   </Text>
                   <Text pb={1} size={"md"}>
                     Metamask has an
-                    <Link color={"blue.400"} onClick={openMetamask}>
+                    <Link color={"blue.400"} onClick={metamaskInfo}>
                       {" "}
                       app
                     </Link>{" "}
                     you can use with{" "}
-                    <Link color={"blue.400"} onClick={openWalletconnect}>
+                    <Link color={"blue.400"} onClick={walletconnectInfo}>
                       {" "}
                       WalletConnect
                     </Link>{" "}
@@ -152,7 +175,7 @@ export default function Connect() {
               ) : (
                 <Text pt={4} align={"center"} size={"md"}>
                   No wallet?{" "}
-                  <Link color={"blue.400"} onClick={openMetamask}>
+                  <Link color={"blue.400"} onClick={metamaskInfo}>
                     Create wallet
                   </Link>
                 </Text>
