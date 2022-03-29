@@ -17,11 +17,6 @@ import { BiMailSend } from "react-icons/bi";
 import { FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa";
 import Spark3Black from "./icon/spark3black";
 
-/**
- * Renders a footer with logo, links, newsletter subscription.
- *
- * @returns footer component
- */
 export default function Footer() {
   const router = useRouter();
 

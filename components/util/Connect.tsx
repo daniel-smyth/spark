@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import {
   useAddress,
@@ -18,14 +18,26 @@ import {
 } from "@chakra-ui/react";
 
 export default function Connect() {
-  const router = useRouter();
+  const [eth, setEth] = useState(true);
   const address = useAddress();
-  const connectWithMetamask = useMetamask();
   const connectWithWalletConnect = useWalletConnect();
-  const connectWithCoinbaseWallet = useCoinbaseWallet();
+
+  useEffect(() => {
+    if (typeof window.ethereum == "undefined") setEth(false);
+  });
 
   function handleClick() {
-    router.push("https://metamask.io/");
+    window.open("https://metamask.io/", "_blank")!.focus();
+  }
+
+  function connectMetaMask() {
+    if (eth) useMetamask();
+    else window.open("https://metamask.io/", "_blank")!.focus();
+  }
+
+  function connectCoinbase() {
+    if (eth) useMetamask();
+    else window.open("https://www.coinbase.com/wallet", "_blank")!.focus();
   }
 
   return (
@@ -47,7 +59,7 @@ export default function Connect() {
             <>
               <Button
                 mb="8px"
-                variant="solid"
+                variant={eth ? "solid" : "outline"}
                 isFullWidth
                 iconSpacing="auto"
                 rightIcon={
@@ -55,12 +67,25 @@ export default function Connect() {
                     <Image src="https://thirdweb.com/logos/metamask-fox.svg" />
                   </AspectRatio>
                 }
-                onClick={() => connectWithMetamask()}
+                onClick={() => connectMetaMask()}
               >
                 MetaMask
               </Button>
               <Button
                 mb="8px"
+                isFullWidth
+                variant={eth ? "solid" : "outline"}
+                iconSpacing="auto"
+                rightIcon={
+                  <AspectRatio ratio={1} w={6}>
+                    <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
+                  </AspectRatio>
+                }
+                onClick={() => connectCoinbase()}
+              >
+                Coinbase Wallet
+              </Button>
+              <Button
                 variant="solid"
                 isFullWidth
                 iconSpacing="auto"
@@ -72,19 +97,6 @@ export default function Connect() {
                 onClick={() => connectWithWalletConnect()}
               >
                 WalletConnect
-              </Button>
-              <Button
-                variant="solid"
-                isFullWidth
-                iconSpacing="auto"
-                rightIcon={
-                  <AspectRatio ratio={1} w={6}>
-                    <Image src="https://thirdweb.com/logos/coinbase-wallet-logo.svg" />
-                  </AspectRatio>
-                }
-                onClick={() => connectWithCoinbaseWallet}
-              >
-                Coinbase Wallet
               </Button>
               <Text pt={4} align={"center"} size={"md"}>
                 No wallet?{" "}

@@ -8,21 +8,7 @@ import SetProps from "../../components/web3/SetProps";
 import Stripe from "../../components/util/Stripe";
 import Create from "../../components/web3/Mint";
 import Reject from "../../components/web3/Reject";
-import {
-  Stack,
-  Button,
-  Text,
-  Table,
-  TableCaption,
-  Tbody,
-  Td,
-  Tfoot,
-  Th,
-  Thead,
-  Tr,
-} from "@chakra-ui/react";
-import Spark3Black from "../../components/icon/spark3black";
-import Summary from "../../components/web3/Summary";
+import { BrowserView, MobileView } from "react-device-detect";
 
 function CreateCollection() {
   const [info, setInfo] = useState<any>();
