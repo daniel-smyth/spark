@@ -8,7 +8,6 @@ import SetProps from "../../components/web3/SetProps";
 import Stripe from "../../components/util/Stripe";
 import Create from "../../components/web3/Mint";
 import Reject from "../../components/web3/Reject";
-import { BrowserView, MobileView } from "react-device-detect";
 
 function CreateCollection() {
   const [info, setInfo] = useState<any>();

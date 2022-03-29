@@ -29,8 +29,10 @@ function GetStarted(props: any) {
           spacing={{ base: 7, md: 5 }}
           alignItems={{ base: "flex-start", md: "center" }}
         >
-          <Text variant="badge">Create NFT Art Collection</Text>
-          <Heading fontSize={{ base: "2xl", md: "3xl" }}>
+          <Text alignSelf="center" variant="badge">
+            Create NFT Art Collection
+          </Text>
+          <Heading fontSize={{ base: "2xl", md: "3xl" }} alignSelf={"center"}>
             Connect to start
           </Heading>
         </Stack>
