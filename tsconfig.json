@@ -23,7 +23,8 @@
     "lib/hashlips'/utils/update_info.js",
     "lib/hashlips'/main.js",
     "lib/jszip/main.js",
-    "lib/hashlips/createArt.js"
+    "lib/hashlips/createArt.js",
+    "lib/transak/openTransak.js"
   ],
   "exclude": ["node_modules"]
 }
