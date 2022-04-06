@@ -1,50 +1,44 @@
-import { Start } from "./../../components/web3/Start";
-import React, { useState } from "react";
-import { withRouter } from "next/router";
+import { useState } from "react";
 import { useAddress } from "@thirdweb-dev/react";
+import { Button } from "@chakra-ui/react";
+import { IMint, ICollectionProps } from "../../lib/thirdweb/interfaces/IMint";
+import Mint from "../../components/web3/Mint";
 import FormContainer from "../../components/FormContainer";
 import UploadFiles from "../../components/web3/UploadFiles";
 import SetProps from "../../components/web3/SetProps";
 import Stripe from "../../components/util/Stripe";
-import Create from "../../components/web3/Mint";
+import Summary from "../../components/web3/Summary";
 import Reject from "../../components/web3/Reject";
 
 function CreateCollection() {
-  const [info, setInfo] = useState<any>();
-  const [maxSize, setMaxSize] = useState();
-  const [size, setSize] = useState<number>();
+  const [mintProps, setMintProps] = useState<IMint>();
   const [layers, setLayers] = useState<any[]>();
-  const [paid, setPaid] = useState(false);
-  const [start, setStart] = useState(false);
+  const [props, setProps] = useState<ICollectionProps>();
+  const [maxSize, setMaxSize] = useState();
   const address = useAddress();
 
-  function handleClick() {
-    setStart(true);
-  }
+  const mint = () => (layers && props ? setMintProps({ layers, props }) : null);
 
-  return address != undefined ? (
-    paid && start ? (
-      <Create size={size!} info={info!} layerObjs={layers!} />
-    ) : (
-      <FormContainer>
-        {!layers ? (
-          <UploadFiles layerState={setLayers} sizeState={setMaxSize} />
-        ) : !size && !info ? (
-          <SetProps
-            maxSize={maxSize! - 1}
-            infoState={setInfo}
-            sizeState={setSize}
-          />
-        ) : !paid ? (
-          <Stripe amount={99.99} paid={paid} paidState={setPaid} />
-        ) : !start ? (
-          <Start size={size!} info={info} startState={setStart} />
-        ) : null}
-      </FormContainer>
-    )
-  ) : (
-    <Reject />
-  );
+  if (address == undefined) return <Reject />;
+  if (mintProps) return <Mint {...mintProps!} />;
+  return !mintProps ? (
+    <FormContainer>
+      {!layers ? (
+        <UploadFiles layerState={setLayers} sizeState={setMaxSize} />
+      ) : !props ? (
+        <SetProps setPropsState={setProps} maxSize={maxSize! - 1} />
+      ) : (
+        // ) : !paid ? (
+        //   <Stripe amount={99.99} paidState={setPaid} />
+        <>
+          <Summary {...props} />
+          <Button variant={"solid"} size={"md"} onClick={mint}>
+            MINT
+          </Button>
+        </>
+      )}
+    </FormContainer>
+  ) : null;
 }
 
-export default withRouter(CreateCollection);
+export default CreateCollection;

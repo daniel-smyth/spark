@@ -18,7 +18,6 @@ import { MdOutlineCollections } from "react-icons/md";
 
 interface Props {
   amount: number;
-  paid: boolean;
   paidState: any;
 }
 

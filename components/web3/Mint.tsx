@@ -12,41 +12,31 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import Spark3Black from "../icon/spark3black";
-import { execute } from "../../lib/grow/main";
+import { startCreating } from "../../lib/hashlips/main";
 import { downloadZip } from "../../lib/jszip/main";
+import { IMint } from "../../lib/thirdweb/interfaces/IMint";
 
-interface CreateCollectionProps {
-  size: number;
-  info: {
-    name: string;
-    description: string;
-    prefix: string;
-    mintTo: string;
-  };
-  layerObjs: any[];
-}
+function Mint(props: IMint) {
+  const { layers } = props;
+  const { name, description, primary_sale_recipient } = props.props.moduleProps;
+  const { size, prefix } = props.props.mintProps;
+  props.props.moduleProps.platform_fee_recipient = process.env.SPARK3_ADDRESS!;
+  props.props.moduleProps.platform_fee_basis_points = 20;
 
-function Create(props: CreateCollectionProps) {
-  // Web3.
   const signer = useSigner();
-  // Artwork.
   const [art, setArt] = useState<any[]>([]);
-  // Completed image srcs.
   const [imgSrcs, setImgSrcs] = useState<any[]>([]);
-  // Minting stages.
   const [started, setStarted] = useState<boolean>(false);
   const [completed, setCompleted] = useState<boolean>(false);
-  // Download button.
   const text = `Download image files`;
   const [buttonText, setButtonText] = useState<string>(text);
   const [buttonVariant, setButtonVariant] = useState<string>("solid");
 
-  // Minting function.
   useEffect(() => {
     // Create multiple images.
     const multiplyImgs = async () => {
       const imgSrcs: string[] = [];
-      const art = await execute(props.size, props.layerObjs);
+      const art = await startCreating(size, layers);
       art.forEach((imgData: { imgSrc: string; metadata: any }) => {
         imgSrcs.push(imgData.imgSrc);
       });
@@ -72,26 +62,29 @@ function Create(props: CreateCollectionProps) {
         allMetadata.push(imgMetadata);
       });
       // Create NFT array.
-      for (let i = 0; i < props.size; i++) {
+      for (let i = 0; i < size; i++) {
         nfts.push({
-          description: props.info.description,
+          description: description!,
           image: imgSrcs[i],
           external_url: imgSrcs[i],
-          name: `${props.info.prefix} ${i + 1}`,
+          name: `${prefix} ${i + 1}`,
           attributes: allMetadata[i],
         });
       }
       // Mint.
       if (signer) {
         const sdk = new ThirdwebSDK(signer);
-        const address = await sdk.deployer.deployNFTCollection({
-          name: props.info.name,
-          primary_sale_recipient: "0x69C16A68315f06e9c3120F5739FBCdE647055d15",
-        });
+        console.log(props);
+
+        const address = await sdk.deployer.deployNFTCollection(
+          props.props.moduleProps
+        );
         const collection = sdk.getNFTCollection(address);
         if (collection) setStarted(true);
         try {
-          console.log(await collection.mintBatchTo(props.info.mintTo, nfts));
+          console.log(
+            await collection.mintBatchTo(primary_sale_recipient, nfts)
+          );
           console.timeEnd("Minting time");
           setCompleted(true);
         } catch (err) {
@@ -107,7 +100,7 @@ function Create(props: CreateCollectionProps) {
   function download() {
     setButtonText("Download starting...");
     setButtonVariant("outline");
-    downloadZip(imgSrcs!, props.info.name, props.info.prefix);
+    downloadZip(imgSrcs!, name, prefix);
   }
 
   // Renders the image results.
@@ -145,11 +138,11 @@ function Create(props: CreateCollectionProps) {
               <Stack px={9} spacing={2} alignItems={"center"}>
                 {!started ? (
                   <Heading size={"md"}>
-                    Creating {props.info.name} ERC721 Collection
+                    Creating {name} ERC721 Collection
                   </Heading>
                 ) : (
                   <Heading size="md">
-                    Minting {props.size} Non-fungible tokens (NFTs)
+                    Minting {size} Non-fungible tokens (NFTs)
                   </Heading>
                 )}
                 <Text size="lg">
@@ -171,16 +164,19 @@ function Create(props: CreateCollectionProps) {
               alignItems="center"
               justifyContent={"center"}
             >
-              <Heading size={"md"}>{props.info.name} Minting Complete</Heading>
+              <Heading size={"md"}>{name} Minting Complete</Heading>
               <Stack px={9} spacing={2} alignItems={"center"}>
                 <Text size="md">
                   <span style={{ fontWeight: 700 }}>
-                    {props.size} Non-fungible tokens (NFTs)
+                    {size} Non-fungible tokens (NFTs)
                   </span>{" "}
                   where successfully minted to
                 </Text>
                 <Text>
-                  <span style={{ fontWeight: 700 }}>{props.info.mintTo}</span>.
+                  <span style={{ fontWeight: 700 }}>
+                    {primary_sale_recipient}
+                  </span>
+                  .
                 </Text>
                 <Text size="sm">Thank you for using spark.</Text>
               </Stack>
@@ -198,7 +194,7 @@ function Create(props: CreateCollectionProps) {
               borderColor="gray.200"
             >
               <Heading px={2} size={"md"}>
-                {props.info.name} Images Mutliplied
+                {name} Images Mutliplied
               </Heading>
               <Button
                 onClick={download}
@@ -217,4 +213,4 @@ function Create(props: CreateCollectionProps) {
   );
 }
 
-export default Create;
+export default Mint;
