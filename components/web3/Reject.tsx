@@ -7,7 +7,7 @@ function Reject() {
   const router = useRouter();
 
   function handleClick() {
-    router.push("/create/getstarted");
+    router.push("/login");
   }
 
   return (

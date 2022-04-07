@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import Spark3Black from "./icon/spark3black";
+import Spark3Black from "../icon/spark3black";
 
 function CollectionCalculator() {
   const router = useRouter();
@@ -45,7 +45,7 @@ function CollectionCalculator() {
 
   function createCollection() {
     router.push({
-      pathname: "/create/getstarted",
+      pathname: "/login",
       query: { size: size },
     });
   }
@@ -62,7 +62,7 @@ function CollectionCalculator() {
           <FormControl pt={6}>
             <FormLabel>
               Traits per Layer.{" "}
-              <Link pt={1} color={"blue.400"} href="/about/images">
+              <Link pt={1} color={"blue.400"} href="/traits">
                 Traits?
               </Link>
             </FormLabel>
@@ -82,7 +82,7 @@ function CollectionCalculator() {
           <FormControl>
             <FormLabel>
               Layer count.{" "}
-              <Link color={"blue.400"} href="/about/images">
+              <Link color={"blue.400"} href="/traits">
                 Layers?
               </Link>
             </FormLabel>

@@ -5,7 +5,6 @@ import Head from "next/head";
 import theme from "../themes/index";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

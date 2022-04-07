@@ -12,15 +12,12 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useRouter } from "next/router";
-import FormNumberInput from "../FormNumberInput";
+import FormNumberInput from "../form/FormNumberInput";
 import Spark3Black from "../icon/spark3black";
 import {
   ICollectionProps,
-  IMint,
   NFTCollectionMintData,
 } from "../../lib/thirdweb/interfaces/IMint";
-import UploadFiles from "./UploadFiles";
-import UploadImageFiles from "../util/Upload";
 import { NFTContractDeployMetadata } from "@thirdweb-dev/sdk";
 
 interface Props {

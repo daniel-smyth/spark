@@ -10,10 +10,6 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 
-/**
- * Returns three testimonial components.
- * @returns 3 testimonials
- */
 export default function Testimonials() {
   return (
     <Box>

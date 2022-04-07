@@ -21,7 +21,7 @@ interface Props {
   paidState: any;
 }
 
-function Stripe(props: Props) {
+function Fees(props: Props) {
   const router = useRouter();
 
   useEffect(() => {
@@ -143,4 +143,4 @@ function Stripe(props: Props) {
   );
 }
 
-export default Stripe;
+export default Fees;

@@ -1,5 +1,5 @@
 import React from "react";
-import Ramp from "../components/util/Ramp";
+import Ramp from "../components/web3/util/Ramp";
 
 function Page() {
   return (

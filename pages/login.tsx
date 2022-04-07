@@ -1,11 +1,11 @@
 import React from "react";
-import Connect from "../../components/util/Connect";
 import { useRouter } from "next/router";
 import { withRouter } from "next/router";
 import { useAddress } from "@thirdweb-dev/react";
 import { Container, Heading, Stack, Text } from "@chakra-ui/react";
+import Connect from "../components/web3/util/Connect";
 
-function GetStarted(props: any) {
+function LogIn(props: any) {
   const address = useAddress();
   const router = useRouter();
 
@@ -29,9 +29,6 @@ function GetStarted(props: any) {
           spacing={{ base: 7, md: 5 }}
           alignItems={{ base: "flex-start", md: "center" }}
         >
-          <Text alignSelf="center" variant="badge">
-            Create NFT Art Collection
-          </Text>
           <Heading fontSize={{ base: "2xl", md: "3xl" }} alignSelf={"center"}>
             Connect to start
           </Heading>
@@ -42,4 +39,4 @@ function GetStarted(props: any) {
   );
 }
 
-export default withRouter(GetStarted);
+export default withRouter(LogIn);

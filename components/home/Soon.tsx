@@ -5,12 +5,11 @@ import {
   Button,
   SimpleGrid,
   Text,
-  Flex,
   Icon,
   Container,
 } from "@chakra-ui/react";
 import React from "react";
-import ProductPrice from "../Price";
+import ProductPrice from "./cards/Price";
 import { AiTwotoneShop } from "react-icons/ai";
 import { BsCoin } from "react-icons/bs";
 import { VscOrganization } from "react-icons/vsc";

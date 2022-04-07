@@ -14,13 +14,13 @@ import {
   Box,
   Button,
 } from "@chakra-ui/react";
-import ProductPrice from "../Price";
+import ProductPrice from "./cards/Price";
 
 export default function HowItWorks() {
   const router = useRouter();
 
   function handleClick() {
-    router.push("/create/getstarted");
+    router.push("/login");
   }
 
   return (
@@ -41,7 +41,7 @@ export default function HowItWorks() {
             feature3="Setup completed in 5 minutes"
             feature4="No downloads."
             buttonText="Create Collection"
-            link="/create/getstarted"
+            link="/login"
           ></ProductPrice>
         </Box>
         <Stack spacing={{ base: 8, md: 9 }} pt={{ base: 0, md: 5 }}>

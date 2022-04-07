@@ -13,7 +13,7 @@ import {
 import React, { useState } from "react";
 import { getLayer } from "../../lib/hashlips/createArt";
 import Spark3Black from "../icon/spark3black";
-import UploadImageFiles from "../util/Upload";
+import UploadImageFiles from "./util/Upload";
 
 interface Props {
   layerState: any;
@@ -148,7 +148,7 @@ function UploadFiles(props: Props) {
             </Box>
             <Text size="md">
               Spark3 detects NFT
-              <Link color={"blue.400"} href="/about/images">
+              <Link color={"blue.400"} href="/traits">
                 {" "}
                 trait types and trait names{" "}
               </Link>
