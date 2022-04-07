@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAddress } from "@thirdweb-dev/react";
-import { Button } from "@chakra-ui/react";
+import { Button, Stack } from "@chakra-ui/react";
 import { IMint, ICollectionProps } from "../../lib/thirdweb/interfaces/IMint";
 import Mint from "../../components/web3/Mint";
 import FormContainer from "../../components/FormContainer";
@@ -14,6 +14,7 @@ function CreateCollection() {
   const [mintProps, setMintProps] = useState<IMint>();
   const [layers, setLayers] = useState<any[]>();
   const [props, setProps] = useState<ICollectionProps>();
+  const [paid, setPaid] = useState(false);
   const [maxSize, setMaxSize] = useState();
   const address = useAddress();
 
@@ -27,15 +28,15 @@ function CreateCollection() {
         <UploadFiles layerState={setLayers} sizeState={setMaxSize} />
       ) : !props ? (
         <SetProps setPropsState={setProps} maxSize={maxSize! - 1} />
+      ) : !paid ? (
+        <Stripe amount={99.99} paidState={setPaid} />
       ) : (
-        // ) : !paid ? (
-        //   <Stripe amount={99.99} paidState={setPaid} />
-        <>
+        <Stack spacing={2}>
           <Summary {...props} />
-          <Button variant={"solid"} size={"md"} onClick={mint}>
+          <Button isFullWidth variant={"solid"} size={"md"} onClick={mint}>
             MINT
           </Button>
-        </>
+        </Stack>
       )}
     </FormContainer>
   ) : null;

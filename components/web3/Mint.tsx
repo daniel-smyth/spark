@@ -12,9 +12,9 @@ import {
   Wrap,
 } from "@chakra-ui/react";
 import Spark3Black from "../icon/spark3black";
-import { startCreating } from "../../lib/hashlips/main";
 import { downloadZip } from "../../lib/jszip/main";
 import { IMint } from "../../lib/thirdweb/interfaces/IMint";
+import { runHashlips } from "../../lib/hashlips/createArt";
 
 function Mint(props: IMint) {
   const { layers } = props;
@@ -36,7 +36,7 @@ function Mint(props: IMint) {
     // Create multiple images.
     const multiplyImgs = async () => {
       const imgSrcs: string[] = [];
-      const art = await startCreating(size, layers);
+      const art = await runHashlips(size, layers);
       art.forEach((imgData: { imgSrc: string; metadata: any }) => {
         imgSrcs.push(imgData.imgSrc);
       });
