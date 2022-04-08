@@ -12,10 +12,10 @@ function LogIn(props: any) {
   if (address) {
     if (props.router.query.size) {
       router.push({
-        pathname: "/create/collection",
+        pathname: "/create",
         query: { size: props.router.query.size },
       });
-    } else router.push("/create/collection");
+    } else router.push("/create");
   }
 
   return (

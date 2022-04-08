@@ -12,6 +12,7 @@ import {
 } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { getLayer } from "../../lib/hashlips/createArt";
+import { getTraitsFromImages } from "../../lib/thirdweb/getTraitsFromImages";
 import Spark3Black from "../icon/spark3black";
 import UploadImageFiles from "./util/Upload";
 
@@ -26,49 +27,20 @@ function UploadFiles(props: Props) {
   const [traits, setTraits] = useState<string[]>([]);
   const [heading, setHeading] = useState("Upload Images");
 
-  function scrollToTop() {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }
-
   function uploadLayers(files: FileList) {
-    for (let i = 0; i < files.length; i++) {
-      const name = files[i].name.substring(0, files[i].name.indexOf("_"));
-      if (!traits.includes(name)) {
-        traits.push(name);
-        setTraits(traits);
-      }
-    }
-
-    const layers = traits.map((layerName) => [layerName, []]);
-    for (let i = 0; i < files.length; i++) {
-      const trait = files[i].name.substring(0, files[i].name.indexOf("_"));
-      const type = files[i].name.substring(files[i].name.indexOf("_") + 1);
-      const url = URL.createObjectURL(files[i]);
-      layers.forEach((layer) => {
-        if (layer[0] == trait) {
-          const urlArray = layer[1] as Array<any[]>;
-          urlArray.push([type, url]);
-        }
-      });
-    }
+    const { layers, traits } = getTraitsFromImages(files);
 
     let maxSize = 0;
-    layers.forEach((layer, i) => {
+    layers.forEach((layer: any, i: number) => {
       if (i == 0) maxSize = layer[1].length;
       else maxSize = maxSize * layer[1].length;
     });
-
     props.sizeState(maxSize);
+
     setCount(traits.length);
+    setTraits(traits);
     setLayers(layers);
     setHeading("Set Layer Order");
-  }
-
-  function resetLayers() {
-    setLayers([]);
   }
 
   function changeLayersOrder(e: any, i: number) {
@@ -175,7 +147,12 @@ function UploadFiles(props: Props) {
             </Text>
             {layerOrderComponent}
             <Button
-              onClick={scrollToTop}
+              onClick={() =>
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                })
+              }
               size="md"
               variant="solid"
               type="submit"
@@ -184,7 +161,7 @@ function UploadFiles(props: Props) {
             </Button>
             <Text px={2} size={"md"}>
               Make a mistake?{" "}
-              <Link color={"blue.400"} onClick={resetLayers}>
+              <Link color={"blue.400"} onClick={() => setLayers([])}>
                 Go back
               </Link>
             </Text>

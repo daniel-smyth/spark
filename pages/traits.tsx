@@ -105,7 +105,7 @@ export default function ImagesInfo() {
                 <Text size="md">{bold(`"TRAITTYPE_TRAIT.png"`)}</Text>
                 <Text pt={1} size={"md"}>
                   Ready to start?{" "}
-                  <Link color={"blue.400"} href="/create/collection">
+                  <Link color={"blue.400"} href="/create">
                     Upload layers
                   </Link>
                 </Text>

@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { Dispatch, SetStateAction, useEffect } from "react";
 import {
   Stack,
   Heading,
@@ -15,41 +15,39 @@ import {
 } from "@chakra-ui/react";
 import Spark3Black from "../icon/spark3black";
 import { MdOutlineCollections } from "react-icons/md";
+import Gas from "./util/Gas";
+import { GasPrice, GasEstimatorMap } from "../../constants/mappings";
+import { NFTCollection } from "@thirdweb-dev/sdk";
 
-interface Props {
-  amount: number;
-  paidState: any;
-}
-
-function Fees(props: Props) {
+function Fees(props: {
+  size: number;
+  paidState: Dispatch<SetStateAction<boolean>>;
+}) {
   const router = useRouter();
+  const { deployContract, mint }: GasPrice =
+    GasEstimatorMap[NFTCollection.contractType];
+
+  const fee = deployContract + mint! * props.size;
+  const sparkFee = 200 - fee;
 
   useEffect(() => {
-    const interval = setInterval(() => check(), 1000);
+    const interval = setInterval(() => checkStatus(), 1000);
     return () => clearInterval(interval);
   }, []);
 
-  let count = 0;
-  function check() {
+  function checkStatus() {
     if (localStorage.getItem("status") === "true") {
       props.paidState(true);
       localStorage.removeItem("status");
-    } else {
-      console.log("Not paid: " + count + " seconds.");
-      count++;
     }
   }
 
   const handleClick = async () => {
     if (typeof window !== "undefined") {
       localStorage.setItem("status", "false");
-      localStorage.setItem("amount", `${props.amount}`);
+      localStorage.setItem("amount", `${99}`);
       window.open("/stripe/start", "_blank")!.focus();
     }
-  };
-
-  const cancel = () => {
-    router.push("/");
   };
 
   return (
@@ -65,14 +63,7 @@ function Fees(props: Props) {
 
       <Stack spacing={6}>
         <Stack>
-          <Text size="md">
-            This fee does not cover ETH fees to create an NFT collection. ETH
-            fees are paid with your wallet (Metamask) at the next step.
-            <br />
-            <br />
-            Please have at least $200 ETH in your wallet.
-          </Text>
-
+          <Gas />
           <Stack
             p={4}
             spacing={3}
@@ -82,7 +73,7 @@ function Fees(props: Props) {
               />
             }
           >
-            <Text size="sm">YOUR SUMMARY</Text>
+            <Text size="sm">YOUR FEES</Text>
             <Box pb={6}>
               <Grid
                 minW="100%"
@@ -124,7 +115,7 @@ function Fees(props: Props) {
                   <Text size="sm">TOTAL</Text>
                 </GridItem>
                 <GridItem colStart={8} colEnd={12}>
-                  <Text size="md">$99.00</Text>
+                  <Text size="md">${fee}</Text>
                 </GridItem>
               </Grid>
             </Box>
@@ -134,7 +125,11 @@ function Fees(props: Props) {
           <Button onClick={handleClick} size="md" variant="solid">
             Proceed to payment
           </Button>
-          <Link alignSelf={"center"} color={"blue.400"} onClick={cancel}>
+          <Link
+            alignSelf={"center"}
+            color={"blue.400"}
+            onClick={() => router.push("/")}
+          >
             Cancel
           </Link>
         </Stack>

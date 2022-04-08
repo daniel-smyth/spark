@@ -9,6 +9,7 @@ import SetProps from "../components/web3/SetProps";
 import Fees from "../components/web3/Fees";
 import Summary from "../components/web3/Summary";
 import Reject from "../components/web3/Reject";
+import Gas from "../components/web3/util/Gas";
 
 function CreateCollection() {
   const [mintProps, setMintProps] = useState<IMint>();
@@ -29,7 +30,7 @@ function CreateCollection() {
       ) : !props ? (
         <SetProps setPropsState={setProps} maxSize={maxSize! - 1} />
       ) : !paid ? (
-        <Fees amount={99.99} paidState={setPaid} />
+        <Fees size={props.mintProps.size} paidState={setPaid} />
       ) : (
         <Stack spacing={2}>
           <Summary {...props} />
