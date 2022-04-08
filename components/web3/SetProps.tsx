@@ -38,7 +38,7 @@ function SetProps(props: Props) {
 
   function goBack() {
     if (next) setNext(false);
-    else router.push("/create/collection");
+    else router.push("/create");
   }
 
   function scrollToTop() {

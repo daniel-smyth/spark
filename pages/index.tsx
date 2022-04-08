@@ -6,12 +6,12 @@ import ComingSoon from "../components/home/Soon";
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <>
       <Welcome />
       <CollectionCalculator />
       <HowItWorks />
       <ComingSoon />
-    </div>
+    </>
   );
 };
 
