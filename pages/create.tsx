@@ -4,12 +4,12 @@ import { Button, Stack } from "@chakra-ui/react";
 import { IMint, ICollectionProps } from "../lib/thirdweb/interfaces/IMint";
 import Mint from "../components/web3/Mint";
 import FormContainer from "../components/form/FormContainer";
-import UploadFiles from "../components/web3/UploadFiles";
 import SetProps from "../components/web3/SetProps";
 import Fees from "../components/web3/Fees";
 import Summary from "../components/web3/Summary";
 import Reject from "../components/web3/Reject";
 import Gas from "../components/web3/util/Gas";
+import UploadFiles from "../components/web3/Upload";
 
 function CreateCollection() {
   const [mintProps, setMintProps] = useState<IMint>();
