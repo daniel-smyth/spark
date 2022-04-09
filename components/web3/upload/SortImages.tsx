@@ -1,5 +1,6 @@
 import { Button, Link, Select, Stack, Text } from "@chakra-ui/react";
 import React, { useState } from "react";
+import FormHeader from "../../form/FormHeader";
 
 function SortImages(props: { traits: any[] }) {
   // Sort props.
@@ -44,6 +45,7 @@ function SortImages(props: { traits: any[] }) {
 
   return (
     <>
+      <FormHeader heading={"Set layer order"} />
       <Text size="md" display={{ base: "none", md: "inline" }}>
         Layer 1 is background and layer 2 will be printed over layer 1.
       </Text>

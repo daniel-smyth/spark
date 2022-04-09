@@ -1,10 +1,12 @@
 import { Box, Image, Text, Link } from "@chakra-ui/react";
 import React from "react";
+import FormHeader from "../../form/FormHeader";
 import Dropzone from "./Dropzone";
 
-function Upload(props: { handleUpload: (files: FileList) => void }) {
+function UploadImages(props: { handleUpload: (files: FileList) => void }) {
   return (
     <>
+      <FormHeader heading={"Upload images"} />
       <Box py={2}>
         <Dropzone handleUpload={props.handleUpload} />
       </Box>
@@ -32,4 +34,4 @@ function Upload(props: { handleUpload: (files: FileList) => void }) {
   );
 }
 
-export default Upload;
+export default UploadImages;

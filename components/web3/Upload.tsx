@@ -1,27 +1,22 @@
 import { Stack } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { getLayer } from "../../lib/hashlips/createArt";
 import { traitsFromImages } from "../../lib/thirdweb/traitsFromImages";
-import FormHeader from "../form/FormHeader";
 import SortImages from "./upload/SortImages";
-import Upload from "./upload/UploadImages";
+import UploadImages from "./upload/UploadImages";
 
-interface Props {
-  layerState: any;
-  sizeState: any;
-}
-
-function UploadFiles(props: Props) {
+function Upload(props: {
+  sizeState: Dispatch<SetStateAction<undefined>>;
+  layerState: Dispatch<SetStateAction<any[] | undefined>>;
+}) {
   const [traits, setTraits] = useState<any[]>([]);
-  const [heading, setHeading] = useState("Upload Images");
 
   function upload(files: FileList) {
     let traits = traitsFromImages(files);
-    let max = traits[1].length; // Max size.
+    let max = traits[0][1].length; // Max size.
     traits.forEach((t, i) => (i != 0 ? (max = max * t[1].length) : null));
     props.sizeState(max);
     setTraits(traits);
-    setHeading("Set Layer Order");
   }
 
   function sumbit(event: any) {
@@ -35,10 +30,9 @@ function UploadFiles(props: Props) {
 
   return (
     <form onSubmit={sumbit}>
-      <FormHeader heading={heading} />
       <Stack spacing={6}>
         {traits.length == 0 ? (
-          <Upload handleUpload={upload} />
+          <UploadImages handleUpload={upload} />
         ) : (
           <SortImages traits={traits} />
         )}
@@ -47,4 +41,4 @@ function UploadFiles(props: Props) {
   );
 }
 
-export default UploadFiles;
+export default Upload;

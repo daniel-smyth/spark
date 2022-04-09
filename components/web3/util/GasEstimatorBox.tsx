@@ -4,7 +4,6 @@ import {
   Flex,
   Heading,
   Icon,
-  Link,
   Text,
   Tooltip,
 } from "@chakra-ui/react";
@@ -16,7 +15,6 @@ import {
 } from "../../../constants/mappings";
 import { ethers } from "ethers";
 import { AiOutlineInfoCircle } from "react-icons/ai";
-import { FiExternalLink } from "react-icons/fi";
 
 interface PriceLineProps {
   title: string;

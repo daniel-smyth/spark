@@ -9,7 +9,7 @@ import Fees from "../components/web3/Fees";
 import Summary from "../components/web3/Summary";
 import Reject from "../components/web3/Reject";
 import Gas from "../components/web3/util/Gas";
-import UploadFiles from "../components/web3/Upload";
+import UploadImages from "../components/web3/Upload";
 
 function CreateCollection() {
   const [mintProps, setMintProps] = useState<IMint>();
@@ -26,7 +26,7 @@ function CreateCollection() {
   return !mintProps ? (
     <FormContainer>
       {!layers ? (
-        <UploadFiles layerState={setLayers} sizeState={setMaxSize} />
+        <UploadImages layerState={setLayers} sizeState={setMaxSize} />
       ) : !props ? (
         <SetProps setPropsState={setProps} maxSize={maxSize! - 1} />
       ) : !paid ? (
