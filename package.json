@@ -12,7 +12,7 @@
     "@chakra-ui/react": "^1.8.1",
     "@onramper/widget": "^2.2.12",
     "@stripe/stripe-js": "^1.25.0",
-    "@thirdweb-dev/react": "^2.0.1",
+    "@thirdweb-dev/react": "^3.0.0",
     "@thirdweb-dev/sdk": "^2.0.10",
     "@types/stripe": "^8.0.417",
     "bootstrap": "^5.1.3",
