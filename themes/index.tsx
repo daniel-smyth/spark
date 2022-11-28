@@ -1,12 +1,12 @@
-import { extendTheme } from "@chakra-ui/react";
-import Button from "../themes/components/button";
-import Text from "../themes/components/text";
+import { extendTheme } from '@chakra-ui/react';
+import Button from './components/button';
+import Text from './components/text';
 
 const theme = extendTheme({
   components: {
     Button,
-    Text,
-  },
+    Text
+  }
 });
 
 export default theme;

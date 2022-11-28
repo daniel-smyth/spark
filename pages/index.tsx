@@ -1,18 +1,18 @@
-import type { NextPage } from "next";
-import Welcome from "../components/home/Hero";
-import HowItWorks from "../components/home/Info";
-import CollectionCalculator from "../components/home/Calculator";
-import ComingSoon from "../components/home/Soon";
+import React from 'react';
+import Welcome from '../components/Home/Welcome';
+import HowItWorks from '../components/Home/HowItWorks';
+import MaxCollectionSizeCalculator from '../components/Home/Calculator';
+import ComingSoon from '../components/Home/ComingSoon';
 
-const Home: NextPage = () => {
+function Home() {
   return (
     <>
       <Welcome />
-      <CollectionCalculator />
+      <MaxCollectionSizeCalculator />
       <HowItWorks />
       <ComingSoon />
     </>
   );
-};
+}
 
 export default Home;

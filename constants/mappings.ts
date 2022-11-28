@@ -1,18 +1,4 @@
-import {
-  ContractType,
-  Edition,
-  EditionDrop,
-  Marketplace,
-  NFTCollection,
-  NFTDrop,
-  Pack,
-  Role,
-  Split,
-  Token,
-  Vote,
-} from "@thirdweb-dev/sdk";
-import * as CSS from "csstype";
-import { ValueOf } from "../utils/network";
+import { ContractType } from '@thirdweb-dev/sdk';
 
 export interface GasPrice {
   deployContract: number;
@@ -20,145 +6,84 @@ export interface GasPrice {
   batchUpload?: number;
   mint?: number;
   claim?: number;
+  claim5?: number;
   distributeFunds?: number;
 }
 
 export const GasEstimatorMap: Record<ContractType, GasPrice> = {
-  [NFTDrop.contractType]: {
+  'signature-drop': {
+    deployContract: 800735,
+    setClaimPhase: 143139,
+    batchUpload: 169832,
+    claim: 174604,
+    claim5: 182572
+  },
+  'nft-drop': {
     deployContract: 785405,
     setClaimPhase: 187999,
     batchUpload: 169832,
     claim: 277449,
+    claim5: 745113
   },
-  [EditionDrop.contractType]: {
+  'edition-drop': {
     deployContract: 746515,
     setClaimPhase: 168589,
     batchUpload: 168483,
-    claim: 186485,
+    claim: 186485
   },
-  [NFTCollection.contractType]: {
+  'nft-collection': {
     deployContract: 928006,
-    mint: 208102,
+    mint: 208102
   },
-  [Edition.contractType]: {
+  edition: {
     deployContract: 793195,
-    mint: 160173,
+    mint: 160173
   },
-  [Marketplace.contractType]: {
-    deployContract: 785536,
+  marketplace: {
+    deployContract: 785536
   },
-  [Token.contractType]: {
-    deployContract: 837345,
+  token: {
+    deployContract: 837345
   },
-  [Pack.contractType]: {
-    deployContract: 0,
+  pack: {
+    deployContract: 0
   },
-  [Split.contractType]: {
+  split: {
     deployContract: 594540,
-    distributeFunds: 153078,
+    distributeFunds: 153078
   },
-  [Vote.contractType]: {
-    deployContract: 454740,
+  vote: {
+    deployContract: 454740
   },
+  'token-drop': {
+    deployContract: 0
+  },
+  custom: {
+    deployContract: 0
+  },
+  multiwrap: {
+    deployContract: 0
+  }
 };
 
-interface ContractDeploy {
-  title: ValueOf<typeof CONTRACT_TYPE_NAME_MAP>;
-  subtitle: string;
-  contractType: ContractType;
-  comingSoon?: true;
-}
-
-export const CONTRACT_TYPE_NAME_MAP = {
+export const CONTRACT_TYPE_NAME_MAP: Record<ContractType, string> = {
   // drop
-  [NFTDrop.contractType]: "NFT Drop" as const,
-  [EditionDrop.contractType]: "Edition Drop" as const,
+  'nft-drop': 'NFT Drop' as const,
+  'edition-drop': 'Edition Drop' as const,
+  'token-drop': 'Token Drop' as const,
+  'signature-drop': 'Signature Drop' as const,
 
   // token
-  [Token.contractType]: "Token" as const,
-  [NFTCollection.contractType]: "NFT Collection" as const,
-  [Edition.contractType]: "Edition" as const,
+  token: 'Token' as const,
+  'nft-collection': 'NFT Collection' as const,
+  edition: 'Edition' as const,
+  multiwrap: 'Multiwrap' as const,
 
   // other
-  [Vote.contractType]: "Vote" as const,
-  [Marketplace.contractType]: "Marketplace" as const,
-  [Pack.contractType]: "Pack" as const,
-  [Split.contractType]: "Split" as const,
+  vote: 'Vote' as const,
+  marketplace: 'Marketplace' as const,
+  pack: 'Pack' as const,
+  split: 'Split' as const,
+
+  custom: 'Custom' as const
 } as const;
-
-interface ContractDeployMap {
-  drop: ContractDeploy[];
-  token: ContractDeploy[];
-  [Marketplace.contractType]: ContractDeploy[];
-  governance: ContractDeploy[];
-}
-
-export const TYPE_CONTRACT_MAP: ContractDeployMap = {
-  drop: [
-    {
-      title: CONTRACT_TYPE_NAME_MAP[NFTDrop.contractType],
-      subtitle: "Claimable drop of one-of-one NFTs",
-      contractType: NFTDrop.contractType,
-    },
-    {
-      title: CONTRACT_TYPE_NAME_MAP[EditionDrop.contractType],
-      subtitle: "Claimable drop of N-of-one NFTs",
-      contractType: EditionDrop.contractType,
-    },
-  ],
-  token: [
-    {
-      title: CONTRACT_TYPE_NAME_MAP[Token.contractType],
-      subtitle: "Your own ERC20 token",
-      contractType: Token.contractType,
-    },
-    {
-      title: CONTRACT_TYPE_NAME_MAP[NFTCollection.contractType],
-      subtitle: "A collection of one-of-one NFTs",
-      contractType: NFTCollection.contractType,
-    },
-    {
-      title: CONTRACT_TYPE_NAME_MAP[Edition.contractType],
-      subtitle: "A collection of N-of-one NFTs",
-      contractType: Edition.contractType,
-    },
-    {
-      title: CONTRACT_TYPE_NAME_MAP[Pack.contractType],
-      subtitle: "Randomized rewards (loot boxes)",
-      contractType: Pack.contractType,
-      comingSoon: true,
-    },
-  ],
-  [Marketplace.contractType]: [
-    {
-      title: CONTRACT_TYPE_NAME_MAP[Marketplace.contractType],
-      subtitle: "Your very own marketplace",
-      contractType: Marketplace.contractType,
-      comingSoon: true,
-    },
-  ],
-  governance: [
-    {
-      title: CONTRACT_TYPE_NAME_MAP[Vote.contractType],
-      subtitle: "ERC20 based voting",
-      contractType: Vote.contractType,
-    },
-    {
-      title: CONTRACT_TYPE_NAME_MAP[Split.contractType],
-      subtitle: "Fee splitting for your revenue",
-      contractType: Split.contractType,
-    },
-  ],
-};
-
-export const ROLE_DESCRIPTION_MAP: Record<Role, string> = {
-  admin:
-    "Determine who can grant or revoke roles and modify settings on this contract.",
-  minter: "Determine who can create new tokens on this contract.",
-  pauser:
-    "Determine who can pause (and unpause) all external calls made to this contract's contract.",
-  transfer: "Determine who can transfer tokens on this contract.",
-  lister: "Determine who can create new listings on this contract.",
-  editor: "NOT IMPLEMENTED",
-  asset: "Determine which assets can be listed on this marketplace.",
-};

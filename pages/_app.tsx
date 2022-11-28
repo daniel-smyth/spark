@@ -1,18 +1,29 @@
-import type { AppProps } from "next/app";
-import { ThirdwebProvider, ChainId } from "@thirdweb-dev/react";
-import { ChakraProvider } from "@chakra-ui/react";
-import { QueryClient, QueryClientProvider, useQuery } from "react-query";
-import Head from "next/head";
-import theme from "../themes/index";
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { NextPage } from 'next';
+import Head from 'next/head';
+import type { AppProps } from 'next/app';
+import { ReactElement, ReactNode } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ThirdwebProvider, ChainId } from '@thirdweb-dev/react';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from '../themes/index';
+import Footer from '../components/Footer';
+import NavBar from '../components/NavBar';
 
-function MyApp({ Component, pageProps }: AppProps) {
+type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactNode;
+};
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout;
+};
+
+function MyApp({ Component, pageProps }: AppPropsWithLayout) {
+  // Use the custom layout defined at the page level, if available
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   return (
-    <ThirdwebProvider
-      supportedChains={[ChainId.Polygon, ChainId.Rinkeby, ChainId.Mainnet]}
-      desiredChainId={ChainId.Mainnet}
-    >
+    <ThirdwebProvider desiredChainId={ChainId.Mainnet}>
       <QueryClientProvider client={new QueryClient()}>
         <ChakraProvider theme={theme}>
           <Head>
@@ -21,7 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
             <link rel="icon" href="/favicon.png" />
           </Head>
           <NavBar />
-          <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
           <Footer />
         </ChakraProvider>
       </QueryClientProvider>

@@ -22,7 +22,7 @@
     "styles/theme.styles.global.tsx",
     "lib/hashlips'/utils/update_info.js",
     "lib/hashlips'/main.js",
-    "lib/jszip/main.js",
+    "lib/jszip/main.ts",
     "lib/hashlips/createArt.js",
     "lib/transak/openTransak.js"
   ],
