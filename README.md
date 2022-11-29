@@ -11,7 +11,27 @@
 | Thirdweb | https://thirdweb.com/    |
 | Chakra   | https://chakra-ui.com/   |
 
-Web3 powered NFT minting. Serverless (Vercel). Next.JS & React.JS (TypeScript). Linting with Eslint Airbnb Style Guide. Themed with Chakra.
+# Home Page
+
+![image](https://i.imgur.com/rt43RnP.png)
+
+![image](https://i.imgur.com/qdwilMe.png)
+
+# Connect MetaMask
+
+![image](https://i.imgur.com/nxatjWo.png)
+
+# Creating an NFT Collection
+
+![image](https://i.imgur.com/YTuopX3.png)
+
+# Description
+
+Web3 powered NFT minting.
+Serverless (Vercel).
+Next.JS & React.JS (TypeScript).
+Linting with Eslint Airbnb Style Guide.
+Themed with Chakra.
 
 ### Installation
 
