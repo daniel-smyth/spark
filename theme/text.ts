@@ -2,7 +2,6 @@ const Text = {
   baseStyle: {
     color: 'gray.500'
   },
-  // Two sizes: sm and md
   sizes: {
     sm: {
       fontSize: '14px'

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   CollectionProperties,
   CreateCollectionContextType,
   Layer
-} from '../types/CreateCollection';
+} from '../types/web3';
 
 // Artwork/images have several "traits". Each trait has several "types".
 // For example:
@@ -42,4 +42,17 @@ function CreateCollectionProvider({ children }: { children: React.ReactNode }) {
   );
 }
 
-export { CreateCollectionContext, CreateCollectionProvider };
+const useCreateCollection = () => {
+  const context = useContext(CreateCollectionContext);
+  if (!context)
+    throw new Error(
+      'useCreateCollection must be placed within CreateCollectionProvider'
+    );
+  return context;
+};
+
+export {
+  useCreateCollection,
+  CreateCollectionContext,
+  CreateCollectionProvider
+};

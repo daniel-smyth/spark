@@ -16,7 +16,7 @@ import {
 import Spark3Black from '../Icon/spark3black';
 import { CollectionProperties } from '../../types/CreateCollection';
 import useCreateCollection from '../../hooks/useCreateCollection';
-import FormNumberInput from '../FormNumberInput';
+import FormNumberInput from './FormNumberInput';
 
 function CollectionPropertiesForm() {
   const { collectionSize, setCollectionSize, setCollectionProperties } =

@@ -1,16 +1,16 @@
 import { NFTContractDeployMetadata } from '@thirdweb-dev/sdk';
 
-export declare type TraitType = {
+export declare type Trait = {
   name: string;
   url: string;
 };
 
 export declare type Layer = {
   name: string;
-  types: TraitType[];
+  types: Trait[];
 };
 
-export declare type LayerElement = {
+export declare type ProcessedLayerElement = {
   id: number;
   name: string | undefined;
   fileName: string;
@@ -20,7 +20,7 @@ export declare type LayerElement = {
 
 export declare type ProcessedLayer = {
   id: number;
-  elements: LayerElement[];
+  elements: ProcessedLayerElement[];
   name: string;
   blend: string;
   opacity: number;
@@ -41,7 +41,7 @@ export declare type ConstructedLayer = {
   name: string;
   blend: string;
   opacity: number;
-  selectedElement: LayerElement | undefined;
+  selectedElement: ProcessedLayerElement | undefined;
 };
 
 export declare type CreateCollectionContextType = {

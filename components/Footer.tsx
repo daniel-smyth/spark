@@ -11,10 +11,9 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  useColorModeValue,
   VisuallyHidden
 } from '@chakra-ui/react';
-import Spark3Black from './Icon/spark3black';
+import Spark3Black from './icon/spark3black';
 
 interface SocialButtonProps {
   href: string;
@@ -22,12 +21,10 @@ interface SocialButtonProps {
   children: any;
 }
 
-function SocialButton(props: SocialButtonProps) {
-  const { href, label, children } = props;
-
+function SocialButton({ href, label, children }: SocialButtonProps) {
   return (
     <chakra.button
-      bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+      bg="blackAlpha.100"
       rounded="full"
       w={8}
       h={8}
@@ -39,7 +36,7 @@ function SocialButton(props: SocialButtonProps) {
       justifyContent="center"
       transition="background 0.3s ease"
       _hover={{
-        bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200')
+        bg: 'blackAlpha.200'
       }}
     >
       <VisuallyHidden>{label}</VisuallyHidden>
@@ -51,15 +48,8 @@ function SocialButton(props: SocialButtonProps) {
 export default function Footer() {
   const router = useRouter();
 
-  const onClick = () => {
-    router.push('/');
-  };
-
   return (
-    <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-    >
+    <Box bg="gray.50" color="gray.700" mt={20}>
       <Container as={Stack} maxW="6xl" py={10}>
         <SimpleGrid
           spacing={8}
@@ -71,7 +61,7 @@ export default function Footer() {
                 cursor="pointer"
                 width={60}
                 style={{ paddingBottom: '3px' }}
-                onClick={onClick}
+                onClick={() => router.push('/')}
               />
             </Box>
 
@@ -124,7 +114,7 @@ export default function Footer() {
             <Stack direction="row">
               <Input
                 placeholder="Your email address"
-                bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
+                bg="blackAlpha.100"
                 border={0}
                 _focus={{
                   bg: 'whiteAlpha.300'

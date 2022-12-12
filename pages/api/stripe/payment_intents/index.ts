@@ -1,8 +1,12 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
-import { MIN_AMOUNT, MAX_AMOUNT, CURRENCY } from '../../../lib/stripe/config';
-import formatAmountForStripe from '../../../lib/stripe/utils/stripeHelpers';
+import {
+  MIN_AMOUNT,
+  MAX_AMOUNT,
+  CURRENCY
+} from '../../../../library/stripe/config';
+import formatAmountForStripe from '../../../../library/stripe/stripeHelpers';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   // https://github.com/stripe/stripe-node#configuration

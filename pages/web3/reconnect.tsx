@@ -1,32 +1,32 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { Stack, Text, Button } from '@chakra-ui/react';
-import Spark3Black from '../../components/Icon/spark3black';
+import Spark3Black from '../../components/icon/spark3black';
 
-function Reject() {
+function ReconnectPage() {
   const router = useRouter();
-
-  function handleClick() {
-    router.push('/web3/connect');
-  }
 
   return (
     <Stack
-      minH="50vh"
       spacing={5}
-      py={10}
+      minH="50vh"
       alignItems="center"
       justifyContent="center"
+      py={10}
     >
       <Spark3Black width={90} />
       <Stack alignItems="center">
         <Text size="lg">No wallet connected. Reconnect to continue.</Text>
       </Stack>
-      <Button variant="solid" size="sm" onClick={() => handleClick()}>
+      <Button
+        variant="solid"
+        size="sm"
+        onClick={() => router.push('/web3/connect')}
+      >
         Reconnect
       </Button>
     </Stack>
   );
 }
 
-export default Reject;
+export default ReconnectPage;

@@ -1,19 +1,14 @@
-/* eslint-disable @typescript-eslint/no-shadow */
-import Path from 'path';
 import sha1 from 'sha1';
 import { createCanvas, loadImage } from 'canvas';
-import {
-  ConstructedLayer,
-  Layer,
-  ProcessedLayer
-} from '../../types/CreateCollection';
+import { ConstructedLayer, Layer, ProcessedLayer } from '../types/web3';
 
-const rarityDelimiter = '#';
-
-const DNA_DELIMITER = '-';
+// DNA config
 const dnaList = new Set();
-const uniqueDnaTollerance = 10000;
+const RARITY_DELIMITER = '#';
+const DNA_DELIMITER = '-';
+const UNIQUE_DNA_TOLLERANCE = 10000;
 
+// Canvas config
 const background = {
   generate: true,
   brightness: '80%',
@@ -33,7 +28,10 @@ ctx.imageSmoothingEnabled = format.smoothing;
 
 const cleanName = (imageName: string) => {
   const nameWithoutExtension = imageName.slice(0, -4);
-  const nameWithoutWeight = nameWithoutExtension.split(rarityDelimiter).shift();
+
+  const nameWithoutWeight = nameWithoutExtension
+    .split(RARITY_DELIMITER)
+    .shift();
 
   return nameWithoutWeight;
 };
@@ -42,7 +40,7 @@ const getRarityWeight = (imageName: string) => {
   const nameWithoutExtension = imageName.slice(0, -4);
 
   let nameWithoutWeight = Number(
-    nameWithoutExtension.split(rarityDelimiter).pop()
+    nameWithoutExtension.split(RARITY_DELIMITER).pop()
   );
 
   if (Number.isNaN(nameWithoutWeight)) {
@@ -52,33 +50,35 @@ const getRarityWeight = (imageName: string) => {
   return nameWithoutWeight;
 };
 
-const createLayer = (rawLayer: Layer, index: number) => {
-  const hashlipsLayer: ProcessedLayer = {
-    id: index,
-    name: rawLayer.name,
-    blend: 'source-over',
-    opacity: 1,
-    bypassDNA: false,
-    elements: rawLayer.types.map((trait, i) => ({
+const createLayers = (layers: Layer[]) =>
+  layers.map((layer, i) => {
+    const hashlipsLayer = {
       id: i,
-      name: cleanName(trait.name),
-      fileName: trait.name,
-      path: trait.url,
-      weight: getRarityWeight(trait.name)
-    }))
-  };
+      name: layer.name,
+      blend: 'source-over',
+      opacity: 1,
+      bypassDNA: false,
+      elements: layer.types.map((trait, j) => ({
+        id: j,
+        name: cleanName(trait.name),
+        fileName: trait.name,
+        path: trait.url,
+        weight: getRarityWeight(trait.name)
+      }))
+    };
 
-  return hashlipsLayer;
-};
+    return hashlipsLayer;
+  });
 
 const createDna = (layers: ProcessedLayer[]) => {
   const randNum: string[] = [];
 
+  // eslint-disable-next-line consistent-return
   layers.forEach((layer) => {
     let totalWeight = 0;
 
     layer.elements.forEach((element) => {
-      totalWeight += element.weight; // adds total of weights for all images
+      totalWeight += element.weight;
     });
 
     // number between 0 - totalWeight
@@ -89,7 +89,7 @@ const createDna = (layers: ProcessedLayer[]) => {
       random -= layer.elements[i].weight;
 
       if (random < 0) {
-        randNum.push(
+        return randNum.push(
           `${layer.elements[i].id}:${layer.elements[i].fileName}${
             layer.bypassDNA ? '?bypassDNA=true' : ''
           }`
@@ -125,7 +125,7 @@ const filterDNAOptions = (dna: string) => {
   return filteredDNA.join(DNA_DELIMITER);
 };
 
-const isDnaUnique = (dnaList = new Set(), dna = '') => {
+const isDnaUnique = (dna = '') => {
   const filteredDNA = filterDNAOptions(dna);
 
   return !dnaList.has(filteredDNA);
@@ -146,13 +146,9 @@ const cleanDna = (dna: string) => {
 
 const constructLayerToDna = (dna: string, layers: ProcessedLayer[]) => {
   const mappedDnaToLayers = layers.map((layer, i) => {
-    console.log(layer);
-    const selectedElement = layer.elements.find((e) => {
-      console.log(e);
-      console.log(dna);
-      console.log(dna.split(DNA_DELIMITER)[i]);
-      if (e.id === cleanDna(dna.split(DNA_DELIMITER)[i])) return e;
-    });
+    const selectedElement = layer.elements.find(
+      (e) => e.id === cleanDna(dna.split(DNA_DELIMITER)[i]) && e
+    );
 
     return {
       name: layer.name,
@@ -162,20 +158,13 @@ const constructLayerToDna = (dna: string, layers: ProcessedLayer[]) => {
     };
   });
 
-  console.log(mappedDnaToLayers);
-
   return mappedDnaToLayers;
 };
 
 const loadLayerImg = async (layer: ConstructedLayer) => {
-  try {
-    const image = await loadImage(`${layer.selectedElement!.path}`);
+  const image = await loadImage(`${layer.selectedElement!.path}`);
 
-    return { layer, loadedImage: image };
-  } catch (error) {
-    console.error('Error loading image:', error);
-    return undefined;
-  }
+  return { layer, image };
 };
 
 const genColor = () => {
@@ -189,23 +178,17 @@ const drawBackground = () => {
   ctx.fillRect(0, 0, format.width, format.height);
 };
 
-const drawElement = (renderObject: {
-  layer: ConstructedLayer;
-  loadedImage: any;
-}) => {
+const drawElement = (renderObject: { layer: ConstructedLayer; image: any }) => {
   ctx.globalAlpha = 1;
   ctx.globalCompositeOperation = 'source-over';
 
-  ctx.drawImage(renderObject.loadedImage, 0, 0, format.width, format.height);
+  ctx.drawImage(renderObject.image, 0, 0, format.width, format.height);
 };
 
 const saveImage = () => canvas.toDataURL('image/png');
 
 const saveMetaData = (
-  renderObjectArray: {
-    layer: ConstructedLayer;
-    loadedImage: any;
-  }[]
+  renderObjectArray: { layer: ConstructedLayer; image: any }[]
 ) => {
   const traits = [];
 
@@ -230,11 +213,7 @@ const saveMetaData = (
 };
 
 const multiplyArtwork = async (layers: Layer[], collectionSize: number) => {
-  const processedLayers = layers.map((layer, i) => {
-    const hashlipsLayer = createLayer(layer, i);
-
-    return hashlipsLayer;
-  });
+  const processedLayers = createLayers(layers);
 
   const imageObjects: { imgSrc: string; metadata: string[][] }[] = [];
   const abstractedIndexes: number[] = [];
@@ -248,19 +227,20 @@ const multiplyArtwork = async (layers: Layer[], collectionSize: number) => {
   while (editionCount <= collectionSize) {
     const newDna = createDna(processedLayers);
 
-    if (isDnaUnique(dnaList, newDna)) {
+    if (isDnaUnique(newDna)) {
       const results = constructLayerToDna(newDna, processedLayers);
 
-      const loadedElements: { layer: ConstructedLayer; loadedImage: any }[] =
+      const loadedElements: Promise<{ layer: ConstructedLayer; image: any }>[] =
         [];
 
-      results.forEach(async (layer) => {
-        // const constructedLayer = await loadLayerImg(layer);
-        if (constructedLayer) loadedElements.push(constructedLayer);
+      results.forEach((layer) => {
+        loadedElements.push(loadLayerImg(layer));
       });
 
       // eslint-disable-next-line no-await-in-loop
       await Promise.all(loadedElements).then((renderObjectArray) => {
+        console.log(renderObjectArray);
+
         drawBackground();
 
         renderObjectArray.forEach((renderObject) => {
@@ -277,27 +257,25 @@ const multiplyArtwork = async (layers: Layer[], collectionSize: number) => {
 
         imageObjects.push(imageObject);
 
-        // console.log(
-        //   `Created edition: ${abstractedIndexes[0]}, with DNA: ${sha1(newDna)}`
-        // );
+        console.log(
+          `Created edition: ${abstractedIndexes[0]}, with DNA: ${sha1(newDna)}`
+        );
       });
 
       dnaList.add(filterDNAOptions(newDna));
       abstractedIndexes.shift();
       editionCount += 1;
     } else {
-      // console.log('DNA exists!');
+      console.log('DNA exists!');
       failedCount += 1;
-      if (failedCount >= uniqueDnaTollerance) {
-        // console.log(
-        //   `You need more layers or elements to grow your edition to ${collectionSize} artworks!`
-        // );
+      if (failedCount >= UNIQUE_DNA_TOLLERANCE) {
+        console.log(
+          `You need more layers or elements to grow your edition to ${collectionSize} artworks!`
+        );
         break;
       }
     }
   }
-
-  console.log(processedLayers);
 
   return imageObjects;
 };

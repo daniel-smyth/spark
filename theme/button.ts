@@ -1,10 +1,8 @@
 const Button = {
-  // The styles all button have in common
   baseStyle: {
     fontWeight: 'bold',
     textTransform: 'uppercase'
   },
-  // Two sizes: sm and md
   sizes: {
     sm: {
       fontSize: '12px',
@@ -17,7 +15,6 @@ const Button = {
       rounded: '2xl'
     }
   },
-  // Two variants: outline and solid
   variants: {
     outline: {
       color: 'blue.500',
@@ -36,7 +33,6 @@ const Button = {
       color: 'none'
     }
   },
-  // The default size and variant values
   defaultProps: {
     size: 'md',
     variant: 'outline'

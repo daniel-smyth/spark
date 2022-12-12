@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { Stack, Text, Spinner } from '@chakra-ui/react';
-import getStripe from '../../lib/stripe/utils/getStripeJS';
-import { fetchPostJSON } from '../../lib/stripe/utils/apiHelpers';
-import Spark3Black from '../../components/Icon/spark3black';
+import getStripe from '../../library/stripe/utils/getStripeJS';
+import { fetchPostJSON } from '../../library/apiHelpers';
+import Spark3Black from '../../components/icon/spark3black';
 
 // A redirect to this page will fetch a stripe checkout session using
 // the "amount" variable found in local storage ("amount" is set via the
@@ -11,11 +11,11 @@ import Spark3Black from '../../components/Icon/spark3black';
 // When payment is complete, stripe will redirect to the "result" page
 // found in this directory
 
-function Complete() {
+function StripeInitialize() {
   useEffect(() => {
     const stripeRedirect = async () => {
-      // Fetch checkout session ID from Next.JS api for Stripe checkout_sessions
-      const response = await fetchPostJSON('/api/checkout_sessions', {
+      // Fetch checkout session ID from Next.JS api for Stripe stripe/checkout_sessions
+      const response = await fetchPostJSON('/api/stripe/checkout_sessions', {
         amount: Number(localStorage.getItem('amount'))
       });
 
@@ -53,4 +53,4 @@ function Complete() {
   );
 }
 
-export default Complete;
+export default StripeInitialize;

@@ -6,11 +6,10 @@ import {
   HStack,
   Link,
   Stack,
-  useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, LinkIcon } from '@chakra-ui/icons';
-import Spark3Black from './Icon/spark3black';
+import Spark3Black from './icon/spark3black';
 
 const Links = [
   ['Create Collection', '/web3/connect'],
@@ -25,7 +24,7 @@ function NavLink(key: number, text: string, destination: string) {
       rounded="md"
       _hover={{
         textDecoration: 'none',
-        bg: useColorModeValue('gray.200', 'gray.700')
+        bg: 'gray.200'
       }}
       px={2}
       py={1}
@@ -45,13 +44,7 @@ export default function NavBar() {
   };
 
   return (
-    <Box
-      position="sticky"
-      top={0}
-      width="100%"
-      zIndex={200}
-      bg={useColorModeValue('gray.100', 'gray.900')}
-    >
+    <Box position="sticky" top={0} width="100%" zIndex={200} bg="gray.100">
       <Flex
         alignItems="center"
         justifyContent="space-between"

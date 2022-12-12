@@ -3,22 +3,21 @@ import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import { Stack, Spinner, Text } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
-import { fetchGetJSON } from '../../lib/stripe/utils/apiHelpers';
-import Spark3Black from '../../components/Icon/spark3black';
+import { fetchGetJSON } from '../../library/apiHelpers';
+import Spark3Black from '../../components/icon/spark3black';
 
 // When a Stripe payment is complete, the stripe checkout session
 // will redirect here. If the payment was successful
 // (data?.payment_intent?.status does exist) the "status" message
 // in local storage will be set to true
 
-function Complete() {
+function StripeResult() {
   const [statusText, setStatusText] = useState('Processing');
   const router = useRouter();
 
-  // SWR allows next to get data from a remote location
   const { data, error } = useSWR(
     router.query.session_id
-      ? `/api/checkout_sessions/${router.query.session_id}`
+      ? `/api/stripe/checkout_sessions/${router.query.session_id}`
       : null,
     fetchGetJSON
   );
@@ -28,7 +27,6 @@ function Complete() {
   if (data?.payment_intent?.status && statusText === 'Processing') {
     // If payment was successful set status to "true"
     localStorage.setItem('status', 'true');
-
     setStatusText('Complete');
   }
 
@@ -64,4 +62,4 @@ function Complete() {
   );
 }
 
-export default Complete;
+export default StripeResult;
