@@ -12,18 +12,12 @@ import {
   Text,
   Th,
   Thead,
-  Tr,
-  useColorModeValue
+  Tr
 } from '@chakra-ui/react';
 import {
   CreateCollectionProvider,
   useCreateCollection
 } from '../../context/CreateCollectionContext';
-import CollectionPropertiesForm from '../../components/web3/CollectionPropertiesForm';
-import FeesForm from '../../components/web3/FeesForm';
-import Spark3Black from '../../components/icon/spark3black';
-import UploadImages from '../../components/web3/UploadImages';
-import Mint from '../../components/web3/Mint';
 
 function CreateCollectionPage() {
   const { layers, collectionProperties, isPaid } = useCreateCollection();

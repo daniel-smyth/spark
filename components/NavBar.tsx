@@ -9,7 +9,7 @@ import {
   useDisclosure
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon, LinkIcon } from '@chakra-ui/icons';
-import Spark3Black from './icon/spark3black';
+import Spark3Black from './Icon/spark3black';
 
 const Links = [
   ['Create Collection', '/web3/connect'],

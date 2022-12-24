@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Stack, Text, Spinner } from '@chakra-ui/react';
 import getStripe from '../../library/stripe/utils/getStripeJS';
 import { fetchPostJSON } from '../../library/apiHelpers';
-import Spark3Black from '../../components/icon/spark3black';
+import Spark3Black from '../../components/Icon/spark3black';
 
 // A redirect to this page will fetch a stripe checkout session using
 // the "amount" variable found in local storage ("amount" is set via the

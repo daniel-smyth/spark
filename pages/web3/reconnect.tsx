@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import { Stack, Text, Button } from '@chakra-ui/react';
-import Spark3Black from '../../components/icon/spark3black';
+import Spark3Black from '../../components/Icon/spark3black';
 
 function ReconnectPage() {
   const router = useRouter();

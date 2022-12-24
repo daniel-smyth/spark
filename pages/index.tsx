@@ -30,7 +30,7 @@ import {
   Text
 } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
-import Spark3Black from '../components/icon/spark3black';
+import Spark3Black from '../components/Icon/spark3black';
 
 const Arrow = createIcon({
   displayName: 'Arrow',
@@ -61,7 +61,10 @@ function Hero() {
       </Heading>
       <Text size="xl">Create up to 10,000 NFTs in minutes.</Text>
       <Stack alignSelf="center" position="relative">
-        <Button variant="solid" onClick={() => router.push('/web3/connect')}>
+        <Button
+          variant="solid"
+          onClick={() => router.push('/web3/create-collection')}
+        >
           Create 10,000 NFTs
         </Button>
         <Text size="sm">mobile - desktop</Text>
@@ -90,9 +93,6 @@ function Hero() {
     </Stack>
   );
 }
-
-const addCommasToNumber = (number: number) =>
-  number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 function Calculator() {
   const [maxSize, setMaxSize] = useState(10000);
@@ -161,7 +161,7 @@ function Calculator() {
               <Text variant="badge">Nft Collection size</Text>
               <Stack direction="row" justify="center">
                 <Text color="black" fontSize="4xl" fontWeight={600}>
-                  {addCommasToNumber(maxSize)}
+                  {maxSize.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
                 </Text>
                 <Text color="gray.500">NFTs</Text>
               </Stack>
@@ -183,7 +183,8 @@ function Calculator() {
                   })
                 }
               >
-                Create {addCommasToNumber(maxSize)} NFTs
+                Create{' '}
+                {maxSize.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')} NFTs
               </Button>
             </SimpleGrid>
           </Box>

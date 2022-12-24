@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { Stack, Spinner, Text } from '@chakra-ui/react';
 import { CheckIcon } from '@chakra-ui/icons';
 import { fetchGetJSON } from '../../library/apiHelpers';
-import Spark3Black from '../../components/icon/spark3black';
+import Spark3Black from '../../components/Icon/spark3black';
 
 // When a Stripe payment is complete, the stripe checkout session
 // will redirect here. If the payment was successful

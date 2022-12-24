@@ -41,7 +41,7 @@ interface ConnectButtonProps extends ButtonProps {
   imageSrc: string;
 }
 
-function Connectbutton(props: ConnectButtonProps) {
+function ConnectButton(props: ConnectButtonProps) {
   const { imageSrc, children, variant } = props;
   return (
     <Button
@@ -61,31 +61,31 @@ function Connectbutton(props: ConnectButtonProps) {
   );
 }
 
-function WalletOptions() {
+function DesktopWalletOptions() {
   const connectWithCoinBase = useCoinbaseWallet();
   const connectWithMetamask = useMetamask();
   const connectWithWalletConnect = useWalletConnect();
 
   return (
     <>
-      <Connectbutton
+      <ConnectButton
         imageSrc="https://thirdweb.com/logos/metamask-fox.svg"
         onClick={() => connectWithMetamask()}
       >
         MetaMask
-      </Connectbutton>
-      <Connectbutton
+      </ConnectButton>
+      <ConnectButton
         imageSrc="https://thirdweb.com/logos/coinbase-wallet-logo.svg"
         onClick={() => connectWithCoinBase()}
       >
         Coinbase Wallet
-      </Connectbutton>
-      <Connectbutton
+      </ConnectButton>
+      <ConnectButton
         imageSrc="https://thirdweb.com/logos/walletconnect-logo.svg"
         onClick={() => connectWithWalletConnect()}
       >
         WalletConnect
-      </Connectbutton>
+      </ConnectButton>
     </>
   );
 }
@@ -127,14 +127,14 @@ function ConnectPage() {
               {ethBrowser && (
                 <Stack spacing={3}>
                   {isTablet || isMobile ? (
-                    <Connectbutton
+                    <ConnectButton
                       imageSrc="https://thirdweb.com/logos/walletconnect-logo.svg"
                       onClick={() => connectWithWalletConnect()}
                     >
                       WalletConnect
-                    </Connectbutton>
+                    </ConnectButton>
                   ) : (
-                    <WalletOptions />
+                    <DesktopWalletOptions />
                   )}
                   <Text align="center" size="md">
                     No wallet?
@@ -166,20 +166,20 @@ function ConnectPage() {
                   </>
                 ) : (
                   <>
-                    <Connectbutton
+                    <ConnectButton
                       imageSrc="https://thirdweb.com/logos/walletconnect-logo.svg"
                       onClick={() => connectWithWalletConnect()}
                     >
                       WalletConnect
-                    </Connectbutton>
-                    <Connectbutton
+                    </ConnectButton>
+                    <ConnectButton
                       imageSrc="https://thirdweb.com/logos/metamask-fox.svg"
                       onClick={() =>
                         window.open(METAMASK_URL, '_blank')!.focus()
                       }
                     >
                       Create Wallet
-                    </Connectbutton>
+                    </ConnectButton>
                   </>
                 ))}
             </>

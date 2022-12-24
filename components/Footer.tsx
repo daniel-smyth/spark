@@ -13,7 +13,7 @@ import {
   Text,
   VisuallyHidden
 } from '@chakra-ui/react';
-import Spark3Black from './icon/spark3black';
+import Spark3Black from './Icon/spark3black';
 
 interface SocialButtonProps {
   href: string;
