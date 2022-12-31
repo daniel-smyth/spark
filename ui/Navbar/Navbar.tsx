@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import s from './Navbar.module.css';
-import Text from '@ui/Text';
+import { Text } from '@ui';
 
 const Navbar: React.FC = () => {
   return (
