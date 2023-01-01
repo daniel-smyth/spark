@@ -8,30 +8,15 @@
 .heading {
   font-size: 2.5rem;
   line-height: 1;
-  padding-top: 1;
-  padding-bottom: 2;
   font-weight: 700;
   cursor: pointer;
-  margin-bottom: 2;
 }
 
-.pageHeading {
-  padding-top: 1;
-  padding-bottom: 4;
-  font-size: 1.5rem;
-  line-height: 1.75rem;
-  font-weight: 700;
-}
-
-.sectionHeading {
-  padding-top: 1;
-  padding-bottom: 2;
+.subHeading {
   font-size: 1.5rem;
   font-weight: 700;
-  letter-spacing: 0.025em;
+  line-height: 3rem;
   cursor: pointer;
-  margin-bottom: 2;
-  font-family: var(--font-mono);
 }
 
 /* Apply base font sizes and styles for typography markup (h2, h2, ul, p, etc.).

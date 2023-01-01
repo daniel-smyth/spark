@@ -4,6 +4,7 @@ import { Inter } from '@next/font/google';
 import styles from './Home.module.css';
 import { Navbar } from '@components/common';
 import { Button, Text } from '@components/ui';
+import { Calculator } from '@components/home';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -37,7 +38,7 @@ export default function Home() {
               <Text variant="heading">Web3 is here</Text>
             </li>
             <li>
-              <Text variant="sectionHeading">Upload. Create. Sell.</Text>
+              <Text variant="subHeading">Upload. Create. Sell.</Text>
             </li>
             <li>
               <Text>Create up to 10,000 NFTs in minutes</Text>
@@ -46,6 +47,14 @@ export default function Home() {
               <Button variant="flat">Create 10,000 NFTs</Button>
             </li>
           </ul>
+        </div>
+
+        <div className={styles.calculator}>
+          <Text variant="subHeading">Collection Calculator</Text>
+          <Text>
+            Calculate the maximum number of NFTs you can create with you images
+          </Text>
+          <Calculator />
         </div>
 
         <div className={styles.grid}>

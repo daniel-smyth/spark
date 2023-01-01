@@ -18,7 +18,7 @@ interface TextProps {
   onClick?: () => any;
 }
 
-type Variant = 'heading' | 'body' | 'pageHeading' | 'sectionHeading';
+type Variant = 'heading' | 'body' | 'pageHeading' | 'subHeading';
 
 const Text: FunctionComponent<TextProps> = ({
   style,
@@ -34,7 +34,7 @@ const Text: FunctionComponent<TextProps> = ({
     body: 'div',
     heading: 'h1',
     pageHeading: 'h1',
-    sectionHeading: 'h2'
+    subHeading: 'h2'
   };
 
   const Component:
@@ -58,7 +58,7 @@ const Text: FunctionComponent<TextProps> = ({
           [s.body]: variant === 'body',
           [s.heading]: variant === 'heading',
           [s.pageHeading]: variant === 'pageHeading',
-          [s.sectionHeading]: variant === 'sectionHeading'
+          [s.subHeading]: variant === 'subHeading'
         },
         className
       )}

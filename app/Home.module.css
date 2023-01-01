@@ -18,7 +18,7 @@
 }
 
 .hero {
-  height: 100vh;
+  height: 70vh;
   width: 40vh;
   text-align: center;
   padding: 5rem 0;
@@ -35,6 +35,11 @@
 
 .hero button {
   margin-top: 10px;
+}
+
+.calculator {
+  width: 40vh;
+  text-align: center;
 }
 
 .description a {
