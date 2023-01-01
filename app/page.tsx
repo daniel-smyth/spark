@@ -1,8 +1,9 @@
-import 'styles/globals.css';
+import './globals.css';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
-import styles from '../styles/Home.module.css';
+import styles from './Home.module.css';
 import { Navbar } from '@components/common';
+import { Button, Text } from '@components/ui';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,6 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
               <Image
                 src="/vercel.svg"
                 alt="Vercel Logo"
@@ -31,24 +31,21 @@ export default function Home() {
           </div>
         </div>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
+        <div className={styles.hero}>
+          <ul>
+            <li>
+              <Text variant="heading">Web3 is here</Text>
+            </li>
+            <li>
+              <Text variant="sectionHeading">Upload. Create. Sell.</Text>
+            </li>
+            <li>
+              <Text>Create up to 10,000 NFTs in minutes</Text>
+            </li>
+            <li>
+              <Button variant="flat">Create 10,000 NFTs</Button>
+            </li>
+          </ul>
         </div>
 
         <div className={styles.grid}>

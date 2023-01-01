@@ -1,13 +1,13 @@
 .root {
-  background-color: var(--accent-9);
+  background-color: var(--spark-1);
   color: var(--accent-0);
   cursor: pointer;
   display: inline-flex;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
   line-height: 1.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
   transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
     backdrop-filter;
@@ -21,6 +21,7 @@
   text-transform: uppercase;
   border-width: 1px;
   border-color: transparent;
+  border-radius: 8px;
   align-items: center;
   font-size: 0.875rem;
   font-weight: 600;
@@ -29,7 +30,7 @@
 }
 
 .root:hover {
-  border: var(--accent-9);
+  border: var(--spark-1);
   background-color: var(--accent-6);
 }
 
@@ -60,13 +61,13 @@
   border-width: 1px;
   border-color: var(--accent-2);
   background-color: var(--accent-0);
-  color: var(--accent-9);
+  color: var(--spark-1);
   line-height: 1.25rem;
 }
 
 .ghost:hover {
-  border-color: var(--accent-9);
-  background-color: var(--accent-9);
+  border-color: var(--spark-1);
+  background-color: var(--spark-1);
   color: var(--accent-0);
 }
 

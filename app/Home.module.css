@@ -17,6 +17,26 @@
   z-index: 2;
 }
 
+.hero {
+  height: 100vh;
+  width: 40vh;
+  text-align: center;
+  padding: 5rem 0;
+}
+
+.hero li {
+  list-style: none;
+  margin: 7px 0;
+}
+
+.hero h1 {
+  color: var(--spark-1);
+}
+
+.hero button {
+  margin-top: 10px;
+}
+
 .description a {
   display: flex;
   justify-content: center;
@@ -31,11 +51,6 @@
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
-}
-
-.code {
-  font-weight: 700;
-  font-family: var(--font-mono);
 }
 
 .grid {

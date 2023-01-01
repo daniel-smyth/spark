@@ -10,10 +10,32 @@ import { ConnectWallet } from '@thirdweb-dev/react';
 const Navbar: FC = () => {
   const [open, setOpen] = useState(false);
 
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const prefersLight = window.matchMedia(
+    '(prefers-color-scheme: light)'
+  ).matches;
+
   return (
     <nav className={s.navigation}>
       <Link href="/" className={s.brandName}>
-        <Image src="/spark.svg" alt="Spark3" width={90} height={30} priority />
+        {prefersDark && (
+          <Image
+            src="/sparkwhite.svg"
+            alt="Spark3"
+            width={90}
+            height={30}
+            priority
+          />
+        )}
+        {prefersLight && (
+          <Image
+            src="/sparkblack.svg"
+            alt="Spark3"
+            width={90}
+            height={30}
+            priority
+          />
+        )}
       </Link>
       <button
         className={open ? cx(s.hamburger, s.clicked) : s.hamburger}
