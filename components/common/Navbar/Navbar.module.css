@@ -41,9 +41,11 @@
   width: 40px;
   padding: 0.5rem;
   border-radius: 50%;
-  background-color: #283b8b;
+  stroke: var(--spark-1);
+  stroke-width: 1.5;
+  background-color: transparent;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
   position: absolute;
   top: 50%;
   right: 25px;
@@ -51,32 +53,34 @@
   display: none;
 }
 
-.hamburger:hover {
-  background-color: #2642af;
+.hamburger.clicked {
+  stroke: var(--accent-0);
+  stroke-width: 1.5;
+  background-color: var(--spark-1);
+}
+
+.connectButton {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  font-family: var(--font-mono);
 }
 
 @media screen and (max-width: 768px) {
   .hamburger {
     display: block;
   }
-}
 
-@media screen and (max-width: 768px) {
   .navigationMenu ul {
     display: none;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .navigationMenu ul {
     position: absolute;
     top: 60px;
     left: 0;
     flex-direction: column;
     width: 100%;
-    height: calc(100vh - 77px);
     background-color: white;
-    border-top: 1px solid black;
+    border-top: 2px solid rgba(9, 9, 9, 0.23);
   }
 
   .navigationMenu li {
@@ -93,15 +97,7 @@
   .navigationMenu li:hover {
     background-color: #eee;
   }
-}
 
-@media screen and (max-width: 768px) {
-  .navigationMenu ul {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 768px) {
   .navigationMenu.expanded ul {
     display: block;
   }

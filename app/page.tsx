@@ -2,7 +2,7 @@ import 'styles/globals.css';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import styles from '../styles/Home.module.css';
-import { Button, Navbar } from '@ui';
+import { Navbar } from '@components/common';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -12,10 +12,6 @@ export default function Home() {
       <Navbar />
       <main className={styles.main}>
         <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
           <div>
             <a
               href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
