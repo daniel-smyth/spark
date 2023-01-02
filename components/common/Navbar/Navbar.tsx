@@ -2,26 +2,18 @@
 
 import { FC, useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import cx from 'clsx';
 import s from './Navbar.module.css';
 import { ConnectWallet } from '@thirdweb-dev/react';
+import { Logo } from '@components/ui';
 
 const Navbar: FC = () => {
   const [open, setOpen] = useState(false);
 
-  const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
   return (
     <nav className={s.navigation}>
       <Link href="/" className={s.brandName}>
-        <Image
-          src={darkTheme ? '/sparkwhite.svg' : '/sparkblack.svg'}
-          alt="Spark3"
-          width={90}
-          height={30}
-          priority
-        />
+        <Logo />
       </Link>
       <button
         className={open ? cx(s.hamburger, s.clicked) : s.hamburger}

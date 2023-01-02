@@ -12,29 +12,19 @@ const Calculator: FC = () => {
     setData({ ...data, [name]: value });
 
   return (
-    <>
-      <div className={s.card}>
-        <Text variant="sectionHeading">
-          {(data.traits ** data.layers).toLocaleString('en-US')} NFTs
-        </Text>
-        <Text>
-          Traits per Layer. <Link href="/">Traits?</Link>
-        </Text>
-        <NumberInput
-          name="traits"
-          value={data.traits}
-          onChange={handleChange}
-        />
-        <Text>
-          Layer Count. <Link href="/">Layers?</Link>
-        </Text>
-        <NumberInput
-          name="layers"
-          value={data.layers}
-          onChange={handleChange}
-        />
-      </div>
-    </>
+    <div className={s.card}>
+      <Text variant="sectionHeading">
+        {(data.traits ** data.layers).toLocaleString('en-US')} NFTs
+      </Text>
+      <Text>
+        Traits per Layer. <Link href="/">Traits?</Link>
+      </Text>
+      <NumberInput name="traits" value={data.traits} onChange={handleChange} />
+      <Text>
+        Layer Count. <Link href="/">Layers?</Link>
+      </Text>
+      <NumberInput name="layers" value={data.layers} onChange={handleChange} />
+    </div>
   );
 };
 

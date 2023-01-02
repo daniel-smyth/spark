@@ -37,9 +37,33 @@
 }
 
 .calculator,
+.steps,
 .price {
   width: 40vh;
   text-align: center;
+  height: 80vh;
+}
+.steps ul {
+  list-style-type: none;
+}
+
+.step {
+  display: grid;
+  grid-template-columns: 0fr 1fr;
+  grid-column-gap: 1px;
+  grid-row-gap: 0px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  align-items: center;
+  border-bottom: 1px solid var(--accent-0);
+}
+
+.stepText {
+  text-align: left;
+}
+
+.price {
+  margin-bottom: 160px;
 }
 
 .description a {
@@ -56,13 +80,6 @@
   background-color: rgba(var(--callout-rgb), 0.5);
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(25%, auto));
-  width: var(--max-width);
-  max-width: 100%;
 }
 
 .card {
