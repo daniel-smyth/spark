@@ -32,76 +32,99 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className={s.calculator}>
-        <Text variant="sectionHeading">Collection Calculator</Text>
+      <div className={s.information}>
+        <div className={s.steps}>
+          <Text variant="sectionHeading">How Does it Work?</Text>
 
-        <Text>
-          Calculate the maximum number of NFTs you can create with your images
-        </Text>
+          <Text>
+            Minting NFTs has never been this easy. It&apos;s just 3 steps!
+          </Text>
 
-        <Calculator />
+          <ul>
+            <li>
+              <div className={s.step}>
+                <FiImage size={30} />
+                <Text variant="sectionHeading">1. Multiply Artwork</Text>
+              </div>
+              <div className={s.stepText}>
+                <Text>Multiply your images with the Spark3 art engine</Text>
+              </div>
+            </li>
+            <li>
+              <div className={s.step}>
+                <FiDatabase size={30} />
+                <Text variant="sectionHeading">2. Mint Artwork</Text>
+              </div>
+              <div className={s.stepText}>
+                <Text>
+                  Mint your new images directly to an address of your choice
+                </Text>
+              </div>
+            </li>
+            <li>
+              <div className={s.step}>
+                <FiRepeat size={30} />
+                <Text variant="sectionHeading">3. Sell Artwork</Text>
+              </div>
+              <div className={s.stepText}>
+                <Text>
+                  Sell your newly created NFT Artwork on any major exchange
+                </Text>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div className={s.price}>
+          <Text variant="sectionHeading">How Much?</Text>
+
+          <Text>
+            It&apos;s cheap too! You can mint 10,000 NFTs for just $99.00
+          </Text>
+
+          <Price
+            title="NFT Collection"
+            price={99}
+            data={[
+              'Multiply and sell artwork on exchanges',
+              'Unlimited artwork collection size',
+              'Setup completed in 5 minutes',
+              'No downloads'
+            ]}
+            link=""
+          />
+        </div>
       </div>
 
-      <div className={s.steps}>
-        <Text variant="sectionHeading">How Does it Work?</Text>
+      <div className={s.information}>
+        <div className={s.calculator}>
+          <Text variant="sectionHeading">Collection Calculator</Text>
 
-        <Text>
-          Minting NFTs has never been this easy. It&apos;s just 3 steps!
-        </Text>
+          <Text>
+            Calculate the maximum number of NFTs you can create with your images
+          </Text>
 
-        <ul>
-          <li>
-            <div className={s.step}>
-              <FiImage size={30} />
-              <Text variant="sectionHeading">1. Multiply Artwork</Text>
-            </div>
-            <div className={s.stepText}>
-              <Text>Multiply your images with the Spark3 art engine</Text>
-            </div>
-          </li>
-          <li>
-            <div className={s.step}>
-              <FiDatabase size={30} />
-              <Text variant="sectionHeading">2. Mint Artwork</Text>
-            </div>
-            <div className={s.stepText}>
-              <Text>
-                Mint your new images directly to an address of your choice
-              </Text>
-            </div>
-          </li>
-          <li>
-            <div className={s.step}>
-              <FiRepeat size={30} />
-              <Text variant="sectionHeading">3. Sell Artwork</Text>
-            </div>
-            <div className={s.stepText}>
-              <Text>
-                Sell your newly created NFT Artwork on any major exchange
-              </Text>
-            </div>
-          </li>
-        </ul>
-      </div>
+          <Calculator />
+        </div>
+        <div className={s.price}>
+          <Text variant="sectionHeading">How Much?</Text>
 
-      <div className={s.price}>
-        <Text variant="sectionHeading">How Much?</Text>
+          <Text>
+            It&apos;s cheap too! You can mint 10,000 NFTs for just $99.00
+          </Text>
 
-        <Text>
-          It&apos;s cheap too! You can mint 10,000 NFTs for just $99.00
-        </Text>
-
-        <Price
-          title="NFT Collection"
-          price={99}
-          data={[
-            'Multiply and sell artwork on exchanges',
-            'Unlimited artwork collection size',
-            'Setup completed in 5 minutes',
-            'No downloads'
-          ]}
-          link=""
-        />
+          <Price
+            title="NFT Collection"
+            price={99}
+            data={[
+              'Multiply and sell artwork on exchanges',
+              'Unlimited artwork collection size',
+              'Setup completed in 5 minutes',
+              'No downloads'
+            ]}
+            link=""
+          />
+        </div>
       </div>
     </main>
   );

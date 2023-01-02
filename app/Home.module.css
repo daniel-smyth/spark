@@ -8,13 +8,18 @@
 }
 
 .description {
-  display: inherit;
+  display: none;
   justify-content: inherit;
   align-items: inherit;
   font-size: 0.85rem;
   max-width: var(--max-width);
   width: 100%;
   z-index: 2;
+}
+
+.information {
+  display: flex;
+  gap: 10rem;
 }
 
 .hero {
@@ -211,6 +216,10 @@
 
 /* Mobile */
 @media (max-width: 700px) {
+  .description {
+    display: inherit;
+  }
+
   .content {
     padding: 4rem;
   }
