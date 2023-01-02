@@ -5,17 +5,24 @@
   line-height: 1.5;
 }
 
-.heading {
-  font-size: 2.5rem;
-  line-height: 1;
+.sectionHeading {
+  font-size: 1.4rem;
+  line-height: 2.5rem;
   font-weight: 700;
   cursor: pointer;
 }
 
-.subHeading {
-  font-size: 1.5rem;
+.pageHeading {
+  font-size: 2rem;
   font-weight: 700;
+  line-height: 2rem;
+  cursor: pointer;
+}
+
+.heading {
+  font-size: 2.5rem;
   line-height: 3rem;
+  font-weight: 700;
   cursor: pointer;
 }
 

@@ -1,0 +1,18 @@
+.main {
+  padding: 20px;
+}
+
+.main ul {
+  border-style: solid;
+  border-color: var(--accent-4);
+  border-radius: 10px;
+}
+
+.main li {
+  list-style: none;
+  margin-bottom: 10px;
+}
+
+.main li:last-child {
+  margin-bottom: 0;
+}

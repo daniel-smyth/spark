@@ -1,6 +1,8 @@
 'use client';
 
+import './globals.css';
 import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
+import { Navbar } from '@components/common';
 
 // This is the chainId your dApp will work on.
 const activeChainId = ChainId.Mainnet;
@@ -29,6 +31,7 @@ export default function RootLayout({
             loginRedirect: '/'
           }}
         >
+          <Navbar />
           {children}
         </ThirdwebProvider>
       </body>

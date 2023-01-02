@@ -1,42 +1,40 @@
 .root {
   background-color: var(--spark-1);
   color: var(--accent-0);
-  cursor: pointer;
-  display: inline-flex;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   padding-left: 1.25rem;
   padding-right: 1.25rem;
-  line-height: 1.5rem;
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
+  border-radius: 8px;
+  border-width: 1px;
+  border-color: transparent;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  cursor: pointer;
   transition-property: color, background-color, border-color,
     text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter,
     backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  text-align: center;
-  justify-content: center;
-  text-transform: uppercase;
-  border-width: 1px;
-  border-color: transparent;
-  border-radius: 8px;
-  align-items: center;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.025em;
-  max-height: 64px;
+  /* display: inline-flex; */
+  /* line-height: 1.5rem; */
+  /* text-align: center;
+  justify-content: center; */
+  /* align-items: center; */
+  /* font-size: 0.875rem; */
+  /* max-height: 64px; */
 }
 
 .root:hover {
-  border: var(--spark-1);
-  background-color: var(--accent-6);
+  background-color: var(--spark-2);
+  /* border: var(--spark-1); */
 }
 
 .root:focus {
   box-shadow: 0 0 0 2px var(--accent-2);
-  outline-width: 0px;
+  /* outline-width: 0px; */
 }
 
 .root[data-active] {
@@ -44,29 +42,25 @@
 }
 
 .loading {
-  background-color: var(--accent-1);
-  color: var(--accent-3);
-  border-color: var(--accent-2);
+  background-color: var(--spark-2);
   cursor: not-allowed;
 }
 
 .slim {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-  transform: none;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
   text-transform: none;
 }
 
 .ghost {
-  border-width: 1px;
-  border-color: var(--accent-2);
-  background-color: var(--accent-0);
+  border-width: 2px;
+  border-color: var(--spark-1);
+  background-color: transparent;
   color: var(--spark-1);
-  line-height: 1.25rem;
 }
 
 .ghost:hover {
-  border-color: var(--spark-1);
+  /* background-color: var(--accent-6); */
   background-color: var(--spark-1);
   color: var(--accent-0);
 }
@@ -96,9 +90,9 @@
   background-color: var(--accent-1);
   cursor: not-allowed;
   filter: grayscale(1);
-  -webkit-transform: translateZ(0);
+  /* -webkit-transform: translateZ(0);
   -webkit-perspective: 1000;
-  -webkit-backface-visibility: hidden;
+  -webkit-backface-visibility: hidden; */
 }
 
 .progress {

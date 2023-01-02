@@ -1,0 +1,66 @@
+.quantity {
+  display: inline-block;
+  color: black;
+}
+
+@media (prefers-color-scheme: dark) {
+  .quantity {
+    color: white;
+  }
+}
+
+.quantityRemove::after {
+  display: none;
+}
+
+.quantityAdd::after {
+  transform: rotate(90deg);
+}
+
+.quantityButton {
+  width: 39px;
+  height: 34px;
+  float: right;
+  position: relative;
+  cursor: pointer;
+}
+
+.quantityButton::before,
+.quantityButton::after {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 7px);
+  content: '';
+  width: 14px;
+  height: 2px;
+  background-color: currentColor;
+  display: block;
+}
+
+.quantity input[type='number'] {
+  transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 700;
+  box-shadow: none;
+  outline: none;
+  width: 42px;
+  height: 34px;
+  text-align: center;
+  float: right;
+  border: 1px solid #dcdcdc;
+  background-color: #fff;
+  color: #342f2f;
+}
+
+.quantity input:focus {
+  border-color: #57b8f6 !important;
+}
+
+.quantity input:hover {
+  border-color: #a5a5a5;
+}
