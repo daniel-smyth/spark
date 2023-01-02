@@ -1,3 +1,3 @@
 # Home
 
-Components related to the home page.
+The components that make up the home page of the application.

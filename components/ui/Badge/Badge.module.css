@@ -1,0 +1,10 @@
+.badge {
+  background-color: rgba(0, 123, 255, 0.3);
+  color: var(--spark-0);
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  display: inline-block;
+}

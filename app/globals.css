@@ -25,6 +25,8 @@
   --accent-8: #111111;
   --accent-9: #000;
 
+  --shadow: #ccc;
+
   --primary-glow: conic-gradient(
     from 180deg at 50% 50%,
     #16abff33 0deg,

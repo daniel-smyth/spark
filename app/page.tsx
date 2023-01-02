@@ -1,8 +1,9 @@
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import s from './Home.module.css';
-import { Button, Text } from '@components/ui';
+import { Badge, Button, Text } from '@components/ui';
 import { Calculator } from '@components/home';
+import { Price } from '@components/product';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -49,10 +50,28 @@ export default function Home() {
         <Text variant="sectionHeading">Collection Calculator</Text>
 
         <Text>
-          Calculate the maximum number of NFTs you can create with you images
+          Calculate the maximum number of NFTs you can create with your images
         </Text>
 
         <Calculator />
+      </div>
+
+      <div className={s.price}>
+        <Text variant="sectionHeading">How Does it Work?</Text>
+
+        <Text>Minting NFTs has never been this easy</Text>
+
+        <Price
+          title="NFT Collection"
+          price={99}
+          data={[
+            'Multiply and sell artwork on exchanges',
+            'Unlimited artwork collection size',
+            'Setup completed in 5 minutes',
+            'No downloads'
+          ]}
+          link=""
+        />
       </div>
 
       <div className={s.grid}>

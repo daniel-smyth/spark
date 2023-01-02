@@ -1,0 +1,47 @@
+.card {
+  background-color: var(--accent-0);
+  /* border: 1px solid #ddd; */
+  border-radius: 8px;
+  border-top: 6px solid var(--spark-1);
+  box-shadow: 0px 0px 8px var(--shadow);
+  margin: 30px 0px;
+}
+
+.title {
+  padding: 15px;
+}
+
+.billing {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.5rem;
+}
+
+.features {
+  text-align: center;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.features ul li {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+.action {
+  padding-bottom: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: var(--accent-9);
+  }
+
+  .billing {
+    background-color: var(--accent-8);
+  }
+}

@@ -36,7 +36,8 @@
   margin-top: 15px;
 }
 
-.calculator {
+.calculator,
+.price {
   width: 40vh;
   text-align: center;
 }
