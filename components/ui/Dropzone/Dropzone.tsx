@@ -8,7 +8,7 @@ import { Text } from '@components/ui';
 export interface DropzoneProps {
   width?: number;
   style?: {};
-  handleChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (files: FileList) => void;
 }
 
 const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
@@ -18,6 +18,7 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
   const handleDrag = (e: DragEvent<HTMLDivElement | HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
+
     if (e.type === 'dragenter' || e.type === 'dragover') {
       setDragActive(true);
     } else if (e.type === 'dragleave') {
@@ -28,8 +29,19 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
   const handleDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     e.stopPropagation();
+
     setDragActive(false);
+
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      handleChange(e.dataTransfer.files);
+    }
+  };
+
+  const handleUpload = (e: ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+
+    if (e.target.files && e.target.files[0]) {
+      handleChange(e.target.files);
     }
   };
 
@@ -41,18 +53,18 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
     <form
       onDragEnter={handleDrag}
       onSubmit={(e) => e.preventDefault()}
+      onClick={onButtonClick}
+      className={s.container}
       style={{
         width,
         ...style
       }}
-      onClick={onButtonClick}
-      className={s.container}
     >
       <input
         ref={inputRef}
         type="file"
         multiple={true}
-        onChange={handleChange}
+        onChange={handleUpload}
         id="input-file-upload"
       />
       <label
