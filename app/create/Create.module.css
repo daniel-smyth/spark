@@ -14,9 +14,12 @@
 }
 
 .card {
+  padding: 2rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   background-color: var(--accent-2);
   border-radius: 10px;
-  padding: 1rem 3rem;
 }
 
 .card a {
@@ -24,18 +27,39 @@
   text-decoration: none;
 }
 
+@media (prefers-color-scheme: dark) {
+  .background {
+    background-color: var(--accent-8);
+  }
+
+  .card {
+    background-color: var(--accent-7);
+  }
+}
+
+.form {
+  text-align: center;
+}
+
+.form button {
+  margin-top: 2rem;
+  width: 90%;
+}
+
+.formContainer {
+  text-align: center;
+}
+
+.formError {
+  padding: 0rem 2rem;
+  text-align: left;
+}
+
 .header {
   display: grid;
   grid-template-columns: 1fr 0fr;
   align-items: center;
   border-bottom: 4px solid var(--accent-0);
-}
-
-.content {
-  padding: 1rem 0rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
 .image {

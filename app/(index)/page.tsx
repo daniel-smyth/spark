@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FiImage, FiDatabase, FiRepeat } from 'react-icons/fi';
 import s from './Index.module.css';
 import { Button, Logo, Text } from '@components/ui';
@@ -27,7 +28,9 @@ export default function Home() {
             <Text>Create up to 10,000 NFTs in minutes</Text>
           </li>
           <li>
-            <Button variant="flat">Create 10,000 NFTs</Button>
+            <Link href="/create">
+              <Button variant="flat">Create 10,000 NFTs</Button>
+            </Link>
           </li>
         </ul>
       </div>
