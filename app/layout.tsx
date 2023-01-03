@@ -21,7 +21,6 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <head />
       <body>
         <ThirdwebProvider
           desiredChainId={activeChainId}

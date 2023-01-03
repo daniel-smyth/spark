@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import usePrefersColorScheme from '@lib/hooks/usePrefersColorScheme';
 
 interface LogoProps {
   width?: number;
@@ -8,11 +9,12 @@ interface LogoProps {
 }
 
 const Logo: React.FC<LogoProps> = ({ width, height }) => {
-  const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const prefersColorScheme = usePrefersColorScheme();
+  const isDarkMode = prefersColorScheme === 'dark';
 
   return (
     <Image
-      src={darkTheme ? '/sparkwhite.svg' : '/sparkblack.svg'}
+      src={isDarkMode ? '/sparkwhite.svg' : '/sparkblack.svg'}
       alt="Spark3"
       width={width || 90}
       height={height || 30}
