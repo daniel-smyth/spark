@@ -1,5 +1,5 @@
 import { FiImage, FiDatabase, FiRepeat } from 'react-icons/fi';
-import s from './Home.module.css';
+import s from './Index.module.css';
 import { Button, Logo, Text } from '@components/ui';
 import { Calculator } from '@components/home';
 import { Price } from '@components/product';
@@ -32,7 +32,7 @@ export default function Home() {
         </ul>
       </div>
 
-      <div className={s.information}>
+      <div className={s.row}>
         <div className={s.steps}>
           <Text variant="sectionHeading">How Does it Work?</Text>
 
@@ -86,7 +86,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className={s.information}>
+      <div className={s.row}>
         <div className={s.price}>
           <Text variant="sectionHeading">How Much is it?</Text>
 

@@ -7,110 +7,16 @@
   padding: 0.5rem 0rem;
   background-color: white;
   color: black;
-  box-shadow: 0px 0px 4px var(--shadow);
+  box-shadow: 0px 0px 4px var(--shadow-0);
+}
+
+.brand {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {
   .navigation {
     background-color: black;
-  }
-}
-
-.brandName {
-  margin-top: 0.5rem;
-  margin-left: 1rem;
-}
-
-.navigationMenu {
-  margin-left: auto;
-}
-
-.navigationMenu ul {
-  display: flex;
-  padding: 0;
-}
-
-.navigationMenu li {
-  list-style-type: none;
-  margin: 0 1rem;
-}
-
-.navigationMenu li a {
-  text-decoration: none;
-  display: block;
-  width: 100%;
-}
-
-.hamburger {
-  border: 0;
-  height: 40px;
-  width: 40px;
-  padding: 0.5rem;
-  border-radius: 50%;
-  stroke: var(--spark-1);
-  stroke-width: 1.5;
-  background-color: transparent;
-  cursor: pointer;
-  transition: background-color 0.4s ease-in-out;
-  position: absolute;
-  top: 50%;
-  right: 25px;
-  transform: translateY(-50%);
-  display: none;
-}
-
-.hamburger.clicked {
-  stroke: var(--accent-0);
-  stroke-width: 1.5;
-  background-color: var(--spark-1);
-}
-
-.connectButton {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-top: 4px;
-  padding-bottom: 4px;
-  font-family: var(--font-mono);
-}
-
-@media screen and (max-width: 768px) {
-  .hamburger {
-    display: block;
-  }
-
-  .navigationMenu ul {
-    display: none;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    flex-direction: column;
-    width: 100%;
-    background-color: white;
-    border-top: 2px solid rgba(9, 9, 9, 0.23);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .navigationMenu ul {
-      background-color: black;
-    }
-  }
-
-  .navigationMenu li {
-    text-align: center;
-    margin: 0;
-  }
-
-  .navigationMenu li a {
-    color: black;
-    width: 100%;
-    padding: 1.5rem 0;
-  }
-
-  .navigationMenu li:hover {
-    background-color: #eee;
-  }
-
-  .navigationMenu.expanded ul {
-    display: block;
   }
 }

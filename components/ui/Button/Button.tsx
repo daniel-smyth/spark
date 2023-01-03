@@ -16,7 +16,7 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   type?: 'submit' | 'reset' | 'button';
   width?: string | number;
   className?: string;
-  active?: boolean;
+  active?: boolean; // Is clicked
   disabled?: boolean;
   loading?: boolean;
   href?: string;

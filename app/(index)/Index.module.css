@@ -17,7 +17,7 @@
   z-index: 2;
 }
 
-.information {
+.row {
   display: flex;
   gap: 10rem;
 }
@@ -56,7 +56,6 @@
   display: grid;
   grid-template-columns: 0fr 1fr;
   grid-column-gap: 1px;
-  grid-row-gap: 0px;
   margin-top: 1rem;
   margin-bottom: 1rem;
   align-items: center;
