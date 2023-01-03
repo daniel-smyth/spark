@@ -5,7 +5,6 @@ import { useCallback, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
-import cn from 'clsx';
 import { Card } from './Card';
 
 export interface DragAndDropProps {

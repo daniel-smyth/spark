@@ -15,6 +15,12 @@ import {
   Text
 } from '@components/ui';
 
+if (!process.env.NEXT_PUBLIC_ADDRESS) {
+  throw new Error('Please include your NEXT_PUBLIC_ADDRESS URL in .env');
+}
+
+const address = process.env.NEXT_PUBLIC_ADDRESS;
+
 type Trait = {
   name: string;
   variations: Variation[];
@@ -25,7 +31,7 @@ type Variation = {
   url: string;
 };
 
-declare type Properties = NFTContractDeployMetadata & {
+type Properties = NFTContractDeployMetadata & {
   size: number;
   prefix: string;
 };
@@ -68,25 +74,22 @@ export default function Create() {
                 <Text variant="sectionHeading">Collection Properties</Text>
                 <Logo width={60} />
               </div>
+
               <Text>
                 This data cannot be changed.{' '}
                 <Link href="/">See NFT trait types and trait names</Link> for
                 more information.
               </Text>
+
               <Formik
                 initialValues={{
                   name: '',
                   prefix: '',
                   description: '',
                   symbol: '',
-                  size: '',
-                  seller_fee_basis_points: '',
+                  size: 0,
+                  seller_fee_basis_points: 0,
                   external_link: ''
-                  // platform_fee_basis_points: 20,
-                  // primary_sale_recipient: process.env.NEXT_PUBLIC_ADDRESS,
-                  // fee_recipient: process.env.NEXT_PUBLIC_ADDRESS,
-                  // primary_sale_recipient:'',
-                  // fee_recipient:'',
                 }}
                 validate={(values) => {
                   const errors: any = {};
@@ -102,10 +105,13 @@ export default function Create() {
                   return errors;
                 }}
                 onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 400);
+                  setProperties({
+                    ...values,
+                    platform_fee_basis_points: 20,
+                    primary_sale_recipient: address,
+                    fee_recipient: address
+                  });
+                  setSubmitting(false);
                 }}
               >
                 {({
@@ -119,22 +125,20 @@ export default function Create() {
                 }) => (
                   <>
                     <form className={s.form} onSubmit={handleSubmit}>
-                      {Object.keys(values).map((key) => (
+                      {Object.keys(values).map((k) => (
                         <>
                           <Input
                             type="text"
-                            placeholder={key}
-                            name={key}
+                            placeholder={k}
+                            name={k}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            value={values[key as keyof typeof values]}
+                            value={values[k as keyof typeof values]}
                           />
-                          {errors[key as keyof typeof values] &&
-                            touched[key as keyof typeof values] && (
+                          {errors[k as keyof typeof values] &&
+                            touched[k as keyof typeof values] && (
                               <div className={s.formError}>
-                                <Text>
-                                  {errors[key as keyof typeof values]}
-                                </Text>
+                                <Text>{errors[k as keyof typeof values]}</Text>
                               </div>
                             )}
                         </>
@@ -155,16 +159,21 @@ export default function Create() {
                 <Text variant="sectionHeading">Upload Images</Text>
                 <Logo width={60} />
               </div>
+
               <Dropzone handleChange={handleUpload} />
+
               <Text>
                 Spark3 detects{' '}
                 <Link href="/">NFT trait types and trait names</Link> from your
                 image file name. Follow our naming convention:
               </Text>
+
               <Text>
                 <strong>&quot;TRAITTYPE_TRAIT.png&quot;</strong>
               </Text>
+
               <Text>Trait examples: Background, Eyes, Fur, Mouth.</Text>
+
               <div className={s.image}>
                 <Image
                   alt="layers"
@@ -182,10 +191,12 @@ export default function Create() {
                 <Text variant="sectionHeading">Order Images</Text>
                 <Logo width={60} />
               </div>
+
               <Text>
                 Update layer order. Layer 1 located at the back, layer 2 is
                 printed over layer 1.
               </Text>
+
               <DragAndDrop
                 values={traits.map((trait) => trait.name)}
                 onChange={orderImages}
