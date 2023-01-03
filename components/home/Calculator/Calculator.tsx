@@ -8,8 +8,9 @@ import { NumberInput, Text } from '@components/ui';
 const Calculator: FC = () => {
   const [data, setData] = useState({ traits: 10, layers: 4 });
 
-  const handleChange = ({ name, value }: { name: string; value: number }) =>
+  const handleChange = ({ name, value }: { name: string; value: number }) => {
     setData({ ...data, [name]: value });
+  };
 
   return (
     <div className={s.card}>

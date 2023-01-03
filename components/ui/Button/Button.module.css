@@ -86,7 +86,7 @@
 .disabled,
 .disabled:hover {
   color: var(--accent-4);
-  border-color: var(--accent-2);
+  border-color: var(--accent-5);
   background-color: var(--accent-1);
   cursor: not-allowed;
   filter: grayscale(1);

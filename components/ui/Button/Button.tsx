@@ -12,29 +12,29 @@ import s from './Button.module.css';
 import { LoadingDots } from 'components/ui';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  href?: string;
-  className?: string;
   variant?: 'flat' | 'slim' | 'ghost' | 'naked';
-  active?: boolean;
   type?: 'submit' | 'reset' | 'button';
-  Component?: string | JSXElementConstructor<any>;
   width?: string | number;
-  loading?: boolean;
+  className?: string;
+  active?: boolean;
   disabled?: boolean;
+  loading?: boolean;
+  href?: string;
+  Component?: string | JSXElementConstructor<any>;
 }
 
 // eslint-disable-next-line react/display-name
 const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
   const {
-    className,
     variant = 'flat',
-    children,
-    active,
     width,
-    loading = false,
+    className,
+    active,
     disabled = false,
+    loading = false,
     style = {},
     Component = 'button',
+    children,
     ...rest
   } = props;
   const ref = useRef<typeof Component>(null);

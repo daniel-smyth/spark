@@ -5,14 +5,31 @@ export interface PriceProps {
   title: string;
   price: number;
   data: string[];
+  action: string;
   link: string;
+  disabled?: boolean;
 }
 
-const Price: React.FC<PriceProps> = ({ title, price, data, link }) => {
+const Price: React.FC<PriceProps> = ({
+  title,
+  price,
+  data,
+  action,
+  link,
+  disabled = false
+}) => {
   return (
-    <div className={s.card}>
+    <div
+      className={s.card}
+      style={disabled ? { borderTop: '6px solid rgba(153, 153, 153)' } : {}}
+    >
       <div className={s.title}>
-        <Badge>{title}</Badge>
+        <Badge
+          color={disabled ? 'rgba(153, 153, 153)' : undefined}
+          backgroundColor={disabled ? 'rgba(136, 136, 136, 0.3)' : undefined}
+        >
+          {title}
+        </Badge>
       </div>
       <div className={s.billing}>
         <Text>$</Text>
@@ -31,8 +48,8 @@ const Price: React.FC<PriceProps> = ({ title, price, data, link }) => {
         </ul>
       </div>
       <div className={s.action}>
-        <Button variant="flat" width="90%" href={link}>
-          Find out more
+        <Button variant="flat" width="90%" href={link} disabled={disabled}>
+          {action}
         </Button>
       </div>
     </div>

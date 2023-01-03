@@ -75,28 +75,6 @@ export default function Home() {
           </ul>
         </div>
 
-        <div className={s.price}>
-          <Text variant="sectionHeading">How Much?</Text>
-
-          <Text>
-            It&apos;s cheap too! You can mint 10,000 NFTs for just $99.00
-          </Text>
-
-          <Price
-            title="NFT Collection"
-            price={99}
-            data={[
-              'Multiply and sell artwork on exchanges',
-              'Unlimited artwork collection size',
-              'Setup completed in 5 minutes',
-              'No downloads'
-            ]}
-            link=""
-          />
-        </div>
-      </div>
-
-      <div className={s.information}>
         <div className={s.calculator}>
           <Text variant="sectionHeading">Collection Calculator</Text>
 
@@ -106,8 +84,11 @@ export default function Home() {
 
           <Calculator />
         </div>
+      </div>
+
+      <div className={s.information}>
         <div className={s.price}>
-          <Text variant="sectionHeading">How Much?</Text>
+          <Text variant="sectionHeading">How Much is it?</Text>
 
           <Text>
             It&apos;s cheap too! You can mint 10,000 NFTs for just $99.00
@@ -122,7 +103,30 @@ export default function Home() {
               'Setup completed in 5 minutes',
               'No downloads'
             ]}
+            action="Find out more"
             link=""
+          />
+        </div>
+
+        <div className={s.price}>
+          <Text variant="sectionHeading">What&apos;s in store?</Text>
+
+          <Text>
+            At Spark we are always working on innovative new Web3 technologies
+          </Text>
+
+          <Price
+            title="NFT Marketplace"
+            price={199}
+            data={[
+              'NFT marketplace on your website',
+              'Cut out exchange fees',
+              'Manage drops and create collections',
+              'Website installation in days'
+            ]}
+            link=""
+            action="Coming soon"
+            disabled
           />
         </div>
       </div>

@@ -60,7 +60,13 @@
   margin-top: 1rem;
   margin-bottom: 1rem;
   align-items: center;
-  border-bottom: 1px solid var(--accent-0);
+  border-bottom: 1px solid var(--accent-8);
+}
+
+@media (prefers-color-scheme: dark) {
+  .step {
+    border-bottom: 1px solid var(--accent-0);
+  }
 }
 
 .stepText {

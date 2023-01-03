@@ -21,9 +21,9 @@ interface TextProps {
 type Variant = 'heading' | 'body' | 'pageHeading' | 'sectionHeading';
 
 const Text: FunctionComponent<TextProps> = ({
-  style,
-  className = '',
   variant = 'body',
+  className = '',
+  style,
   children,
   html,
   onClick
@@ -44,9 +44,7 @@ const Text: FunctionComponent<TextProps> = ({
     | string = componentsMap![variant!];
 
   const htmlContentProps = html
-    ? {
-        dangerouslySetInnerHTML: { __html: html }
-      }
+    ? { dangerouslySetInnerHTML: { __html: html } }
     : {};
 
   return (
