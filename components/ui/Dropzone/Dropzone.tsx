@@ -6,12 +6,12 @@ import cn from 'clsx';
 import { Text } from '@components/ui';
 
 export interface DropzoneProps {
-  width?: number;
+  onChange: (files: FileList) => void;
+  width?: string | number;
   style?: {};
-  handleChange: (files: FileList) => void;
 }
 
-const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
+const Dropzone: FC<DropzoneProps> = ({ width, style = {}, onChange }) => {
   const [dragActive, setDragActive] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -33,7 +33,7 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
     setDragActive(false);
 
     if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleChange(e.dataTransfer.files);
+      onChange(e.dataTransfer.files);
     }
   };
 
@@ -41,7 +41,7 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
     e.preventDefault();
 
     if (e.target.files && e.target.files[0]) {
-      handleChange(e.target.files);
+      onChange(e.target.files);
     }
   };
 
@@ -53,7 +53,6 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
     <form
       onSubmit={(e) => e.preventDefault()}
       onDragEnter={handleDrag}
-      onClick={onButtonClick}
       className={s.root}
       style={{
         width,
@@ -61,17 +60,19 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
       }}
     >
       <input
+        id="input-file-upload"
         ref={inputRef}
         type="file"
         multiple={true}
         onChange={handleUpload}
-        id="input-file-upload"
       />
       <label
         className={cn(s.card, { [s.dragActive]: dragActive })}
         htmlFor="input-file-upload"
       >
-        <Text>Click to Upload</Text>
+        <button className="upload-button" onClick={onButtonClick}>
+          <Text>Click to Upload</Text>
+        </button>
       </label>
       {dragActive && (
         <div

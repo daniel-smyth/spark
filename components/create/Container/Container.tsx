@@ -7,8 +7,10 @@ import { Text } from '@components/ui';
 import Upload from '../Upload';
 import Properties from '../Properties';
 import Sort from '.';
+import Multiply from '../Multiply';
+import Mint from '../Mint';
 
-const Form: FC = () => {
+const Container: FC = () => {
   const { collection } = useCollection();
 
   return (
@@ -44,9 +46,19 @@ const Form: FC = () => {
         </>
       )}
 
-      {collection.properties.size > 0 && <></>}
+      {collection.properties.size > 0 && (
+        <>
+          <Multiply />
+        </>
+      )}
+
+      {collection.properties.size === collection.artwork.length && (
+        <>
+          <Mint />
+        </>
+      )}
     </>
   );
 };
 
-export default Form;
+export default Container;

@@ -27,6 +27,19 @@
   text-decoration-line: underline;
 }
 
+.card button {
+  cursor: pointer;
+  padding: 0.25rem;
+  font-size: 1rem;
+  border: none;
+  font-family: 'Oswald', sans-serif;
+  background-color: transparent;
+}
+
+.card button:hover {
+  text-decoration-line: underline;
+}
+
 .dragActive {
   background-color: #ffffff;
 }

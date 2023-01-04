@@ -36,7 +36,7 @@ const Upload: FC = () => {
 
   return (
     <>
-      <Dropzone handleChange={handleUpload} />
+      <Dropzone onChange={handleUpload} />
 
       <Text>
         Spark3 detects <Link href="/">NFT trait types and trait names</Link>{' '}

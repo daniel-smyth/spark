@@ -13,13 +13,18 @@ interface Image {
   url: string;
 }
 
-interface Trait {
+export interface Trait {
   name: string;
   variations: Image[];
 }
 
-interface Collection {
-  artwork: Trait[];
+export interface Multiplied {
+  imgSrc: string;
+  metadata: string[][];
+}
+
+export interface Collection {
+  artwork: (Trait | Multiplied)[];
   properties: {
     size: number;
     name: string;

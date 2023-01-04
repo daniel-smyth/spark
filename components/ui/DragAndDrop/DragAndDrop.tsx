@@ -9,7 +9,7 @@ import { Card } from './Card';
 export interface DragAndDropProps {
   values: string[];
   onChange: (array: string[]) => void;
-  width?: string;
+  width?: string | number;
   className?: string;
   style?: {};
 }
@@ -17,7 +17,7 @@ export interface DragAndDropProps {
 const DragAndDrop: FC<DragAndDropProps> = ({
   values,
   onChange,
-  width = '100%',
+  width,
   className = '',
   style = {}
 }) => {

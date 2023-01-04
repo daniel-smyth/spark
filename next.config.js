@@ -3,11 +3,11 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   experimental: {
-    appDir: true,
-    serverComponentsExternalPackages: ['@thirdweb-dev/react']
+    appDir: true
+    // serverComponentsExternalPackages: ['@thirdweb-dev/react', 'canvas']
     // runtime: 'experimental-edge' // 'node.js' (default) | 'experimental-edge'
-  },
-  transpilePackages: ['@thirdweb-dev/react']
+  }
+  // transpilePackages: ['@thirdweb-dev/react', 'canvas']
 };
 
 module.exports = nextConfig;
