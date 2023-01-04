@@ -1,3 +1,4 @@
+import cn from 'clsx';
 import { Badge, Button, Text } from '@components/ui';
 import s from './Price.module.css';
 
@@ -8,6 +9,7 @@ export interface PriceProps {
   action: string;
   link: string;
   disabled?: boolean;
+  className?: string;
 }
 
 const Price: React.FC<PriceProps> = ({
@@ -16,20 +18,13 @@ const Price: React.FC<PriceProps> = ({
   data,
   action,
   link,
-  disabled = false
+  disabled = false,
+  className = ''
 }) => {
   return (
-    <div
-      className={s.card}
-      style={disabled ? { borderTop: '6px solid rgba(153, 153, 153)' } : {}}
-    >
+    <div className={cn(s.root, { [s.disabledRoot]: disabled }, className)}>
       <div className={s.title}>
-        <Badge
-          color={disabled ? 'rgba(153, 153, 153)' : undefined}
-          backgroundColor={disabled ? 'rgba(136, 136, 136, 0.3)' : undefined}
-        >
-          {title}
-        </Badge>
+        <Badge className={cn({ [s.disabledTitle]: disabled })}>{title}</Badge>
       </div>
       <div className={s.billing}>
         <Text>$</Text>
@@ -38,13 +33,11 @@ const Price: React.FC<PriceProps> = ({
       </div>
       <div className={s.features}>
         <ul>
-          {data.map((item, index) => {
-            return (
-              <li key={index}>
-                <Text>{item}</Text>
-              </li>
-            );
-          })}
+          {data.map((item, index) => (
+            <li key={index}>
+              <Text>{item}</Text>
+            </li>
+          ))}
         </ul>
       </div>
       <div className={s.action}>

@@ -15,11 +15,10 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'flat' | 'slim' | 'ghost' | 'naked';
   type?: 'submit' | 'reset' | 'button';
   width?: string | number;
-  className?: string;
-  active?: boolean; // Is clicked
-  disabled?: boolean;
   loading?: boolean;
+  active?: boolean; // Is clicked
   href?: string;
+  className?: string;
   Component?: string | JSXElementConstructor<any>;
 }
 
@@ -28,11 +27,11 @@ const Button: React.FC<ButtonProps> = forwardRef((props, buttonRef) => {
   const {
     variant = 'flat',
     width,
-    className,
-    active,
-    disabled = false,
     loading = false,
+    disabled = false,
+    active,
     style = {},
+    className,
     Component = 'button',
     children,
     ...rest

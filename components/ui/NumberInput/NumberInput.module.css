@@ -1,23 +1,17 @@
-.quantity {
+.root {
   display: inline-block;
   color: black;
 }
 
-@media (prefers-color-scheme: dark) {
-  .quantity {
-    color: white;
-  }
-}
-
-.quantityRemove::after {
-  display: none;
-}
-
-.quantityAdd::after {
+.add::after {
   transform: rotate(90deg);
 }
 
-.quantityButton {
+.remove::after {
+  display: none;
+}
+
+.button {
   width: 39px;
   height: 34px;
   float: right;
@@ -25,8 +19,8 @@
   cursor: pointer;
 }
 
-.quantityButton::before,
-.quantityButton::after {
+.button::before,
+.button::after {
   position: absolute;
   top: calc(50% - 1px);
   left: calc(50% - 7px);
@@ -37,7 +31,7 @@
   display: block;
 }
 
-.quantity input[type='number'] {
+.root input[type='number'] {
   transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
@@ -57,10 +51,16 @@
   color: #342f2f;
 }
 
-.quantity input:focus {
+.root input:focus {
   border-color: #57b8f6 !important;
 }
 
-.quantity input:hover {
+.root input:hover {
   border-color: #a5a5a5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .root {
+    color: white;
+  }
 }

@@ -1,6 +1,6 @@
 'use client';
 
-// Visit below link to see why module is imported with "use client"
+// Visit link below for info on why this module is imported in a new file
 // https://beta.nextjs.org/docs/rendering/server-and-client-components#third-party-packages
 
 import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';

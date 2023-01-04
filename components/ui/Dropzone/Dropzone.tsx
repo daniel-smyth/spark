@@ -51,10 +51,10 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
 
   return (
     <form
-      onDragEnter={handleDrag}
       onSubmit={(e) => e.preventDefault()}
+      onDragEnter={handleDrag}
       onClick={onButtonClick}
-      className={s.container}
+      className={s.root}
       style={{
         width,
         ...style
@@ -68,17 +68,10 @@ const Dropzone: FC<DropzoneProps> = ({ width, style = {}, handleChange }) => {
         id="input-file-upload"
       />
       <label
+        className={cn(s.card, { [s.dragActive]: dragActive })}
         htmlFor="input-file-upload"
-        className={cn(s.dropzone, { [s.dragActive]: dragActive })}
       >
-        <Text
-          style={{
-            fontSize: '1rem',
-            fontWeight: 600
-          }}
-        >
-          Click to Upload
-        </Text>
+        <Text>Click to Upload</Text>
       </label>
       {dragActive && (
         <div

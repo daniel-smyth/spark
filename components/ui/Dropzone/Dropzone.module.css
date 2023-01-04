@@ -1,13 +1,15 @@
-.container {
+.root {
   text-align: center;
   position: relative;
 }
 
-.container input {
+.root input {
   display: none;
 }
 
-.dropzone {
+.card {
+  font-size: '1rem';
+  font-weight: 600;
   height: 100%;
   display: flex;
   align-items: center;
@@ -21,7 +23,7 @@
   cursor: pointer;
 }
 
-.dropzone:hover {
+.card:hover {
   text-decoration-line: underline;
 }
 

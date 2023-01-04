@@ -1,25 +1,19 @@
-.container {
+.root {
   --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
   --uiFieldPaddingRight: var(--fieldPaddingRight, 1rem);
   --uiFieldPaddingLeft: var(--fieldPaddingLeft, 1rem);
   --uiFieldBorderColorActive: var(--spark-1);
 
+  min-width: 100%;
   display: var(--fieldDisplay, inline-flex);
   position: relative;
   font-size: var(--fieldFontSize, 1rem);
-}
 
-.container .input::after {
-  border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
-  transition: opacity 0.2s ease-out;
-}
-
-.container {
-  --fieldBorderColor: #d1c4e9;
+  --fieldBorderColor: var(--accent-3);
   --fieldBorderColorActive: var(--spark-1);
 }
 
-.labelText {
+.root label {
   width: var(--ha-screen-reader-width, 1px);
   height: var(--ha-screen-reader-height, 1px);
   padding: var(--ha-screen-reader-padding, 0);
@@ -30,7 +24,12 @@
   overflow: var(--ha-screen-reader-overflow, hidden);
 }
 
-.input {
+.root .input::after {
+  border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
+  transition: opacity 0.2s ease-out;
+}
+
+.root input {
   --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
 
   background-color: transparent;
@@ -43,15 +42,15 @@
   font-size: inherit;
 }
 
-.input:focus::-webkit-input-placeholder {
+.root input:focus::-webkit-input-placeholder {
   color: var(--uiFieldPlaceholderColor);
 }
 
-.input:focus::-moz-placeholder {
+.root input:focus::-moz-placeholder {
   color: var(--uiFieldPlaceholderColor);
 }
 
-.input {
+.root input {
   box-sizing: border-box;
   width: var(--fieldWidth, 20rem);
   height: var(--fieldHeight, 3rem);
@@ -61,31 +60,31 @@
     var(--fieldBorderColor, rgba(0, 0, 0, 0.25));
 }
 
-.input:focus {
+.root input:focus {
   outline: none;
 }
 
-.input::-webkit-input-placeholder {
+.root input::-webkit-input-placeholder {
   opacity: 0;
   transition: opacity 0.2s ease-out;
 }
 
-.input::-moz-placeholder {
+.root input::-moz-placeholder {
   opacity: 0;
   transition: opacity 0.2s ease-out;
 }
 
-.input:focus::-webkit-input-placeholder {
+.root input:focus::-webkit-input-placeholder {
   opacity: 1;
   transition-delay: 0.2s;
 }
 
-.input:focus::-moz-placeholder {
+.root input:focus::-moz-placeholder {
   opacity: 1;
   transition-delay: 0.2s;
 }
 
-.labelWrap {
+.wrapper {
   box-sizing: border-box;
   pointer-events: none;
   cursor: text;
@@ -97,7 +96,7 @@
   left: 0;
 }
 
-.labelWrap::after {
+.wrapper::after {
   content: '';
   box-sizing: border-box;
   width: 100%;
@@ -108,15 +107,19 @@
   left: 0;
 }
 
-.input:focus ~ .labelWrap::after {
+.root input:focus ~ .wrapper::after {
   opacity: 1;
 }
 
-.input:focus ~ .labelWrap .label,
-.input:not(:placeholder-shown) ~ .labelWrap .label {
+.root input:focus ~ .wrapper .label,
+.root input:not(:placeholder-shown) ~ .wrapper .label {
   --fieldHintFontSize: var(--fieldHintFontSizeFocused, 0.75rem);
-
   top: var(--fieldHintTopHover, 0rem);
+}
+
+.flat input {
+  background-color: var(--accent-0);
+  border-radius: 0.5rem;
 }
 
 .label {
@@ -125,7 +128,7 @@
   top: calc(50% - 0.5em);
   font-size: 1rem;
 
-  line-height: 1;
+  line-height: calc(50% - 0.5em);
   font-size: var(--fieldHintFontSize, inherit);
 
   transition: top 0.2s cubic-bezier(0.9, -0.15, 0.1, 1.15),

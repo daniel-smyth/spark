@@ -27,9 +27,7 @@ function Hamburger() {
           />
         </svg>
       </button>
-      <div
-        className={open ? cx(s.navigationMenu, s.expanded) : s.navigationMenu}
-      >
+      <div className={open ? cx(s.menu, s.expanded) : s.menu}>
         <ul>
           <li className={s.connectButton}>
             <ConnectWallet accentColor="#1b7dce" colorMode="light" />

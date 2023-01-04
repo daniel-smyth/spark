@@ -1,4 +1,4 @@
-.card {
+.root {
   background-color: var(--accent-0);
   border-radius: 8px;
   border-top: 6px solid var(--spark-1);
@@ -6,8 +6,17 @@
   margin: 30px 0px;
 }
 
+.disabledRoot {
+  border-top: 6px solid rgba(153, 153, 153);
+}
+
 .title {
   padding: 15px;
+}
+
+.disabledTitle {
+  color: rgba(153, 153, 153);
+  background-color: rgba(136, 136, 136, 0.3);
 }
 
 .billing {
@@ -37,7 +46,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  .card {
+  .root {
     background-color: var(--accent-9);
   }
 

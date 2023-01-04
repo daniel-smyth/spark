@@ -8,16 +8,15 @@ interface LogoProps {
   height?: number;
 }
 
-const Logo: React.FC<LogoProps> = ({ width, height }) => {
-  const prefersColorScheme = usePrefersColorScheme();
-  const isDarkMode = prefersColorScheme === 'dark';
+const Logo: React.FC<LogoProps> = ({ width = 90, height = 30 }) => {
+  const colorScheme = usePrefersColorScheme();
 
   return (
     <Image
-      src={isDarkMode ? '/sparkwhite.svg' : '/sparkblack.svg'}
+      src={colorScheme === 'dark' ? '/sparkwhite.svg' : '/sparkblack.svg'}
       alt="Spark3"
-      width={width || 90}
-      height={height || 30}
+      width={width}
+      height={height}
       priority
     />
   );

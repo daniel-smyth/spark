@@ -1,45 +1,31 @@
 'use client';
 
-import { FC, InputHTMLAttributes } from 'react';
-import cx from 'clsx';
+import React, { FC, InputHTMLAttributes, useRef } from 'react';
+import cn from 'clsx';
 import s from './NumberInput.module.css';
 
-// Omit default input 'onChange' and apply custom 'onChange' for NumberInput
-export interface NumberInputProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
-  onChange: ({ name, value }: { name: string; value: number }) => void;
-}
+const NumberInput: FC<InputHTMLAttributes<HTMLInputElement>> = (props) => {
+  const { className, style } = props;
+  const input = useRef<HTMLInputElement>(null);
 
-const NumberInput: FC<NumberInputProps> = (props) => {
   return (
-    <div className={s.quantity}>
+    <div className={cn(s.root, className)} style={style}>
       <span
-        className={cx(s.quantityAdd, s.quantityButton)}
-        onClick={() =>
-          props.onChange({
-            name: props.name || '',
-            value: (props.value as number) + 1
-          })
-        }
+        className={cn(s.add, s.button)}
+        onClick={() => {
+          if (input.current) {
+            input.current.value = `${Number(input.current.value) + 1}`;
+          }
+        }}
       />
-      <input
-        {...props}
-        type="number"
-        onChange={(e) =>
-          props.onChange({
-            name: props.name || '',
-            value: Number(e.target.value)
-          })
-        }
-      />
+      <input {...props} type="number" ref={input} />
       <span
-        className={cx(s.quantityRemove, s.quantityButton)}
-        onClick={() =>
-          props.onChange({
-            name: props.name || '',
-            value: (props.value as number) - 1
-          })
-        }
+        className={cn(s.remove, s.button)}
+        onClick={() => {
+          if (input.current) {
+            input.current.value = `${Number(input.current.value) - 1}`;
+          }
+        }}
       />
     </div>
   );

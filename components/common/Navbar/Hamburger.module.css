@@ -1,18 +1,18 @@
-.navigationMenu {
+.menu {
   margin-left: auto;
 }
 
-.navigationMenu ul {
+.menu ul {
   display: flex;
   padding: 0;
 }
 
-.navigationMenu li {
+.menu li {
   list-style-type: none;
   margin: 0 1rem;
 }
 
-.navigationMenu li a {
+.menu li a {
   text-decoration: none;
   display: block;
   width: 100%;
@@ -47,7 +47,7 @@
     display: block;
   }
 
-  .navigationMenu ul {
+  .menu ul {
     display: none;
     position: absolute;
     top: 60px;
@@ -59,27 +59,27 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    .navigationMenu ul {
+    .menu ul {
       background-color: black;
     }
   }
 
-  .navigationMenu li {
+  .menu li {
     text-align: center;
     margin: 0;
   }
 
-  .navigationMenu li a {
+  .menu li a {
     color: black;
     width: 100%;
     padding: 1.5rem 0;
   }
 
-  .navigationMenu li:hover {
+  .menu li:hover {
     background-color: #eee;
   }
 
-  .navigationMenu.expanded ul {
+  .menu.expanded ul {
     display: block;
   }
 }

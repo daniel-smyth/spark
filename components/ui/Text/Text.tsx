@@ -11,8 +11,8 @@ const inter = Inter({ subsets: ['latin'] });
 
 interface TextProps {
   variant?: Variant;
-  className?: string;
   style?: CSSProperties;
+  className?: string;
   children?: React.ReactNode | any;
   html?: string;
   onClick?: () => any;
@@ -22,8 +22,8 @@ type Variant = 'heading' | 'body' | 'pageHeading' | 'sectionHeading';
 
 const Text: FunctionComponent<TextProps> = ({
   variant = 'body',
+  style = {},
   className = '',
-  style,
   children,
   html,
   onClick

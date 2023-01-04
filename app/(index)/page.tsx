@@ -2,8 +2,7 @@ import Link from 'next/link';
 import { FiImage, FiDatabase, FiRepeat } from 'react-icons/fi';
 import s from './Index.module.css';
 import { Button, Logo, Text } from '@components/ui';
-import { Calculator } from '@components/home';
-import { Price } from '@components/product';
+import { Calculator, Price } from '@components/home';
 
 export default function Home() {
   return (

@@ -13,3 +13,7 @@
   border-color: #cbd5e1;
   cursor: 'move';
 }
+
+.card div {
+  font-weight: 600;
+}

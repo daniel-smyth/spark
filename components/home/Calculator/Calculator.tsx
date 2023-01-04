@@ -8,12 +8,14 @@ import { NumberInput, Text } from '@components/ui';
 const Calculator: FC = () => {
   const [data, setData] = useState({ traits: 10, layers: 4 });
 
-  const handleChange = ({ name, value }: { name: string; value: number }) => {
-    setData({ ...data, [name]: value });
+  const handleChange = ({ name, value }: { name?: string; value: number }) => {
+    if (name) {
+      setData({ ...data, [name]: value });
+    }
   };
 
   return (
-    <div className={s.card}>
+    <div className={s.root}>
       <Text variant="sectionHeading">
         {(data.traits ** data.layers).toLocaleString('en-US')} NFTs
       </Text>

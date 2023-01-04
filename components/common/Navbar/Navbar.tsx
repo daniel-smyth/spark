@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import Link from 'next/link';
 import s from './Navbar.module.css';
-import Hamburger from './Hamburger';
 import { Logo } from '@components/ui';
+import Hamburger from './Hamburger';
 
 const Navbar: FC = () => {
   return (

@@ -1,7 +1,6 @@
 'use client';
 
-import type { FC } from 'react';
-import { useCallback, useState } from 'react';
+import { FC, useCallback, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
