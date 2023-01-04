@@ -18,13 +18,8 @@ export interface Trait {
   variations: Image[];
 }
 
-export interface Multiplied {
-  imgSrc: string;
-  metadata: string[][];
-}
-
 export interface Collection {
-  artwork: (Trait | Multiplied)[];
+  artwork: Trait[];
   properties: {
     size: number;
     name: string;

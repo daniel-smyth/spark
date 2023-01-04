@@ -7,11 +7,11 @@ import s from './Mint.module.css';
 const Mint: FC = () => {
   const { collection } = useCollection();
 
-  const mintArtwork = () => {};
+  const mint = () => {};
 
   return (
     <>
-      <div className={s.loading}>Multiplying artwork</div>
+      <div className={s.loading}>Minting artwork</div>
     </>
   );
 };
