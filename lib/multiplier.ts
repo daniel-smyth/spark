@@ -1,75 +1,71 @@
 import { Image, loadImage } from 'canvas';
 import { Trait, Variation } from 'app/create/context';
 
-export class Multiplier {
-  private traits: Trait[];
-  private dna = new Set();
-  private fails = 0;
+export class ArtMultiplier {
+  private dnaSet = new Set();
 
-  constructor(data: Trait[]) {
-    this.traits = data;
+  private failCount = 0;
+
+  private artwork: Trait[];
+
+  constructor(artwork: Trait[]) {
+    this.artwork = artwork;
   }
 
   private createDna(): string {
-    const newDna: string[] = [];
+    const dna: string[] = [];
 
-    this.traits.forEach((trait) => {
-      const weight = trait.variations.reduce((acc, v) => (acc += v.weight), 1);
-      let random = Math.floor(Math.random() * weight);
+    this.artwork.forEach((trait) => {
+      const totalWeight = trait.variations.reduce((a, v) => (a += v.weight), 1);
+      let random = Math.floor(Math.random() * totalWeight);
 
       for (let i = 0; i < trait.variations.length; i += 1) {
         // Subtract current weight from random weight until reach sub zero
         random -= trait.variations[i].weight;
-
         if (random < 0) {
-          newDna.push(`${trait.variations[i].id}:${trait.variations[i].name}`);
+          dna.push(`${trait.variations[i].id}:${trait.variations[i].name}`);
           break;
         }
       }
     });
 
-    if (!this.dna.has(newDna)) {
-      this.dna.add(newDna);
-
-      return newDna.join('#');
-    } else {
-      this.fails += 1;
-
-      console.log('DNA exists!');
-      if (this.fails >= 10000) {
-        throw new Error('You need more items to grow your edition');
-      }
-      return this.createDna();
+    if (!this.dnaSet.has(dna)) {
+      this.dnaSet.add(dna);
+      return dna.join('#');
     }
-  }
 
-  private cleanDna(dna: string) {
-    const query = /(\?.*$)/;
-    return dna.replace(query, '').split(':').shift();
+    this.failCount += 1;
+
+    console.log('DNA exists!');
+    if (this.failCount >= 10000) {
+      throw new Error('You need more items to grow your edition');
+    }
+
+    return this.createDna();
   }
 
   public generate() {
     const dna = this.createDna();
 
-    const layers = this.traits
-      .flatMap(async (trait, i) => {
-        const match = trait.variations.find((variations) => {
-          variations.id === Number(this.cleanDna(dna.split('#')[i]));
+    const generatedImage = this.artwork
+      .flatMap(async (trait) => {
+        const traitInDna = trait.variations.find((variation, i) => {
+          variation.id === Number(dna.split('#')[i]);
         });
 
-        if (match) {
-          const layer: { image: Image; properties: Variation } = {
-            image: await loadImage(`${match?.image}`),
-            properties: match
+        if (traitInDna) {
+          const layer: { image: Image; variation: Variation } = {
+            image: await loadImage(`${traitInDna?.image}`),
+            variation: traitInDna
           };
           return layer;
         }
       })
       .filter(
-        (r): r is Promise<{ image: Image; properties: Variation }> =>
-          r !== undefined
+        (i): i is Promise<{ image: Image; variation: Variation }> =>
+          i !== undefined
       );
 
-    return layers;
+    return generatedImage;
   }
 }

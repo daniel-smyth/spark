@@ -34,17 +34,9 @@ const Container: FC = () => {
         </>
       )}
 
-      {collection.properties.size > 0 && (
-        <>
-          <Multiply />
-        </>
-      )}
+      {collection.properties.size > 0 && <Multiply />}
 
-      {collection.properties.size === collection.artwork.length && (
-        <>
-          <Mint />
-        </>
-      )}
+      {collection.properties.size === collection.artwork.length && <Mint />}
     </>
   );
 };
