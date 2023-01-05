@@ -1,5 +1,6 @@
 'use client';
 
+import path from 'path';
 import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,27 +11,35 @@ import { Dropzone, Text } from '@components/ui';
 const Upload: FC = () => {
   const { collection, setCollection } = useCollection();
 
-  const processImage = (image: File) => {
-    const variation = {
-      name: image.name.substring(image.name.indexOf('_') + 1),
-      url: URL.createObjectURL(image)
-    };
-    const traitStr = image.name.substring(0, image.name.indexOf('_'));
-    const trait = collection.artwork.find((t) => t.name === traitStr);
-
-    if (trait) {
-      trait.variations.push(variation);
-    } else {
-      collection.artwork.push({ name: traitStr, variations: [variation] });
-    }
-  };
-
   const handleUpload = (files: FileList) => {
     for (let i = 0; i < files.length; i++) {
       const image = files[i];
-      processImage(image);
+
+      const variation = {
+        id: i,
+        name: path
+          .parse(image.name)
+          .name.split('#')
+          .shift()!
+          .substring(path.parse(image.name).name.indexOf('_') + 1),
+        trait: path
+          .parse(image.name)
+          .name.substring(0, path.parse(image.name).name.indexOf('_')),
+        weight: Number(path.parse(image.name).name.split('#').pop()),
+        url: URL.createObjectURL(image)
+      };
+
+      const trait = collection.artwork.find((t) => t.name === variation.trait);
+      if (trait) {
+        trait.variations.push(variation);
+      } else {
+        collection.artwork.push({
+          id: collection.artwork.length,
+          name: variation.trait,
+          variations: [variation]
+        });
+      }
     }
-    console.log(collection);
     setCollection({ ...collection });
   };
 

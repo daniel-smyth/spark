@@ -1,5 +1,6 @@
 'use client';
 
+import path from 'path';
 import { FC } from 'react';
 import { useCollection } from 'app/create/context';
 import { DragAndDrop } from '@components/ui';
@@ -16,6 +17,15 @@ const Sort: FC = () => {
         )
       ]
     });
+  };
+
+  const onSubmit = () => {
+    // When ordered correctly, process and bake the trait's index into object
+    for (let i = 0; i < collection.artwork.length; i++) {
+      const trait = collection.artwork[i];
+      trait.id = i;
+    }
+    setCollection({ ...collection });
   };
 
   return (

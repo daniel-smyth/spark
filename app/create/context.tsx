@@ -8,17 +8,27 @@ import {
   useState
 } from 'react';
 
-interface Image {
+export interface Variation {
+  id: number;
   name: string;
+  trait: string;
+  weight: number;
   url: string;
 }
 
 export interface Trait {
+  id: number;
   name: string;
-  variations: Image[];
+  variations: Variation[];
+}
+
+export interface NFT {
+  image: string;
+  meta: string[][];
 }
 
 export interface Collection {
+  nfts: NFT[];
   artwork: Trait[];
   properties: {
     size: number;
@@ -36,6 +46,7 @@ export type CollectionState = {
 };
 
 const initialValues = {
+  nfts: [],
   artwork: [],
   properties: {
     size: 0,

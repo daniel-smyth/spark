@@ -7,7 +7,9 @@ import s from './Mint.module.css';
 const Mint: FC = () => {
   const { collection } = useCollection();
 
-  const mint = () => {};
+  const mint = () => {
+    collection.nfts;
+  };
 
   return (
     <>
