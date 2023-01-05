@@ -2,18 +2,18 @@ import { Image, loadImage } from 'canvas';
 import { Trait, Variation } from 'app/create/context';
 
 export class Multiplier {
-  private data: Trait[];
+  private traits: Trait[];
   private dna = new Set();
   private fails = 0;
 
   constructor(data: Trait[]) {
-    this.data = data;
+    this.traits = data;
   }
 
-  private create(): string {
+  private createDna(): string {
     const newDna: string[] = [];
 
-    this.data.forEach((trait) => {
+    this.traits.forEach((trait) => {
       const weight = trait.variations.reduce((acc, v) => (acc += v.weight), 1);
       let random = Math.floor(Math.random() * weight);
 
@@ -30,30 +30,37 @@ export class Multiplier {
 
     if (!this.dna.has(newDna)) {
       this.dna.add(newDna);
+
       return newDna.join('#');
     } else {
-      console.log('DNA exists!');
       this.fails += 1;
+
+      console.log('DNA exists!');
       if (this.fails >= 10000) {
         throw new Error('You need more items to grow your edition');
       }
-      return this.create();
+      return this.createDna();
     }
   }
 
-  private parse(dna: string) {
+  private cleanDna(dna: string) {
     const query = /(\?.*$)/;
-    const clean = (dna: string) => dna.replace(query, '').split(':').shift();
+    return dna.replace(query, '').split(':').shift();
+  }
 
-    const layers = this.data
+  public generate() {
+    const dna = this.createDna();
+
+    const layers = this.traits
       .flatMap(async (trait, i) => {
-        const selectedVariation = trait.variations.find(
-          (v) => v.id === Number(clean(dna.split('#')[i]))
-        );
-        if (selectedVariation) {
+        const match = trait.variations.find((variations) => {
+          variations.id === Number(this.cleanDna(dna.split('#')[i]));
+        });
+
+        if (match) {
           const layer: { image: Image; properties: Variation } = {
-            image: await loadImage(`${selectedVariation?.image}`),
-            properties: selectedVariation
+            image: await loadImage(`${match?.image}`),
+            properties: match
           };
           return layer;
         }
@@ -62,13 +69,6 @@ export class Multiplier {
         (r): r is Promise<{ image: Image; properties: Variation }> =>
           r !== undefined
       );
-
-    return layers;
-  }
-
-  generate() {
-    const dna = this.create();
-    const layers = this.parse(dna);
 
     return layers;
   }

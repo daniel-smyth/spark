@@ -10,42 +10,44 @@ const Multiply: FC = () => {
   const { collection, setCollection } = useCollection();
 
   useEffect(() => {
-    const multiply = () => {
-      const multiplier = new Multiplier(collection.artwork);
-      let count = 0;
+    let count = 0;
 
-      while (count <= collection.properties.size) {
-        const layers = multiplier.generate();
+    const multiplier = new Multiplier(collection.artwork);
 
-        Promise.all(layers).then((layers) => {
-          const image = createCanvas(512, 512);
-          const ctx = image.getContext('2d');
-          ctx.fillStyle = `hsl(${Math.floor(Math.random() * 360)}, 100%, 80%)`;
-          ctx.fillRect(0, 0, 512, 512);
+    while (count <= collection.properties.size) {
+      const layers = multiplier.generate();
 
-          layers.forEach((layer) => {
-            ctx.globalAlpha = 1;
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.drawImage(layer.image, 0, 0, 512, 512);
-          });
+      Promise.all(layers).then((layers) => {
+        const image = createCanvas(512, 512);
+        const ctx = image.getContext('2d');
 
-          collection.nfts.push({
-            name: `${collection.properties.prefix} ${count}`,
-            image: image.toDataURL('image/png'),
-            description: collection.properties.description,
-            external_url: collection.properties.external_link,
-            attributes: layers.reduce((acc: any, layer) => {
-              acc[layer.properties.trait] = layer.properties.name;
-              return acc;
-            }, {})
-          });
+        ctx.fillStyle = `hsl(${Math.floor(Math.random() * 360)}, 100%, 80%)`;
+        ctx.fillRect(0, 0, 512, 512);
+
+        layers.forEach((layer) => {
+          ctx.globalAlpha = 1;
+          ctx.globalCompositeOperation = 'source-over';
+
+          ctx.drawImage(layer.image, 0, 0, 512, 512);
         });
 
-        count += 1;
-      }
-      setCollection({ ...collection });
-    };
-    multiply();
+        const nft = {
+          name: `${collection.properties.prefix} ${count}`,
+          image: image.toDataURL('image/png'),
+          description: collection.properties.description,
+          external_url: collection.properties.external_link,
+          attributes: layers.reduce((acc: any, layer) => {
+            acc[layer.properties.trait] = layer.properties.name;
+            return acc;
+          }, {})
+        };
+
+        collection.nfts.push(nft);
+      });
+
+      count += 1;
+    }
+    setCollection({ ...collection });
   }, []);
 
   return <div className={s.loading}>Multiplying artwork...</div>;
