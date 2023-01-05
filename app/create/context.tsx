@@ -11,9 +11,9 @@ import {
 export interface Variation {
   id: number;
   name: string;
+  image: string;
   trait: string;
   weight: number;
-  url: string;
 }
 
 export interface Trait {
@@ -23,8 +23,14 @@ export interface Trait {
 }
 
 export interface NFT {
+  name: string;
   image: string;
-  meta: string[][];
+  description: string;
+  external_url: string;
+  attributes: {
+    [key: string]: string;
+  };
+  [key: string]: any;
 }
 
 export interface Collection {
@@ -36,6 +42,7 @@ export interface Collection {
     description: string;
     symbol: string;
     prefix: string;
+    recipient: string;
     external_link: string;
   };
 }
@@ -54,6 +61,7 @@ const initialValues = {
     symbol: '',
     description: '',
     prefix: '',
+    recipient: '',
     external_link: ''
   }
 };
