@@ -15,18 +15,16 @@ const Upload: FC = () => {
   const handleUpload = (files: FileList) => {
     for (let i = 0; i < files.length; i++) {
       const image = files[i];
+      const fullName = path.parse(image.name).name;
 
       const variation = {
         id: i,
-        name: path
-          .parse(image.name)
-          .name.split('#')
+        name: fullName
+          .split('#')
           .shift()!
-          .substring(path.parse(image.name).name.indexOf('_') + 1),
-        trait: path
-          .parse(image.name)
-          .name.substring(0, path.parse(image.name).name.indexOf('_')),
-        weight: Number(path.parse(image.name).name.split('#').pop()),
+          .substring(fullName.indexOf('_') + 1),
+        trait: path.parse(image.name).name.substring(0, fullName.indexOf('_')),
+        weight: Number(fullName.split('#').pop()),
         image: URL.createObjectURL(image)
       };
 

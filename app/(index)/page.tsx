@@ -28,7 +28,9 @@ export default function Home() {
           </li>
           <li>
             <Link href="/create">
-              <Button variant="flat">Create 10,000 NFTs</Button>
+              <Button variant="flat" id="hero-submit">
+                Create 10,000 NFTs
+              </Button>
             </Link>
           </li>
         </ul>

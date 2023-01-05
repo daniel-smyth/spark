@@ -26,7 +26,6 @@ export interface NFT {
   name: string;
   image: string;
   description: string;
-  external_url: string;
   attributes: {
     [key: string]: string;
   };

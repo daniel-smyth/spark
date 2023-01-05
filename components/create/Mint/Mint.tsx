@@ -3,7 +3,6 @@
 import { useSDK } from '@thirdweb-dev/react';
 import { FC, useEffect } from 'react';
 import { useCollection } from 'app/create/context';
-import s from './Mint.module.css';
 
 if (!process.env.NEXT_PUBLIC_ADDRESS) {
   throw new Error('NEXT_PUBLIC_ADDRESS is required in .env');
@@ -51,11 +50,7 @@ const Mint: FC = () => {
     mint();
   }, []);
 
-  return (
-    <>
-      <div className={s.loading}>Minting artwork</div>
-    </>
-  );
+  return <div>Minting artwork</div>;
 };
 
 export default Mint;
