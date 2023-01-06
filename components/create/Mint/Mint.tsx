@@ -8,7 +8,7 @@ if (!process.env.NEXT_PUBLIC_ADDRESS) {
   throw new Error('NEXT_PUBLIC_ADDRESS is required in .env');
 }
 
-const address = process.env.NEXT_PUBLIC_ADDRESS;
+const spark = process.env.NEXT_PUBLIC_ADDRESS;
 
 const Mint: FC = () => {
   const sdk = useSDK();
@@ -16,25 +16,25 @@ const Mint: FC = () => {
 
   useEffect(() => {
     const mint = async () => {
-      const contractAddress = await sdk?.deployer.deployNFTCollection({
+      const nfts = await collection.generate();
+
+      const address = await sdk?.deployer.deployNFTCollection({
         ...collection.properties,
-        primary_sale_recipient: address
+        platform_fee_recipient: process.env.NEXT_PUBLIC_ADDRESS,
+        seller_fee_basis_points: 100
       });
 
-      if (contractAddress) {
-        const contract = await sdk?.getContract(
-          contractAddress,
-          'nft-collection'
-        );
+      if (address) {
+        const contract = await sdk?.getContract(address, 'nft-collection');
 
         contract?.royalties.setDefaultRoyaltyInfo({
           seller_fee_basis_points: 100, // 1%
-          fee_recipient: address
+          fee_recipient: spark
         });
 
         const tx = await contract?.mintBatchTo(
-          collection.properties.recipient,
-          collection.nfts
+          collection.properties.primary_sale_recipient,
+          nfts
         );
 
         if (tx) {

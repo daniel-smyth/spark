@@ -1,69 +1,14 @@
 'use client';
 
-import {
-  createContext,
-  Dispatch,
-  SetStateAction,
-  useContext,
-  useState
-} from 'react';
+import { NFTCollection } from '@lib/nftcollection';
+import { createContext, useContext, useState } from 'react';
 
-export interface Variation {
-  id: number;
-  name: string;
-  image: string;
-  trait: string;
-  weight: number;
-}
-
-export interface Trait {
-  id: number;
-  name: string;
-  variations: Variation[];
-}
-
-export interface NFT {
-  name: string;
-  image: string;
-  description: string;
-  attributes: {
-    [key: string]: string;
-  };
-  [key: string]: any;
-}
-
-export interface Collection {
-  nfts: NFT[];
-  artwork: Trait[];
-  properties: {
-    size: number;
-    name: string;
-    description: string;
-    symbol: string;
-    prefix: string;
-    recipient: string;
-    external_link: string;
-  };
-}
-
-export type CollectionState = {
-  collection: Collection;
-  setCollection: Dispatch<SetStateAction<Collection>>;
+type CollectionState = {
+  collection: NFTCollection;
+  setCollection: (collection: NFTCollection) => void;
 };
 
-const initialValues = {
-  nfts: [],
-  artwork: [],
-  properties: {
-    size: 0,
-    name: '',
-    symbol: '',
-    description: '',
-    prefix: '',
-    recipient: '',
-    external_link: ''
-  }
-};
+const initialValues = new NFTCollection();
 
 const Context = createContext<CollectionState>({
   collection: initialValues,
@@ -75,7 +20,16 @@ export function CollectionProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [collection, setCollection] = useState<Collection>(initialValues);
+  const [collection, _setCollection] = useState<NFTCollection>(initialValues);
+
+  const setCollection = (collection: NFTCollection) => {
+    setCollection(
+      Object.assign(
+        Object.create(Object.getPrototypeOf(collection)),
+        collection
+      )
+    );
+  };
 
   return (
     <Context.Provider value={{ collection, setCollection }}>

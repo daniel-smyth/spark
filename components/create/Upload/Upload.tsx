@@ -1,52 +1,25 @@
 'use client';
 
-import path from 'path';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import s from './Upload.module.css';
-import { Trait, useCollection } from 'app/create/context';
+import { useCollection } from 'app/create/context';
 import { Button, DragAndDrop, Dropzone, Text } from '@components/ui';
 
 const Upload: FC = () => {
   const { collection, setCollection } = useCollection();
-  const [artwork, setArtwork] = useState<Trait[]>([]);
 
   const handleUpload = (files: FileList) => {
-    for (let i = 0; i < files.length; i++) {
-      const image = files[i];
-      const fullName = path.parse(image.name).name;
-
-      const variation = {
-        id: i,
-        name: fullName
-          .split('#')
-          .shift()!
-          .substring(fullName.indexOf('_') + 1),
-        trait: path.parse(image.name).name.substring(0, fullName.indexOf('_')),
-        weight: Number(fullName.split('#').pop()),
-        image: URL.createObjectURL(image)
-      };
-
-      const trait = artwork.find((t) => t.name === variation.trait);
-      if (trait) {
-        trait.variations.push(variation);
-      } else {
-        artwork.push({
-          id: artwork.length,
-          name: variation.trait,
-          variations: [variation]
-        });
-      }
-    }
-    setArtwork([...artwork]);
+    collection.setArtwork(files);
   };
 
   return (
     <>
-      {artwork.length === 0 ? (
+      {collection.artwork.length === 0 ? (
         <>
           <Dropzone onChange={handleUpload} />
+
           <Text>
             Spark3 detects <Link href="/">NFT trait types and trait names</Link>{' '}
             from your image file name. Follow our naming convention:
@@ -77,26 +50,14 @@ const Upload: FC = () => {
           <DragAndDrop
             values={collection.artwork.map((trait) => trait.name)}
             onChange={(output: string[]) => {
-              setArtwork([
-                ...output.map(
-                  (str) => collection.artwork.find((t) => t.name === str)!
-                )
-              ]);
+              const newOrder = output.map(
+                (str) => collection.artwork.find((t) => t.name === str)!
+              );
+              collection.artwork = [...newOrder];
             }}
           />
 
-          <Button
-            width="100%"
-            onClick={() => {
-              setCollection({
-                ...collection,
-                artwork: artwork.map((trait, i) => {
-                  trait.id = i;
-                  return trait;
-                })
-              });
-            }}
-          >
+          <Button width="100%" onClick={() => setCollection(collection)}>
             Submit
           </Button>
         </>

@@ -11,29 +11,17 @@ const Properties: FC = () => {
 
   return (
     <Formik
-      initialValues={collection.properties}
+      initialValues={collection.getProperties()}
       validate={(values) => {
-        const errors: any = {};
-
+        const errors: { [k: string]: string } = {};
         Object.keys(values).forEach((key) => {
-          if (
-            key === 'size' ||
-            key === 'name' ||
-            key === 'prefix' ||
-            key === 'description' ||
-            key === 'symbol'
-          ) {
-            errors[key] = 'Required';
-          }
+          errors[key] = 'Required';
         });
-
         return errors;
       }}
       onSubmit={(values, { setSubmitting }) => {
-        setCollection({
-          ...collection,
-          properties: { ...values }
-        });
+        collection.setProperties(values);
+        setCollection(collection);
         setSubmitting(false);
       }}
     >
@@ -51,7 +39,6 @@ const Properties: FC = () => {
             <Text>
               <strong>Collection Size</strong>
             </Text>
-
             <div className={s.flex}>
               <Text>
                 <strong>
@@ -62,7 +49,6 @@ const Properties: FC = () => {
                 is the max size you can make your collection with uploaded
                 artwork.
               </Text>
-
               <NumberInput
                 name="size"
                 value={values.size}

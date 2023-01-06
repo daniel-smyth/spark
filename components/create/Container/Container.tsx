@@ -6,7 +6,6 @@ import { useCollection } from 'app/create/context';
 import { Text } from '@components/ui';
 import Upload from '../Upload';
 import Properties from '../Properties';
-import Multiply from '../Multiply';
 import Mint from '../Mint';
 
 const Container: FC = () => {
@@ -34,9 +33,7 @@ const Container: FC = () => {
         </>
       )}
 
-      {collection.properties.size > 0 && <Multiply />}
-
-      {collection.properties.size === collection.artwork.length && <Mint />}
+      {collection.properties.size > 0 && <Mint />}
     </>
   );
 };
