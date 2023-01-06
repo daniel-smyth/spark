@@ -20,7 +20,7 @@ export class NFTCollection {
     primary_sale_recipient: ''
   };
 
-  setArtwork(files: FileList) {
+  public setArtwork(files: FileList) {
     for (let i = 0; i < files.length; i++) {
       const file = p.parse(files[i].name).name; // e.g. Hat_Red#2.png
 
@@ -46,15 +46,15 @@ export class NFTCollection {
     }
   }
 
-  getArtwork() {
+  public getArtwork() {
     return this.artwork;
   }
 
-  setProperties(properties: typeof this.properties) {
+  public setProperties(properties: typeof this.properties) {
     this.properties = properties;
   }
 
-  getProperties() {
+  public getProperties() {
     return this.properties;
   }
 
@@ -87,7 +87,7 @@ export class NFTCollection {
     }
   }
 
-  async makeUniqueImage(dna: string) {
+  private async makeUniqueImage(dna: string) {
     let image = '';
     let attributes: Record<string, string> = {};
 
