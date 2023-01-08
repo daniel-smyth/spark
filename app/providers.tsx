@@ -5,7 +5,7 @@
 
 import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 
-const activeChainId = ChainId.Mainnet;
+const activeChainId = ChainId.Goerli;
 
 if (!process.env.NEXT_PUBLIC_DOMAIN) {
   throw new Error('Please include your NEXT_PUBLIC_DOMAIN URL in .env');
@@ -17,11 +17,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThirdwebProvider
       desiredChainId={activeChainId}
-      authConfig={{
-        domain,
-        authUrl: '/api/auth',
-        loginRedirect: '/'
-      }}
+      authConfig={{ domain, authUrl: '/api/auth' }}
     >
       {children}
     </ThirdwebProvider>

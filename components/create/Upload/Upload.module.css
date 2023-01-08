@@ -11,3 +11,10 @@
 .box img {
   box-shadow: 0px 0px 6px var(--shadow-1);
 }
+
+@media (prefers-color-scheme: dark) {
+  .box {
+    background-color: var(--accent-6);
+    border-color: var(--accent-2);
+  }
+}

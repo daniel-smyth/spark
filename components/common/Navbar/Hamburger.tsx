@@ -30,7 +30,15 @@ function Hamburger() {
       <div className={open ? cx(s.menu, s.expanded) : s.menu}>
         <ul>
           <li className={s.connectButton}>
-            <ConnectWallet accentColor="#1b7dce" colorMode="light" />
+            <ConnectWallet
+              accentColor="#1b7dce"
+              colorMode="light"
+              auth={{
+                loginConfig: {
+                  redirectTo: '/create'
+                }
+              }}
+            />
           </li>
         </ul>
       </div>

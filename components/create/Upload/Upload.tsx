@@ -41,7 +41,7 @@ const Upload: FC = () => {
           <div className={s.box}>
             <Image
               alt="layers"
-              src="/layersScreenshot.jpeg"
+              src="/layers-screenshot.jpeg"
               width={280}
               height={150}
             />

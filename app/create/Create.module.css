@@ -26,7 +26,8 @@
   display: grid;
   grid-template-columns: 1fr 0fr;
   align-items: center;
-  border-bottom: 4px solid var(--accent-0);
+  border-bottom: 2px solid var(--accent-0);
+  border-radius: 0.5;
 }
 
 @media (prefers-color-scheme: dark) {
