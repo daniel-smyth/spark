@@ -3,7 +3,7 @@
 import { FC, useRef } from 'react';
 import type { Identifier, XYCoord } from 'dnd-core';
 import { useDrag, useDrop } from 'react-dnd';
-import { AiOutlineDrag } from 'react-icons/Ai';
+import { AiOutlineDrag } from 'react-icons/ai';
 import s from './Card.module.css';
 import { Text } from '@components/ui';
 

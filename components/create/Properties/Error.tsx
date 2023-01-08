@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { BiErrorCircle } from 'react-icons/Bi';
+import { BiErrorCircle } from 'react-icons/bi';
 import s from './Error.module.css';
 import { Text } from '@components/ui';
 

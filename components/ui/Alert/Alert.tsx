@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import type { FC } from 'react';
-import { AiOutlineCheckCircle } from 'react-icons/Ai';
-import { ImCancelCircle } from 'react-icons/Im';
+import { AiOutlineCheckCircle } from 'react-icons/ai';
+import { ImCancelCircle } from 'react-icons/im';
 import cn from 'clsx';
 import s from './Alert.module.css';
 import { Button } from '@components/ui';
