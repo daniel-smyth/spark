@@ -1,0 +1,22 @@
+.navigation {
+  height: 70px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem 0rem;
+  background-color: white;
+  color: black;
+  box-shadow: 0px 0px 4px var(--shadow-0);
+}
+
+.brand {
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .navigation {
+    background-color: black;
+  }
+}

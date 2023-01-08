@@ -1,0 +1,20 @@
+.box {
+  width: 90%;
+  padding: 5px;
+  text-align: center;
+  background-color: var(--accent-0);
+  border-radius: 10px;
+  padding: 1rem 0rem;
+  align-self: center;
+}
+
+.box img {
+  box-shadow: 0px 0px 6px var(--shadow-1);
+}
+
+@media (prefers-color-scheme: dark) {
+  .box {
+    background-color: var(--accent-6);
+    border-color: var(--accent-2);
+  }
+}

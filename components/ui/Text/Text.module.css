@@ -1,0 +1,93 @@
+.body {
+  margin: 0;
+  opacity: 0.6;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.sectionHeading {
+  font-size: 1.4rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pageHeading {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 2rem;
+  cursor: pointer;
+}
+
+.heading {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Apply base font sizes and styles for typography markup (h2, h2, ul, p, etc.).
+   A helpful addition for when page content is consumed from a source managed through a wysiwyg editor. */
+
+.body :is(h1, h2, h3, h4, h5, h6, p, ul, ol) {
+  margin-bottom: 4;
+}
+
+.body :is(h1, h2, h3, h4, h5, h6):not(:first-child) {
+  margin-top: 8;
+}
+
+.body :is(h1, h2, h3, h4, h5, h6) {
+  font-weight: 600;
+  letter-spacing: 0.025em;
+}
+
+.body h1 {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.body h2 {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
+.body h3 {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+
+.body h4 {
+  line-height: 2rem;
+}
+
+.body h5 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.body h6 {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.body ul,
+.body ol {
+  padding-left: 6;
+}
+
+.body ul {
+  list-style-type: disc;
+}
+
+.body ol {
+  list-style-type: decimal;
+}
+
+.body a {
+  text-decoration-line: underline;
+}
+
+.body a:hover {
+  text-decoration-line: underline;
+}

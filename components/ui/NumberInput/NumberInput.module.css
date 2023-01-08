@@ -1,0 +1,66 @@
+.root {
+  display: inline-block;
+  color: black;
+}
+
+.add::after {
+  transform: rotate(90deg);
+}
+
+.remove::after {
+  display: none;
+}
+
+.button {
+  width: 39px;
+  height: 34px;
+  float: right;
+  position: relative;
+  cursor: pointer;
+}
+
+.button::before,
+.button::after {
+  position: absolute;
+  top: calc(50% - 1px);
+  left: calc(50% - 7px);
+  content: '';
+  width: 14px;
+  height: 2px;
+  background-color: currentColor;
+  display: block;
+}
+
+.root input[type='number'] {
+  transition: border 0.3s ease-in-out, color 0.3s ease-in-out;
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 700;
+  box-shadow: none;
+  outline: none;
+  width: 42px;
+  height: 34px;
+  text-align: center;
+  float: right;
+  border: 1px solid #dcdcdc;
+  background-color: #fff;
+  color: #342f2f;
+}
+
+.root input:focus {
+  border-color: #57b8f6 !important;
+}
+
+.root input:hover {
+  border-color: #a5a5a5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .root {
+    color: white;
+  }
+}

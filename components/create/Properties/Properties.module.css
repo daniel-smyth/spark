@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.5rem;
+}
+
+.flex {
+  display: grid;
+  grid-template-columns: 0.8fr 0.6fr;
+  align-items: center;
+}
