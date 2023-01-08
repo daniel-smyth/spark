@@ -39,3 +39,16 @@
     background-color: var(--accent-7);
   }
 }
+
+@media (max-width: 700px) {
+  .background {
+    height: 100vh;
+    width: 60vh;
+    padding: 1rem 2rem;
+    background-color: var(--accent-0);
+  }
+
+  .title h2 {
+    font-size: 18px;
+  }
+}

@@ -52,6 +52,7 @@
     position: absolute;
     top: 60px;
     left: 0;
+    padding: 0.5rem 1rem;
     flex-direction: column;
     width: 100%;
     background-color: white;

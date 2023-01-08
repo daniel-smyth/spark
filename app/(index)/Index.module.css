@@ -261,6 +261,12 @@
     padding: 1rem;
   }
 
+  .row {
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+  }
+
   .description p,
   .description div {
     display: flex;
