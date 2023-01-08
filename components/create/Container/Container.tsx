@@ -1,9 +1,7 @@
 'use client';
 
 import { FC } from 'react';
-import Link from 'next/link';
-import { useCollection } from 'app/create/context';
-import { Text } from '@components/ui';
+import { useCollection } from '@app/create/context';
 import Upload from '../Upload';
 import Properties from '../Properties';
 import Mint from '../Mint';
@@ -13,26 +11,10 @@ const Container: FC = () => {
 
   return (
     <>
-      {collection.artwork.length === 0 && (
-        <>
-          <Text>Upload your artwork.</Text>
-
-          <Upload />
-        </>
+      {collection.artwork.length === 0 && <Upload />}
+      {collection.artwork.length > 0 && collection.properties.size === 0 && (
+        <Properties />
       )}
-
-      {collection.artwork.length > 0 && (
-        <>
-          <Text>
-            Enter your collection&apos;s properties. This data cannot be
-            changed. <Link href="/">See NFT trait types and trait names</Link>{' '}
-            for more information.
-          </Text>
-
-          <Properties />
-        </>
-      )}
-
       {collection.properties.size > 0 && <Mint />}
     </>
   );

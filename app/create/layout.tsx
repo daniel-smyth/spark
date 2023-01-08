@@ -1,5 +1,5 @@
-import { CollectionProvider } from './context';
+import { Provider } from './context';
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <CollectionProvider>{children}</CollectionProvider>;
+  return <Provider>{children}</Provider>;
 }

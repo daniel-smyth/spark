@@ -38,11 +38,11 @@ const DragAndDrop: FC<DragAndDropProps> = ({
   const renderCard = useCallback((card: string, index: number) => {
     return (
       <Card
-        key={card}
-        index={index}
         id={card}
+        index={index}
         text={card}
         moveCard={moveCard}
+        key={card + index}
       />
     );
   }, []);

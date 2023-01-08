@@ -1,18 +1,15 @@
 'use client';
 
 import Link from 'next/link';
-import { FC, useState } from 'react';
+import { ChangeEvent, FC, useState } from 'react';
 import s from './Calculator.module.css';
 import { NumberInput, Text } from '@components/ui';
 
 const Calculator: FC = () => {
   const [data, setData] = useState({ traits: 10, layers: 4 });
 
-  const handleChange = ({ name, value }: { name?: string; value: number }) => {
-    if (name) {
-      setData({ ...data, [name]: value });
-    }
-  };
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) =>
+    setData({ ...data, [e.target.name]: e.target.value });
 
   return (
     <div className={s.root}>

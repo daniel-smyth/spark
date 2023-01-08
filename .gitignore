@@ -3,6 +3,9 @@
 # VSCode
 /.vscode/
 
+# Cypress
+/cypress/artwork/
+
 # dependencies
 /node_modules
 /.pnp

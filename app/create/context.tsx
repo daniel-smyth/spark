@@ -1,34 +1,24 @@
 'use client';
 
-import { NFTCollection } from '@lib/nftcollection';
 import { createContext, useContext, useState } from 'react';
+import { NFTGenerator } from '@lib/web3/nftgenerator';
 
-type CollectionState = {
-  collection: NFTCollection;
-  setCollection: (collection: NFTCollection) => void;
+type State = {
+  collection: NFTGenerator;
+  setCollection: (collection: NFTGenerator) => void;
 };
 
-const initialValues = new NFTCollection();
-
-const Context = createContext<CollectionState>({
-  collection: initialValues,
-  setCollection: (...args: any) => {}
+const Context = createContext<State>({
+  collection: new NFTGenerator(),
+  setCollection: () => {}
 });
 
-export function CollectionProvider({
-  children
-}: {
-  children: React.ReactNode;
-}) {
-  const [collection, _setCollection] = useState<NFTCollection>(initialValues);
+export function Provider({ children }: { children: React.ReactNode }) {
+  const [collection, _setCollection] = useState(new NFTGenerator());
 
-  const setCollection = (collection: NFTCollection) => {
-    setCollection(
-      Object.assign(
-        Object.create(Object.getPrototypeOf(collection)),
-        collection
-      )
-    );
+  const setCollection = (collection: NFTGenerator) => {
+    const clone = Object.create(Object.getPrototypeOf(collection));
+    _setCollection(Object.assign(clone, collection));
   };
 
   return (
@@ -39,11 +29,9 @@ export function CollectionProvider({
 }
 
 export const useCollection = () => {
-  const c = useContext<CollectionState>(Context);
+  const c = useContext<State>(Context);
   if (!c) {
-    throw new Error(
-      '"/create" context must be placed within CollectionProvider'
-    );
+    throw new Error('useCollection must be placed within CollectionProvider');
   }
   return c;
 };
