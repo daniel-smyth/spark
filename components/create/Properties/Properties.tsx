@@ -4,25 +4,32 @@ import React, { FC } from 'react';
 import Link from 'next/link';
 import { Formik } from 'formik';
 import s from './Properties.module.css';
-import { Button, TextInput, NumberInput, Text } from '@components/ui';
 import { useCollection } from '@app/create/context';
-import Error from './Error';
+import { Button, NumberInput, Text } from '@components/ui';
+import { TextInput } from '@components/form';
 
 const Properties: FC = () => {
   const { collection, setCollection } = useCollection();
 
+  const getMaxSize = () =>
+    collection.artwork
+      .reduce((max, trait) => max * trait.variations.length, 1)
+      .toLocaleString('en-US');
+
   return (
     <Formik
       initialValues={collection.properties}
-      validate={(values) => {
-        const errors: { [k: string]: string } = {};
-        Object.keys(values).forEach((key) => {
-          if (!values[key as keyof typeof values]) {
-            errors.email = 'Required';
-          }
-        });
-        return errors;
-      }}
+      validate={(values) =>
+        Object.keys(values).reduce(
+          (errors: { [key: string]: string }, value) => {
+            if (!values[value as keyof typeof values]) {
+              errors[value] = 'Required';
+            }
+            return errors;
+          },
+          {}
+        )
+      }
       onSubmit={(values, { setSubmitting }) => {
         collection.properties = values;
         setCollection(collection);
@@ -45,13 +52,8 @@ const Properties: FC = () => {
             </Text>
             <div className={s.flex}>
               <Text>
-                <strong>
-                  {collection.artwork
-                    .reduce((acc, l) => acc * l.variations.length, 1)
-                    .toLocaleString('en-US')}
-                </strong>{' '}
-                is the max size you can make your collection with uploaded
-                artwork.
+                <strong>{getMaxSize()}</strong> is the max size you can make
+                your collection with uploaded artwork.
               </Text>
               <NumberInput
                 name="size"
@@ -73,7 +75,7 @@ const Properties: FC = () => {
           </div>
           <div className={s.container}>
             {Object.keys(values).map(
-              (key, i) =>
+              (key) =>
                 key !== 'size' && (
                   <React.Fragment key={key}>
                     <TextInput
@@ -83,11 +85,9 @@ const Properties: FC = () => {
                       onChange={handleChange}
                       onBlur={handleBlur}
                       value={values[key as keyof typeof values]}
+                      errors={errors}
+                      touched={touched}
                     />
-                    {errors[key as keyof typeof values] &&
-                      touched[key as keyof typeof values] && (
-                        <Error>{errors[key as keyof typeof values]}</Error>
-                      )}
                   </React.Fragment>
                 )
             )}

@@ -12,10 +12,8 @@ const Upload: FC = () => {
   const { collection, setCollection } = useCollection();
   const [artwork, setArtwork] = useState<Trait[]>([]);
 
-  const handleUpload = (files: FileList) => {
-    console.log(collection.loadArtwork(files));
+  const handleUpload = (files: FileList) =>
     setArtwork(collection.loadArtwork(files));
-  };
 
   const handleSort = (output: string[]) =>
     setArtwork([...output.map((str) => artwork.find((t) => t.name === str)!)]);
@@ -48,7 +46,6 @@ const Upload: FC = () => {
           </div>
         </>
       )}
-
       {artwork.length > 0 && (
         <>
           <Text>

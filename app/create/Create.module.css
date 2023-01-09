@@ -7,7 +7,8 @@
 }
 
 .background {
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   width: 80vh;
   padding: 2rem 3rem;
   background-color: var(--accent-0);
@@ -45,7 +46,6 @@
     height: 100vh;
     width: 60vh;
     padding: 1rem 2rem;
-    background-color: var(--accent-0);
   }
 
   .title h2 {

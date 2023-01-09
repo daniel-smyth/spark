@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { FiImage, FiDatabase, FiRepeat } from 'react-icons/fi';
 import s from './Index.module.css';
@@ -6,7 +7,7 @@ import { Calculator, Price } from '@components/home';
 
 export default function Home() {
   return (
-    <main className={s.main}>
+    <main className={s.root}>
       <div className={s.description}>
         <div>
           <a href="/#" target="_blank" rel="noopener noreferrer">
@@ -77,6 +78,23 @@ export default function Home() {
           </ul>
         </div>
 
+        <div className={s.screenshot}>
+          <Text variant="sectionHeading">Mint Up to 10,000 NFTs</Text>
+
+          <Text>
+            Mint 1,000s of NFTs in a few minutes. It&apos;s that easy!
+          </Text>
+
+          <Image
+            alt="spark"
+            src="/order-screenshot.png"
+            width={500}
+            height={270}
+          />
+        </div>
+      </div>
+
+      <div className={s.row}>
         <div className={s.calculator}>
           <Text variant="sectionHeading">Collection Calculator</Text>
 
@@ -84,11 +102,11 @@ export default function Home() {
             Calculate the maximum number of NFTs you can create with your images
           </Text>
 
-          <Calculator />
+          <div className={s.box}>
+            <Calculator />
+          </div>
         </div>
-      </div>
 
-      <div className={s.row}>
         <div className={s.price}>
           <Text variant="sectionHeading">How Much is it?</Text>
 
@@ -110,7 +128,7 @@ export default function Home() {
           />
         </div>
 
-        <div className={s.price}>
+        {/* <div className={s.price}>
           <Text variant="sectionHeading">What&apos;s in store?</Text>
 
           <Text>
@@ -130,7 +148,7 @@ export default function Home() {
             action="Coming soon"
             disabled
           />
-        </div>
+        </div> */}
       </div>
     </main>
   );

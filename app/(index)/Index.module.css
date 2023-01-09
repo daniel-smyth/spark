@@ -1,4 +1,4 @@
-.main {
+.root {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -41,13 +41,74 @@
   margin-top: 15px;
 }
 
+.screenshot,
 .calculator,
-.steps,
-.price {
-  width: 40vh;
+.steps {
+  width: 70vh;
   text-align: center;
   height: 80vh;
 }
+
+.box {
+  margin: 1rem 0;
+  min-width: 250px;
+}
+
+.price {
+  width: 50vh;
+  text-align: center;
+  height: 80vh;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.screenshot {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .screenshot,
+  .calculator,
+  .price,
+  .steps {
+    width: 40vh;
+    text-align: center;
+    height: 80vh;
+  }
+
+  .screenshot {
+    display: none;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1120px) {
+  .screenshot,
+  .calculator,
+  .price,
+  .steps {
+    width: 70vh;
+    text-align: center;
+    height: 80vh;
+  }
+
+  .screenshot {
+    display: block;
+  }
+}
+
+.screenshot img {
+  margin: 1.8rem 0;
+  padding: 0.1rem;
+  box-shadow: 0px 0px 10px var(--shadow-0);
+}
+
 .steps ul {
   list-style-type: none;
 }
@@ -55,9 +116,10 @@
 .step {
   display: grid;
   grid-template-columns: 0fr 1fr;
-  grid-column-gap: 1px;
+  grid-column-gap: 1rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  justify-items: left;
   align-items: center;
   border-bottom: 1px solid var(--accent-8);
 }

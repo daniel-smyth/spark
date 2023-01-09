@@ -2,10 +2,10 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
   padding: 0.5rem 1rem;
   background-color: var(--accent-0);
-  box-shadow: 0px 0px 8px var(--shadow-0);
+  box-shadow: 0px 0px 4px var(--shadow-0);
   border: 1px dashed gray;
   border-width: 2px;
   border-radius: 0.5rem;
@@ -16,4 +16,11 @@
 
 .card div {
   font-weight: 600;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background-color: var(--accent-5);
+    border-color: var(--accent-2);
+  }
 }
