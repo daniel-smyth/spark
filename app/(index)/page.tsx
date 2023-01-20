@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import cn from 'clsx';
 import { FiImage, FiDatabase, FiRepeat } from 'react-icons/fi';
 import s from './Index.module.css';
 import { Button, Logo, Text } from '@components/ui';
@@ -8,13 +9,13 @@ import { Calculator, Price } from '@components/home';
 export default function Home() {
   return (
     <main className={s.root}>
-      {/* <div className={s.description}>
+      <div className={s.description}>
         <div>
           <a href="/#" target="_blank" rel="noopener noreferrer">
             <Logo />
           </a>
         </div>
-      </div> */}
+      </div>
       <div className={s.hero}>
         <div className={s.col1}>
           <Text variant="heading" className={s.h1}>
@@ -29,86 +30,56 @@ export default function Home() {
           </Link>
         </div>
         <div className={s.col2}>
-          <Image
-            fill
-            alt="nft-artwork"
-            src="/nft-artwork.svg"
-            className={s.image}
-          />
+          <div>
+            <Image fill alt="nft-artwork" src="/nft-artwork.svg" />
+          </div>
         </div>
-        {/* <div>
-          <Image alt="spark" src="/nft-artwork.svg" width={500} height={270} />
-        </div> */}
       </div>
-      {/* <div className={s.hero}>
-        <ul>
-          <li>
-            <Text variant="heading">Web3 is here</Text>
-          </li>
-          <li>
-            <Text variant="sectionHeading">Upload. Create. Sell.</Text>
-          </li>
-          <li>
-            <Text>Create up to 10,000 NFTs in minutes</Text>
-          </li>
-          <li>
-            <Link href="/create">
-              <Button variant="flat">Create 10,000 NFTs</Button>
-            </Link>
-          </li>
-        </ul>
-      </div> */}
-      <div className={s.row}>
-        <div className={s.steps}>
-          <Text variant="sectionHeading">How Does it Work?</Text>
-          <Text>
-            Minting NFTs has never been this easy. It&apos;s just 3 steps!
-          </Text>
-          <ul>
-            <li>
-              <div className={s.step}>
-                <FiImage size={30} />
-                <Text variant="sectionHeading">1. Multiply Artwork</Text>
-              </div>
-              <div className={s.stepText}>
+      <div className={s.info}>
+        <div className={s.col1}>
+          <div>
+            <Image
+              fill
+              alt="nft-howto"
+              src="/nft-howto.svg"
+              className={s.image}
+            />
+          </div>
+        </div>
+        <div className={s.col2}>
+          <div>
+            <Text variant="sectionHeading">How Does it Work?</Text>
+            <Text>
+              Minting NFTs has never been this easy. It&apos;s just 3 steps!
+            </Text>
+            <ul>
+              <li>
+                <div className={s.step}>
+                  <FiImage size={30} />
+                  <Text variant="sectionHeading">1. Multiply Artwork</Text>
+                </div>
                 <Text>Multiply your images with the Spark3 art engine</Text>
-              </div>
-            </li>
-            <li>
-              <div className={s.step}>
-                <FiDatabase size={30} />
-                <Text variant="sectionHeading">2. Mint Artwork</Text>
-              </div>
-              <div className={s.stepText}>
+              </li>
+              <li>
+                <div className={s.step}>
+                  <FiDatabase size={30} />
+                  <Text variant="sectionHeading">2. Mint Artwork</Text>
+                </div>
                 <Text>
                   Mint your new images directly to an address of your choice
                 </Text>
-              </div>
-            </li>
-            <li>
-              <div className={s.step}>
-                <FiRepeat size={30} />
-                <Text variant="sectionHeading">3. Sell Artwork</Text>
-              </div>
-              <div className={s.stepText}>
+              </li>
+              <li>
+                <div className={s.step}>
+                  <FiRepeat size={30} />
+                  <Text variant="sectionHeading">3. Sell Artwork</Text>
+                </div>
                 <Text>
                   Sell your newly created NFT Artwork on any major exchange
                 </Text>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <div className={s.screenshot}>
-          <Text variant="sectionHeading">Mint Up to 10,000 NFTs</Text>
-          <Text>
-            Mint 1,000s of NFTs in a few minutes. It&apos;s that easy!
-          </Text>
-          <Image
-            alt="spark"
-            src="/order-screenshot.png"
-            width={500}
-            height={270}
-          />
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className={s.row}>
