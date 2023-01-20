@@ -8,8 +8,6 @@
 }
 
 .card {
-  font-size: '1rem';
-  font-weight: 600;
   height: 100%;
   display: flex;
   align-items: center;
@@ -57,7 +55,12 @@
 
 @media (prefers-color-scheme: dark) {
   .card {
-    background-color: var(--accent-5);
-    border-color: var(--accent-2);
+    background-color: var(--accent-4);
+    border-color: var(--accent-8);
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--background-start-rgb), 1),
+      rgba(var(--callout-rgb), 0.5)
+    );
   }
 }

@@ -1,9 +1,7 @@
 'use client';
 
 import { FC, useState } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
-import s from './Upload.module.css';
 import { Trait } from '@lib/web3';
 import { useCollection } from '@app/create/context';
 import { Button, DragAndDrop, Dropzone, Text } from '@components/ui';
@@ -36,14 +34,6 @@ const Upload: FC = () => {
             <strong>&quot;TRAITTYPE_TRAIT.png&quot;</strong>
           </Text>
           <Text>Trait examples: Background, Eyes, Fur, Mouth.</Text>
-          <div className={s.box}>
-            <Image
-              alt="layers"
-              src="/layers-screenshot.jpeg"
-              width={280}
-              height={150}
-            />
-          </div>
         </>
       )}
       {artwork.length > 0 && (

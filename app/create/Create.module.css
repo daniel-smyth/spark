@@ -11,7 +11,11 @@
   height: 100%;
   width: 80vh;
   padding: 2rem 3rem;
-  background-color: var(--accent-0);
+  background: linear-gradient(
+    to top,
+    rgba(var(--background-start-rgb), 1),
+    rgba(var(--callout-rgb), 0.5)
+  );
 }
 
 .card {
@@ -27,15 +31,17 @@
   display: grid;
   grid-template-columns: 1fr 0fr;
   align-items: center;
-  border-bottom: 2px solid var(--accent-0);
-  border-radius: 0.5;
 }
 
 @media (max-width: 700px) {
   .background {
     height: 100vh;
-    width: 60vh;
-    padding: 1rem 2rem;
+    width: 100%;
+    padding: 1rem 1.5rem;
+  }
+
+  .logo {
+    display: none;
   }
 
   .title h2 {

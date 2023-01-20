@@ -245,16 +245,12 @@
 
   .description {
     display: inherit;
-  }
-
-  .description {
     font-size: 0.8rem;
   }
 
   .description a {
     padding: 1rem;
   }
-
   .description p,
   .description div {
     display: flex;

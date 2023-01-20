@@ -6,9 +6,14 @@ import usePrefersColorScheme from '@lib/hooks/usePrefersColorScheme';
 interface LogoProps {
   width?: number;
   height?: number;
+  className?: string;
 }
 
-const Logo: React.FC<LogoProps> = ({ width = 90, height = 30 }) => {
+const Logo: React.FC<LogoProps> = ({
+  width = 90,
+  height = 30,
+  className = ''
+}) => {
   const colorScheme = usePrefersColorScheme();
 
   return (
@@ -17,6 +22,7 @@ const Logo: React.FC<LogoProps> = ({ width = 90, height = 30 }) => {
       alt="Spark3"
       width={width}
       height={height}
+      className={className}
       priority
     />
   );
