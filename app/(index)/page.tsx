@@ -54,29 +54,31 @@ export default function Home() {
             <Text>
               Minting NFTs has never been this easy. It&apos;s just 3 steps!
             </Text>
-            <ul>
+            <ul className={s.steps}>
               <li>
                 <div className={s.step}>
-                  <FiImage size={35} />
+                  <FiImage size={35} color="var(--spark-1)" />
                   <Text variant="sectionHeading">1. Multiply Artwork</Text>
                 </div>
-                <Text>Multiply your images with the Spark3 art engine</Text>
+                <Text className={s.body}>
+                  Multiply your images with the Spark3 art engine
+                </Text>
               </li>
               <li>
                 <div className={s.step}>
-                  <FiDatabase size={35} />
+                  <FiDatabase size={35} color="var(--spark-1)" />
                   <Text variant="sectionHeading">2. Mint Artwork</Text>
                 </div>
-                <Text>
+                <Text className={s.body}>
                   Mint your new images directly to an address of your choice
                 </Text>
               </li>
               <li>
                 <div className={s.step}>
-                  <FiRepeat size={35} />
+                  <FiRepeat size={35} color="var(--spark-1)" />
                   <Text variant="sectionHeading">3. Sell Artwork</Text>
                 </div>
-                <Text>
+                <Text className={s.body}>
                   Sell your newly created NFT Artwork on any major exchange
                 </Text>
               </li>

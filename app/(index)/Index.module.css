@@ -17,7 +17,6 @@
 .hero {
   height: calc(100vh - 70px);
 }
-
 .info,
 .calculator,
 .pricing {
@@ -70,7 +69,7 @@
   height: 80%;
 }
 
-/* Section 2 - column 1  */
+/* Section 2 - How it works - column 1  */
 .info .col1 {
   flex: 1;
   position: relative;
@@ -86,58 +85,64 @@
   height: 80%;
 }
 
-/* Section 2 - column 2  */
+/* Section 2  - How it works - column 2  */
 .info .col2 {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: left;
-  padding-left: 10%;
+  text-align: center;
+  padding: 0 10%;
 }
 
-.info .col2 ul {
+.info .col2 .steps {
   list-style-type: none;
+  text-align: left;
+  padding: 2rem 3rem;
+  margin-top: 2rem;
+  border-radius: 30px;
+  border-top: 6px solid var(--spark-1);
+  box-shadow: 0px 0px 8px var(--shadow-0);
+}
+
+.info .col2 .steps .body {
+  margin-bottom: 2rem;
 }
 
 .info .col2 .step {
   display: grid;
   grid-template-columns: 0fr 1fr;
   grid-column-gap: 1rem;
-  margin-top: 2.5rem;
   margin-bottom: 1rem;
   border-bottom: 3px solid var(--accent-3);
 }
 
 .info .col2 .step h2 {
-  line-height: 2.5rem;
-}
-
-.info .col2 .step h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--spark-1);
+  color: var(--shadow-0);
 }
 
-/* Section 3 - column 1 */
+/* Section 3 - Calculator - column 1 */
 .calculator .col1 {
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   text-align: center;
-  align-items: center;
+}
+
+.calculator .col1 .container {
+  width: 280px;
+  text-align: center;
 }
 
 .calculator .col1 .body {
   margin-bottom: 2rem;
 }
 
-.calculator .container {
-  width: 280px;
-  text-align: center;
-}
-
-/* Section 3 - column 2 */
+/* Section 3 - Calculator - column 2 */
 .calculator .col2 {
   flex: 1;
   position: relative;
@@ -152,7 +157,7 @@
   height: 80%;
 }
 
-/* Section 4 - column (same for all) */
+/* Section 4 - Pricing - column (same for all) */
 .pricing .col {
   flex: 1;
   display: flex;
@@ -162,7 +167,7 @@
   align-items: center;
 }
 
-.pricing .price {
+.pricing .col .price {
   max-width: 350px;
 }
 
@@ -170,42 +175,7 @@
   margin-bottom: 2rem;
 }
 
-@media (max-width: 700px) {
-  .screenshot,
-  .calculator .container,
-  .price,
-  .steps {
-    width: 40vh;
-    text-align: center;
-    height: 80vh;
-  }
-
-  .screenshot {
-    display: none;
-  }
-}
-
-@media (min-width: 701px) and (max-width: 1120px) {
-  .screenshot,
-  .calculator .container,
-  .price,
-  .steps {
-    width: 70vh;
-    text-align: center;
-    height: 80vh;
-  }
-
-  .screenshot {
-    display: block;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .step {
-    border-bottom: 1px solid var(--accent-0);
-  }
-}
-
+/* Description (stick)  */
 .description {
   display: none;
   justify-content: inherit;
@@ -232,15 +202,27 @@
   border-radius: var(--border-radius);
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-}
-
-@media (prefers-reduced-motion) {
-}
-
 /* Mobile */
 @media (max-width: 700px) {
+  .hero,
+  .info,
+  .calculator,
+  .pricing {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .header {
+    font-size: 2rem;
+    line-height: 5rem;
+  }
+
+  .hero .col1 .title {
+    color: var(--spark-1);
+    font-size: 3rem;
+    line-height: 4rem;
+  }
+
   .description {
     display: inherit;
   }
@@ -292,8 +274,21 @@
   }
 }
 
+@media (prefers-color-scheme: dark) {
+  .step {
+    border-bottom: 1px solid var(--accent-0);
+  }
+}
+
 /* Tablet and Smaller Desktop */
 @media (min-width: 701px) and (max-width: 1120px) {
+}
+
+/* Enable hover only on non-touch devices */
+@media (hover: hover) and (pointer: fine) {
+}
+
+@media (prefers-reduced-motion) {
 }
 
 @keyframes rotate {

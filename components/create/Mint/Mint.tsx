@@ -31,17 +31,20 @@ const Mint: FC = () => {
 
       updateOutput('> Deploying contract...', true);
       try {
-        const address = await web3?.deployer.deployNFTCollection({
+        const collectionAddress = await web3?.deployer.deployNFTCollection({
           ...collection.properties,
           platform_fee_recipient: process.env.NEXT_PUBLIC_ADDRESS,
           seller_fee_basis_points: 100
         });
 
-        if (address) {
+        if (collectionAddress) {
           updateOutput('> Contract Address:', true);
-          updateOutput(address);
+          updateOutput(collectionAddress);
 
-          const contract = await web3?.getContract(address, 'nft-collection');
+          const contract = await web3?.getContract(
+            collectionAddress,
+            'nft-collection'
+          );
 
           contract?.royalties.setDefaultRoyaltyInfo({
             seller_fee_basis_points: 100, // 1%

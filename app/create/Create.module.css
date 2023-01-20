@@ -31,16 +31,6 @@
   border-radius: 0.5;
 }
 
-@media (prefers-color-scheme: dark) {
-  .background {
-    background-color: var(--accent-8);
-  }
-
-  .card {
-    background-color: var(--accent-7);
-  }
-}
-
 @media (max-width: 700px) {
   .background {
     height: 100vh;
@@ -50,5 +40,15 @@
 
   .title h2 {
     font-size: 18px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .background {
+    background-color: var(--accent-8);
+  }
+
+  .card {
+    background-color: var(--accent-7);
   }
 }
