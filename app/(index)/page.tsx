@@ -1,6 +1,5 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import cn from 'clsx';
 import { FiImage, FiDatabase, FiRepeat } from 'react-icons/fi';
 import s from './Index.module.css';
 import { Button, Logo, Text } from '@components/ui';
@@ -91,9 +90,7 @@ export default function Home() {
           <Text variant="sectionHeading" className={s.header}>
             Collection Calculator
           </Text>
-          <Text className={s.body}>
-            Calculate the maximum number of NFTs you can create with your images
-          </Text>
+          <Text className={s.body}>Calculate how much artwork you need</Text>
           <div className={s.container}>
             <Calculator />
           </div>

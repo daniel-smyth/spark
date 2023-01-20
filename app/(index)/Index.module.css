@@ -33,12 +33,9 @@
   flex: 1;
   text-align: center;
   display: flex;
-  justify-content: center;
   flex-direction: column;
-}
-
-.hero .col1 > * {
-  padding-left: 10%;
+  justify-content: center;
+  height: 100%;
 }
 
 .hero .col1 .title {
@@ -209,18 +206,41 @@
   .calculator,
   .pricing {
     display: inline-block;
-    width: 100%;
+    width: 80%;
+  }
+  .pricing {
+    margin-bottom: 800px;
   }
 
   .header {
-    font-size: 2rem;
-    line-height: 5rem;
+    font-size: 1.6rem;
+    line-height: 3rem;
   }
 
+  /* Hero - column 2  */
   .hero .col1 .title {
     color: var(--spark-1);
-    font-size: 3rem;
-    line-height: 4rem;
+    font-size: 2.2rem;
+    line-height: 3rem;
+  }
+
+  .hero .col2 {
+    display: none;
+  }
+
+  /* Section 2  - How it works - column 2  */
+  .info .col1 {
+    display: none;
+  }
+
+  .info .col2 {
+    padding: 0 0;
+  }
+
+  .info .col2 .steps {
+    padding: 0;
+    border-top: none;
+    box-shadow: none;
   }
 
   .description {
