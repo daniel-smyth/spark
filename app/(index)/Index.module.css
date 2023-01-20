@@ -7,18 +7,34 @@
 }
 
 .hero,
-.info {
+.info,
+.calculator,
+.pricing {
   display: flex;
   width: 100%;
+}
+
+.hero {
   height: calc(100vh - 70px);
+}
+
+.info,
+.calculator,
+.pricing {
+  height: 100vh;
+}
+
+.header {
+  font-size: 2.5rem;
+  line-height: 5rem;
 }
 
 /* Hero - column 1  */
 .hero .col1 {
   flex: 1;
-  justify-content: center;
   text-align: center;
   display: flex;
+  justify-content: center;
   flex-direction: column;
 }
 
@@ -26,19 +42,10 @@
   padding-left: 10%;
 }
 
-.hero .col1 .h1 {
+.hero .col1 .title {
   color: var(--spark-1);
   font-size: 4rem;
   line-height: 4rem;
-}
-
-.hero .col1 .h2 {
-  font-size: 3rem;
-  line-height: 5rem;
-}
-
-.hero .col1 .h3 {
-  font-size: 1.5rem;
 }
 
 .hero .col1 button {
@@ -96,17 +103,71 @@
   display: grid;
   grid-template-columns: 0fr 1fr;
   grid-column-gap: 1rem;
-  margin-top: 1rem;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid var(--accent-8);
+  border-bottom: 3px solid var(--accent-3);
 }
 
 .info .col2 .step h2 {
+  line-height: 2.5rem;
+}
+
+.info .col2 .step h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
   color: var(--spark-1);
 }
 
-.info .col2 div {
-  text-align: left;
+/* Section 3 - column 1 */
+.calculator .col1 {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.calculator .col1 .body {
+  margin-bottom: 2rem;
+}
+
+.calculator .container {
+  width: 280px;
+  text-align: center;
+}
+
+/* Section 3 - column 2 */
+.calculator .col2 {
+  flex: 1;
+  position: relative;
+}
+
+.calculator .col2 div {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 80%;
+  height: 80%;
+}
+
+/* Section 4 - column (same for all) */
+.pricing .col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+}
+
+.pricing .price {
+  max-width: 350px;
+}
+
+.pricing .col .body {
+  margin-bottom: 2rem;
 }
 
 .description {
@@ -119,30 +180,6 @@
   z-index: 2;
 }
 
-.screenshot,
-.calculator {
-  width: 70vh;
-  text-align: center;
-  height: 80vh;
-}
-
-.box {
-  margin: 1rem 0;
-  min-width: 250px;
-}
-
-.price {
-  width: 50vh;
-  text-align: center;
-  height: 80vh;
-}
-
-.calculator {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .screenshot {
   display: flex;
   flex-direction: column;
@@ -152,7 +189,7 @@
 
 @media (max-width: 700px) {
   .screenshot,
-  .calculator,
+  .calculator .container,
   .price,
   .steps {
     width: 40vh;
@@ -167,7 +204,7 @@
 
 @media (min-width: 701px) and (max-width: 1120px) {
   .screenshot,
-  .calculator,
+  .calculator .container,
   .price,
   .steps {
     width: 70vh;
@@ -190,10 +227,6 @@
   .step {
     border-bottom: 1px solid var(--accent-0);
   }
-}
-
-.price {
-  margin-bottom: 160px;
 }
 
 .description a {

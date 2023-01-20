@@ -18,13 +18,13 @@ export default function Home() {
       </div>
       <div className={s.hero}>
         <div className={s.col1}>
-          <Text variant="heading" className={s.h1}>
+          <Text variant="heading" className={s.title}>
             Web3 is here
           </Text>
-          <Text variant="sectionHeading" className={s.h2}>
+          <Text variant="sectionHeading" className={s.header}>
             Upload. Create. Sell.
           </Text>
-          <Text className={s.h3}>Create up to 10,000 NFTs in minutes</Text>
+          <Text>Create up to 10,000 NFTs in minutes</Text>
           <Link href="/create">
             <Button variant="flat">Create 10,000 NFTs</Button>
           </Link>
@@ -48,21 +48,23 @@ export default function Home() {
         </div>
         <div className={s.col2}>
           <div>
-            <Text variant="sectionHeading">How Does it Work?</Text>
+            <Text variant="sectionHeading" className={s.header}>
+              How Does it Work?
+            </Text>
             <Text>
               Minting NFTs has never been this easy. It&apos;s just 3 steps!
             </Text>
             <ul>
               <li>
                 <div className={s.step}>
-                  <FiImage size={30} />
+                  <FiImage size={35} />
                   <Text variant="sectionHeading">1. Multiply Artwork</Text>
                 </div>
                 <Text>Multiply your images with the Spark3 art engine</Text>
               </li>
               <li>
                 <div className={s.step}>
-                  <FiDatabase size={30} />
+                  <FiDatabase size={35} />
                   <Text variant="sectionHeading">2. Mint Artwork</Text>
                 </div>
                 <Text>
@@ -71,7 +73,7 @@ export default function Home() {
               </li>
               <li>
                 <div className={s.step}>
-                  <FiRepeat size={30} />
+                  <FiRepeat size={35} />
                   <Text variant="sectionHeading">3. Sell Artwork</Text>
                 </div>
                 <Text>
@@ -82,55 +84,70 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className={s.row}>
-        <div className={s.calculator}>
-          <Text variant="sectionHeading">Collection Calculator</Text>
-          <Text>
+      <div className={s.calculator}>
+        <div className={s.col1}>
+          <Text variant="sectionHeading" className={s.header}>
+            Collection Calculator
+          </Text>
+          <Text className={s.body}>
             Calculate the maximum number of NFTs you can create with your images
           </Text>
-          <div className={s.box}>
+          <div className={s.container}>
             <Calculator />
           </div>
         </div>
-        <div className={s.price}>
-          <Text variant="sectionHeading">How Much is it?</Text>
-          <Text>
+        <div className={s.col2}>
+          <div>
+            <Image fill alt="nft-artwork" src="/nft-calculator.svg" />
+          </div>
+        </div>
+      </div>
+      <div className={s.pricing}>
+        <div className={s.col}>
+          <Text variant="sectionHeading" className={s.header}>
+            How Much is it?
+          </Text>
+          <Text className={s.body}>
             It&apos;s cheap too! You can mint 10,000 NFTs for just $99.00
           </Text>
-          <Price
-            title="NFT Collection"
-            price={99}
-            data={[
-              'Multiply and sell artwork on exchanges',
-              'Unlimited artwork collection size',
-              'Setup completed in 5 minutes',
-              'No downloads'
-            ]}
-            action="Find out more"
-            link=""
-          />
+          <div className={s.price}>
+            <Price
+              title="NFT Collection"
+              price={99}
+              data={[
+                'Multiply and sell artwork on exchanges',
+                'Unlimited artwork collection size',
+                'Setup completed in 5 minutes',
+                'No downloads'
+              ]}
+              action="Find out more"
+              link=""
+            />
+          </div>
         </div>
-        {/* <div className={s.price}>
-          <Text variant="sectionHeading">What&apos;s in store?</Text>
-
-          <Text>
+        <div className={s.col}>
+          <Text variant="sectionHeading" className={s.header}>
+            What&apos;s in store?
+          </Text>
+          <Text className={s.body}>
             At Spark we are always working on innovative new Web3 technologies
           </Text>
-
-          <Price
-            title="NFT Marketplace"
-            price={199}
-            data={[
-              'NFT marketplace on your website',
-              'Cut out exchange fees',
-              'Manage drops and create collections',
-              'Website installation in days'
-            ]}
-            link=""
-            action="Coming soon"
-            disabled
-          />
-        </div> */}
+          <div className={s.price}>
+            <Price
+              title="NFT Marketplace"
+              price={199}
+              data={[
+                'NFT marketplace on your website',
+                'Cut out exchange fees',
+                'Manage drops and create collections',
+                'Website installation in days'
+              ]}
+              link=""
+              action="Coming soon"
+              disabled
+            />
+          </div>
+        </div>
       </div>
     </main>
   );
