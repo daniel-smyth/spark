@@ -1,16 +1,11 @@
 'use client';
 
 import { createContext, useContext, useState } from 'react';
-import { NFTGenerator } from '@lib/web3/nftgenerator';
+import { NFTGenerator } from '@lib/web3';
 
-type State = {
-  collection: NFTGenerator;
-  setCollection: (collection: NFTGenerator) => void;
-};
-
-const Context = createContext<State>({
+const Context = createContext({
   collection: new NFTGenerator(),
-  setCollection: () => {}
+  setCollection: (collection: NFTGenerator) => {}
 });
 
 export function Provider({ children }: { children: React.ReactNode }) {
@@ -29,7 +24,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
 }
 
 export const useCollection = () => {
-  const c = useContext<State>(Context);
+  const c = useContext(Context);
   if (!c) {
     throw new Error('useCollection must be placed within CollectionProvider');
   }

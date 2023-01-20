@@ -1,6 +1,6 @@
 import s from './Create.module.css';
 import { Logo, Text } from '@components/ui';
-import { Form } from '@components/create';
+import { CreateForm } from '@components/create';
 
 export default function Create() {
   return (
@@ -11,7 +11,7 @@ export default function Create() {
             <Text variant="sectionHeading">Create Collection</Text>
             <Logo width={60} />
           </div>
-          <Form />
+          <CreateForm />
         </div>
       </div>
     </main>

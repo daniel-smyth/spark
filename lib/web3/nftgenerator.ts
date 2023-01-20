@@ -1,17 +1,18 @@
 import path from 'path';
-import { NFT } from '@lib/web3/nft';
+import { NFT } from './nft';
 
+/** An element of NFT artwork - Hat, Glasses, etc. */
 export interface Trait {
-  name: string;
+  name: string; // Hat
   variations: Array<{
     id: number;
-    name: string;
+    name: string; // Red
     image: string;
-    weight: number;
+    weight: number; // 20
   }>;
 }
 
-export class NFTGenerator {
+export default class NFTGenerator {
   DNAs: Set<string> = new Set();
 
   artwork: Trait[] = [];
@@ -20,13 +21,13 @@ export class NFTGenerator {
     size: 0,
     name: '',
     symbol: '',
-    prefix: '',
+    prefix: '', // All images begin with this prefix
     description: '',
     primary_sale_recipient: ''
   };
 
   /**
-   * Parse images to collection "trait" objects. Trait objects are uniquely
+   * Parse user's images to "trait" objects. Trait objects are uniquely
    * combined to create collections
    */
   public loadArtwork(images: FileList) {
@@ -82,12 +83,18 @@ export class NFTGenerator {
     }
   }
 
-  async generate(size = this.properties.size || 10000) {
+  async generateCollection(size = this.properties.size || 10000) {
     const collection = [];
 
     let counter = 0;
     while (counter <= size) {
-      const nft = new NFT();
+      const nft = new NFT({
+        name: this.properties.prefix
+          ? `${this.properties.prefix} ${counter}`
+          : `${counter}`,
+        description: this.properties.description
+      });
+
       const dna = this.makeDNA();
 
       this.artwork.forEach(async (trait) => {
@@ -97,13 +104,6 @@ export class NFTGenerator {
         if (existsInDna) {
           return await nft.insert(existsInDna);
         }
-      });
-
-      nft.insert({
-        name: this.properties.prefix
-          ? `${this.properties.prefix} ${counter}`
-          : `${counter}`,
-        description: this.properties.description
       });
 
       const object = nft.toObject();

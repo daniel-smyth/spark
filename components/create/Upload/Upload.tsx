@@ -4,7 +4,7 @@ import { FC, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import s from './Upload.module.css';
-import { Trait } from '@lib/web3/nftgenerator';
+import { Trait } from '@lib/web3';
 import { useCollection } from '@app/create/context';
 import { Button, DragAndDrop, Dropzone, Text } from '@components/ui';
 

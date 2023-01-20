@@ -10,24 +10,24 @@ if (!process.env.NEXT_PUBLIC_ADDRESS) {
   throw new Error('NEXT_PUBLIC_ADDRESS is required in .env');
 }
 
-const spark = process.env.NEXT_PUBLIC_ADDRESS;
+const sparkAddress = process.env.NEXT_PUBLIC_ADDRESS;
 
 const Mint: FC = () => {
   const web3 = useSDK();
   const { collection } = useCollection();
-  const [output, setOutput] = useState(['> Multiplying artwork...']);
+  const [mintOutput, setMintOutput] = useState(['> Multiplying artwork...']);
 
-  const updateOutput = (line: string, newLine = false) => {
+  const updateOutput = (output: string, newLine = false) => {
     if (newLine) {
-      setOutput([...output, '', line]);
+      setMintOutput([...mintOutput, '', output]);
     } else {
-      setOutput([...output, line]);
+      setMintOutput([...mintOutput, output]);
     }
   };
 
   useEffect(() => {
     const mint = async () => {
-      const nfts = await collection.generate();
+      const nfts = await collection.generateCollection();
 
       updateOutput('> Deploying contract...', true);
       try {
@@ -45,7 +45,7 @@ const Mint: FC = () => {
 
           contract?.royalties.setDefaultRoyaltyInfo({
             seller_fee_basis_points: 100, // 1%
-            fee_recipient: spark
+            fee_recipient: sparkAddress
           });
 
           updateOutput('> Minting NFTs...', true);
@@ -78,7 +78,7 @@ const Mint: FC = () => {
       <LoadingDots />
       <Text>Creating Collection</Text>
       <div className={s.output}>
-        {output.map((line, i) => (
+        {mintOutput.map((line, i) => (
           <>
             {line}
             <br />

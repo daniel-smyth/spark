@@ -3,26 +3,21 @@
 import { FC } from 'react';
 import { useCollection } from '@app/create/context';
 import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
-import s from './Container.module.css';
-import { LoadingDots, Text } from '@components/ui';
+import s from './Form.module.css';
+import { Text } from '@components/ui';
 import Upload from '../Upload';
 import Properties from '../Properties';
 import Mint from '../Mint';
 
-const Container: FC = () => {
-  const { collection } = useCollection();
+const CreateForm: FC = () => {
+  const {
+    collection: { artwork, properties }
+  } = useCollection();
   const address = useAddress();
 
   return (
     <>
-      {address ? (
-        <>
-          {collection.artwork.length === 0 && <Upload />}
-          {collection.artwork.length > 0 &&
-            collection.properties.size === 0 && <Properties />}
-          {collection.properties.size > 0 && <Mint />}
-        </>
-      ) : (
+      {!address && (
         <div className={s.connect}>
           <Text>Connect Wallet to Begin</Text>
           <ConnectWallet
@@ -36,8 +31,16 @@ const Container: FC = () => {
           />
         </div>
       )}
+      {address &&
+        (artwork.length === 0 ? (
+          <Upload />
+        ) : properties.size === 0 ? (
+          <Properties />
+        ) : (
+          <Mint />
+        ))}
     </>
   );
 };
 
-export default Container;
+export default CreateForm;

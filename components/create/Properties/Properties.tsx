@@ -3,6 +3,7 @@
 import React, { FC } from 'react';
 import Link from 'next/link';
 import { Formik } from 'formik';
+import * as Yup from 'yup';
 import s from './Properties.module.css';
 import { useCollection } from '@app/create/context';
 import { Button, NumberInput, Text } from '@components/ui';
@@ -19,17 +20,16 @@ const Properties: FC = () => {
   return (
     <Formik
       initialValues={collection.properties}
-      validate={(values) =>
-        Object.keys(values).reduce(
-          (errors: { [key: string]: string }, value) => {
-            if (!values[value as keyof typeof values]) {
-              errors[value] = 'Required';
-            }
-            return errors;
-          },
-          {}
-        )
-      }
+      validationSchema={Yup.object().shape({
+        size: Yup.number().max(10000).required('Size is require'),
+        name: Yup.string().max(255).required('Name is required'),
+        symbol: Yup.string().max(3).required('Symbol is required'),
+        prefix: Yup.string().max(255),
+        description: Yup.string().max(255),
+        primary_sale_recipient: Yup.number()
+          .max(255)
+          .required('Primary sale recipient is required')
+      })}
       onSubmit={(values, { setSubmitting }) => {
         collection.properties = values;
         setCollection(collection);
@@ -66,7 +66,6 @@ const Properties: FC = () => {
             <Text>
               <strong>Collection Properties</strong>
             </Text>
-
             <Text>
               Enter your collection&apos;s properties. This data cannot be
               changed. <Link href="/">See NFT trait types and trait names</Link>{' '}
