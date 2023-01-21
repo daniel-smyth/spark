@@ -17,7 +17,10 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ThirdwebProvider
       desiredChainId={activeChainId}
-      authConfig={{ domain, authUrl: '/api/auth' }}
+      authConfig={{
+        domain,
+        authUrl: '/api/auth'
+      }}
     >
       {children}
     </ThirdwebProvider>

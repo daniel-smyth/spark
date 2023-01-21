@@ -117,11 +117,6 @@
   top: var(--fieldHintTopHover, 0rem);
 }
 
-.flat input {
-  background-color: var(--accent-0);
-  border-radius: 0.5rem;
-}
-
 .label {
   position: absolute;
   left: var(--uiFieldPaddingLeft);
@@ -138,21 +133,4 @@
 .icon {
   display: flex;
   align-items: center;
-}
-
-.error {
-  display: flex;
-  gap: 15px;
-  color: rgb(62, 5, 5);
-  background-color: rgba(255, 113, 113, 0.2);
-  padding: 0.5rem 1.5rem;
-  margin: 0.2rem 0rem;
-  border-radius: 5px;
-  text-align: left;
-}
-
-@media (prefers-color-scheme: dark) {
-  .error {
-    color: rgba(255, 25, 25, 0.6);
-  }
 }

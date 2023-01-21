@@ -9,7 +9,7 @@ export default function Create() {
         <div className={s.card}>
           <div className={s.title}>
             <Text variant="sectionHeading">Create Collection</Text>
-            <Logo width={60} className={s.logo} />
+            <Logo width={60} />
           </div>
           <CreateForm />
         </div>

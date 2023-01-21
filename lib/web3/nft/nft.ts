@@ -1,4 +1,4 @@
-export default class NFT {
+export class NFT {
   metadata: Record<string, any> = {};
 
   constructor(metadata: { name: string; description?: string }) {

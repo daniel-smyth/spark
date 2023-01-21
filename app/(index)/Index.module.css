@@ -28,6 +28,13 @@
   line-height: 5rem;
 }
 
+.button {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  height: 2.5rem;
+  padding: 0 3rem;
+}
+
 /* Hero - column 1  */
 .hero .col1 {
   flex: 1;
@@ -42,13 +49,6 @@
   color: var(--spark-1);
   font-size: 4rem;
   line-height: 4rem;
-}
-
-.hero .col1 button {
-  margin-top: 2rem;
-  font-size: 1rem;
-  height: 2.5rem;
-  padding: 0 3rem;
 }
 
 /* Hero - column 2  */
@@ -89,6 +89,7 @@
   align-items: center;
   justify-content: left;
   text-align: center;
+  height: 100%;
   padding: 0 10%;
 }
 
@@ -98,8 +99,12 @@
   padding: 2rem 3rem;
   margin-top: 2rem;
   border-radius: 30px;
-  border-top: 6px solid var(--spark-1);
   box-shadow: 0px 0px 8px var(--shadow-0);
+}
+
+.info .col2 .steps li:last-child {
+  display: flex;
+  justify-content: right;
 }
 
 .info .col2 .steps .body {
@@ -117,7 +122,6 @@
 .info .col2 .step h2 {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--shadow-0);
 }
 
 /* Section 3 - Calculator - column 1 */
@@ -128,6 +132,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  height: 100%;
 }
 
 .calculator .col1 .container {
@@ -206,6 +211,8 @@
   .calculator,
   .pricing {
     display: inline-block;
+    height: 100vh;
+    padding-bottom: 30vh;
     width: 80%;
   }
   .pricing {
@@ -217,22 +224,24 @@
     line-height: 3rem;
   }
 
-  /* Hero - column 2  */
+  /* Hero - column 1  */
   .hero .col1 .title {
     color: var(--spark-1);
     font-size: 2.2rem;
     line-height: 3rem;
   }
 
+  /* Hero - column 2  */
   .hero .col2 {
     display: none;
   }
 
-  /* Section 2  - How it works - column 2  */
+  /* Section 2  - How it works - column 1  */
   .info .col1 {
     display: none;
   }
 
+  /* Section 2  - How it works - column 2  */
   .info .col2 {
     padding: 0 0;
   }
@@ -241,6 +250,17 @@
     padding: 0;
     border-top: none;
     box-shadow: none;
+  }
+
+  .info .col2 .steps li:last-child {
+    justify-content: center;
+  }
+
+  /* Section 4  - Pricing  */
+  .pricing {
+    display: flex;
+    flex-direction: column;
+    gap: 10vh;
   }
 
   .description {

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { FiImage, FiDatabase, FiRepeat } from 'react-icons/fi';
 import s from './Index.module.css';
 import { Button, Logo, Text } from '@components/ui';
-import { Calculator, Price } from '@components/home';
+import { Calculator, Price } from '@components/index';
 
 export default function Home() {
   return (
@@ -25,7 +25,9 @@ export default function Home() {
           </Text>
           <Text>Create up to 10,000 NFTs in minutes</Text>
           <Link href="/create">
-            <Button variant="flat">Create 10,000 NFTs</Button>
+            <Button variant="flat" className={s.button}>
+              Create 10,000 NFTs
+            </Button>
           </Link>
         </div>
         <div className={s.col2}>
@@ -51,7 +53,7 @@ export default function Home() {
               How Does it Work?
             </Text>
             <Text>
-              Minting NFTs has never been this easy. It&apos;s just 3 steps!
+              Minting NFTs has never been this easy. It's just 3 steps!
             </Text>
             <ul className={s.steps}>
               <li>
@@ -81,6 +83,13 @@ export default function Home() {
                   Sell your newly created NFT Artwork on any major exchange
                 </Text>
               </li>
+              <li>
+                <Link href="/create">
+                  <Button variant="flat" className={s.button}>
+                    Get Started
+                  </Button>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -107,7 +116,7 @@ export default function Home() {
             How Much is it?
           </Text>
           <Text className={s.body}>
-            It&apos;s cheap too! You can mint 10,000 NFTs for just $99.00
+            It's cheap too! You can mint 10,000 NFTs for just $99.00
           </Text>
           <div className={s.price}>
             <Price
@@ -126,7 +135,7 @@ export default function Home() {
         </div>
         <div className={s.col}>
           <Text variant="sectionHeading" className={s.header}>
-            What&apos;s in store?
+            What's in store?
           </Text>
           <Text className={s.body}>
             At Spark we are always working on innovative new Web3 technologies

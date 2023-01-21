@@ -15,13 +15,14 @@ const sparkAddress = process.env.NEXT_PUBLIC_ADDRESS;
 const Mint: FC = () => {
   const web3 = useSDK();
   const { collection } = useCollection();
+  const [loading, setLoading] = useState(true);
   const [mintOutput, setMintOutput] = useState(['> Multiplying artwork...']);
 
   const updateOutput = (output: string, newLine = false) => {
     if (newLine) {
-      setMintOutput([...mintOutput, '', output]);
+      setMintOutput((state) => [...state, '', output]);
     } else {
-      setMintOutput([...mintOutput, output]);
+      setMintOutput((state) => [...state, output]);
     }
   };
 
@@ -33,7 +34,7 @@ const Mint: FC = () => {
       try {
         const collectionAddress = await web3?.deployer.deployNFTCollection({
           ...collection.properties,
-          platform_fee_recipient: process.env.NEXT_PUBLIC_ADDRESS,
+          platform_fee_recipient: sparkAddress,
           seller_fee_basis_points: 100
         });
 
@@ -60,26 +61,26 @@ const Mint: FC = () => {
           if (tx) {
             updateOutput(`> ${tx.length} items minted`);
             updateOutput(`> Minted to ${tx[0].receipt.to}`);
-
-            const receipt = tx[0].receipt;
-            const firstTokenId = tx[0].id;
-            const firstNFT = await tx[0].data();
-            console.log(receipt, firstTokenId, firstNFT);
           }
         }
       } catch (e: any) {
         console.log(e);
         updateOutput(`> Error: ${JSON.parse(e).reason}`);
       }
+      setLoading(false);
     };
 
     mint();
-  }, []);
+  }, [collection, web3]);
 
   return (
     <div className={s.root}>
-      <LoadingDots />
-      <Text>Creating Collection</Text>
+      {loading && (
+        <>
+          <LoadingDots />
+          <Text>Creating Collection</Text>
+        </>
+      )}
       <div className={s.output}>
         {mintOutput.map((line, i) => (
           <>

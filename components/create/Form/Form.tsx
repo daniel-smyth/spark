@@ -4,7 +4,6 @@ import { FC } from 'react';
 import { useCollection } from '@app/create/context';
 import { ConnectWallet, useAddress } from '@thirdweb-dev/react';
 import s from './Form.module.css';
-import { Text } from '@components/ui';
 import Upload from '../Upload';
 import Properties from '../Properties';
 import Mint from '../Mint';
@@ -19,7 +18,6 @@ const CreateForm: FC = () => {
     <>
       {!address && (
         <div className={s.connect}>
-          <Text>Connect Wallet to Begin</Text>
           <ConnectWallet
             accentColor="#1b7dce"
             colorMode="light"

@@ -15,6 +15,15 @@ const NumberInput: FC<InputHTMLAttributes<HTMLInputElement>> = (props) => {
         onClick={() => {
           if (input.current) {
             input.current.value = `${Number(input.current.value) + 1}`;
+            const event = {
+              target: {
+                name: props.name || '',
+                value: input.current.value
+              }
+            };
+            if (props.onChange) {
+              props.onChange(event as React.ChangeEvent<HTMLInputElement>);
+            }
           }
         }}
       />
@@ -24,6 +33,15 @@ const NumberInput: FC<InputHTMLAttributes<HTMLInputElement>> = (props) => {
         onClick={() => {
           if (input.current) {
             input.current.value = `${Number(input.current.value) - 1}`;
+            const event = {
+              target: {
+                name: props.name || '',
+                value: input.current.value
+              }
+            };
+            if (props.onChange) {
+              props.onChange(event as React.ChangeEvent<HTMLInputElement>);
+            }
           }
         }}
       />

@@ -18,8 +18,8 @@
     backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+  line-height: 1.5rem;
   /* display: inline-flex; */
-  /* line-height: 1.5rem; */
   /* text-align: center;
   justify-content: center; */
   /* align-items: center; */

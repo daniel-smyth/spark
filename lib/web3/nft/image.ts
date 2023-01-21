@@ -5,9 +5,9 @@ import {
   loadImage
 } from 'canvas';
 import { NFTInputOrUriSchema } from '@thirdweb-dev/sdk/dist/declarations/src/core/schema/nft';
-import NFT from './nft';
+import { NFT } from './nft';
 
-export default class NFTImage extends NFT {
+export class NFTImage extends NFT {
   canvas: Canvas;
   ctx: CanvasRenderingContext2D;
 

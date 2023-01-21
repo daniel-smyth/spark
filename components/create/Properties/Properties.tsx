@@ -6,8 +6,8 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import s from './Properties.module.css';
 import { useCollection } from '@app/create/context';
-import { Button, NumberInput, Text } from '@components/ui';
-import { TextInput } from '@components/form';
+import { Button, Text } from '@components/ui';
+import { FormikTextInput, FormikNumberInput } from '@components/formik';
 
 const Properties: FC = () => {
   const { collection, setCollection } = useCollection();
@@ -26,9 +26,10 @@ const Properties: FC = () => {
         symbol: Yup.string().max(3).required('Symbol is required'),
         prefix: Yup.string().max(255),
         description: Yup.string().max(255),
-        primary_sale_recipient: Yup.number()
-          .max(255)
-          .required('Primary sale recipient is required')
+        primary_sale_recipient: Yup.string()
+          .min(41)
+          .max(43)
+          .required('Invalid address')
       })}
       onSubmit={(values, { setSubmitting }) => {
         collection.properties = values;
@@ -36,15 +37,7 @@ const Properties: FC = () => {
         setSubmitting(false);
       }}
     >
-      {({
-        values,
-        errors,
-        touched,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        isSubmitting
-      }) => (
+      {({ handleSubmit, isSubmitting }) => (
         <form onSubmit={handleSubmit}>
           <div className={s.container}>
             <Text>
@@ -55,11 +48,7 @@ const Properties: FC = () => {
                 <strong>{getMaxSize()}</strong> is the max size you can make
                 your collection with uploaded artwork.
               </Text>
-              <NumberInput
-                name="size"
-                value={values.size}
-                onChange={handleChange}
-              />
+              <FormikNumberInput label="size" name="size" type="number" />
             </div>
           </div>
           <div className={s.container}>
@@ -73,23 +62,11 @@ const Properties: FC = () => {
             </Text>
           </div>
           <div className={s.container}>
-            {Object.keys(values).map(
-              (key) =>
-                key !== 'size' && (
-                  <React.Fragment key={key}>
-                    <TextInput
-                      name={key}
-                      type="text"
-                      variant="ghost"
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                      value={values[key as keyof typeof values]}
-                      errors={errors}
-                      touched={touched}
-                    />
-                  </React.Fragment>
-                )
-            )}
+            <FormikTextInput name="name" type="text" />
+            <FormikTextInput name="symbol" type="text" />
+            <FormikTextInput name="prefix" type="text" />
+            <FormikTextInput name="description" type="text" />
+            <FormikTextInput name="primary_sale_recipient" type="text" />
           </div>
           <Button width="100%" type="submit" disabled={isSubmitting}>
             Submit

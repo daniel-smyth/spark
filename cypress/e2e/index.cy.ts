@@ -2,19 +2,16 @@ import { NFTGenerator } from '@lib/web3';
 
 const mock = new NFTGenerator();
 
-describe('Connect Wallet', () => {
-  it('connects via MetaMask', () => {
-    cy.visit('http://localhost:3000');
+describe('Create Collection', () => {
+  it('uploads artwork', () => {
+    cy.visit('http://localhost:3000/create');
 
     cy.get('button').contains(`Connect Wallet`).click();
     cy.get('div').contains(`MetaMask`).click();
     cy.get('div').contains(`Sign in`).click();
-  });
-});
 
-describe('Create Collection', () => {
-  it('uploads artwork', () => {
-    cy.visit('http://localhost:3000/create');
+    // Wait 10 seconds to click "Sign"
+    cy.wait(10000);
 
     // Upload sample artwork
     cy.fixture('artwork').then((artwork) => {
@@ -35,7 +32,6 @@ describe('Create Collection', () => {
   it('enters collection properties', () => {
     cy.visit('http://localhost:3000/create');
 
-    // Connect MetaMask
     cy.get('button').contains(`Connect Wallet`).click();
     cy.get('div').contains(`MetaMask`).click();
     cy.get('div').contains(`Sign in`).click();
@@ -66,6 +62,9 @@ describe('Create Collection', () => {
     Object.keys(mock.properties).forEach((property) => {
       if (property === 'size') {
         return cy.get(`input[name=${property}]`).type(size);
+      }
+      if (property === 'symbol') {
+        return cy.get(`input[name=${property}]`).type('ABC');
       }
       if (property === 'primary_sale_recipient') {
         return cy.get(`input[name=${property}]`).type(address);

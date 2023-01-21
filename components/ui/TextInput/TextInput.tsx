@@ -1,5 +1,4 @@
 import React, { InputHTMLAttributes } from 'react';
-import { BiErrorCircle } from 'react-icons/bi';
 import { FormikErrors, FormikTouched } from 'formik';
 import cn from 'clsx';
 import s from './TextInput.module.css';
@@ -20,8 +19,6 @@ const TextInput: React.FC<TextInputProps> = ({
   width = '100%',
   placeholder = ' ',
   loading = false,
-  errors = {},
-  touched = {},
   className = '',
   ...props
 }) => {
@@ -40,6 +37,7 @@ const TextInput: React.FC<TextInputProps> = ({
         </label>
         <input
           id={name}
+          name={name}
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
@@ -58,12 +56,6 @@ const TextInput: React.FC<TextInputProps> = ({
           </span>
         </span>
       </div>
-      {errors[name] && touched[name] && (
-        <div className={s.error}>
-          <BiErrorCircle size={20} color="rgba(255, 25, 25, 0.6)" />
-          <Text>{errors[name]}</Text>
-        </div>
-      )}
     </>
   );
 };

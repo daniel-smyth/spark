@@ -7,3 +7,4 @@ export { default as LoadingDots } from './LoadingDots';
 export { default as Logo } from './Logo';
 export { default as NumberInput } from './NumberInput';
 export { default as Text } from './Text';
+export { default as TextInput, type TextInputProps } from './TextInput';

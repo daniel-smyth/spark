@@ -1,7 +1,7 @@
 import path from 'path';
-import { NFT } from './nft';
+import { NFT } from './nft/nft';
 
-/** An element of NFT artwork - Hat, Glasses, etc. */
+/** An element of the NFT artwork e.g. Hat, Glasses, etc. */
 export interface Trait {
   name: string; // Hat
   variations: Array<{
