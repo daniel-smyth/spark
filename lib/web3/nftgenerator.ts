@@ -56,6 +56,10 @@ export default class NFTGenerator {
     return artwork;
   }
 
+  /**
+   * NFTs in a collection each require a UID constructed by combining traits of the
+   * collection, this avoids duplicate NFTs. Create a UID using traits of the collection.
+   */
   private makeDNA(failCount = 0): string {
     let dna = '';
 
@@ -83,7 +87,13 @@ export default class NFTGenerator {
     }
   }
 
-  async generateCollection(size = this.properties.size || 10000) {
+  /**
+   * Generate a collection of NFTs using the generator's artwork.
+   */
+  async generateCollection(
+    size = this.properties.size || 10000,
+    toObject = false
+  ) {
     const collection = [];
 
     let counter = 0;
@@ -106,8 +116,12 @@ export default class NFTGenerator {
         }
       });
 
-      const object = nft.toObject();
-      collection.push(object);
+      if (toObject) {
+        collection.push(nft.toObject());
+      } else {
+        collection.push(nft);
+      }
+
       counter += 1;
     }
 
